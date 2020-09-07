@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &630895543528838201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630895543528838199}
+  - component: {fileID: 630895543528838198}
+  - component: {fileID: 6082351468802915924}
+  m_Layer: 0
+  m_Name: SolidBlock03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &630895543528838199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630895543528838201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 108.38, y: 11.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &630895543528838198
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630895543528838201}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 2021194813
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 5171424115845399806, guid: 20a9a1b76fb760f4d88e0aa9c9bbe050,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 10.63, y: 10.07}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!60 &6082351468802915924
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630895543528838201}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 26.575, y: 25.175}
+    newSize: {x: 10.63, y: 10.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 13.1125, y: -5.5625}
+      - {x: 13.1125, y: -4.1625}
+      - {x: 12.8625, y: -3.7125}
+      - {x: 11.7625, y: -3.5375001}
+      - {x: 10.9125, y: -3.7625}
+      - {x: 5.1625, y: -3.7625}
+      - {x: 4.2625003, y: -3.8375}
+      - {x: 4.3375, y: -2.9125001}
+      - {x: 4.3375, y: 2.8375}
+      - {x: 4.3625, y: 6.6375003}
+      - {x: 4.3375, y: 10.4125}
+      - {x: 4.3125, y: 10.4875}
+      - {x: 4.4375, y: 11.2375}
+      - {x: 4.4875, y: 12.1125}
+      - {x: 3.9875, y: 12.587501}
+      - {x: 2.9125001, y: 12.587501}
+      - {x: 0.26250002, y: 12.5125}
+      - {x: -11.1375, y: 12.5125}
+      - {x: -11.5375, y: 12.587501}
+      - {x: -12.9375, y: 12.587501}
+      - {x: -13.2875, y: 12.3625}
+      - {x: -13.2875, y: 9.2375}
+      - {x: -13.2375, y: 8.462501}
+      - {x: -13.2375, y: -2.9125001}
+      - {x: -13.2875, y: -7.7125}
+      - {x: -13.2875, y: -9.0375}
+      - {x: -13.2375, y: -11.5375}
+      - {x: -12.587501, y: -11.962501}
+      - {x: 3.0875, y: -11.8875}
+      - {x: 3.0875, y: -11.9875}
+      - {x: 3.1125, y: -12.0375}
+      - {x: 11.5625, y: -12.587501}
+      - {x: 13.0125, y: -12.587501}
+      - {x: 13.1125, y: -10.462501}
+      - {x: 13.1125, y: -7.3375}
+      - {x: 13.087501, y: -5.8375}
+    - - {x: 9.5625, y: 1.9625}
+      - {x: 9.587501, y: 1.8875}
+      - {x: 9.6625, y: 1.8875}
+      - {x: 9.712501, y: 1.9375}
+      - {x: 9.6875, y: 2.0125}
+      - {x: 9.6125, y: 2.0125}
