@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RocketLauncherLaser : MonoBehaviour
 {
     [SerializeField] float laserLenght;
     [SerializeField] Transform laserPoint;
+    [SerializeField] UnityEvent OnPlayerDetected;
 
     LineRenderer lineRenderer;
     RaycastHit2D hit;
@@ -19,26 +21,26 @@ public class RocketLauncherLaser : MonoBehaviour
 
     private void Start()
     {
-        
+        lineRenderer.SetPosition(0, transform.position);
     }
 
     private void Update()
-    {
-
-        laserEndPoint.x = laserLenght * Mathf.Cos((laserPoint.eulerAngles.z) * Mathf.Deg2Rad) + transform.position.x;
-        laserEndPoint.y = laserLenght * Mathf.Sin((laserPoint.eulerAngles.z) * Mathf.Deg2Rad) + transform.position.y;
-
-        lineRenderer.SetPosition(0, transform.position);
-
+    {              
         if (hit)
         {
             lineRenderer.SetPosition(1, hit.point);
         }
         else
         {
+            laserEndPoint.x = laserLenght * Mathf.Cos((laserPoint.eulerAngles.z) * Mathf.Deg2Rad) + transform.position.x;
+            laserEndPoint.y = laserLenght * Mathf.Sin((laserPoint.eulerAngles.z) * Mathf.Deg2Rad) + transform.position.y;
             lineRenderer.SetPosition(1, laserEndPoint);
         }
-        
+
+        if (hit && hit.collider.CompareTag("Player"))
+        {
+            OnPlayerDetected.Invoke();
+        }
         
         
         

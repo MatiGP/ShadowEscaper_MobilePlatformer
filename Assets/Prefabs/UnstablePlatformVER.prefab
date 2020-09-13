@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8479096404565025733}
   - component: {fileID: 6551767956371540007}
   - component: {fileID: 2407376584472071243}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: UnstablePlatformVER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 3.1}
+  m_Size: {x: 1.02, y: 3.1}
   m_EdgeRadius: 0
 --- !u!114 &2407376584472071243
 MonoBehaviour:

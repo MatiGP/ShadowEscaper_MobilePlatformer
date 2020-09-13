@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RocketLauncher : MonoBehaviour
 {
-    
+    [Header("Rocket Manager")]
+    [SerializeField] Rocket rocket;
+    Vector3 rocketStartPosition;
 
     [Header("Launcher Rotation")]
     [SerializeField] float rotateSpeed;
@@ -30,14 +32,25 @@ public class RocketLauncher : MonoBehaviour
         if (rotateClockwise)
         {
             currentAngleZ += rotateSpeed * Time.deltaTime;
-            transform.Rotate(new Vector3(0f, 0f, rotateSpeed * Time.deltaTime));                       
+            transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);                       
         }
 
         if (!rotateClockwise)
         {
             currentAngleZ -= rotateSpeed * Time.deltaTime;
-            transform.Rotate(new Vector3(0f, 0f, -rotateSpeed * Time.deltaTime));
+            transform.Rotate(0f, 0f, -rotateSpeed * Time.deltaTime);
         }
         
+    }
+
+    public void ResetRocket()
+    {
+        rocket.transform.position = rocketStartPosition;
+        rocket.gameObject.SetActive(true);
+    }
+
+    public void LaunchRocket()
+    {
+        rocket.LaunchRocket();
     }
 }

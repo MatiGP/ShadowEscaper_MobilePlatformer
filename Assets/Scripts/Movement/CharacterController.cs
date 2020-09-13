@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float wallJumpYForce = 700f;
     [Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask wallMask;
     [SerializeField] Transform groundCheck;
     [SerializeField] Transform wallCheck;
     [SerializeField] Animator animator;
@@ -70,7 +71,7 @@ public class CharacterController : MonoBehaviour
 
         if (!isGrounded)
         {
-            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(wallCheck.position, wallCheckRadius, groundMask);
+            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(wallCheck.position, wallCheckRadius, wallMask);
             if(collidersWall.Length > 0)
             {
                 isTouchingTheWall = true;

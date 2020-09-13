@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2421820414685012254}
   - component: {fileID: 2421820414685012255}
   - component: {fileID: 2690868710562045680}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: VerticalPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
