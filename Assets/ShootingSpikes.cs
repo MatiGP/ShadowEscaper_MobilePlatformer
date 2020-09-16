@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ShootingSpikes : MonoBehaviour
 {
-    [SerializeField] Transform spikes;
+    [SerializeField] GameObject spikes;
 
     public void ResetSpikes()
     {
-        spikes.position = new Vector3(0, 0.8f);
-        spikes.gameObject.SetActive(true);
+        spikes.SetActive(false);
+        spikes.transform.localPosition = new Vector2(0, 0.8f);        
+        spikes.SetActive(true);
     }
+
+
 }
