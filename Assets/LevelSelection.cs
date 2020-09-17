@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LevelSelection : MonoBehaviour
 {
-    [SerializeField] float panelSwipeTime;
     [SerializeField] RectTransform levelPanel;
     [SerializeField] GameObject nextButton;
     [SerializeField] GameObject prevButton;
@@ -13,7 +12,7 @@ public class LevelSelection : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(levelPanel.transform.childCount - 2);
+        
     }
 
     public void NextWorldPage()
