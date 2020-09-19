@@ -1,18 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
 {
     [SerializeField] RectTransform levelPanel;
     [SerializeField] GameObject nextButton;
     [SerializeField] GameObject prevButton;
-
+    [SerializeField] SaveSystem saveSystem;
+    [SerializeField] List<TextMeshProUGUI> buttonTexts;
+    [SerializeField] GameObject[] worlds;
     int currentIndex;
+    int[] points;
 
     private void Start()
     {
-        
+        LoadButtonTexts();
+        SetButtonText();
+        EnableLevelButtons();
+
+    }
+
+    private void LoadButtonTexts()
+    {
+        for (int i = 0; i < worlds.Length; i++)
+        {
+            GameObject world = worlds[i];
+            foreach (TextMeshProUGUI text in world.GetComponentsInChildren<TextMeshProUGUI>())
+            {
+                buttonTexts.Add(text);
+            }
+        }
     }
 
     public void NextWorldPage()
@@ -57,7 +78,55 @@ public class LevelSelection : MonoBehaviour
         }       
     }
 
-    
+    void EnableLevelButtons()
+    {
+        int levelIndex = 0;
+
+        for(int i = 0; i < worlds.Length; i++)
+        {
+            foreach (Button levelButton in worlds[i].GetComponentsInChildren<Button>())
+            {
+
+                if (levelIndex == 0)
+                {
+                    levelButton.interactable = true;
+                }
+                else
+                {
+                    if (points[levelIndex-1] != 0)
+                    {
+                        levelButton.interactable = true;
+                    }
+                    else
+                    {
+                        levelButton.interactable = false;
+                    }
+                }
+                
+                levelIndex++;
+            }
+        }
+
+        worlds[0].transform.GetChild(0).GetComponent<Button>().interactable = true;
+    }
+
+    void SetButtonText()
+    {
+        points = saveSystem.GetObtainedPointsFromEachLevel();
+
+        for(int i = 0; i < points.Length; i++)
+        {
+            switch (points[i])
+            {
+                case 0:
+                    buttonTexts[i].text = "Not attempted";
+                    break;
+                default:
+                    buttonTexts[i].text = points[i].ToString();
+                    break;
+            }
+        }
+    }
 
     private void OnEnable()
     {
@@ -65,6 +134,10 @@ public class LevelSelection : MonoBehaviour
         nextButton.SetActive(true);
         prevButton.SetActive(false);
         levelPanel.anchoredPosition = new Vector2(0f, 0f);
+    }
 
+    public void SelectLevel(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex);
     }
 }

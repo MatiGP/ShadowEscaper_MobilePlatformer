@@ -10,6 +10,7 @@ public class UnstablePlatform : MonoBehaviour
     [SerializeField] float disableDuration;
     [SerializeField] List<Sprite> platformSprites;
 
+    bool isBreakingDown;
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
 
@@ -21,7 +22,7 @@ public class UnstablePlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player") && !isBreakingDown)
         {
             StartCoroutine(BreakDown());
         }
@@ -29,7 +30,8 @@ public class UnstablePlatform : MonoBehaviour
 
     IEnumerator BreakDown()
     {
-        for(int i = 0; i < 2; i++)
+        isBreakingDown = true;
+        for (int i = 0; i < 2; i++)
         {
             spriteRenderer.sprite = platformSprites[i];
             yield return new WaitForSeconds(slowBreakTime);
@@ -46,6 +48,7 @@ public class UnstablePlatform : MonoBehaviour
         yield return new WaitForSeconds(disableDuration);
         spriteRenderer.sprite = platformSprites[0];
         boxCollider.enabled = true;
+        isBreakingDown = false;
 
     }
 }

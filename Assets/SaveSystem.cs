@@ -4,16 +4,12 @@ using UnityEngine;
 using System.IO;
 
 public class SaveSystem : MonoBehaviour
-{
-    public SaveSystem instance;
-
-    [SerializeField] int[] pointsObtainedOnEachLevel = new int[25];
+{   
+    [SerializeField] int[] pointsObtainedOnEachLevel = new int[50];
 
     private void Awake()
     {
-        instance = this;
-        Load();
-        
+        Load();       
     }
 
     void Save()

@@ -7,6 +7,7 @@ public class KeystoneSlotBox : MonoBehaviour
     public bool HasKey { get; private set; }
     [SerializeField] Sprite activeKeystoneSlot;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] EndLevelPlatform endLevelPlatform;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,6 +20,7 @@ public class KeystoneSlotBox : MonoBehaviour
             {
                 HasKey = true;
                 spriteRenderer.sprite = activeKeystoneSlot;
+                endLevelPlatform.CheckSlotBoxes();
             }
         }
     }

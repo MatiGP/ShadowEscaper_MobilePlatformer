@@ -57,6 +57,7 @@ MonoBehaviour:
   padSpriteRenderer: {fileID: 109404243564416878}
   activePadSprite: {fileID: -1572005827058075972, guid: 9c6572c95f2fcf545875c09866f02db8,
     type: 3}
+  platform: {fileID: 437665279}
 --- !u!1 &109404242061818749
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +304,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &437665279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109404243564416879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e906f68b8bd39404f8a1efcdbc1913f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2625461661144804929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,6 +323,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 109404241914488438}
     m_Modifications:
+    - target: {fileID: 1660394109751250713, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
+        type: 3}
+      propertyPath: endLevelPlatform
+      value: 
+      objectReference: {fileID: 7259740519627364192}
     - target: {fileID: 4612746737190084036, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
         type: 3}
       propertyPath: m_Name
@@ -402,6 +420,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 109404241914488438}
     m_Modifications:
+    - target: {fileID: 1660394109751250713, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
+        type: 3}
+      propertyPath: endLevelPlatform
+      value: 
+      objectReference: {fileID: 7259740519627364192}
     - target: {fileID: 4612746737190084036, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
         type: 3}
       propertyPath: m_Name
@@ -494,6 +517,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 109404241914488438}
     m_Modifications:
+    - target: {fileID: 1660394109751250713, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
+        type: 3}
+      propertyPath: endLevelPlatform
+      value: 
+      objectReference: {fileID: 7259740519627364192}
     - target: {fileID: 4612746737190084036, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
         type: 3}
       propertyPath: m_Name
@@ -648,6 +676,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a2d84e1606ee0e418eb77b971ad2e8a, type: 3}
+--- !u!1 &109404243564416879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9090716390873697580, guid: 8a2d84e1606ee0e418eb77b971ad2e8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9199755562131833411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &109404243564416877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090716390873697582, guid: 8a2d84e1606ee0e418eb77b971ad2e8a,

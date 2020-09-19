@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad452ce3652ab641ac73acb31fa4f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocket: {fileID: 0}
+  rocket: {fileID: 1292862529}
   rotateSpeed: 20
   minRotation: -40
   maxRotation: 20
