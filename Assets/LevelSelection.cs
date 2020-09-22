@@ -135,9 +135,4 @@ public class LevelSelection : MonoBehaviour
         prevButton.SetActive(false);
         levelPanel.anchoredPosition = new Vector2(0f, 0f);
     }
-
-    public void SelectLevel(int levelIndex)
-    {
-        SceneManager.LoadScene(levelIndex);
-    }
 }

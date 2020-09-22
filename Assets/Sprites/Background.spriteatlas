@@ -39,7 +39,7 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
+      enableTightPacking: 0
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 408cf83d3c4ba3f4284a2099c9328f04, type: 3}
@@ -49,7 +49,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 79d4957d4e142104e829bde9cafffecb, type: 3}
     - {fileID: 102900000, guid: c2647ee4c082fdb409bdded4d5079c1b, type: 3}
     - {fileID: 102900000, guid: e0b311ba30fe23440b9fbb569fb3ac63, type: 3}
-    totalSpriteSurfaceArea: 12206082
+    totalSpriteSurfaceArea: 12021251
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -67,36 +67,17 @@ SpriteAtlas:
   - {fileID: -1335473428193875819, guid: 82af2b829fcfad54b9b0d86f5632af71, type: 3}
   - {fileID: -2135886872541758059, guid: 82af2b829fcfad54b9b0d86f5632af71, type: 3}
   - {fileID: -3247056379685076432, guid: 80d3d192a574af146aa8d857229175a6, type: 3}
-  - {fileID: 934147636159326287, guid: 26813ea232032494c97ec4f3d10796d8, type: 3}
-  - {fileID: 4486547591443457054, guid: 26813ea232032494c97ec4f3d10796d8, type: 3}
-  - {fileID: 6314671785402075405, guid: 26813ea232032494c97ec4f3d10796d8, type: 3}
-  - {fileID: 8500719639754761573, guid: 26813ea232032494c97ec4f3d10796d8, type: 3}
-  - {fileID: -1112786695140459445, guid: 26813ea232032494c97ec4f3d10796d8, type: 3}
   - {fileID: -1093956700252892651, guid: 26813ea232032494c97ec4f3d10796d8, type: 3}
-  - {fileID: 524484522620684983, guid: 26813ea232032494c97ec4f3d10796d8, type: 3}
   - {fileID: -1384235396860406166, guid: dcd023f21a3f1054e8703fea90582c16, type: 3}
   - {fileID: -569272493337402770, guid: 29accb03e2b934046944e8a85bcfa025, type: 3}
   - {fileID: -3307075446057385012, guid: baa0116392a649140b9f153d660818e1, type: 3}
   - {fileID: -3213795245236339697, guid: c0d13273a7e3fe1408526f167c867904, type: 3}
-  - {fileID: 6773953260635771452, guid: b051f673425644b4682c61737f178e5e, type: 3}
-  - {fileID: 7539291405527459293, guid: b051f673425644b4682c61737f178e5e, type: 3}
-  - {fileID: -1817191446499791587, guid: b051f673425644b4682c61737f178e5e, type: 3}
-  - {fileID: 2415756952457481732, guid: b051f673425644b4682c61737f178e5e, type: 3}
-  - {fileID: -6029799630156119472, guid: b051f673425644b4682c61737f178e5e, type: 3}
-  - {fileID: -910099549562324152, guid: b051f673425644b4682c61737f178e5e, type: 3}
-  - {fileID: 3091304925884344685, guid: b051f673425644b4682c61737f178e5e, type: 3}
   - {fileID: 2058396900946231620, guid: b35b18832a03add4d98d7e469f25ce77, type: 3}
   - {fileID: 420821352288218684, guid: b35b18832a03add4d98d7e469f25ce77, type: 3}
   - {fileID: -981103311770804534, guid: b35b18832a03add4d98d7e469f25ce77, type: 3}
   - {fileID: 1660234239173956534, guid: b35b18832a03add4d98d7e469f25ce77, type: 3}
   - {fileID: 6731489386061575069, guid: 37fd95c398d86814fb4c91fe38024f10, type: 3}
-  - {fileID: -9130274750411047992, guid: 824a101603d5cf347a27569445886040, type: 3}
-  - {fileID: -5288751320486162461, guid: 824a101603d5cf347a27569445886040, type: 3}
-  - {fileID: 4534825035478585670, guid: 824a101603d5cf347a27569445886040, type: 3}
-  - {fileID: 3364307025226898244, guid: 824a101603d5cf347a27569445886040, type: 3}
   - {fileID: -4597234336510562533, guid: 824a101603d5cf347a27569445886040, type: 3}
-  - {fileID: 737927577587194468, guid: 824a101603d5cf347a27569445886040, type: 3}
-  - {fileID: -2213935499352805622, guid: 824a101603d5cf347a27569445886040, type: 3}
   - {fileID: 5405887427117723925, guid: 8eb8be26d25655643ad72c4fb7d5ac2f, type: 3}
   - {fileID: -1265464182802340802, guid: 5a2b60e6a9fe1ec4d877a3dfa783dabe, type: 3}
   - {fileID: 7315160668528674273, guid: 0a8a2ef66c8fb44499e0e701f3ac3b52, type: 3}
@@ -152,36 +133,17 @@ SpriteAtlas:
   - SINGLE dark_0
   - SINGLE dark_1
   - unstable platform#3 VER_0
-  - 7 SPIKES_6
-  - 7 SPIKES_4
-  - 7 SPIKES_5
-  - 7 SPIKES_2
-  - 7 SPIKES_3
   - 7 SPIKES_0
-  - 7 SPIKES_1
   - PLATFORMA POZIOMO_0
   - END PAD WITH CABLES_0
   - PLATFORMA PIONOWO_0
   - SLOT BOX _0
-  - 7 SPECIAL SPIKES kopia 2_3
-  - 7 SPECIAL SPIKES kopia 2_2
-  - 7 SPECIAL SPIKES kopia 2_1
-  - 7 SPECIAL SPIKES kopia 2_0
-  - 7 SPECIAL SPIKES kopia 2_6
-  - 7 SPECIAL SPIKES kopia 2_5
-  - 7 SPECIAL SPIKES kopia 2_4
   - SMALLER CABLES_0
   - SMALLER CABLES_1
   - SMALLER CABLES_2
   - SMALLER CABLES_3
   - GLASS SQUARE COLOR_0
-  - 7 SPECIAL SPIKES kopia_5
-  - 7 SPECIAL SPIKES kopia_4
-  - 7 SPECIAL SPIKES kopia_6
-  - 7 SPECIAL SPIKES kopia_1
   - 7 SPECIAL SPIKES kopia_0
-  - 7 SPECIAL SPIKES kopia_3
-  - 7 SPECIAL SPIKES kopia_2
   - unstable platform#4 HOR_0
   - Warstwa 2(wklejone)_0
   - rectangle #2_0

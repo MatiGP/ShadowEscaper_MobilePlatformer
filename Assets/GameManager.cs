@@ -7,13 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] int itemsToCollect = 1;
+    [SerializeField] int numOfItemsToCollect = 1;
     [SerializeField] float timeToCompleteLevel;
     [SerializeField] SaveSystem saveSystem;
 
-    int collectedItems;
-    int pointsToGain;
+    int numOfCollectedItemsByPlayer  = 0;
+    int pointsToGainOnLevelCompletion;
     float timePlayerFinishedLevel;
+    bool playerFinishedLevel;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void CollectItem()
     {
-        collectedItems += 1;
+        numOfCollectedItemsByPlayer += 1;
     }
 
     public void FinishLevel(float timeOfFinishingLevel)
@@ -30,23 +31,39 @@ public class GameManager : MonoBehaviour
         timePlayerFinishedLevel = timeOfFinishingLevel;
 
         SummarizeLevel();
-        saveSystem.CompleteLevel(SceneManager.GetActiveScene().buildIndex - 1, pointsToGain);
+        saveSystem.CompleteLevel(SceneManager.GetActiveScene().buildIndex - 1, pointsToGainOnLevelCompletion);
         SceneManager.LoadScene(0);
 
     }
 
     void SummarizeLevel()
     {
-        pointsToGain += 1; // For finishing;
+        playerFinishedLevel = true;
+        pointsToGainOnLevelCompletion += 1; // For finishing;
 
-        if (itemsToCollect == collectedItems)
+        if (PlayerCollectedAllItems())
         {
-            pointsToGain += 1;
+            pointsToGainOnLevelCompletion += 1;
         }
 
-        if(timePlayerFinishedLevel <= timeToCompleteLevel)
+        if (PlayerFinishedLevelInTime())
         {
-            pointsToGain += 1;
+            pointsToGainOnLevelCompletion += 1;
         }
+    }
+
+    public bool PlayerFinishedLevelInTime()
+    {
+        return timePlayerFinishedLevel <= timeToCompleteLevel;       
+    }
+
+    public bool PlayerCollectedAllItems()
+    {
+        return numOfCollectedItemsByPlayer == numOfItemsToCollect;
+    }
+
+    public bool PlayerFinishedLevel()
+    {
+        return playerFinishedLevel;
     }
 }

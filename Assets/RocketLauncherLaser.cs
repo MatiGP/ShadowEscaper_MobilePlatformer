@@ -21,11 +21,13 @@ public class RocketLauncherLaser : MonoBehaviour
 
     private void Start()
     {
-        lineRenderer.SetPosition(0, transform.position);
+
     }
 
     private void Update()
-    {              
+    {
+        lineRenderer.SetPosition(0, transform.position);
+
         if (hit)
         {
             lineRenderer.SetPosition(1, hit.point);
@@ -40,16 +42,13 @@ public class RocketLauncherLaser : MonoBehaviour
         if (hit && hit.collider.CompareTag("Player"))
         {
             OnPlayerDetected.Invoke();
-        }
-        
-        
+        }            
         
     }
 
     private void FixedUpdate()
     {
-        hit = Physics2D.Raycast(transform.position, laserPoint.right, laserLenght);
-        
+        hit = Physics2D.Raycast(transform.position, laserPoint.right, laserLenght);       
     }
   
 

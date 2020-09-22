@@ -107,10 +107,10 @@ TextureImporter:
       name: KEYSTONE_0
       rect:
         serializedVersion: 2
-        x: 1668
-        y: 1634
-        width: 303
-        height: 302
+        x: 1652
+        y: 1625
+        width: 329
+        height: 319
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

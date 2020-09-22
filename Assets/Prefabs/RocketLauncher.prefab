@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9d0165edf891048b8ba82802af0e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserLenght: 30
+  laserLenght: 24
   laserPoint: {fileID: 496750424}
   OnPlayerDetected:
     m_PersistentCalls:
