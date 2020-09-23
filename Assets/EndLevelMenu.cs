@@ -10,14 +10,16 @@ public class EndLevelMenu : MonoBehaviour
     [SerializeField] Image[] pointsImages;
     [SerializeField] LevelLoader levelLoader;
     [SerializeField] GameObject menu;
+    [SerializeField] GameObject nextLevelButton;
 
     bool isOpen;
 
-    private void LoadPlayerProgressOnLevel()
+    private void DisplayPlayerProgressOnLevel()
     {
         if (!GameManager.instance.PlayerFinishedLevel())
         {
             earnedPointsHolder.SetActive(false);
+            nextLevelButton.SetActive(false);
             return;
         }
         else
@@ -63,7 +65,7 @@ public class EndLevelMenu : MonoBehaviour
         {
             menu.SetActive(true);
             isOpen = true;
-            LoadPlayerProgressOnLevel();
+            DisplayPlayerProgressOnLevel();
         }
     }
 }
