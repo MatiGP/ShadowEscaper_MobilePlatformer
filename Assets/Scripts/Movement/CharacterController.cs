@@ -8,20 +8,25 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float wallSlideSpeed = 5;
     [SerializeField] float wallJumpXForce = 500f;
     [SerializeField] float wallJumpYForce = 700f;
-    [Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
+
+    [Range(0, .3f)]
+    [SerializeField] private float movementSmoothing = .05f;
+
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask wallMask;
     [SerializeField] Transform groundCheck;
-    [SerializeField] Transform wallCheck;
+    [SerializeField] Transform wallJumpDetectorTransform;
     [SerializeField] Animator animator;
     [SerializeField] Transform playerModel;
     [SerializeField] Transform detectorsTransform;
+    [SerializeField] Vector2 wallJumpDetectorSize = new Vector2(0.1f, 3f);
 
     float groundCheckRadius = 0.2f;
     float wallCheckRadius = 0.3f;
     float limitFallSpeed = 50f;
 
     bool isGrounded;
+    bool wasGrounded;
     bool facingRight = true;
     bool canDoubleJump = false;
     bool isTouchingTheWall = false;
@@ -32,6 +37,26 @@ public class CharacterController : MonoBehaviour
     Vector2 velocity = Vector2.zero;
 
     Rigidbody2D rbody;
+
+    string currentAnimationState;
+
+    const string PLAYER_JUMP = "Jump";
+    const string IN_AIR = "InAir";
+    const string WALL_JUMP = "WallJump";
+    const string JUMP_INCREASING_HEIGHT = "IncreasingHeight";
+    const string WALL_SLIDE = "WallSlide";
+    const string FALLING = "Falling";
+    const string LANDING = "Landing";
+    const string PLAYER_RUN = "PlayerRun";
+    const string PLAYER_IDLE = "PlayerIdle";
+    const string PLAYER_JUMP_PREP = "JumpPrep";
+
+    // Velocity threshholds for animations;
+    const float HEIGHT_INCREASING_THRESHHOLD = 26f;
+    const float IN_AIR_THRESHHOLD = 18f;
+    const float FALLING_THRESHHOLD = -1f;
+    const float LANDING_THRESHHOLD = -25f;
+    
 
     private void Awake()
     {
@@ -52,7 +77,7 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool wasGrounded = isGrounded;
+        wasGrounded = isGrounded;
         isGrounded = false;
 
         Collider2D[] collidersGround = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundMask);
@@ -71,14 +96,25 @@ public class CharacterController : MonoBehaviour
 
         if (!isGrounded)
         {
-            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(wallCheck.position, wallCheckRadius, wallMask);
+            Collider2D[] collidersWall = Physics2D.OverlapBoxAll(wallJumpDetectorTransform.position, wallJumpDetectorSize, 0f, wallMask);
             if(collidersWall.Length > 0)
             {
                 isTouchingTheWall = true;
             }
         }
 
-        animator.SetFloat("velocityY", rbody.velocity.y);
+        if(rbody.velocity.y < FALLING_THRESHHOLD && !isGrounded && !isWallsliding)
+        {
+            ChangeAnimationState(FALLING);
+
+        }else if(rbody.velocity.y < IN_AIR_THRESHHOLD && !isGrounded && !isWallsliding)
+        {
+            ChangeAnimationState(IN_AIR);
+
+        }else if(rbody.velocity.y < HEIGHT_INCREASING_THRESHHOLD && !isGrounded && !isWallsliding)
+        {
+            ChangeAnimationState(JUMP_INCREASING_HEIGHT);
+        }
        
         
     }
@@ -87,23 +123,28 @@ public class CharacterController : MonoBehaviour
     {
         if (rbody.velocity.y < -limitFallSpeed) rbody.velocity = new Vector2(rbody.velocity.x, -limitFallSpeed);
 
-        Vector2 targetVelocity = new Vector2(direction * 10f, rbody.velocity.y);
+        Vector2 targetVelocity = new Vector2(direction, rbody.velocity.y);
         rbody.velocity = Vector2.SmoothDamp(rbody.velocity, targetVelocity, ref velocity, movementSmoothing);
 
-        if(direction > 0 && !facingRight && !isWallsliding)
+        FlipCharacterBasedOnDirection(direction);
+
+        if(direction != 0 && wasGrounded)
         {
-            Flip();
+            ChangeAnimationState(PLAYER_RUN);
         }
-        else if(direction < 0 && facingRight && !isWallsliding)
+        else if(direction == 0 && wasGrounded)
         {
-            Flip();
+            ChangeAnimationState(PLAYER_IDLE);
         }
 
-        if(isGrounded && jump)
+        if (isGrounded && jump)
         {
             isGrounded = false;
             rbody.AddForce(new Vector2(0f, jumpForce));
             canDoubleJump = true;
+
+            ChangeAnimationState(PLAYER_JUMP_PREP);
+            
         }
         else if (!isGrounded && jump && canDoubleJump && !isWallsliding)
         {
@@ -111,44 +152,52 @@ public class CharacterController : MonoBehaviour
             rbody.velocity = new Vector2(rbody.velocity.x, 0f);
             rbody.AddForce(new Vector2(0f, jumpForce / 1.2f));
         }
-        else if(isTouchingTheWall && !isGrounded)
+        else if (isTouchingTheWall && !isGrounded)
         {
-            if(!wasWallslidingBefore && rbody.velocity.y < 0f)
+            if (!wasWallslidingBefore && rbody.velocity.y < 0f)
             {
-                isWallsliding = true;
-                
-                animator.SetBool("isWallsliding", true);
+                isWallsliding = true;               
             }
 
             if (isWallsliding)
             {
                 wasWallslidingBefore = true;
                 rbody.velocity = new Vector2(transform.localScale.x * 2, -wallSlideSpeed);
+
+                ChangeAnimationState(WALL_SLIDE);
             }
 
-            if(jump && isWallsliding)
+            if (jump && isWallsliding)
             {
-                animator.SetBool("isWallsliding", false);
-                animator.SetTrigger("wallJump");
+                ChangeAnimationState(WALL_JUMP);
+
                 rbody.velocity = new Vector2(0f, 0f);
                 rbody.AddForce(new Vector2(-transform.localScale.x * wallJumpXForce, wallJumpYForce));
                 canDoubleJump = true;
                 isWallsliding = false;
                 wasWallslidingBefore = false;
-                animator.ResetTrigger("wallJump");
-
 
             }
-        }else if(isWallsliding && !isTouchingTheWall)
+        }
+        else if (isWallsliding && !isTouchingTheWall)
         {
             isWallsliding = false;
             wasWallslidingBefore = false;
-            
-            animator.SetBool("isWallsliding", false);
-            
         }
 
 
+    }
+
+    private void FlipCharacterBasedOnDirection(float direction)
+    {
+        if (direction > 0 && !facingRight && !isWallsliding)
+        {
+            Flip();
+        }
+        else if (direction < 0 && facingRight && !isWallsliding)
+        {
+            Flip();
+        }
     }
 
     void Flip()
@@ -161,11 +210,20 @@ public class CharacterController : MonoBehaviour
         detectorsTransform.localScale = theScale;
     }
 
+    void ChangeAnimationState(string nameOfNewAnimationState)
+    {
+        if (currentAnimationState == nameOfNewAnimationState) return;
+
+        animator.Play(nameOfNewAnimationState);
+
+        currentAnimationState = nameOfNewAnimationState;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);       
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(wallCheck.position, wallCheckRadius);
+        Gizmos.DrawCube(wallJumpDetectorTransform.position, wallJumpDetectorSize);
     }
 }

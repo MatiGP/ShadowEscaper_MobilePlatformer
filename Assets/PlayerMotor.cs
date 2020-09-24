@@ -21,9 +21,7 @@ public class PlayerMotor : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        /*
-
+    {       
         if(joystick.Horizontal > 0)
         {
             horizontalMove = runSpeed;
@@ -36,24 +34,6 @@ public class PlayerMotor : MonoBehaviour
             horizontalMove = 0f;
         }
 
-        */
-        if(Input.GetAxis("Horizontal") > 0)
-        {
-            horizontalMove = runSpeed;
-        }else if(Input.GetAxis("Horizontal") < 0)
-        {
-            horizontalMove = -runSpeed;
-        }
-        else
-        {
-            horizontalMove = 0f;
-        }
-
-
-
-        //animator.SetBool("isRunning", joystick.Horizontal != 0);
-        animator.SetBool("isRunning", Input.GetAxis("Horizontal") != 0);
-
     }
 
     void FixedUpdate()
@@ -65,6 +45,5 @@ public class PlayerMotor : MonoBehaviour
     public void Jump()
     {
         jump = true;
-        animator.SetTrigger("jump");
     }
 }

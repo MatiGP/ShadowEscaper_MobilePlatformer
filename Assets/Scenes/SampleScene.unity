@@ -13160,7 +13160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa905e2408a24d48b4b96175d372e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 95
+  runSpeed: 950
   joystick: {fileID: 838843783}
   animator: {fileID: 795387336}
 --- !u!50 &1638173715
@@ -13244,10 +13244,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   groundCheck: {fileID: 503632435}
-  wallCheck: {fileID: 1710287912}
+  wallJumpDetectorTransform: {fileID: 1710287912}
   animator: {fileID: 795387336}
   playerModel: {fileID: 795387334}
   detectorsTransform: {fileID: 1448298688}
+  wallJumpDetectorSize: {x: 0.1, y: 3}
 --- !u!114 &1638173719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13682,7 +13683,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710287911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.29, y: 0.49, z: 0}
+  m_LocalPosition: {x: 1.06, y: -0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1448298688}
