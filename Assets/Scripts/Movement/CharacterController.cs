@@ -10,29 +10,31 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float wallJumpYForce = 700f;
 
     [Range(0, .3f)]
-    [SerializeField] private float movementSmoothing = .05f;
+    [SerializeField] float movementSmoothing = .05f;
 
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask wallMask;
     [SerializeField] Transform groundCheck;
-    [SerializeField] Transform wallJumpDetectorTransform;
-    [SerializeField] Animator animator;
+    [SerializeField] Transform wallJumpDetectorTransform;  
     [SerializeField] Transform playerModel;
     [SerializeField] Transform detectorsTransform;
+    [SerializeField] Animator animator;
     [SerializeField] Vector2 wallJumpDetectorSize = new Vector2(0.1f, 3f);
 
     float groundCheckRadius = 0.2f;
     float wallCheckRadius = 0.3f;
     float limitFallSpeed = 50f;
 
-    bool isGrounded;
-    bool wasGrounded;
-    bool facingRight = true;
-    bool canDoubleJump = false;
-    bool isTouchingTheWall = false;
-    bool isWallsliding = false;
-    bool wasWallslidingBefore = false;
     bool canMove = true;
+    bool facingRight = true;
+
+    bool isGrounded;
+    bool wasGrounded;   
+    bool canDoubleJump;
+    bool isTouchingTheWall;
+    bool isWallsliding;
+    bool wasWallslidingBefore;   
+    bool lockAnimation;
 
     Vector2 velocity = Vector2.zero;
 
@@ -40,16 +42,20 @@ public class CharacterController : MonoBehaviour
 
     string currentAnimationState;
 
-    const string PLAYER_JUMP = "Jump";
+    //Animation states names;
+    const string JUMP = "Jump";
     const string IN_AIR = "InAir";
     const string WALL_JUMP = "WallJump";
     const string JUMP_INCREASING_HEIGHT = "IncreasingHeight";
     const string WALL_SLIDE = "WallSlide";
     const string FALLING = "Falling";
     const string LANDING = "Landing";
-    const string PLAYER_RUN = "PlayerRun";
-    const string PLAYER_IDLE = "PlayerIdle";
-    const string PLAYER_JUMP_PREP = "JumpPrep";
+    const string RUN = "PlayerRun";
+    const string IDLE = "PlayerIdle";
+    const string JUMP_PREP = "JumpPrep";   
+    const string SLIDE_START = "SlideStart";
+    const string GROUND_SLIDE = "GroundSlide";
+    const string SLIDE_END = "SlideEnd";
 
     // Velocity threshholds for animations;
     const float HEIGHT_INCREASING_THRESHHOLD = 26f;
@@ -72,7 +78,7 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -105,21 +111,21 @@ public class CharacterController : MonoBehaviour
 
         if(rbody.velocity.y < FALLING_THRESHHOLD && !isGrounded && !isWallsliding)
         {
-            ChangeAnimationState(FALLING);
+            ChangeAnimationState(FALLING, 0f);
 
         }else if(rbody.velocity.y < IN_AIR_THRESHHOLD && !isGrounded && !isWallsliding)
         {
-            ChangeAnimationState(IN_AIR);
+            ChangeAnimationState(IN_AIR, 0f);
 
         }else if(rbody.velocity.y < HEIGHT_INCREASING_THRESHHOLD && !isGrounded && !isWallsliding)
         {
-            ChangeAnimationState(JUMP_INCREASING_HEIGHT);
+            ChangeAnimationState(JUMP_INCREASING_HEIGHT, 0f);
         }
        
         
     }
 
-    public void Move(float direction, bool jump, bool slide)
+    public void Move(float direction, bool jump, bool isSliding)
     {
         if (rbody.velocity.y < -limitFallSpeed) rbody.velocity = new Vector2(rbody.velocity.x, -limitFallSpeed);
 
@@ -128,22 +134,25 @@ public class CharacterController : MonoBehaviour
 
         FlipCharacterBasedOnDirection(direction);
 
-        if(direction != 0 && wasGrounded)
+        if(direction != 0 && wasGrounded && !isSliding)
         {
-            ChangeAnimationState(PLAYER_RUN);
+            ChangeAnimationState(RUN, 0f);
         }
-        else if(direction == 0 && wasGrounded)
+        else if(direction == 0 && wasGrounded && !isSliding)
         {
-            ChangeAnimationState(PLAYER_IDLE);
+            ChangeAnimationState(IDLE, 0f);
         }
-
-        if (isGrounded && jump)
+        if(isGrounded && isSliding)
+        {
+            ChangeAnimationState(GROUND_SLIDE, 0f);
+        }
+        else if (isGrounded && jump)
         {
             isGrounded = false;
             rbody.AddForce(new Vector2(0f, jumpForce));
             canDoubleJump = true;
 
-            ChangeAnimationState(PLAYER_JUMP_PREP);
+            ChangeAnimationState(JUMP_PREP, 0f);
             
         }
         else if (!isGrounded && jump && canDoubleJump && !isWallsliding)
@@ -164,15 +173,16 @@ public class CharacterController : MonoBehaviour
                 wasWallslidingBefore = true;
                 rbody.velocity = new Vector2(transform.localScale.x * 2, -wallSlideSpeed);
 
-                ChangeAnimationState(WALL_SLIDE);
+                ChangeAnimationState(WALL_SLIDE, 0f);
             }
 
             if (jump && isWallsliding)
             {
-                ChangeAnimationState(WALL_JUMP);
+                ChangeAnimationState(WALL_JUMP, animationLockDuration: 0.4f);
 
                 rbody.velocity = new Vector2(0f, 0f);
                 rbody.AddForce(new Vector2(-transform.localScale.x * wallJumpXForce, wallJumpYForce));
+
                 canDoubleJump = true;
                 isWallsliding = false;
                 wasWallslidingBefore = false;
@@ -210,20 +220,35 @@ public class CharacterController : MonoBehaviour
         detectorsTransform.localScale = theScale;
     }
 
-    void ChangeAnimationState(string nameOfNewAnimationState)
+    void ChangeAnimationState(string nameOfNewAnimationState, float animationLockDuration)
     {
         if (currentAnimationState == nameOfNewAnimationState) return;
 
-        animator.Play(nameOfNewAnimationState);
+        if (!lockAnimation)
+        {
+            animator.Play(nameOfNewAnimationState);
+            StartCoroutine(LockAnimationState(animationLockDuration));
+        }
+        
 
         currentAnimationState = nameOfNewAnimationState;
+        
     }
 
     private void OnDrawGizmos()
     {
+        //Ground detector;
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);       
+        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+        //Wall detector;
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallJumpDetectorTransform.position, wallJumpDetectorSize);
+    }
+
+    IEnumerator LockAnimationState(float lockDuration)
+    {
+        lockAnimation = true;
+        yield return new WaitForSeconds(lockDuration);
+        lockAnimation = false;
     }
 }

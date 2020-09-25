@@ -49,7 +49,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: d1e8e5d778099d04fa01449243509125, type: 3}
     - {fileID: 102900000, guid: b0c0be7b432272e409e6ab3e9477f419, type: 3}
     - {fileID: 102900000, guid: 8f81a297d51887c46a67dfe2241188c4, type: 3}
-    totalSpriteSurfaceArea: 37879889
+    totalSpriteSurfaceArea: 38316058
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -94,7 +94,6 @@ SpriteAtlas:
   - {fileID: 6417157263565854713, guid: c0bc6a28f3ac13342a88d84a534bd795, type: 3}
   - {fileID: 5592087132876078650, guid: 09bafcb87c25da1428f31c89586ed371, type: 3}
   - {fileID: 8261185512913479538, guid: d8ba0fc88d2efe24eb64033079996f2b, type: 3}
-  - {fileID: -5839267309170261074, guid: 938a5839a32c6104c9d26bb48cb264fb, type: 3}
   - {fileID: -2952638408064635999, guid: 938a5839a32c6104c9d26bb48cb264fb, type: 3}
   - {fileID: 2019767829219660985, guid: b7ccdd69053ebd74a8476f8848c476f0, type: 3}
   - {fileID: -6835022991096376081, guid: 0c591e99e9a81e849abd7d93c7e8b4bd, type: 3}
@@ -168,7 +167,6 @@ SpriteAtlas:
   - '#7_0'
   - '#4_0'
   - '#6_0'
-  - '#2_1'
   - '#2_0'
   - '#2 kopia 2_0'
   - '#8_0'
