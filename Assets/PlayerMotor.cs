@@ -6,6 +6,7 @@ public class PlayerMotor : MonoBehaviour
 {
     [SerializeField] float runSpeed = 40f;
     [SerializeField] float slideDuration;
+    [SerializeField] float jumpDuriation;
 
     [SerializeField] Joystick joystick;
 
@@ -23,6 +24,7 @@ public class PlayerMotor : MonoBehaviour
     bool jump = false;
     bool slide = false;
     bool isSliding;
+    bool isJumping;
 
     // Start is called before the first frame update
     void Awake()
@@ -35,8 +37,9 @@ public class PlayerMotor : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
-        
+    {
+        if (isSliding) return;
+
         if(joystick.Horizontal > 0)
         {
             horizontalMove = runSpeed;
@@ -54,13 +57,14 @@ public class PlayerMotor : MonoBehaviour
     void FixedUpdate()
     {
         characterController.Move(horizontalMove * Time.fixedDeltaTime, jump, slide);
-
-        jump = false;
     }
 
     public void Jump()
     {
-        jump = true;
+        if (!isJumping)
+        {
+            StartCoroutine("StartJumping");
+        }      
     }
 
     public void Slide()
@@ -102,5 +106,21 @@ public class PlayerMotor : MonoBehaviour
         playerCollider.size = newSize;
         playerCollider.direction = direction;
         playerCollider.offset = new Vector2(0, colliderOffsetY);
+    }
+
+    public void InterruptJumping()
+    {
+        StopCoroutine("StartJumping");
+        jump = false;
+        isJumping = false;
+    }
+
+    IEnumerator StartJumping()
+    {
+        isJumping = true;
+        jump = true;
+        yield return new WaitForSeconds(jumpDuriation);
+        jump = false;
+        isJumping = false;
     }
 }

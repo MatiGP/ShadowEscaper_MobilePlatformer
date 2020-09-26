@@ -41,6 +41,7 @@ public class RocketLauncherLaser : MonoBehaviour
 
         if (hit && hit.collider.CompareTag("Player"))
         {
+            Debug.Log("We should fire a rocket now!");
             OnPlayerDetected.Invoke();
         }            
         

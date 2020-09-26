@@ -51,6 +51,6 @@ public class RocketLauncher : MonoBehaviour
 
     public void LaunchRocket()
     {
-        rocket.LaunchRocket();
+        rocket.LaunchRocket(transform.right);
     }
 }

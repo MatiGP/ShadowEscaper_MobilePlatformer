@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    [SerializeField] float jumpForce = 400f;
+    [SerializeField] float jumpHeight = 400f;
+    [SerializeField] float fallMultiplier = 2.5f;
+    [SerializeField] float lowJumpMultiplier = 2f;
     [SerializeField] float wallSlideSpeed = 5;
     [SerializeField] float wallJumpXForce = 500f;
     [SerializeField] float wallJumpYForce = 700f;
+    [SerializeField] float slideSpeed;
+    [SerializeField] float slideSpeedFallOff;
 
     [Range(0, .3f)]
     [SerializeField] float movementSmoothing = .05f;
@@ -35,6 +39,7 @@ public class CharacterController : MonoBehaviour
     bool isWallsliding;
     bool wasWallslidingBefore;   
     bool lockAnimation;
+    bool isJumping;
 
     Vector2 velocity = Vector2.zero;
 
@@ -62,7 +67,8 @@ public class CharacterController : MonoBehaviour
     const float IN_AIR_THRESHHOLD = 18f;
     const float FALLING_THRESHHOLD = -1f;
     const float LANDING_THRESHHOLD = -25f;
-    
+
+    float currentSlideSpeed;
 
     private void Awake()
     {
@@ -121,12 +127,26 @@ public class CharacterController : MonoBehaviour
         {
             ChangeAnimationState(JUMP_INCREASING_HEIGHT, 0f);
         }
+
+        if (!isWallsliding)
+        {
+            if (rbody.velocity.y < 0)
+            {
+                rbody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier) * Time.deltaTime;
+            }
+            else if (rbody.velocity.y > 0 && !isJumping)
+            {
+                rbody.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
+        }
        
         
     }
 
     public void Move(float direction, bool jump, bool isSliding)
     {
+        isJumping = jump;
+
         if (rbody.velocity.y < -limitFallSpeed) rbody.velocity = new Vector2(rbody.velocity.x, -limitFallSpeed);
 
         Vector2 targetVelocity = new Vector2(direction, rbody.velocity.y);
@@ -134,32 +154,45 @@ public class CharacterController : MonoBehaviour
 
         FlipCharacterBasedOnDirection(direction);
 
-        if(direction != 0 && wasGrounded && !isSliding)
+        if(direction != 0 && isGrounded && !isSliding)
         {
             ChangeAnimationState(RUN, 0f);
         }
-        else if(direction == 0 && wasGrounded && !isSliding)
+        else if(direction == 0 && isGrounded && !isSliding)
         {
             ChangeAnimationState(IDLE, 0f);
         }
+
+        if (!isSliding) currentSlideSpeed = slideSpeed;
+
         if(isGrounded && isSliding)
         {
+            if (facingRight)
+            {
+                rbody.velocity = new Vector2(currentSlideSpeed, 0f);
+            }
+            else
+            {
+                rbody.velocity = new Vector2(-currentSlideSpeed, 0f);
+            }
+
+            CalculateSlidingSpeed();
+
             ChangeAnimationState(GROUND_SLIDE, 0f);
+
+
         }
         else if (isGrounded && jump)
         {
             isGrounded = false;
-            rbody.AddForce(new Vector2(0f, jumpForce));
-            canDoubleJump = true;
+            rbody.velocity = new Vector2(rbody.velocity.x, jumpHeight);
 
             ChangeAnimationState(JUMP_PREP, 0f);
             
         }
-        else if (!isGrounded && jump && canDoubleJump && !isWallsliding)
-        {
-            canDoubleJump = false;
-            rbody.velocity = new Vector2(rbody.velocity.x, 0f);
-            rbody.AddForce(new Vector2(0f, jumpForce / 1.2f));
+        else if (!isGrounded && jump && !isWallsliding)
+        {           
+            rbody.velocity = new Vector2(rbody.velocity.x, jumpHeight);
         }
         else if (isTouchingTheWall && !isGrounded)
         {
@@ -196,6 +229,18 @@ public class CharacterController : MonoBehaviour
         }
 
 
+    }
+
+    private void CalculateSlidingSpeed()
+    {
+        if (slideSpeed * 0.6f < currentSlideSpeed)
+        {
+            currentSlideSpeed = Mathf.Clamp(currentSlideSpeed - 0.8f * slideSpeedFallOff * Time.deltaTime, 0, slideSpeed);
+        }
+        else
+        {
+            currentSlideSpeed = Mathf.Clamp(currentSlideSpeed - 2f * slideSpeedFallOff * Time.deltaTime, 0, slideSpeed);
+        }
     }
 
     private void FlipCharacterBasedOnDirection(float direction)

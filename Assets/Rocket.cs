@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Rocket : MonoBehaviour
 {
-    [SerializeField] float rocketSpeed;
+    [SerializeField] float rocketSpeed = 5;
     [SerializeField] UnityEvent OnDestroyRocket;
 
     bool launchRocket;
@@ -22,17 +22,26 @@ public class Rocket : MonoBehaviour
         if (!launchRocket) return;
 
         transform.Translate(transform.right * rocketSpeed * Time.deltaTime);
-
     }
 
-    public void LaunchRocket()
+    public void LaunchRocket(Vector3 rotation)
     {
+        transform.parent = null;
+        transform.rotation = Quaternion.Euler(rotation);
         launchRocket = true;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) Debug.Log("Rocket has hit the player!");
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("Rocket has hit the player!");
+        }
+        else
+        {
+            return;
+        }
         OnDestroyRocket.Invoke();
         gameObject.SetActive(false);
     }
