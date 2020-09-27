@@ -17872,15 +17872,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1341071445}
     m_Modifications:
-    - target: {fileID: 1292862529, guid: 24ad49cacdf6e5f4e951c9bcbb8335d5, type: 3}
-      propertyPath: rocketSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1738320476638481694, guid: 24ad49cacdf6e5f4e951c9bcbb8335d5,
-        type: 3}
-      propertyPath: rotationStopDuration
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1738320476659808358, guid: 24ad49cacdf6e5f4e951c9bcbb8335d5,
         type: 3}
       propertyPath: m_LocalPosition.x

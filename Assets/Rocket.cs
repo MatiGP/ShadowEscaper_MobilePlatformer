@@ -27,21 +27,12 @@ public class Rocket : MonoBehaviour
     public void LaunchRocket()
     {
         transform.parent = null;
-        launchRocket = true;
-        
+        launchRocket = true;        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log("Rocket has hit the player!");
-        }
-        else
-        {
-            return;
-        }
-        OnDestroyRocket.Invoke();
-        gameObject.SetActive(false);
+        launchRocket = false;
+        OnDestroyRocket.Invoke();    
     }
 }
