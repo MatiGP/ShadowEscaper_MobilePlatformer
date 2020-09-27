@@ -21,13 +21,12 @@ public class Rocket : MonoBehaviour
     {
         if (!launchRocket) return;
 
-        transform.Translate(transform.right * rocketSpeed * Time.deltaTime);
+        transform.Translate(Vector2.right * rocketSpeed * Time.deltaTime, Space.Self);
     }
 
-    public void LaunchRocket(Vector3 rotation)
+    public void LaunchRocket()
     {
         transform.parent = null;
-        transform.rotation = Quaternion.Euler(rotation);
         launchRocket = true;
         
     }

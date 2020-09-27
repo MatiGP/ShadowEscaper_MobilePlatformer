@@ -12,13 +12,16 @@ public class RocketLauncher : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] float minRotation;
     [SerializeField] float maxRotation;
+    [SerializeField] float rotationStopDuration;
     
     float currentAngleZ;
     bool rotateClockwise = true;
-  
+    bool rocketLaunched;
+    bool stopRotating;
     // Update is called once per frame
     void Update()
     {
+        if (stopRotating) return;
 
         if (currentAngleZ >= maxRotation)
         {
@@ -51,6 +54,16 @@ public class RocketLauncher : MonoBehaviour
 
     public void LaunchRocket()
     {
-        rocket.LaunchRocket(transform.right);
+        if (rocketLaunched) return;
+        StartCoroutine(StopRotating());
+        rocketLaunched = true;
+        rocket.LaunchRocket();
+    }
+
+    IEnumerator StopRotating()
+    {
+        stopRotating = true;
+        yield return new WaitForSeconds(rotationStopDuration);
+        stopRotating = false;
     }
 }
