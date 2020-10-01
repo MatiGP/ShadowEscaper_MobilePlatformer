@@ -4,30 +4,42 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    [Header("Jump Settings")]
     [SerializeField] float jumpHeight = 400f;
     [SerializeField] float fallMultiplier = 2.5f;
     [SerializeField] float lowJumpMultiplier = 2f;
+    [SerializeField] float jumpDuration = 0.2f;
+    public float JumpDuration { get { return jumpDuration; } }
+    float currentJumpDuration;
+    [Header("Wall Jump Settings")]
     [SerializeField] float wallSlideSpeed = 5;
     [SerializeField] float wallJumpXForce = 500f;
     [SerializeField] float wallJumpYForce = 700f;
+    [Header("Slide Settings")]
     [SerializeField] float slideSpeed;
     [SerializeField] float slideSpeedFallOff;
-
+    [Header("Movement Settings")]
     [Range(0, .3f)]
     [SerializeField] float movementSmoothing = .05f;
 
-    [SerializeField] LayerMask groundMask;
-    [SerializeField] LayerMask wallMask;
+    [Header("Ground Detector Settings")]
     [SerializeField] Transform groundCheck;
-    [SerializeField] Transform wallJumpDetectorTransform;  
-    [SerializeField] Transform playerModel;
-    [SerializeField] Transform detectorsTransform;
-    [SerializeField] Animator animator;
+    [SerializeField] LayerMask groundMask;
+    [Header("Wall Jump Detector Settings")]
+    [SerializeField] LayerMask wallMask;
+    [SerializeField] Transform wallJumpDetectorTransform;
     [SerializeField] Vector2 wallJumpDetectorSize = new Vector2(0.1f, 3f);
+    [HideInInspector]
+    [SerializeField] Transform playerModel;
+    [HideInInspector]
+    [SerializeField] Transform detectorsTransform;
+    [HideInInspector]
+    [SerializeField] Animator animator;
+    
 
     float groundCheckRadius = 0.2f;
     float wallCheckRadius = 0.3f;
-    float limitFallSpeed = 50f;
+    float limitFallSpeed = 25f;
 
     bool canMove = true;
     bool facingRight = true;
@@ -84,13 +96,18 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isJumping)
+        {
+            currentJumpDuration -= Time.deltaTime;
+        }       
     }
 
     private void FixedUpdate()
     {
         wasGrounded = isGrounded;
         isGrounded = false;
+
+       
 
         Collider2D[] collidersGround = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundMask);
         
@@ -139,13 +156,18 @@ public class CharacterController : MonoBehaviour
                 rbody.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
         }
-       
-        
     }
 
-    public void Move(float direction, bool jump, bool isSliding)
+    public void Move(float direction, bool jump, bool isSliding, bool canMove)
     {
         isJumping = jump;
+
+        if (!canMove)
+        {
+            rbody.velocity = Vector2.zero;
+            rbody.bodyType = RigidbodyType2D.Static;
+            return;
+        }
 
         if (rbody.velocity.y < -limitFallSpeed) rbody.velocity = new Vector2(rbody.velocity.x, -limitFallSpeed);
 
@@ -185,12 +207,13 @@ public class CharacterController : MonoBehaviour
         else if (isGrounded && jump)
         {
             isGrounded = false;
+            currentJumpDuration = jumpDuration;
             rbody.velocity = new Vector2(rbody.velocity.x, jumpHeight);
 
             ChangeAnimationState(JUMP_PREP, 0f);
             
         }
-        else if (!isGrounded && jump && !isWallsliding)
+        else if (!isGrounded && jump && !isWallsliding && currentJumpDuration > 0)
         {           
             rbody.velocity = new Vector2(rbody.velocity.x, jumpHeight);
         }
@@ -204,18 +227,18 @@ public class CharacterController : MonoBehaviour
             if (isWallsliding)
             {
                 wasWallslidingBefore = true;
-                rbody.velocity = new Vector2(transform.localScale.x * 2, -wallSlideSpeed);
+                rbody.velocity = new Vector2(detectorsTransform.localScale.x * 2, -wallSlideSpeed);
 
                 ChangeAnimationState(WALL_SLIDE, 0f);
             }
 
             if (jump && isWallsliding)
             {
-                ChangeAnimationState(WALL_JUMP, animationLockDuration: 0.4f);
+                ChangeAnimationState(WALL_JUMP, animationLockDuration: 0.3f);
 
                 rbody.velocity = new Vector2(0f, 0f);
-                rbody.AddForce(new Vector2(-transform.localScale.x * wallJumpXForce, wallJumpYForce));
-
+                rbody.AddForce(new Vector2(-detectorsTransform.localScale.x * wallJumpXForce, wallJumpYForce));
+                Flip();
                 canDoubleJump = true;
                 isWallsliding = false;
                 wasWallslidingBefore = false;
@@ -295,5 +318,10 @@ public class CharacterController : MonoBehaviour
         lockAnimation = true;
         yield return new WaitForSeconds(lockDuration);
         lockAnimation = false;
+    }
+
+    public void StopJumping()
+    {
+        currentJumpDuration = -1f;
     }
 }

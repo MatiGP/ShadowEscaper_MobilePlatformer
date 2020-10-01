@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int numOfItemsToCollect = 1;
     [SerializeField] float timeToCompleteLevel;
     [SerializeField] SaveSystem saveSystem;
+    [SerializeField] UnityEvent OnLevelCompleted;
 
     int numOfCollectedItemsByPlayer  = 0;
     int pointsToGainOnLevelCompletion;
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
 
         SummarizeLevel();
         saveSystem.CompleteLevel(SceneManager.GetActiveScene().buildIndex - 1, pointsToGainOnLevelCompletion);
-        SceneManager.LoadScene(0);
+        
 
     }
 
@@ -50,6 +52,8 @@ public class GameManager : MonoBehaviour
         {
             pointsToGainOnLevelCompletion += 1;
         }
+
+        OnLevelCompleted.Invoke();
     }
 
     public bool PlayerFinishedLevelInTime()

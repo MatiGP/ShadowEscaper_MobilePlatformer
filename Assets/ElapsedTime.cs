@@ -13,8 +13,12 @@ public class ElapsedTime : MonoBehaviour
 
     string timeText;
 
+    bool stopCounting = false;
+
     private void Update()
     {
+        if (stopCounting) return;
+
         minutes = (int)(Time.timeSinceLevelLoad / 60f) % 60;        
         seconds = (int)(Time.timeSinceLevelLoad % 60f);
         miliseconds = (int)(Time.timeSinceLevelLoad * 1000f) % 1000;
@@ -51,5 +55,10 @@ public class ElapsedTime : MonoBehaviour
 
 
         text.text = timeText;
+    }
+
+    public void StopCounting()
+    {
+        stopCounting = true;
     }
 }

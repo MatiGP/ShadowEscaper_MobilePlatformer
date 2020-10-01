@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3845703860095481562}
   - component: {fileID: 3845703860095481557}
   - component: {fileID: 3845703860095481556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootingSpikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 3845703861343142204}
   - component: {fileID: 3845703861343142205}
   - component: {fileID: 3845703861343142176}
+  - component: {fileID: 5403402586763905067}
   m_Layer: 0
   m_Name: spikes
   m_TagString: Untagged
@@ -241,8 +242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
-  speed: 10
-  lifetime: 2
+  speed: 20
+  lifetime: 1.4
   OnCollided:
     m_PersistentCalls:
       m_Calls:
@@ -278,3 +279,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5403402586763905067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845703861343142206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc92eaa5cf6b6ee45866e45a2191d2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

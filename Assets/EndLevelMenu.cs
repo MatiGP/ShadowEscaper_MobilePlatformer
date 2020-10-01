@@ -68,4 +68,17 @@ public class EndLevelMenu : MonoBehaviour
             DisplayPlayerProgressOnLevel();
         }
     }
+
+    public void LevelFinishMenu(float delay)
+    {
+        StartCoroutine(LevelFinishMenuDelay(delay));
+    }
+
+    IEnumerator LevelFinishMenuDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        menu.SetActive(true);
+        isOpen = true;
+        DisplayPlayerProgressOnLevel();
+    }
 }

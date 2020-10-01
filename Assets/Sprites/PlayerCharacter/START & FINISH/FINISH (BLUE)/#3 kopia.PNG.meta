@@ -125,12 +125,12 @@ TextureImporter:
       name: '#3 kopia_0'
       rect:
         serializedVersion: 2
-        x: 709
+        x: 627
         y: 247
-        width: 723
-        height: 953
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 902
+        height: 1207
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

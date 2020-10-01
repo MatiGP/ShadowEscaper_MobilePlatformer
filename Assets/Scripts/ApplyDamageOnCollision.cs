@@ -9,7 +9,7 @@ public class ApplyDamageOnCollision : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            SceneManager.LoadScene(0);
+            collision.collider.GetComponent<PlayerHealth>().TakeDamage();
         }
     }
 
@@ -17,7 +17,7 @@ public class ApplyDamageOnCollision : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(0);
+            collision.GetComponent<PlayerHealth>().TakeDamage();
         }
     }
 }

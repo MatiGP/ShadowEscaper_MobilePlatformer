@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c150aa9cc7aba7546af82a34c3b60a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowBreakTime: 0.2
+  slowBreakTime: 1.2
   fastBreakTime: 0.1
-  disableDuration: 1
+  disableDuration: 3
   platformSprites:
   - {fileID: -383515006577600878, guid: f54ca437f58d1d040b7d26c6d3d1e324, type: 3}
   - {fileID: 5240317045950464759, guid: 7d559757695da6341abb77df3638bf66, type: 3}
