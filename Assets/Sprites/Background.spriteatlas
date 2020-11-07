@@ -49,7 +49,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 79d4957d4e142104e829bde9cafffecb, type: 3}
     - {fileID: 102900000, guid: c2647ee4c082fdb409bdded4d5079c1b, type: 3}
     - {fileID: 102900000, guid: e0b311ba30fe23440b9fbb569fb3ac63, type: 3}
-    totalSpriteSurfaceArea: 12021251
+    totalSpriteSurfaceArea: 12261095
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -97,6 +97,7 @@ SpriteAtlas:
   - {fileID: 7244177379238093235, guid: 46f728ba07c6bab4a8d49e71b6d02fa5, type: 3}
   - {fileID: 8226212777956297801, guid: 6a7dca0b9ce500146bd5931da7c9b181, type: 3}
   - {fileID: 7007813769706252126, guid: 0aacc6db3573d0e42bc3db0aa57904be, type: 3}
+  - {fileID: -3547151276026205882, guid: 00a7e5eb2b574ec4cb585fb814b683f9, type: 3}
   - {fileID: 1472907505374416656, guid: 524491fb0f4427e458f57f63222d70b1, type: 3}
   - {fileID: 5025308754025287156, guid: fa4fa84c48f53dd4c99a46a136546aaa, type: 3}
   - {fileID: -503028489569166370, guid: 34bb015c9632a1941b9c433acb5bd2b4, type: 3}
@@ -163,6 +164,7 @@ SpriteAtlas:
   - SPIKE BASE PROCESS_0
   - KEYSTONE_0
   - rectangle #3 kopia 2_0
+  - LVL 1LVL 2 LVL3 bez BB Scalone_0
   - dark polygon-4 kopia 4_0
   - unstable platform#3 HOR_0
   - BOXES_2
