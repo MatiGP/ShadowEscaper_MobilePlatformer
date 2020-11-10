@@ -5,8 +5,10 @@ using UnityEngine;
 public class MovingSaw : MonoBehaviour
 {
     [SerializeField] bool stationary;
+    [SerializeField] bool reverseSawDirection = false;
     [SerializeField] float speed;
     [SerializeField] List<Vector2> waypoints;
+    
 
     int currentWaypointIndex;
 
@@ -14,8 +16,15 @@ public class MovingSaw : MonoBehaviour
     void Start()
     {
         if (stationary) return;
-
-        transform.position = waypoints[0];
+        if (reverseSawDirection)
+        {
+            transform.position = waypoints[1];
+        }
+        else
+        {
+            transform.position = waypoints[0];
+        }
+        
     }
 
     // Update is called once per frame

@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 9958bd7f34b830246aceb717572093e7
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2174578515460187314
+    second: LVL 21 Scalone_0
+  - first:
+      213: 2480127148316191655
+    second: LVL 21 Scalone_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -45,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +102,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LVL 21 Scalone_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2154
+        width: 3294
+        height: 1122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b9cc19c5852d1e0800000000000000
+      internalID: -2174578515460187314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 21 Scalone_1
+      rect:
+        serializedVersion: 2
+        x: 5177
+        y: 1241
+        width: 2503
+        height: 2031
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab6039408e2b6220800000000000000
+      internalID: 2480127148316191655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

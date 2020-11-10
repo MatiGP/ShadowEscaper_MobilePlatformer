@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: f4f1795c9664f5f4d83442f208659997
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 284095602833572104
+    second: LVL 5 Scalone_0
+  - first:
+      213: -1217649670520002411
+    second: LVL 5 Scalone_1
+  - first:
+      213: 937067646935366213
+    second: LVL 5 Scalone_2
+  - first:
+      213: 1695090073524644562
+    second: LVL 5 Scalone_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -45,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LVL 5 Scalone_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3017
+        width: 1238
+        height: 664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8014521127f41f300800000000000000
+      internalID: 284095602833572104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 5 Scalone_1
+      rect:
+        serializedVersion: 2
+        x: 3152
+        y: 2128
+        width: 720
+        height: 1571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 598a8c7731a0a1fe0800000000000000
+      internalID: -1217649670520002411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 5 Scalone_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 2771
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54af7126f02210d00800000000000000
+      internalID: 937067646935366213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 5 Scalone_3
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 2756
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da2abed07b268710800000000000000
+      internalID: 1695090073524644562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -1,7 +1,25 @@
 fileFormatVersion: 2
 guid: 5367d7c518cae6f41afaf9ffbb74c3a4
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8582536851397407251
+    second: LVL 12 Scalone_0
+  - first:
+      213: -1249933313291065759
+    second: LVL 12 Scalone_1
+  - first:
+      213: 7754907901141518292
+    second: LVL 12 Scalone_2
+  - first:
+      213: -742251756745538093
+    second: LVL 12 Scalone_3
+  - first:
+      213: -8972378424505223396
+    second: LVL 12 Scalone_4
+  - first:
+      213: -4303852921423899472
+    second: LVL 12 Scalone_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -45,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +114,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LVL 12 Scalone_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2134
+        width: 797
+        height: 1772
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312fd3b4bcb4b1770800000000000000
+      internalID: 8582536851397407251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 12 Scalone_1
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 2134
+        width: 463
+        height: 1447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 166eb54264857aee0800000000000000
+      internalID: -1249933313291065759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 12 Scalone_2
+      rect:
+        serializedVersion: 2
+        x: 1892
+        y: 2136
+        width: 452
+        height: 1059
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d7096916a7fe9b60800000000000000
+      internalID: 7754907901141518292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 12 Scalone_3
+      rect:
+        serializedVersion: 2
+        x: 3321
+        y: 2136
+        width: 397
+        height: 663
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d5c549b5fdf2b5f0800000000000000
+      internalID: -742251756745538093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 12 Scalone_4
+      rect:
+        serializedVersion: 2
+        x: 4753
+        y: 2655
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c17bcf05c55bb7380800000000000000
+      internalID: -8972378424505223396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 12 Scalone_5
+      rect:
+        serializedVersion: 2
+        x: 5078
+        y: 2136
+        width: 710
+        height: 1357
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4500d1294a544c0800000000000000
+      internalID: -4303852921423899472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
