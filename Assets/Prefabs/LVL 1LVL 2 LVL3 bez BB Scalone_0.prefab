@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 7118980220352999236}
   - component: {fileID: 7118980220352999237}
   - component: {fileID: 7118980220352999238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LVL 1LVL 2 LVL3 bez BB Scalone_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

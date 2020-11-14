@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 3845703861343142205}
   - component: {fileID: 3845703861343142176}
   - component: {fileID: 5403402586763905067}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
   speed: 20
-  lifetime: 1.4
+  lifetime: 1.6
   OnCollided:
     m_PersistentCalls:
       m_Calls:
