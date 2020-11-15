@@ -13,14 +13,16 @@ public class LevelSelection : MonoBehaviour
     [SerializeField] SaveSystem saveSystem;
     [SerializeField] List<TextMeshProUGUI> buttonTexts;
     [SerializeField] GameObject[] worlds;
+    [SerializeField] List<EarnedPointsDisplayer> earnedPointsDisplayers;
     int currentIndex;
     int[] points;
 
     private void Start()
     {
         LoadButtonTexts();
-        SetButtonText();
+        SetButtonLevelText();
         EnableLevelButtons();
+        EnableEarnedPoints();
 
     }
 
@@ -32,6 +34,10 @@ public class LevelSelection : MonoBehaviour
             foreach (TextMeshProUGUI text in world.GetComponentsInChildren<TextMeshProUGUI>())
             {
                 buttonTexts.Add(text);
+            }
+            foreach(EarnedPointsDisplayer earnedPointsDisplayer in world.GetComponentsInChildren<EarnedPointsDisplayer>())
+            {
+                earnedPointsDisplayers.Add(earnedPointsDisplayer);
             }
         }
     }
@@ -93,7 +99,7 @@ public class LevelSelection : MonoBehaviour
                 }
                 else
                 {
-                    if (points[levelIndex-1] != 0)
+                    if (points[levelIndex] != 0)
                     {
                         levelButton.interactable = true;
                     }
@@ -110,21 +116,25 @@ public class LevelSelection : MonoBehaviour
         worlds[0].transform.GetChild(0).GetComponent<Button>().interactable = true;
     }
 
-    void SetButtonText()
+    void SetButtonLevelText()
     {
         points = saveSystem.GetObtainedPointsFromEachLevel();
 
         for(int i = 0; i < points.Length; i++)
         {
-            switch (points[i])
-            {
-                case 0:
-                    buttonTexts[i].text = "Not attempted";
-                    break;
-                default:
-                    buttonTexts[i].text = points[i].ToString();
-                    break;
-            }
+            buttonTexts[i].text = (i+1).ToString();
+        }
+    }
+
+    void EnableEarnedPoints()
+    {
+        points = saveSystem.GetObtainedPointsFromEachLevel();
+
+        for(int i = 0; i < points.Length; i++)
+        {
+            if (i > earnedPointsDisplayers.Count - 1) break;
+
+            earnedPointsDisplayers[i].DisplayIcons(points[i]);
         }
     }
 
