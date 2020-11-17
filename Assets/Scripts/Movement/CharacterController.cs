@@ -166,6 +166,7 @@ public class CharacterController : MonoBehaviour
         {
             rbody.velocity = Vector2.zero;
             rbody.bodyType = RigidbodyType2D.Static;
+            
             return;
         }
 
