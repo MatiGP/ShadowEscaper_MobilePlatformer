@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: ccfdfaa07fee63244976e7b90dc4543d
+guid: 733bb194bc40cb54a8adc2453df0c37c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7401240925172456747
-    second: single button kopia 2_0
+      213: 6203122097393353352
+    second: pads_0
   - first:
-      213: -2338181711078318973
-    second: single button kopia 2_1
+      213: 3469182004443147180
+    second: pads_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: single button kopia 2_0
+      name: pads_0
       rect:
         serializedVersion: 2
-        x: 906
-        y: 455
-        width: 187
-        height: 150
+        x: 896
+        y: 740
+        width: 891
+        height: 127
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,29 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d2230e8792894990800000000000000
-      internalID: -7401240925172456747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: single button kopia 2_1
-      rect:
-        serializedVersion: 2
-        x: 993
-        y: 450
-        width: 5
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38c9cda3f1c1d8fd0800000000000000
-      internalID: -2338181711078318973
+      spriteID: 882c1899eaae51650800000000000000
+      internalID: 6203122097393353352
       vertices: []
       indices: 
       edges: []

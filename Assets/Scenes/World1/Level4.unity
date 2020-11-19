@@ -1351,6 +1351,11 @@ PrefabInstance:
       propertyPath: OnLevelCompleted.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3266909679431116374, guid: d2f3c02b875511043a97e017e5535d6b,
+        type: 3}
+      propertyPath: OnLevelCompleted.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3266909679431116375, guid: d2f3c02b875511043a97e017e5535d6b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1887,12 +1892,12 @@ PrefabInstance:
     - target: {fileID: 5715414609074643616, guid: 1d7c4e00b7d303b4b866dafacce15219,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.240736
+      value: 17.462957
       objectReference: {fileID: 0}
     - target: {fileID: 5715414609074643616, guid: 1d7c4e00b7d303b4b866dafacce15219,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1006756
+      value: -1.1006794
       objectReference: {fileID: 0}
     - target: {fileID: 5715414609138193385, guid: 1d7c4e00b7d303b4b866dafacce15219,
         type: 3}

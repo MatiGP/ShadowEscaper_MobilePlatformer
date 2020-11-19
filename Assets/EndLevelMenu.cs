@@ -10,21 +10,24 @@ public class EndLevelMenu : MonoBehaviour
     [SerializeField] Image[] pointsImages;
     [SerializeField] LevelLoader levelLoader;
     [SerializeField] GameObject menu;
-    [SerializeField] GameObject nextLevelButton;
-
+    [SerializeField] GameObject nextLevelButtonBlocker;
+    int pointsEarnedOnCurrentLevel;
     bool isOpen;
 
-    private void DisplayPlayerProgressOnLevel()
+    private void Start()
+    {
+        pointsEarnedOnCurrentLevel = SaveSystem.instance.GetObtainedPointsFromEachLevel()[SceneManager.GetActiveScene().buildIndex-1];
+    }
+
+    private void DisplayPlayerProgessOnLevelEnd()
     {
         if (!GameManager.instance.PlayerFinishedLevel())
-        {
-            earnedPointsHolder.SetActive(false);
-            nextLevelButton.SetActive(false);
+        {           
+            nextLevelButtonBlocker.SetActive(true);
             return;
         }
         else
-        {
-            earnedPointsHolder.SetActive(true);
+        {         
             pointsImages[0].gameObject.SetActive(true);
         }
 
@@ -43,7 +46,7 @@ public class EndLevelMenu : MonoBehaviour
     {
         levelLoader.LoadLevel(0);
     }
-
+    
     public void RetryCurrentLevel()
     {
         levelLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex);
@@ -64,8 +67,17 @@ public class EndLevelMenu : MonoBehaviour
         else
         {
             menu.SetActive(true);
-            isOpen = true;
-            DisplayPlayerProgressOnLevel();
+            isOpen = true;         
+
+            if (!GameManager.instance.PlayerFinishedLevel())
+            {
+                for(int i = 0; i < pointsEarnedOnCurrentLevel; i++)
+                {
+                    pointsImages[i].gameObject.SetActive(true);
+                }
+
+                nextLevelButtonBlocker.SetActive(false);
+            }
         }
     }
 
@@ -79,6 +91,6 @@ public class EndLevelMenu : MonoBehaviour
         yield return new WaitForSeconds(delay);
         menu.SetActive(true);
         isOpen = true;
-        DisplayPlayerProgressOnLevel();
+        DisplayPlayerProgessOnLevelEnd();
     }
 }

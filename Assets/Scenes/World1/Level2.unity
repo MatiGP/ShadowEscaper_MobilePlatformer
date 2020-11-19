@@ -2435,6 +2435,11 @@ PrefabInstance:
       propertyPath: OnLevelCompleted.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3266909679431116374, guid: d2f3c02b875511043a97e017e5535d6b,
+        type: 3}
+      propertyPath: OnLevelCompleted.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3266909679431116375, guid: d2f3c02b875511043a97e017e5535d6b,
         type: 3}
       propertyPath: m_LocalPosition.x

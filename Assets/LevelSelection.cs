@@ -31,6 +31,9 @@ public class LevelSelection : MonoBehaviour
         for (int i = 0; i < worlds.Length; i++)
         {
             GameObject world = worlds[i];
+
+            
+
             foreach (TextMeshProUGUI text in world.GetComponentsInChildren<TextMeshProUGUI>())
             {
                 buttonTexts.Add(text);
