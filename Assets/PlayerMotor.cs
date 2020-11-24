@@ -6,6 +6,9 @@ public class PlayerMotor : MonoBehaviour
 {
     [SerializeField] float runSpeed = 40f;
     [SerializeField] float slideDuration;
+    [SerializeField] float minSlideDuration = 0.3f;
+    [SerializeField] float slideCooldown = 1;
+    float currentSlideCooldown = -1;
     float jumpDuriation;
 
     [SerializeField] Joystick joystick;
@@ -39,9 +42,7 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!canMove) return; 
-
-        if (isSliding) return;
+        if (!canMove) return;        
 
         if(joystick.Horizontal > 0)
         {
@@ -54,6 +55,8 @@ public class PlayerMotor : MonoBehaviour
         {
             horizontalMove = 0f;
         }
+
+        if (currentSlideCooldown > 0) currentSlideCooldown -= Time.deltaTime;
 
     }
 
@@ -72,7 +75,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void Slide()
     {
-        if (!isSliding)
+        if (!isSliding && currentSlideCooldown <= 0)
         {
             StartCoroutine("StartSliding");
         }
@@ -91,17 +94,21 @@ public class PlayerMotor : MonoBehaviour
 
         slide = false;
         isSliding = false;
-        
+        currentSlideCooldown = slideCooldown;
+
+
     }
 
     public void InterruptSliding()
-    {      
+    {             
         StopCoroutine("StartSliding");
 
         SetPlayerColliderSize(colliderSizeWhenPlayerStands, CapsuleDirection2D.Vertical, 0f);
 
         slide = false;
         isSliding = false;
+        if (currentSlideCooldown > 0) return;
+        currentSlideCooldown = slideCooldown;
     }
 
     void SetPlayerColliderSize(Vector2 newSize, CapsuleDirection2D direction, float colliderOffsetY)
@@ -131,8 +138,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void DisableControls()
     {
-        canMove = false;
-        //characterController.Move(0, false, false);
+        canMove = false;      
         
     }
 }

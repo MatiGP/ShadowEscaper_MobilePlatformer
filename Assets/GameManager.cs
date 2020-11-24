@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] int numOfKeysInLevel = 0;
     [SerializeField] int numOfItemsToCollect = 1;
     [SerializeField] float timeToCompleteLevel;
     [SerializeField] SaveSystem saveSystem;
@@ -33,7 +34,10 @@ public class GameManager : MonoBehaviour
         timePlayerFinishedLevel = timeOfFinishingLevel;
 
         SummarizeLevel();
-        saveSystem.CompleteLevel(SceneManager.GetActiveScene().buildIndex - 1, pointsToGainOnLevelCompletion);
+
+        int completedLevelNum = SceneManager.GetActiveScene().buildIndex - 1;
+
+        saveSystem.CompleteLevel(completedLevelNum, pointsToGainOnLevelCompletion);
         
 
     }
@@ -69,5 +73,10 @@ public class GameManager : MonoBehaviour
     public bool PlayerFinishedLevel()
     {
         return playerFinishedLevel;
+    }
+
+    public int GetNumOfKeysInLevel()
+    {
+        return numOfKeysInLevel;
     }
 }

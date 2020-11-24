@@ -19,6 +19,14 @@ public class EndLevelMenu : MonoBehaviour
         pointsEarnedOnCurrentLevel = SaveSystem.instance.GetObtainedPointsFromEachLevel()[SceneManager.GetActiveScene().buildIndex-1];
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenMenu();
+        }
+    }
+
     private void DisplayPlayerProgessOnLevelEnd()
     {
         if (!GameManager.instance.PlayerFinishedLevel())
