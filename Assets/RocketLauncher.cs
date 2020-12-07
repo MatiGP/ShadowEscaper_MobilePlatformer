@@ -63,9 +63,11 @@ public class RocketLauncher : MonoBehaviour
     public void Launch()
     {
         if (rocketLaunched) return;
+        
         StartCoroutine(StopRotating());
         rocketLaunched = true;
         StartCoroutine(LaunchRocket());
+        SoundManager.instance.PlaySoundEffect(SoundType.RocketLauncher_Launch);
     }
 
     IEnumerator StopRotating()

@@ -10,12 +10,7 @@ public class Rocket : MonoBehaviour
 
     bool launchRocket;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -33,6 +28,7 @@ public class Rocket : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         launchRocket = false;
+        SoundManager.instance.PlaySoundEffect(SoundType.RocketLauncher_Destroy);
         OnDestroyRocket.Invoke();    
     }
 }

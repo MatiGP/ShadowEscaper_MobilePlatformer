@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public void CollectItem()
     {
         numOfCollectedItemsByPlayer += 1;
+        SoundManager.instance.PlaySoundEffect(SoundType.Coin_Collect);
     }
 
     public void FinishLevel(float timeOfFinishingLevel)

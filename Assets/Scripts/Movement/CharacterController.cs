@@ -117,7 +117,7 @@ public class CharacterController : MonoBehaviour
 
             if (!wasGrounded)
             {
-                Debug.Log("Efekt lądowania, cząsteczki itp");
+                SoundManager.instance.PlaySoundEffect(SoundType.Player_Landing);
             }
         }
 
@@ -202,6 +202,7 @@ public class CharacterController : MonoBehaviour
             CalculateSlidingSpeed();
 
             ChangeAnimationState(GROUND_SLIDE, 0f);
+
 
 
         }

@@ -77,6 +77,8 @@ public class PlayerMotor : MonoBehaviour
     {
         if (!isSliding && currentSlideCooldown <= 0)
         {
+            SoundManager.instance.PlaySoundEffect(SoundType.Player_Slide);
+
             StartCoroutine("StartSliding");
         }
     }
