@@ -13,7 +13,7 @@ public class ElapsedTime : MonoBehaviour
 
     string timeText;
 
-    bool stopCounting = false;
+    bool stopCounting = true;
 
     private void Update()
     {
@@ -60,5 +60,10 @@ public class ElapsedTime : MonoBehaviour
     public void StopCounting()
     {
         stopCounting = true;
+    }
+
+    public void StartCounting()
+    {
+        stopCounting = false;
     }
 }

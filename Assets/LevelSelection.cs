@@ -14,16 +14,15 @@ public class LevelSelection : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> buttonTexts;
     [SerializeField] GameObject[] worlds;
     [SerializeField] List<EarnedPointsDisplayer> earnedPointsDisplayers;
+
     int currentIndex;
-    int[] points;
+    int levelIndex = 0;
 
     private void Start()
     {
         LoadButtonTexts();
         SetButtonLevelText();
         EnableLevelButtons();
-        EnableEarnedPoints();
-
     }
 
     private void LoadButtonTexts()
@@ -31,9 +30,7 @@ public class LevelSelection : MonoBehaviour
         for (int i = 0; i < worlds.Length; i++)
         {
             GameObject world = worlds[i];
-
             
-
             foreach (TextMeshProUGUI text in world.GetComponentsInChildren<TextMeshProUGUI>())
             {
                 buttonTexts.Add(text);
@@ -89,55 +86,49 @@ public class LevelSelection : MonoBehaviour
 
     void EnableLevelButtons()
     {
-        int levelIndex = 0;
-
         for(int i = 0; i < worlds.Length; i++)
         {
-            foreach (Button levelButton in worlds[i].GetComponentsInChildren<Button>())
-            {
+            Button[] levelButton = worlds[i].GetComponentsInChildren<Button>();
 
-                if (levelIndex == 0)
+            for(int j = 0; j < levelButton.Length; j++) 
+            {
+                Points earnedPoints = saveSystem.GetObtainedPointsFromLevel(levelIndex);
+
+                Debug.Log(earnedPoints.points == null);
+
+                if (j == 0)
                 {
-                    levelButton.interactable = true;
+                    levelButton[j].interactable = true;
                 }
                 else
                 {
-                    if (points[levelIndex] != 0)
+                    
+
+                    if (earnedPoints.points != null)
                     {
-                        levelButton.interactable = true;
+                        levelButton[j].interactable = true;
+                        earnedPointsDisplayers[j].DisplayIcons(earnedPoints.points);
                     }
                     else
                     {
-                        levelButton.interactable = false;
+                        levelButton[j].interactable = false;
                     }
                 }
-                
+
                 levelIndex++;
             }
         }
 
         worlds[0].transform.GetChild(0).GetComponent<Button>().interactable = true;
+        if(saveSystem.GetObtainedPointsFromLevel(0).points != null)
+            earnedPointsDisplayers[0].DisplayIcons(saveSystem.GetObtainedPointsFromLevel(0).points);
     }
 
     void SetButtonLevelText()
     {
-        points = saveSystem.GetObtainedPointsFromEachLevel();
-
-        for(int i = 0; i < points.Length; i++)
+        for(int i = 0; i < buttonTexts.Count; i++)
         {
-            buttonTexts[i].text = (i+1).ToString();
-        }
-    }
-
-    void EnableEarnedPoints()
-    {
-        points = saveSystem.GetObtainedPointsFromEachLevel();
-
-        for(int i = 0; i < points.Length; i++)
-        {
-            if (i > earnedPointsDisplayers.Count - 1) break;
-
-            earnedPointsDisplayers[i].DisplayIcons(points[i]);
+            buttonTexts[i].text = "" + (i + 1);
         }
     }
 

@@ -5,73 +5,79 @@ using System.IO;
 
 public class SaveSystem : MonoBehaviour
 {   
-    [SerializeField] int[] pointsObtainedOnEachLevel = new int[50];
     public static SaveSystem instance;
     string colorData;
+
+    SaveData currentSave;
 
     private void Awake()
     {
         instance = this;
-        Load();       
+
+        string json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
+        currentSave = JsonUtility.FromJson<SaveData>(json);     
     }
 
     void Save()
     {
-        string saveData = JsonUtility.ToJson(new SaveData(pointsObtainedOnEachLevel, colorData));
+        string saveData = JsonUtility.ToJson(currentSave);
         File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
     }
 
-    public void Load()
+    public void CompleteLevel(int levelIndex, int[] pointsObtained)
     {
-        string json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
-        SaveData data = JsonUtility.FromJson<SaveData>(json);
-        pointsObtainedOnEachLevel = data.pointsGained;
-    }
-
-    public void CompleteLevel(int levelIndex, int pointsObtained)
-    {
-        pointsObtainedOnEachLevel[levelIndex] = pointsObtained;
+        // if repeating the level.
+        if(currentSave.pointsGained[levelIndex] != null)
+        {
+            currentSave.pointsGained[levelIndex].points = pointsObtained;
+        }
+        else // if level attempted for the first time
+        {
+            currentSave.pointsGained[levelIndex] = new Points(pointsObtained);
+        }
+        
         Save();
     }
 
     public Color GetColorData()
-    {
-        string json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
-        SaveData data = JsonUtility.FromJson<SaveData>(json);
-
+    {       
         Color c;
-        ColorUtility.TryParseHtmlString(data.color, out c);
+        ColorUtility.TryParseHtmlString(currentSave.color, out c);
 
         return c;
     }
 
-    public int[] GetObtainedPointsFromEachLevel()
-    {
-        return pointsObtainedOnEachLevel;
+    public int[] GetObtainedPointsFromLevel(int levelIndex)
+    {       
+        return currentSave.pointsGained[levelIndex].points;          
     }
 
     public void SaveColorData(string color)
     {
-        string json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
-        SaveData data = JsonUtility.FromJson<SaveData>(json);
-        data.color = color;
+        currentSave.color = color;
 
-        string saveData = JsonUtility.ToJson(data);
+        string saveData = JsonUtility.ToJson(currentSave);
         File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
-
-    }
-
+    } 
 }
 [System.Serializable]
 public class SaveData
 {
-    public int[] pointsGained;
+    public Points[] pointsGained = new Points[50];
     public string color;
-
-    public SaveData(int[] points, string color)
-    {
-        pointsGained = points;
-    }
-
-    
+    public int frameRate;
+    public float soundFXVolume;
+    public float musicVolume;   
 }
+[System.Serializable]
+public class Points
+{
+    public int[] points;
+
+    public Points(int[] pObtained)
+    {
+        points = pObtained;
+    }
+}
+
+

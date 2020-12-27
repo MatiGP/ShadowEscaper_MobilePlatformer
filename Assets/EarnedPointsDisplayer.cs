@@ -8,12 +8,20 @@ public class EarnedPointsDisplayer : MonoBehaviour
 
     [SerializeField] Image[] earnedPointIcons;
 
-    public void DisplayIcons(int earnedPoints)
+    public void DisplayIcons(int[] earnedPoints)
     {
-        for(int i = 0; i < earnedPoints; i++)
+        if (earnedPoints == null) return;
+
+        for(int i = 0; i < earnedPoints.Length; i++)
         {
-            Debug.Log("Displaying. . . ");
-            earnedPointIcons[i].gameObject.SetActive(true);
+            if(earnedPoints[i] != 0)
+            {
+                earnedPointIcons[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                earnedPointIcons[i].gameObject.SetActive(false);
+            }          
         }
     }
 }
