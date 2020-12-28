@@ -18,7 +18,7 @@ public class SaveSystem : MonoBehaviour
         currentSave = JsonUtility.FromJson<SaveData>(json);     
     }
 
-    void Save()
+    public void Save()
     {
         string saveData = JsonUtility.ToJson(currentSave);
         File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
@@ -52,6 +52,21 @@ public class SaveSystem : MonoBehaviour
         return currentSave.pointsGained[levelIndex].points;          
     }
 
+    public int GetTargetFramerate()
+    {
+        return currentSave.frameRate;
+    }
+
+    public float GetSFXVolume()
+    {
+        return currentSave.soundFXVolume;
+    }
+
+    public float GetMusicVolume()
+    {
+        return currentSave.musicVolume;
+    }
+
     public void SaveColorData(string color)
     {
         currentSave.color = color;
@@ -59,20 +74,36 @@ public class SaveSystem : MonoBehaviour
         string saveData = JsonUtility.ToJson(currentSave);
         File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
     } 
+
+    public void SaveSoundFXVolume(float v)
+    {
+        currentSave.soundFXVolume = v;
+    }
+
+    public void SaveMusicVolume(float v)
+    {
+        currentSave.musicVolume = v;
+    }
+
+    public void SaveTargetFramerate(int framerate)
+    {
+        currentSave.frameRate = framerate;  
+    }
 }
 [System.Serializable]
 public class SaveData
 {
     public Points[] pointsGained = new Points[50];
     public string color;
-    public int frameRate;
-    public float soundFXVolume;
-    public float musicVolume;   
+    public int frameRate = 30;
+    public float soundFXVolume = 1;
+    public float musicVolume = 1;   
 }
 [System.Serializable]
 public class Points
 {
     public int[] points;
+
 
     public Points(int[] pObtained)
     {

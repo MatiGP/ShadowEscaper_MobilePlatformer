@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,12 +12,20 @@ public class EndLevelMenu : MonoBehaviour
     [SerializeField] LevelLoader levelLoader;
     [SerializeField] GameObject menu;
     [SerializeField] GameObject nextLevelButtonBlocker;
+    [SerializeField] GameObject previousLevelButtonBlocker;
+    [SerializeField] TextMeshProUGUI requiredTime;
     int[] pointsEarnedOnCurrentLevel;
     bool isOpen;
 
     private void Start()
     {
         pointsEarnedOnCurrentLevel = SaveSystem.instance.GetObtainedPointsFromLevel(SceneManager.GetActiveScene().buildIndex-1);
+        requiredTime.text += $"{(GameManager.instance.GetRequiredTimeToCompleteLevel() / 60) % 60}:{GameManager.instance.GetRequiredTimeToCompleteLevel() % 60}";
+        
+        if(SceneManager.GetActiveScene().buildIndex - 1 == 0)
+        {
+            previousLevelButtonBlocker.SetActive(true);
+        }
     }
 
     private void Update()
@@ -81,7 +90,7 @@ public class EndLevelMenu : MonoBehaviour
 
             if (!GameManager.instance.PlayerFinishedLevel())
             {
-                for(int i = 0; i < pointsEarnedOnCurrentLevel.points.Length; i++)
+                for(int i = 0; i < pointsEarnedOnCurrentLevel.Length; i++)
                 {
                     pointsImages[i].gameObject.SetActive(true);
                 }

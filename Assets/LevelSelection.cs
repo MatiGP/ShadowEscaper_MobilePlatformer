@@ -92,26 +92,24 @@ public class LevelSelection : MonoBehaviour
 
             for(int j = 0; j < levelButton.Length; j++) 
             {
-                Points earnedPoints = saveSystem.GetObtainedPointsFromLevel(levelIndex);
-
-                Debug.Log(earnedPoints.points == null);
+                int[] earnedPoints = saveSystem.GetObtainedPointsFromLevel(levelIndex);
 
                 if (j == 0)
                 {
                     levelButton[j].interactable = true;
                 }
                 else
-                {
-                    
-
-                    if (earnedPoints.points != null)
+                {                  
+                    if (earnedPoints.Length > 0)
                     {
                         levelButton[j].interactable = true;
-                        earnedPointsDisplayers[j].DisplayIcons(earnedPoints.points);
+                        earnedPointsDisplayers[j].DisplayIcons(earnedPoints);
                     }
                     else
                     {
-                        levelButton[j].interactable = false;
+                        
+                        levelButton[j].interactable = true;
+                        break;
                     }
                 }
 
@@ -120,8 +118,8 @@ public class LevelSelection : MonoBehaviour
         }
 
         worlds[0].transform.GetChild(0).GetComponent<Button>().interactable = true;
-        if(saveSystem.GetObtainedPointsFromLevel(0).points != null)
-            earnedPointsDisplayers[0].DisplayIcons(saveSystem.GetObtainedPointsFromLevel(0).points);
+        if(saveSystem.GetObtainedPointsFromLevel(0) != null)
+            earnedPointsDisplayers[0].DisplayIcons(saveSystem.GetObtainedPointsFromLevel(0));
     }
 
     void SetButtonLevelText()

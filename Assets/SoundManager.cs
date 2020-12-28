@@ -9,14 +9,23 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip[] SFXSounds;
 
+    float sfxVolume;
+    float musicVolume;
+
     private void Awake()
     {
         instance = this;
+        
+    }
+
+    private void Start()
+    {
+        sfxVolume = SaveSystem.instance.GetSFXVolume();
     }
 
     public void PlaySoundEffect(SoundType soundType)
     {
-        soundEffectSource.PlayOneShot(SFXSounds[(int)soundType]);
+        soundEffectSource.PlayOneShot(SFXSounds[(int)soundType], sfxVolume);
     }
 }
 
