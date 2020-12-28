@@ -7,6 +7,7 @@ public class SaveSystem : MonoBehaviour
 {   
     public static SaveSystem instance;
     string colorData;
+    string json;
 
     SaveData currentSave;
 
@@ -14,8 +15,22 @@ public class SaveSystem : MonoBehaviour
     {
         instance = this;
 
-        string json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
-        currentSave = JsonUtility.FromJson<SaveData>(json);     
+        try
+        {
+            json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
+        }
+        catch
+        {
+            // Launching game for the very first time.
+            string saveData = JsonUtility.ToJson(new SaveData());
+            File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
+        }
+        finally
+        {
+            json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
+            currentSave = JsonUtility.FromJson<SaveData>(json);
+        }                            
+             
     }
 
     public void Save()
@@ -94,7 +109,7 @@ public class SaveSystem : MonoBehaviour
 public class SaveData
 {
     public Points[] pointsGained = new Points[50];
-    public string color;
+    public string color = "#FFFFFF";
     public int frameRate = 30;
     public float soundFXVolume = 1;
     public float musicVolume = 1;   

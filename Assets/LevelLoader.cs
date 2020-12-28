@@ -21,6 +21,12 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void LoadPreviousLevel()
+    {
+        levelLoaderPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex - 1));
+    }
+
     IEnumerator LoadAsynchronously(int sceneIndex)
     {      
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);

@@ -76,6 +76,11 @@ public class EndLevelMenu : MonoBehaviour
         levelLoader.LoadNextLevel();
     }
 
+    public void LoadPreviousLevel()
+    {
+        levelLoader.LoadPreviousLevel();
+    }
+
     public void OpenMenu()
     {
         if (isOpen)
