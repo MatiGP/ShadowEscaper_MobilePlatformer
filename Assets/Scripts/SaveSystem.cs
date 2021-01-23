@@ -69,7 +69,7 @@ public class SaveSystem : MonoBehaviour
 
     public int GetTargetFramerate()
     {
-        return currentSave.frameRate;
+        return 60;//currentSave.frameRate;
     }
 
     public float GetSFXVolume()

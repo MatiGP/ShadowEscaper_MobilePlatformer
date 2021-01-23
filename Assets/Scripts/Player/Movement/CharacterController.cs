@@ -256,6 +256,11 @@ public class CharacterController : MonoBehaviour
 
     }
 
+    public void NewMovement(float direction, bool jump, bool isSliding, bool canMove)
+    {
+
+    }
+
     private void CalculateSlidingSpeed()
     {
         if (slideSpeed * 0.6f < currentSlideSpeed)
