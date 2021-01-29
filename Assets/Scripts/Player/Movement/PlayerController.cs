@@ -4,112 +4,159 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float Direction { get => direction; }
+    public float FootSpeed { get => footSpeed; }
+    public float Gravity { get => gravity; }
+    public float JumpHeight { get => jumpHeight; }
+    public float WallJumpHeight { get => wallJumpHeight; }
+    public float WallSlideSpeed { get => wallslideSpeed; }
+
+    public bool IsGrounded { get => isGrounded; }
+    public bool IsJumping { get => isJumping; }
+    public bool IsTouchingRightWall { get => isTouchingRightWall; }
+    public bool IsTouchingLeftWall { get => isTouchingLeftWall; }
+    public bool IsFacingRight { get => facingRight; }
+
+
     [Header("Ground Movement")]
     [SerializeField] float footSpeed;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundDetectorPosition;
     [SerializeField] Vector2 groundDetectorSize;
+    [Space(1f)]
     [Header("Wall Detectors")]
     [SerializeField] Transform wallDetectorRight;
     [SerializeField] Transform wallDetectorLeft;
     [SerializeField] Vector2 wallDetectorSize;
     [SerializeField] LayerMask wallLayer;
-    [Header("Vertical Movement")]
     [Space(1f)]
+    [Header("Vertical Movement")]
     [SerializeField] float jumpHeight;
     [SerializeField] float timeToJumpApex;
     [SerializeField] float normalJumpMultiplier;
     [SerializeField] float lowJumpMultiplier;
-    [Space(1f)]
+    [SerializeField] float maxFallSpeed;
     [SerializeField] float wallslideSpeed;
+    [SerializeField] float wallJumpHeight;
+    [Space(1f)]
     [Header("Player Model")]
     [SerializeField] SpriteRenderer playerCharacterSR;
+    [SerializeField] Animator playerAnimator;
 
     float gravity;
     float jumpVelocity;
     float direction;
 
     Vector3 movementVector;
-    public Vector3 MovementVector { get => movementVector; private set => movementVector = value; }
-
+    
     bool isGrounded;
-    public bool IsGrounded { get => isGrounded; }
     bool wasGrounded;
     bool isJumping;
     bool isTouchingRightWall;
     bool isTouchingLeftWall;
     bool isWallSliding;
-    public bool IsWallSliding { get => isWallSliding; }
+    bool wallJumped;
+    bool facingRight;
+
+    private StateMachine stateMachine;
+
+    public IdleState idleState;
+    public RunningState runningState;
+    public JumpingState jumpingState;
+    public FallingState fallingState;
+    public GroundslidingState groundslidingState;
+    public WallslidingState wallslidingState;
+    public WalljumpingState walljumpingState;
 
     private void Awake()
+    {
+        stateMachine = new StateMachine();
+        
+        idleState = new IdleState(this, stateMachine, playerAnimator);
+        runningState = new RunningState(this, stateMachine, playerAnimator);
+        jumpingState = new JumpingState(this, stateMachine, playerAnimator);
+        fallingState = new FallingState(this, stateMachine, playerAnimator);
+        groundslidingState = new GroundslidingState(this, stateMachine, playerAnimator);
+        wallslidingState = new WallslidingState(this, stateMachine, playerAnimator);
+        walljumpingState = new WalljumpingState(this, stateMachine, playerAnimator);
+
+        stateMachine.Initialize(idleState);
+    }
+
+    void Start()
     {
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
         jumpVelocity = gravity * timeToJumpApex;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
-    {
-        isGrounded = Physics2D.BoxCast(groundDetectorPosition.position, groundDetectorSize, 0f, Vector2.down, 0f, groundLayer);
-
+    {    
+        
+        stateMachine.currentState.HandleLogic();
+        stateMachine.currentState.HandleAnimator();
+        stateMachine.currentState.HandleInput();
+       
+        /*
         #region Horizontal Movement
+       
         movementVector.x = direction * footSpeed;
-
-        if (isTouchingRightWall && movementVector.x > 0)
+                                
+        if (isTouchingRightWall && direction > 0)
         {
             movementVector.x = 0;
         }
-        else if (isTouchingLeftWall && movementVector.x < 0)
+        else if (isTouchingLeftWall && direction < 0)
         {
             movementVector.x = 0;
         }
+        
         #endregion
 
         #region Vertical Movement
 
         movementVector.y -= gravity * Time.deltaTime;
+        movementVector.y = Mathf.Clamp(movementVector.y, -maxFallSpeed, movementVector.y);
+     
 
         if (isJumping)
         {
-            Debug.Log("Normal jump");
             movementVector.y -= gravity * (normalJumpMultiplier - 1) * Time.deltaTime;
+
         }
-        else if (movementVector.y > 0 && !isJumping && !(isTouchingRightWall || isTouchingLeftWall))
+        else if (movementVector.y > 0 && !isJumping)
         {
-            Debug.Log("Low jump");
             movementVector.y -= gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
+  
         }
 
-        if((isTouchingRightWall || isTouchingLeftWall) && movementVector.y < 0 )
+
+        if (movementVector.y < 0 && isGrounded)
         {
-            Debug.Log("Should slide");
-            movementVector.y = -wallslideSpeed * Time.deltaTime ;
-            isWallSliding = true;
+            movementVector.y = 0;         
+        }
+
+        if ((isTouchingRightWall || isTouchingLeftWall) && (movementVector.y < 0) )
+        {
+            movementVector.y = -wallslideSpeed * Time.deltaTime;
+            isWallSliding = true;         
         }
         else
         {
             isWallSliding = false;
-        }
-
-        if (movementVector.y < 0 && IsGrounded)
-        {
-            movementVector.y = 0;
-        }
-
+        }       
         #endregion
-
-        //Debug.Log(movementVector);
+        
+        Flip();
         transform.position += movementVector * Time.deltaTime;
+         
+         */
+
+
     }
 
     private void FixedUpdate()
     {
+        isGrounded = Physics2D.OverlapBox(groundDetectorPosition.position, groundDetectorSize, 0f, groundLayer);
         isTouchingRightWall = Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
         isTouchingLeftWall = Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
     }
@@ -118,13 +165,23 @@ public class PlayerController : MonoBehaviour
     {
         if (isButtonHeld)
         {
-            if (IsGrounded)
+            if (isGrounded)
             {
-                movementVector.y = jumpVelocity;
+                //movementVector.y = jumpVelocity;
                 isJumping = true;
             }
+
+            isJumping = true;
+            /*
+            if (isWallSliding)
+            {
+                Debug.Log("Should wall jump");
+                movementVector.y = wallJumpHeight;             
+                isJumping = true;
+            }
+            */
         }
-        else if (!isButtonHeld)
+        else
         {
             isJumping = false;
         }
@@ -133,18 +190,23 @@ public class PlayerController : MonoBehaviour
     public void ReadMoveInput(float newDirection)
     {
         direction = newDirection;
+        
+    }
 
-        if (newDirection > 0)
+    public void Flip()
+    {
+        if (direction > 0)
         {
             playerCharacterSR.flipX = false;
+            facingRight = true;
         }
-        else if(newDirection < 0)
+        else if (direction < 0)
         {
             playerCharacterSR.flipX = true;
+            facingRight = false;
         }
     }
 
-    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

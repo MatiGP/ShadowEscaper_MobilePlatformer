@@ -34,34 +34,6 @@ public class AnimationController : MonoBehaviour
 
     void SetAnimations()
     {
-        if (playerController.IsGrounded)
-        {
-            if (playerController.MovementVector.x == 0)
-            {
-                animator.Play(IDLE);
-            }
-            else
-            {
-                animator.Play(RUN);
-            }
-        }
-        else
-        {
-            
-            if(playerController.MovementVector.y > 0)
-            {
-                animator.Play(JUMP_INCREASING_HEIGHT);
-            }
-            else if(playerController.MovementVector.y == 0) 
-            {
-                animator.Play(IN_AIR);
-            }
-            else
-            {
-                animator.Play(FALLING);
-                animator.Play(LANDING);
-            }
-            
-        }      
+        
     }
 }

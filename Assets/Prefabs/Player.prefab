@@ -4052,7 +4052,6 @@ GameObject:
   - component: {fileID: 5715414609690220082}
   - component: {fileID: 3128115245829179954}
   - component: {fileID: 1391342876049122304}
-  - component: {fileID: 1819850445654163568}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4219,32 +4218,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundDetectorPosition: {fileID: 5715414609058957331}
-  groundDetectorSize: {x: 1.8, y: 0.12}
+  groundDetectorSize: {x: 1.8, y: 0.43}
   wallDetectorRight: {fileID: 5715414609762825736}
   wallDetectorLeft: {fileID: 7515224831357430712}
   wallDetectorSize: {x: 0.12, y: 2.04}
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
-  jumpHeight: 25
-  timeToJumpApex: 0.9
+  jumpHeight: 40
+  timeToJumpApex: 0.7
   normalJumpMultiplier: 2
   lowJumpMultiplier: 2
+  maxFallSpeed: 30
   wallslideSpeed: 2
+  wallJumpHeight: 20
   playerCharacterSR: {fileID: 5715414608779804647}
---- !u!114 &1819850445654163568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5715414609690220081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff5c277979c8e24d86102b379bde13e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 5715414608779804648}
+  playerAnimator: {fileID: 5715414608779804648}
 --- !u!1 &5715414609761012957
 GameObject:
   m_ObjectHideFlags: 0
@@ -5714,15 +5703,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 071dff6c79cc59e499ba3edcbdd8f773, type: 3}
---- !u!224 &1695398701551609035 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2256250210326217297, guid: 071dff6c79cc59e499ba3edcbdd8f773,
-    type: 3}
-  m_PrefabInstance: {fileID: 632909397286282906}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1695398701551609034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2256250210326217296, guid: 071dff6c79cc59e499ba3edcbdd8f773,
+    type: 3}
+  m_PrefabInstance: {fileID: 632909397286282906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1695398701551609035 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2256250210326217297, guid: 071dff6c79cc59e499ba3edcbdd8f773,
     type: 3}
   m_PrefabInstance: {fileID: 632909397286282906}
   m_PrefabAsset: {fileID: 0}
