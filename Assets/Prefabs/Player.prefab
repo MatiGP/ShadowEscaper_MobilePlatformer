@@ -4114,7 +4114,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.38, y: 5}
+  m_Size: {x: 1.53, y: 4.79}
   m_Direction: 0
 --- !u!114 &5715414609690220087
 MonoBehaviour:
@@ -4219,6 +4219,7 @@ MonoBehaviour:
     m_Bits: 256
   groundDetectorPosition: {fileID: 5715414609058957331}
   groundDetectorSize: {x: 1.8, y: 0.43}
+  groundLineDetectionLength: 0
   wallDetectorRight: {fileID: 5715414609762825736}
   wallDetectorLeft: {fileID: 7515224831357430712}
   wallDetectorSize: {x: 0.12, y: 2.04}

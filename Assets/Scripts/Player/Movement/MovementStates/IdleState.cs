@@ -12,7 +12,12 @@ public class IdleState : BaseMovementState
 
     public override void Enter()
     {
-        Debug.Log("Entering Idle State");
+
+    }
+
+    public override void Exit()
+    {
+
     }
 
     public override void HandleAnimator()
@@ -32,7 +37,7 @@ public class IdleState : BaseMovementState
             stateMachine.ChangeState(playerController.jumpingState);
         }
 
-        if (isRunning)
+        if (isRunning && ((playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall) || (playerController.Direction > 0.1 && !playerController.IsTouchingRightWall)))
         {
             stateMachine.ChangeState(playerController.runningState);
         }

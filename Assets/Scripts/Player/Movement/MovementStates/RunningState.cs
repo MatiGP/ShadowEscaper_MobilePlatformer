@@ -12,7 +12,11 @@ public class RunningState : BaseMovementState
 
     public override void Enter()
     {
-        Debug.Log("Entering Running State");
+        movementVector.x = 0;
+    }
+
+    public override void Exit()
+    {
         movementVector.x = 0;
     }
 
@@ -23,9 +27,9 @@ public class RunningState : BaseMovementState
 
     public override void HandleInput()
     {
-        movementVector.x = playerController.FootSpeed * playerController.Direction * Time.deltaTime;
+        movementVector.x = playerController.FootSpeed * playerController.Direction;
 
-        playerTransform.position += movementVector;
+        playerTransform.position += movementVector * Time.deltaTime;
 
         isRunning = playerController.Direction != 0;
 
@@ -34,7 +38,11 @@ public class RunningState : BaseMovementState
 
     public override void HandleLogic()
     {
-        if (!isRunning || playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
+        if (isRunning && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
+        {
+            stateMachine.ChangeState(playerController.idleState);
+        }
+        else if (!isRunning)
         {
             stateMachine.ChangeState(playerController.idleState);
         }     
@@ -43,7 +51,7 @@ public class RunningState : BaseMovementState
         {
             stateMachine.ChangeState(playerController.jumpingState);
         }
-        else if (!playerController.IsGrounded)
+        else if (!playerController.IsTouchingGround)
         {
             stateMachine.ChangeState(playerController.fallingState);
         }

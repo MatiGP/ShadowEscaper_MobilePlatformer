@@ -21,7 +21,8 @@ public abstract class BaseMovementState
     public abstract void Enter();
     public abstract void HandleInput();
     public abstract void HandleAnimator();
-    public abstract void HandleLogic();   
+    public abstract void HandleLogic();
+    public abstract void Exit();
     
 
 }

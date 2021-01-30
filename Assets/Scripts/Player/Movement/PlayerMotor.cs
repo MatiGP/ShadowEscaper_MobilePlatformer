@@ -70,7 +70,7 @@ public class PlayerMotor : MonoBehaviour
         isJumping = true;
         jump = true;
         yield return new WaitForSeconds(1f);
-        characterController.StopJumping();
+        //characterController.StopJumping();
         jump = false;
         isJumping = false;
     }

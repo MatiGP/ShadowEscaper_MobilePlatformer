@@ -16,6 +16,12 @@ public class JumpingState : BaseMovementState
         movementVector.y = playerController.JumpHeight;
     }
 
+    public override void Exit()
+    {
+        movementVector.x = 0;
+        movementVector.y = 0;
+    }
+
     public override void HandleAnimator()
     {
         animator.Play("IncreasingHeight");
@@ -24,16 +30,16 @@ public class JumpingState : BaseMovementState
     public override void HandleInput()
     {
         movementVector.x = playerController.Direction * playerController.FootSpeed;
-        movementVector.y -= playerController.Gravity * Time.fixedDeltaTime;
+        movementVector.y -= playerController.Gravity * Time.deltaTime;
 
-        playerTransform.position += movementVector * Time.fixedDeltaTime;
+        playerTransform.position += movementVector * Time.deltaTime;
 
         playerController.Flip();
     }
 
     public override void HandleLogic()
     {
-        if (playerController.IsGrounded)
+        if (playerController.IsTouchingGround)
         {
             if (playerController.Direction != 0)
             {
@@ -50,6 +56,5 @@ public class JumpingState : BaseMovementState
         {
             stateMachine.ChangeState(playerController.fallingState);
         }
-
     }
 }

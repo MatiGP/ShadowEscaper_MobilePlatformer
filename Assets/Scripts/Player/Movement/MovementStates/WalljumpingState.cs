@@ -13,10 +13,15 @@ public class WalljumpingState : BaseMovementState
 
     public override void Enter()
     {
-        Debug.Log("Entering Walljumping State");
         movementVector.x = 0;
         movementVector.y = playerController.WallJumpHeight;
         wallJumpXDirection = playerController.IsFacingRight ? -1 : 1;
+    }
+
+    public override void Exit()
+    {
+        movementVector.y = 0;
+        movementVector.x = 0;
     }
 
     public override void HandleAnimator()
@@ -42,9 +47,9 @@ public class WalljumpingState : BaseMovementState
             stateMachine.ChangeState(playerController.fallingState);
         }
 
-        if(!playerController.IsGrounded && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
+        if(!playerController.IsTouchingGround && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
             stateMachine.ChangeState(playerController.wallslidingState);
         }
-    }
+    } 
 }

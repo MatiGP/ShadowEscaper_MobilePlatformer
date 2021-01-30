@@ -11,18 +11,19 @@ public class PlayerController : MonoBehaviour
     public float WallJumpHeight { get => wallJumpHeight; }
     public float WallSlideSpeed { get => wallslideSpeed; }
 
-    public bool IsGrounded { get => isGrounded; }
+    public bool IsTouchingGround { get => isGrounded; }
     public bool IsJumping { get => isJumping; }
     public bool IsTouchingRightWall { get => isTouchingRightWall; }
     public bool IsTouchingLeftWall { get => isTouchingLeftWall; }
     public bool IsFacingRight { get => facingRight; }
 
-
+    [SerializeField] CapsuleCollider2D capsuleCollider;
     [Header("Ground Movement")]
     [SerializeField] float footSpeed;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundDetectorPosition;
     [SerializeField] Vector2 groundDetectorSize;
+    [SerializeField] float groundLineDetectionLength;
     [Space(1f)]
     [Header("Wall Detectors")]
     [SerializeField] Transform wallDetectorRight;
@@ -48,7 +49,8 @@ public class PlayerController : MonoBehaviour
     float direction;
 
     Vector3 movementVector;
-    
+    Vector3 positionFix;
+
     bool isGrounded;
     bool wasGrounded;
     bool isJumping;
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
         groundslidingState = new GroundslidingState(this, stateMachine, playerAnimator);
         wallslidingState = new WallslidingState(this, stateMachine, playerAnimator);
         walljumpingState = new WalljumpingState(this, stateMachine, playerAnimator);
-
+        
         stateMachine.Initialize(idleState);
     }
 
@@ -90,12 +92,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
-    {    
-        
-        stateMachine.currentState.HandleLogic();
+    {
+        isTouchingRightWall = Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
+        isTouchingLeftWall = Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
+
         stateMachine.currentState.HandleAnimator();
         stateMachine.currentState.HandleInput();
-       
+        stateMachine.currentState.HandleLogic();
+        
         /*
         #region Horizontal Movement
        
@@ -156,20 +160,25 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //isGrounded = Physics2D.Raycast(groundDetectorPosition.position, Vector2.down, 0.2f, groundLayer);
+        //isGrounded = Physics2D.BoxCast(groundDetectorPosition.position, groundDetectorSize, 0f, Vector2.down, 0f, groundLayer);
         isGrounded = Physics2D.OverlapBox(groundDetectorPosition.position, groundDetectorSize, 0f, groundLayer);
-        isTouchingRightWall = Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
-        isTouchingLeftWall = Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
+      
+
     }
+
 
     public void Jump(bool isButtonHeld)
     {
         if (isButtonHeld)
         {
+            /*
             if (isGrounded)
             {
                 //movementVector.y = jumpVelocity;
                 isJumping = true;
             }
+            */
 
             isJumping = true;
             /*
@@ -215,6 +224,11 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(wallDetectorRight.position, wallDetectorSize);
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallDetectorLeft.position, wallDetectorSize);
+    }
 
+    public void FixPlayerPosition()
+    {
+        float distanceIntoGround = Physics2D.Raycast(transform.position, Vector2.down, 4f, groundLayer).point.y;
+        transform.position = new Vector3(transform.position.x, transform.position.y + Mathf.Abs(distanceIntoGround));
     }
 }

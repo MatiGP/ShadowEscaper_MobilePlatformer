@@ -13,7 +13,9 @@ public class StateMachine
     }
 
     public void ChangeState(BaseMovementState state)
-    {      
+    {
+        currentState.Exit();
+
         currentState = state;
         currentState.Enter();
     }

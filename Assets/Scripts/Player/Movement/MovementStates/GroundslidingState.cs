@@ -13,6 +13,11 @@ public class GroundslidingState : BaseMovementState
         Debug.Log("Entering Ground Sliding State");
     }
 
+    public override void Exit()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void HandleAnimator()
     {
         throw new System.NotImplementedException();

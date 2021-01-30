@@ -10,7 +10,11 @@ public class WallslidingState : BaseMovementState
 
     public override void Enter()
     {
-        Debug.Log("Entering Wall Sliding State");
+        movementVector.y = 0;
+    }
+
+    public override void Exit()
+    {
         movementVector.y = 0;
     }
 
@@ -28,12 +32,12 @@ public class WallslidingState : BaseMovementState
 
     public override void HandleLogic()
     {
-        if(!playerController.IsGrounded && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
+        if(!playerController.IsTouchingGround && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
             stateMachine.ChangeState(playerController.fallingState);
         }
 
-        if(playerController.IsGrounded)
+        if(playerController.IsTouchingGround)
         {
             if(playerController.Direction == 0)
             {

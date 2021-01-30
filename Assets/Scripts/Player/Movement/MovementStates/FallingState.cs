@@ -14,6 +14,14 @@ public class FallingState : BaseMovementState
         movementVector.y = 0;
     }
 
+    public override void Exit()
+    {
+        movementVector.y = 0;
+        movementVector.x = 0;
+        playerController.FixPlayerPosition();
+        Debug.Log("Ending Falling State");
+    }
+
     public override void HandleAnimator()
     {
         animator.Play("Falling");
@@ -22,16 +30,16 @@ public class FallingState : BaseMovementState
     public override void HandleInput()
     {
         movementVector.x = playerController.Direction * playerController.FootSpeed;
-        movementVector.y -= playerController.Gravity * Time.fixedDeltaTime;
+        movementVector.y -= playerController.Gravity * Time.deltaTime;
 
-        playerTransform.position += movementVector * Time.fixedDeltaTime;
+        playerTransform.position += movementVector * Time.deltaTime;
 
         playerController.Flip();
     }
 
     public override void HandleLogic()
     {
-        if (playerController.IsGrounded)
+        if (playerController.IsTouchingGround)
         {
             if (!playerController.IsJumping)
             {
