@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("Ground Movement")]
     [SerializeField] float footSpeed;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] Transform groundDetectorPosition;
+    [SerializeField] Transform groundDetectorTransform;
     [SerializeField] Vector2 groundDetectorSize;
     [SerializeField] float groundLineDetectionLength;
     [Space(1f)]
@@ -47,9 +47,12 @@ public class PlayerController : MonoBehaviour
     float gravity;
     float jumpVelocity;
     float direction;
+    float floorPos;
 
     Vector3 movementVector;
     Vector3 positionFix;
+    Vector2 groundDeterctorLeftSidePos;
+    Vector2 groundDetectorRightSidePos;
 
     bool isGrounded;
     bool wasGrounded;
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
         walljumpingState = new WalljumpingState(this, stateMachine, playerAnimator);
         
         stateMachine.Initialize(idleState);
+
+        groundDetectorRightSidePos = new Vector2(groundDetectorTransform.position.x - 0.8f, groundDetectorTransform.position.y);
     }
 
     void Start()
@@ -93,13 +98,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isTouchingRightWall = Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
-        isTouchingLeftWall = Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
+        groundDeterctorLeftSidePos.x = transform.position.x + 0.8f;
+        groundDeterctorLeftSidePos.y = transform.position.y;
+
+        groundDetectorRightSidePos.x = transform.position.x - 0.8f;
+        groundDetectorRightSidePos.y = transform.position.y;
+
+
+        float floorPosLeft = Physics2D.Raycast(groundDeterctorLeftSidePos, Vector2.down, 9f, groundLayer).point.y;
+              floorPos = Physics2D.Raycast(transform.position, Vector2.down, 9f, groundLayer).point.y;
+        float floorPosRight = Physics2D.Raycast(groundDetectorRightSidePos, Vector2.down, 9f, groundLayer).point.y;
+
+        floorPos = Mathf.Max(floorPosLeft, floorPos, floorPosRight);
+
+        Debug.Log(floorPos);
 
         stateMachine.currentState.HandleAnimator();
-        stateMachine.currentState.HandleInput();
-        stateMachine.currentState.HandleLogic();
         
+        
+        #region Old Movement
         /*
         #region Horizontal Movement
        
@@ -154,16 +171,22 @@ public class PlayerController : MonoBehaviour
         transform.position += movementVector * Time.deltaTime;
          
          */
+        #endregion
 
+    }
 
+    private void LateUpdate()
+    {
+        stateMachine.currentState.HandleInput();
     }
 
     private void FixedUpdate()
     {
-        //isGrounded = Physics2D.Raycast(groundDetectorPosition.position, Vector2.down, 0.2f, groundLayer);
-        //isGrounded = Physics2D.BoxCast(groundDetectorPosition.position, groundDetectorSize, 0f, Vector2.down, 0f, groundLayer);
-        isGrounded = Physics2D.OverlapBox(groundDetectorPosition.position, groundDetectorSize, 0f, groundLayer);
-      
+        isTouchingRightWall = Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
+        isTouchingLeftWall = Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
+        isGrounded = Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
+
+        stateMachine.currentState.HandleLogic();
 
     }
 
@@ -219,7 +242,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(groundDetectorPosition.position, groundDetectorSize);
+        Gizmos.DrawCube(groundDetectorTransform.position, groundDetectorSize);
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallDetectorRight.position, wallDetectorSize);
         Gizmos.color = Color.green;
@@ -227,8 +250,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void FixPlayerPosition()
-    {
-        float distanceIntoGround = Physics2D.Raycast(transform.position, Vector2.down, 4f, groundLayer).point.y;
-        transform.position = new Vector3(transform.position.x, transform.position.y + Mathf.Abs(distanceIntoGround));
+    {       
+        transform.position = new Vector3(transform.position.x, capsuleCollider.size.y / 2 + Mathf.Abs(floorPos));
     }
 }
