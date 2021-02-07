@@ -32,12 +32,10 @@ public class WalljumpingState : BaseMovementState
     public override void HandleInput()
     {
         
-        movementVector.x = wallJumpXDirection * playerController.FootSpeed;
+        movementVector.x = wallJumpXDirection * playerController.JumpOffWallForce;
         movementVector.y -= playerController.Gravity * Time.deltaTime;
 
         playerTransform.position += movementVector * Time.deltaTime;
-
-        playerController.Flip();
     }
 
     public override void HandleLogic()

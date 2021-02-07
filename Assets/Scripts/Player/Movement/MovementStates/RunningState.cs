@@ -13,11 +13,13 @@ public class RunningState : BaseMovementState
     public override void Enter()
     {
         movementVector.x = 0;
+
     }
 
     public override void Exit()
     {
         movementVector.x = 0;
+
     }
 
     public override void HandleAnimator()

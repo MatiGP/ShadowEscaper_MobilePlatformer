@@ -77,7 +77,6 @@ public class PlayerMotor : MonoBehaviour
 
     public void DisableControls()
     {
-        canMove = false;      
-        
+        canMove = false;             
     }
 }

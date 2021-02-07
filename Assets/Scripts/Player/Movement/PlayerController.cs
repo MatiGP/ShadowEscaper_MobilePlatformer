@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float JumpHeight { get => jumpHeight; }
     public float WallJumpHeight { get => wallJumpHeight; }
     public float WallSlideSpeed { get => wallslideSpeed; }
+    public float JumpOffWallForce { get => jumpOffWallForce; }
+    public float NormalJumpFallMultiplier { get => normalJumpMultiplier; }
+    public float LowJumpFallMultiplier { get => lowJumpMultiplier; }
 
     public bool IsTouchingGround { get => isGrounded; }
     public bool IsJumping { get => isJumping; }
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform groundDetectorTransform;
     [SerializeField] Vector2 groundDetectorSize;
     [SerializeField] float groundLineDetectionLength;
+    [SerializeField] float jumpOffWallForce;
     [Space(1f)]
     [Header("Wall Detectors")]
     [SerializeField] Transform wallDetectorRight;
@@ -92,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
+        CalculateGravity();
         jumpVelocity = gravity * timeToJumpApex;
     }
 
@@ -110,8 +114,6 @@ public class PlayerController : MonoBehaviour
         float floorPosRight = Physics2D.Raycast(groundDetectorRightSidePos, Vector2.down, 9f, groundLayer).point.y;
 
         floorPos = Mathf.Max(floorPosLeft, floorPos, floorPosRight);
-
-        Debug.Log(floorPos);
 
         stateMachine.currentState.HandleAnimator();
         
@@ -215,7 +217,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            isJumping = false;
+            isJumping = false;         
         }
     }
 
@@ -252,5 +254,52 @@ public class PlayerController : MonoBehaviour
     public void FixPlayerPosition()
     {       
         transform.position = new Vector3(transform.position.x, capsuleCollider.size.y / 2 + Mathf.Abs(floorPos));
+    }
+
+    public void CalculateGravity()
+    {
+        gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
+    }
+
+    public void ModifySpeed(float val)
+    {
+        footSpeed = val;
+    }
+
+    public void ModifyJumpHeight(float val)
+    {
+        jumpHeight = val;
+        CalculateGravity();
+    }
+
+    public void ModifyTimeToJumpApex(float val)
+    {
+        timeToJumpApex = val;
+        CalculateGravity();
+    }
+
+    public void ModifyNormalJumpMulti(float val)
+    {
+        normalJumpMultiplier = val;
+    }
+
+    public void ModifyLowJumpMulti(float val)
+    {
+        lowJumpMultiplier = val;
+    }
+
+    public void ModifyWallJumpOffForce(float val)
+    {
+        jumpOffWallForce = val;
+    }
+
+    public void ModifyWalljumpHeight(float val)
+    {
+        wallJumpHeight = val;
+    }
+
+    public void ModifyWallSlideSpeed(float val)
+    {
+        wallslideSpeed = val;
     }
 }

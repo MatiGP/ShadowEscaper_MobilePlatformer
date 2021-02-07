@@ -10,6 +10,7 @@ public class WallslidingState : BaseMovementState
 
     public override void Enter()
     {
+        Debug.Log("Entering Wallsliding state");
         movementVector.y = 0;
     }
 

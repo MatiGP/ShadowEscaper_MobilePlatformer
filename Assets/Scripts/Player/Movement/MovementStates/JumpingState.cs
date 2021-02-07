@@ -48,8 +48,12 @@ public class JumpingState : BaseMovementState
             else
             {
                 stateMachine.ChangeState(playerController.idleState);
-            }
-            
+            }            
+        }
+
+        if(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
+        {
+            stateMachine.ChangeState(playerController.wallslidingState);
         }
       
         if(movementVector.y < 0)
@@ -57,4 +61,6 @@ public class JumpingState : BaseMovementState
             stateMachine.ChangeState(playerController.fallingState);
         }
     }
+
+    
 }
