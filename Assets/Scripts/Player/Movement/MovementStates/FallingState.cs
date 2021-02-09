@@ -11,7 +11,7 @@ public class FallingState : BaseMovementState
     public override void Enter()
     {
         Debug.Log("Entering Falling State");
-        movementVector.y = 0;
+        movementVector.y = playerController.JumpForceRemaining;
     }
 
     public override void Exit()
@@ -30,15 +30,7 @@ public class FallingState : BaseMovementState
     public override void HandleInput()
     {
         movementVector.x = playerController.Direction * playerController.FootSpeed;
-
-        if(movementVector.y > 0 && !playerController.IsJumping)
-        {
-            movementVector.y -= playerController.Gravity * playerController.LowJumpFallMultiplier * Time.deltaTime;
-        }
-        else 
-        {
-            movementVector.y -= playerController.Gravity * playerController.NormalJumpFallMultiplier * Time.deltaTime;
-        }
+        movementVector.y -= playerController.Gravity * playerController.FallMultiplier * Time.deltaTime;
 
         playerTransform.position += movementVector * Time.deltaTime;
 

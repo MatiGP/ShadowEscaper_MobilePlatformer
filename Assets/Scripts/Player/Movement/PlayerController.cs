@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     public float WallJumpHeight { get => wallJumpHeight; }
     public float WallSlideSpeed { get => wallslideSpeed; }
     public float JumpOffWallForce { get => jumpOffWallForce; }
-    public float NormalJumpFallMultiplier { get => normalJumpMultiplier; }
-    public float LowJumpFallMultiplier { get => lowJumpMultiplier; }
+    public float FallMultiplier { get => fallMultiplier; }
+    public float JumpForceRemaining { get => remainingJumpForce; }
 
     public bool IsTouchingGround { get => isGrounded; }
     public bool IsJumping { get => isJumping; }
@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     float jumpVelocity;
     float direction;
     float floorPos;
+    float fallMultiplier;
+    float remainingJumpForce;
 
     Vector3 movementVector;
     Vector3 positionFix;
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
         stateMachine.Initialize(idleState);
 
         groundDetectorRightSidePos = new Vector2(groundDetectorTransform.position.x - 0.8f, groundDetectorTransform.position.y);
+
+        fallMultiplier = normalJumpMultiplier;
     }
 
     void Start()
@@ -301,5 +305,20 @@ public class PlayerController : MonoBehaviour
     public void ModifyWallSlideSpeed(float val)
     {
         wallslideSpeed = val;
+    }
+
+    public void SetNormalFallMultiplier()
+    {
+        fallMultiplier = normalJumpMultiplier;
+    }
+
+    public void SetQuickFallMultiplier()
+    {
+        fallMultiplier = lowJumpMultiplier;
+    }
+
+    public void SetJumpRemainingForce(float val)
+    {
+        remainingJumpForce = val;
     }
 }

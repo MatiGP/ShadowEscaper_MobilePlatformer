@@ -56,8 +56,17 @@ public class JumpingState : BaseMovementState
             stateMachine.ChangeState(playerController.wallslidingState);
         }
       
-        if(movementVector.y < 0)
+        if(movementVector.y <= 0)
         {
+            playerController.SetNormalFallMultiplier();
+            stateMachine.ChangeState(playerController.fallingState);
+        }
+
+        if((movementVector.y > 0) && !playerController.IsJumping)
+        {
+            playerController.SetQuickFallMultiplier();
+            playerController.SetJumpRemainingForce(movementVector.y);
+            Debug.Log(movementVector.y);
             stateMachine.ChangeState(playerController.fallingState);
         }
     }
