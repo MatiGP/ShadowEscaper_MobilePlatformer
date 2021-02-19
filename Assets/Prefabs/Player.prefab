@@ -3034,7 +3034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609074643548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.508389, y: 11.843582, z: -10}
+  m_LocalPosition: {x: 12.045525, y: 10.569753, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414609690220085}
@@ -3067,7 +3067,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4214,27 +4214,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capsuleCollider: {fileID: 5715414609690220084}
-  footSpeed: 17
+  footSpeed: 20
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundDetectorTransform: {fileID: 5715414609058957331}
   groundDetectorSize: {x: 1.8, y: 0.25}
-  groundLineDetectionLength: 1
-  jumpOffWallForce: 17
+  groundDetectionLineLength: 6
+  jumpOffWallForce: 2
   wallDetectorRight: {fileID: 5715414609762825736}
   wallDetectorLeft: {fileID: 7515224831357430712}
   wallDetectorSize: {x: 0.12, y: 2.04}
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
-  jumpHeight: 50
+  jumpHeight: 40.4
   timeToJumpApex: 0.9
   normalJumpMultiplier: 2
   lowJumpMultiplier: 2
   maxFallSpeed: 30
   wallslideSpeed: 5
-  wallJumpHeight: 20
+  wallJumpHeight: 35
+  ceilingDetectorSize: {x: 1.76, y: 0.28}
+  ceilingDetectorTransform: {fileID: 2139641897605777462}
+  ceilingLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   playerCharacterSR: {fileID: 5715414608779804647}
   playerAnimator: {fileID: 5715414608779804648}
 --- !u!1 &5715414609761012957
@@ -4368,12 +4373,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 3
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5715414609690220082}
-          m_MethodName: Jump
+        - m_Target: {fileID: 1391342876049122304}
+          m_MethodName: InterruptJumping
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4383,12 +4388,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 3
+  - eventID: 2
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 5715414609690220082}
-          m_MethodName: InterruptJumping
+          m_MethodName: Jump
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4524,6 +4529,7 @@ Transform:
   - {fileID: 5715414609058957331}
   - {fileID: 5715414609762825736}
   - {fileID: 7515224831357430712}
+  - {fileID: 2139641897605777462}
   m_Father: {fileID: 5715414609690220085}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5431,6 +5437,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22667d79bb6c0604bb0d3b83ab62ef79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8167079253422171251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139641897605777462}
+  m_Layer: 0
+  m_Name: CeilingDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2139641897605777462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167079253422171251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.625, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5715414610004021984}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8281185784149181038
 GameObject:
   m_ObjectHideFlags: 0
@@ -6186,6 +6222,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a806eaeb5798153468d26e0622772056, type: 3}
+--- !u!224 &5715414608554513047 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3507411011171002964, guid: a806eaeb5798153468d26e0622772056,
+    type: 3}
+  m_PrefabInstance: {fileID: 9222783752044574915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3533446819823275537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5689378783456442066, guid: a806eaeb5798153468d26e0622772056,
@@ -6198,9 +6240,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88df0d58287f3f046b0b445c13e5b473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5715414608554513047 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3507411011171002964, guid: a806eaeb5798153468d26e0622772056,
-    type: 3}
-  m_PrefabInstance: {fileID: 9222783752044574915}
-  m_PrefabAsset: {fileID: 0}

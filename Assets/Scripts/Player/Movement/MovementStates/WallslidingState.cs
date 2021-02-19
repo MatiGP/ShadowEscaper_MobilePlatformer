@@ -11,7 +11,6 @@ public class WallslidingState : BaseMovementState
     public override void Enter()
     {
         Debug.Log("Entering Wallsliding state");
-        movementVector.y = 0;
     }
 
     public override void Exit()
@@ -27,12 +26,17 @@ public class WallslidingState : BaseMovementState
     public override void HandleInput()
     {
         movementVector.y = -playerController.WallSlideSpeed;
-
+        
         playerTransform.position += movementVector * Time.deltaTime;
     }
 
     public override void HandleLogic()
     {
+        if (playerController.IsJumping)
+        {
+            stateMachine.ChangeState(playerController.walljumpingState);
+        }
+
         if(!playerController.IsTouchingGround && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
             stateMachine.ChangeState(playerController.fallingState);
@@ -50,10 +54,7 @@ public class WallslidingState : BaseMovementState
             }            
         }
 
-        if (playerController.IsJumping)
-        {
-            stateMachine.ChangeState(playerController.walljumpingState);
-        }
+        
     }
 
     

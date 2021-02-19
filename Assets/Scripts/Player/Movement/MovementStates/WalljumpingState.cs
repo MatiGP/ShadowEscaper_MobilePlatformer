@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WalljumpingState : BaseMovementState
 {
-    int wallJumpXDirection;
+    float walljumpDuration =2f;
+    float currentWallJumpDuration;
+    float walljumpDirection;
 
     public WalljumpingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
@@ -15,7 +17,9 @@ public class WalljumpingState : BaseMovementState
     {
         movementVector.x = 0;
         movementVector.y = playerController.WallJumpHeight;
-        wallJumpXDirection = playerController.IsFacingRight ? -1 : 1;
+        playerController.FlipDirection();
+        currentWallJumpDuration = 0;
+        walljumpDirection = playerController.IsTouchingLeftWall ? 1 : -1;
     }
 
     public override void Exit()
@@ -31,8 +35,11 @@ public class WalljumpingState : BaseMovementState
 
     public override void HandleInput()
     {
-        
-        movementVector.x = wallJumpXDirection * playerController.JumpOffWallForce;
+        currentWallJumpDuration += Time.deltaTime;
+
+        Debug.Log(currentWallJumpDuration);
+
+        movementVector.x += walljumpDirection * playerController.JumpOffWallForce;
         movementVector.y -= playerController.Gravity * Time.deltaTime;
 
         playerTransform.position += movementVector * Time.deltaTime;
@@ -40,10 +47,19 @@ public class WalljumpingState : BaseMovementState
 
     public override void HandleLogic()
     {
+        if (playerController.IsTouchingCeiling)
+        {
+            stateMachine.ChangeState(playerController.fallingState);
+        }
+        
+
         if(movementVector.y < 0)
         {
             stateMachine.ChangeState(playerController.fallingState);
         }
+
+        if (walljumpDuration >= currentWallJumpDuration) return;
+
 
         if(!playerController.IsTouchingGround && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {

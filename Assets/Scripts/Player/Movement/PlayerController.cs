@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public bool IsTouchingRightWall { get => isTouchingRightWall; }
     public bool IsTouchingLeftWall { get => isTouchingLeftWall; }
     public bool IsFacingRight { get => facingRight; }
+    public bool IsTouchingCeiling { get => isTouchingCeiling; }
 
     [SerializeField] CapsuleCollider2D capsuleCollider;
     [Header("Ground Movement")]
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundDetectorTransform;
     [SerializeField] Vector2 groundDetectorSize;
-    [SerializeField] float groundLineDetectionLength;
+    [SerializeField] float groundDetectionLineLength;
     [SerializeField] float jumpOffWallForce;
     [Space(1f)]
     [Header("Wall Detectors")]
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float wallslideSpeed;
     [SerializeField] float wallJumpHeight;
     [Space(1f)]
+    [Header("Ceiling Detection")]
+    [SerializeField] Vector2 ceilingDetectorSize;
+    [SerializeField] Transform ceilingDetectorTransform;
+    [SerializeField] LayerMask ceilingLayer;
+    [Space(1f)]
     [Header("Player Model")]
     [SerializeField] SpriteRenderer playerCharacterSR;
     [SerializeField] Animator playerAnimator;
@@ -59,6 +65,7 @@ public class PlayerController : MonoBehaviour
     Vector3 positionFix;
     Vector2 groundDeterctorLeftSidePos;
     Vector2 groundDetectorRightSidePos;
+    
 
     bool isGrounded;
     bool wasGrounded;
@@ -68,6 +75,7 @@ public class PlayerController : MonoBehaviour
     bool isWallSliding;
     bool wallJumped;
     bool facingRight;
+    bool isTouchingCeiling;
 
     private StateMachine stateMachine;
 
@@ -113,71 +121,13 @@ public class PlayerController : MonoBehaviour
         groundDetectorRightSidePos.y = transform.position.y;
 
 
-        float floorPosLeft = Physics2D.Raycast(groundDeterctorLeftSidePos, Vector2.down, 9f, groundLayer).point.y;
-              floorPos = Physics2D.Raycast(transform.position, Vector2.down, 9f, groundLayer).point.y;
-        float floorPosRight = Physics2D.Raycast(groundDetectorRightSidePos, Vector2.down, 9f, groundLayer).point.y;
+        float floorPosLeft = Physics2D.Raycast(groundDeterctorLeftSidePos, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
+              floorPos = Physics2D.Raycast(transform.position, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
+        float floorPosRight = Physics2D.Raycast(groundDetectorRightSidePos, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
 
         floorPos = Mathf.Max(floorPosLeft, floorPos, floorPosRight);
 
-        stateMachine.currentState.HandleAnimator();
-        
-        
-        #region Old Movement
-        /*
-        #region Horizontal Movement
-       
-        movementVector.x = direction * footSpeed;
-                                
-        if (isTouchingRightWall && direction > 0)
-        {
-            movementVector.x = 0;
-        }
-        else if (isTouchingLeftWall && direction < 0)
-        {
-            movementVector.x = 0;
-        }
-        
-        #endregion
-
-        #region Vertical Movement
-
-        movementVector.y -= gravity * Time.deltaTime;
-        movementVector.y = Mathf.Clamp(movementVector.y, -maxFallSpeed, movementVector.y);
-     
-
-        if (isJumping)
-        {
-            movementVector.y -= gravity * (normalJumpMultiplier - 1) * Time.deltaTime;
-
-        }
-        else if (movementVector.y > 0 && !isJumping)
-        {
-            movementVector.y -= gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
-  
-        }
-
-
-        if (movementVector.y < 0 && isGrounded)
-        {
-            movementVector.y = 0;         
-        }
-
-        if ((isTouchingRightWall || isTouchingLeftWall) && (movementVector.y < 0) )
-        {
-            movementVector.y = -wallslideSpeed * Time.deltaTime;
-            isWallSliding = true;         
-        }
-        else
-        {
-            isWallSliding = false;
-        }       
-        #endregion
-        
-        Flip();
-        transform.position += movementVector * Time.deltaTime;
-         
-         */
-        #endregion
+        stateMachine.currentState.HandleAnimator();       
 
     }
 
@@ -191,38 +141,24 @@ public class PlayerController : MonoBehaviour
         isTouchingRightWall = Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
         isTouchingLeftWall = Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
         isGrounded = Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
+        isTouchingCeiling = Physics2D.OverlapBox(ceilingDetectorTransform.position, ceilingDetectorSize, 0f, ceilingLayer);
 
         stateMachine.currentState.HandleLogic();
 
     }
 
 
-    public void Jump(bool isButtonHeld)
+    public void Jump()
     {
-        if (isButtonHeld)
+        if (!isJumping)
         {
-            /*
-            if (isGrounded)
-            {
-                //movementVector.y = jumpVelocity;
-                isJumping = true;
-            }
-            */
-
             isJumping = true;
-            /*
-            if (isWallSliding)
-            {
-                Debug.Log("Should wall jump");
-                movementVector.y = wallJumpHeight;             
-                isJumping = true;
-            }
-            */
-        }
-        else
-        {
-            isJumping = false;         
-        }
+        }       
+    }
+
+    public void InterruptJumping()
+    {       
+        isJumping = false;
     }
 
     public void ReadMoveInput(float newDirection)
@@ -253,6 +189,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(wallDetectorRight.position, wallDetectorSize);
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallDetectorLeft.position, wallDetectorSize);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);
     }
 
     public void FixPlayerPosition()
@@ -320,5 +258,18 @@ public class PlayerController : MonoBehaviour
     public void SetJumpRemainingForce(float val)
     {
         remainingJumpForce = val;
+    }
+
+    public void FlipDirection()
+    {
+        if (isTouchingLeftWall)
+        {
+            direction = 1;
+        }else if (isTouchingRightWall)
+        {
+            direction = -1;
+        }
+
+        Flip();
     }
 }

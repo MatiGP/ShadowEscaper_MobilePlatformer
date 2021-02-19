@@ -37,7 +37,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void Jump()
     {       
-        playerController.Jump(isButtonHeld: true);
+        playerController.Jump();
     }
 
     public void Slide()
@@ -58,22 +58,7 @@ public class PlayerMotor : MonoBehaviour
     void SetPlayerColliderSize(Vector2 newSize, CapsuleDirection2D direction, float colliderOffsetY)
     {
        
-    }
-
-    public void InterruptJumping()
-    {       
-        playerController.Jump(isButtonHeld: false);
-    }
-
-    IEnumerator StartJumping()
-    {
-        isJumping = true;
-        jump = true;
-        yield return new WaitForSeconds(1f);
-        //characterController.StopJumping();
-        jump = false;
-        isJumping = false;
-    }
+    }   
 
     public void DisableControls()
     {

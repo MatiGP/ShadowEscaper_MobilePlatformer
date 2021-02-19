@@ -12,13 +12,14 @@ public class FallingState : BaseMovementState
     {
         Debug.Log("Entering Falling State");
         movementVector.y = playerController.JumpForceRemaining;
+        playerController.InterruptJumping();
     }
 
     public override void Exit()
     {
         movementVector.y = 0;
         movementVector.x = 0;
-        
+        playerController.SetJumpRemainingForce(0);       
         Debug.Log("Ending Falling State");
     }
 
@@ -40,7 +41,7 @@ public class FallingState : BaseMovementState
     public override void HandleLogic()
     {
         if (playerController.IsTouchingGround)
-        {           
+        {
             playerController.FixPlayerPosition();
             if (playerController.Direction == 0)
             {
