@@ -42,7 +42,7 @@ public class FallingState : BaseMovementState
     {
         if (playerController.IsTouchingGround)
         {
-            playerController.FixPlayerPosition();
+            playerController.FixPlayerGroundPos();
             if (playerController.Direction == 0)
             {
                 stateMachine.ChangeState(playerController.idleState);

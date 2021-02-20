@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [Header("Wall Detectors")]
     [SerializeField] Transform wallDetectorRight;
     [SerializeField] Transform wallDetectorLeft;
+    [SerializeField] float wallDetectorLineLength;
     [SerializeField] Vector2 wallDetectorSize;
     [SerializeField] LayerMask wallLayer;
     [Space(1f)]
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
     float jumpVelocity;
     float direction;
     float floorPos;
+    float wallPos;
     float fallMultiplier;
     float remainingJumpForce;
 
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
     Vector3 positionFix;
     Vector2 groundDeterctorLeftSidePos;
     Vector2 groundDetectorRightSidePos;
+
     
 
     bool isGrounded;
@@ -101,8 +104,6 @@ public class PlayerController : MonoBehaviour
         
         stateMachine.Initialize(idleState);
 
-        groundDetectorRightSidePos = new Vector2(groundDetectorTransform.position.x - 0.8f, groundDetectorTransform.position.y);
-
         fallMultiplier = normalJumpMultiplier;
     }
 
@@ -119,13 +120,18 @@ public class PlayerController : MonoBehaviour
 
         groundDetectorRightSidePos.x = transform.position.x - 0.8f;
         groundDetectorRightSidePos.y = transform.position.y;
-
-
+ 
         float floorPosLeft = Physics2D.Raycast(groundDeterctorLeftSidePos, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
               floorPos = Physics2D.Raycast(transform.position, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
         float floorPosRight = Physics2D.Raycast(groundDetectorRightSidePos, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
 
+        float wallPositionLeft = Physics2D.BoxCast(wallDetectorLeft.position, new Vector2(wallDetectorSize.y, wallDetectorSize.y), 0f, Vector2.left, wallDetectorSize.x, wallLayer).point.x;
+        float wallPositionRight = Physics2D.BoxCast(wallDetectorRight.position, new Vector2(wallDetectorSize.y, wallDetectorSize.y), 0f, Vector2.right, wallDetectorSize.x, wallLayer).point.x; 
+
         floorPos = Mathf.Max(floorPosLeft, floorPos, floorPosRight);
+        wallPos = Mathf.Max(wallPositionLeft, wallPositionRight);
+
+        Debug.Log(wallPos);
 
         stateMachine.currentState.HandleAnimator();       
 
@@ -191,11 +197,27 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(wallDetectorLeft.position, wallDetectorSize);
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(wallDetectorLeft.position, new Vector3(wallDetectorLeft.position.x - wallDetectorLineLength, wallDetectorLeft.position.y));
+        Gizmos.DrawLine(wallDetectorRight.position, new Vector3(wallDetectorRight.position.x + wallDetectorLineLength, wallDetectorRight.position.y));
     }
 
-    public void FixPlayerPosition()
+    public void FixPlayerGroundPos()
     {       
         transform.position = new Vector3(transform.position.x, capsuleCollider.size.y / 2 + Mathf.Abs(floorPos));
+    }
+
+    public void FixPlayerWallPos()
+    {
+        if (isTouchingRightWall)
+        {
+            transform.position = new Vector3(Mathf.Abs(wallPos) - capsuleCollider.size.x / 2, transform.position.y);
+        }
+        else
+        {
+            transform.position = new Vector3(Mathf.Abs(wallPos) + capsuleCollider.size.x / 2, transform.position.y);
+        }
+        
     }
 
     public void CalculateGravity()

@@ -4224,6 +4224,7 @@ MonoBehaviour:
   jumpOffWallForce: 2
   wallDetectorRight: {fileID: 5715414609762825736}
   wallDetectorLeft: {fileID: 7515224831357430712}
+  wallDetectorLineLength: 0.75
   wallDetectorSize: {x: 0.12, y: 2.04}
   wallLayer:
     serializedVersion: 2
