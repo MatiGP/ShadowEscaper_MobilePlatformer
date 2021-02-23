@@ -30,8 +30,7 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerController.ReadMoveInput(joystick.Horizontal);
-        
+        playerController.ReadMoveInput(joystick.Horizontal);      
     }
 
 
@@ -48,16 +47,6 @@ public class PlayerMotor : MonoBehaviour
     IEnumerator StartSliding()
     {
         yield return null;
-    }
-
-    public void InterruptSliding()
-    {             
-       
-    }
-
-    void SetPlayerColliderSize(Vector2 newSize, CapsuleDirection2D direction, float colliderOffsetY)
-    {
-       
     }   
 
     public void DisableControls()

@@ -25,7 +25,7 @@ public class DeathPanel : MonoBehaviour
         }
     }
 
-    void LoadCurrentLevel()
+    public void LoadCurrentLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class WalljumpingState : BaseMovementState
 {
-    float walljumpDuration =2f;
-    float currentWallJumpDuration;
     float walljumpDirection;
+    float currentWallJumpDuration;
 
     public WalljumpingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
@@ -36,11 +35,8 @@ public class WalljumpingState : BaseMovementState
     public override void HandleInput()
     {
         currentWallJumpDuration += Time.deltaTime;
-
-        Debug.Log(currentWallJumpDuration);
-
         movementVector.x += walljumpDirection * playerController.JumpOffWallForce;
-        movementVector.y -= playerController.Gravity * Time.deltaTime;
+        movementVector.y -= playerController.WallJumpGravity * Time.deltaTime;
 
         playerTransform.position += movementVector * Time.deltaTime;
     }
@@ -50,16 +46,14 @@ public class WalljumpingState : BaseMovementState
         if (playerController.IsTouchingCeiling)
         {
             stateMachine.ChangeState(playerController.fallingState);
-        }
-        
+        }       
 
         if(movementVector.y < 0)
         {
             stateMachine.ChangeState(playerController.fallingState);
         }
 
-        if (walljumpDuration >= currentWallJumpDuration) return;
-
+        if (currentWallJumpDuration <= playerController.WallJumpDuration) return;
 
         if(!playerController.IsTouchingGround && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {

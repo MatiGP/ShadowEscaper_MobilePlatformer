@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FallingState : BaseMovementState
 {
@@ -19,7 +17,7 @@ public class FallingState : BaseMovementState
     {
         movementVector.y = 0;
         movementVector.x = 0;
-        playerController.SetJumpRemainingForce(0);       
+        playerController.SetJumpRemainingForce(0);
         Debug.Log("Ending Falling State");
     }
 
@@ -50,16 +48,17 @@ public class FallingState : BaseMovementState
             else
             {
                 stateMachine.ChangeState(playerController.runningState);
-            }                   
-        }
-        else
-        {
-            if(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
-            {
-                stateMachine.ChangeState(playerController.wallslidingState);
             }
         }
 
-        
+        if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
+        {
+            playerController.FixPlayerWallPos();
+            movementVector.x = 0;
+            stateMachine.ChangeState(playerController.wallslidingState);
+        }
+
+
+
     }
 }

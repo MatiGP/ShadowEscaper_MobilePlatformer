@@ -50,7 +50,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: c2647ee4c082fdb409bdded4d5079c1b, type: 3}
     - {fileID: 102900000, guid: e0b311ba30fe23440b9fbb569fb3ac63, type: 3}
     - {fileID: 102900000, guid: c22d5e87e46b0934996529ffaf06d078, type: 3}
-    totalSpriteSurfaceArea: 57117535
+    totalSpriteSurfaceArea: 65411935
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -140,6 +140,7 @@ SpriteAtlas:
   - {fileID: 7609152153780774327, guid: 022c01d90ff126c40b8e68a2739c74c3, type: 3}
   - {fileID: -3969352726999822180, guid: 022c01d90ff126c40b8e68a2739c74c3, type: 3}
   - {fileID: -6182054924643101251, guid: 022c01d90ff126c40b8e68a2739c74c3, type: 3}
+  - {fileID: 21300000, guid: 3119ebd97af697b43ba8b80f2767a12f, type: 3}
   - {fileID: 6758911576949914279, guid: 32f05d0aa78f0ef42ad88c35819fd4e3, type: 3}
   - {fileID: 5723130241540578779, guid: 6225001af918ee44ba1b3f497feefc5a, type: 3}
   - {fileID: -8064756573716288938, guid: 6225001af918ee44ba1b3f497feefc5a, type: 3}
@@ -301,6 +302,7 @@ SpriteAtlas:
   - LevelCompletion_0
   - LevelCompletion_1
   - LevelCompletion_2
+  - UI_NEW_BG
   - MAIN CABLES_0
   - LVL 23 Scalone_0
   - LVL 23 Scalone_1

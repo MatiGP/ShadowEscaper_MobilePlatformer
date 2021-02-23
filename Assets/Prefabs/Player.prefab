@@ -293,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225289803453239521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.06, y: 0.84, z: 0}
+  m_LocalPosition: {x: -1.06, y: -0.07000023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414610004021984}
@@ -3001,7 +3001,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609058957330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: -2.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414610004021984}
@@ -3034,7 +3034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609074643548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.045525, y: 10.569753, z: -10}
+  m_LocalPosition: {x: 16.268501, y: 10.586897, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414609690220085}
@@ -4168,7 +4168,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6771660338990598664}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -4179,7 +4179,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6771660338990598664}
+      - m_Target: {fileID: 1391342876049122304}
         m_MethodName: EnableAnimatorWithDelay
         m_Mode: 4
         m_Arguments:
@@ -4214,18 +4214,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capsuleCollider: {fileID: 5715414609690220084}
-  footSpeed: 20
+  footSpeed: 24
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundDetectorTransform: {fileID: 5715414609058957331}
-  groundDetectorSize: {x: 1.8, y: 0.25}
+  groundDetectorSize: {x: 1.8, y: 0.87}
   groundDetectionLineLength: 6
   jumpOffWallForce: 2
   wallDetectorRight: {fileID: 5715414609762825736}
   wallDetectorLeft: {fileID: 7515224831357430712}
-  wallDetectorLineLength: 0.75
-  wallDetectorSize: {x: 0.12, y: 2.04}
+  wallDetectorLineLength: 2
+  wallDetectorSize: {x: 0.45, y: 2.04}
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -4236,7 +4236,8 @@ MonoBehaviour:
   maxFallSpeed: 30
   wallslideSpeed: 5
   wallJumpHeight: 35
-  ceilingDetectorSize: {x: 1.76, y: 0.28}
+  wallJumpDuration: 0.805
+  ceilingDetectorSize: {x: 1.76, y: 0.46}
   ceilingDetectorTransform: {fileID: 2139641897605777462}
   ceilingLayer:
     serializedVersion: 2
@@ -4428,7 +4429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609762825735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.06, y: 0.84, z: 0}
+  m_LocalPosition: {x: 1.06, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414610004021984}
@@ -5910,6 +5911,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Value
       value: 2.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325688754426801303, guid: 071dff6c79cc59e499ba3edcbdd8f773,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325688754426801303, guid: 071dff6c79cc59e499ba3edcbdd8f773,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325688754426801303, guid: 071dff6c79cc59e499ba3edcbdd8f773,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325688754426801303, guid: 071dff6c79cc59e499ba3edcbdd8f773,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6771660338990598664}
+    - target: {fileID: 6325688754426801303, guid: 071dff6c79cc59e499ba3edcbdd8f773,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadCurrentLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325688754426801303, guid: 071dff6c79cc59e499ba3edcbdd8f773,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8112869401730040536, guid: 071dff6c79cc59e499ba3edcbdd8f773,
         type: 3}

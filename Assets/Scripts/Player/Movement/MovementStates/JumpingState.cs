@@ -36,25 +36,13 @@ public class JumpingState : BaseMovementState
     }
 
     public override void HandleLogic()
-    {
-        if (playerController.IsTouchingGround)
-        {
-            if (playerController.Direction != 0)
-            {
-                stateMachine.ChangeState(playerController.runningState);
-            }
-            else
-            {
-                stateMachine.ChangeState(playerController.idleState);
-            }            
-        }
-      
+    {       
         if(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
         {
+            playerController.FixPlayerWallPos();
             movementVector.x = 0;
         }
         
-
         if (playerController.IsTouchingCeiling)
         {
             stateMachine.ChangeState(playerController.fallingState);
@@ -72,6 +60,7 @@ public class JumpingState : BaseMovementState
             playerController.SetJumpRemainingForce(movementVector.y);            
             stateMachine.ChangeState(playerController.fallingState);
         }
+        
     }
 
     

@@ -40,12 +40,14 @@ public class WallslidingState : BaseMovementState
 
         if(!playerController.IsTouchingGround && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
+            
             stateMachine.ChangeState(playerController.fallingState);
         }
 
         if(playerController.IsTouchingGround)
         {
-            if(playerController.Direction == 0)
+            playerController.FixPlayerGroundPos();
+            if (playerController.Direction == 0)
             {
                 stateMachine.ChangeState(playerController.idleState);
             }
