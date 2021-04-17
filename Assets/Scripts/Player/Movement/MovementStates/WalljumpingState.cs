@@ -35,6 +35,7 @@ public class WalljumpingState : BaseMovementState
     public override void HandleInput()
     {
         currentWallJumpDuration += Time.deltaTime;
+
         movementVector.x += walljumpDirection * playerController.JumpOffWallForce;
         movementVector.y -= playerController.WallJumpGravity * Time.deltaTime;
 

@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxFallSpeed;
     [SerializeField] float wallslideSpeed;
     [SerializeField] float wallJumpHeight;
+    [SerializeField] float wallJumpGravity;
     [Range(0.1f, 2f)]
     [SerializeField] float wallJumpDuration;
 
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator playerAnimator;
 
     float gravity;
-    float wallJumpGravity;
+    
     float jumpVelocity;
     float direction;
     float floorPos;
@@ -164,7 +165,19 @@ public class PlayerController : MonoBehaviour
 
     public void ReadMoveInput(float newDirection)
     {
-        direction = newDirection;
+        if(newDirection > 0)
+        {
+            direction = 1;
+        }
+        else if(newDirection < 0)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 0;
+        }
+        
         
     }
 
@@ -185,26 +198,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         stateMachine.ChangeState(deathState);
-    }
-
-    private void OnDrawGizmos()
-    {
-        #if UNITY_EDITOR
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(groundDetectorTransform.position, groundDetectorSize);
-        Gizmos.color = Color.green;
-        Gizmos.DrawCube(wallDetectorRight.position, wallDetectorSize);
-        Gizmos.color = Color.green;
-        Gizmos.DrawCube(wallDetectorLeft.position, wallDetectorSize);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position + new Vector3(0, wallDetectorSize.y / 2), transform.position + new Vector3(wallDetectorLineLength, wallDetectorSize.y / 2));
-        Gizmos.DrawLine(transform.position + new Vector3(0, -wallDetectorSize.y / 2), transform.position + new Vector3(wallDetectorLineLength, -wallDetectorSize.y / 2));
-        Gizmos.DrawLine(transform.position + new Vector3(0, wallDetectorSize.y / 2), transform.position + new Vector3(-wallDetectorLineLength, wallDetectorSize.y / 2));
-        Gizmos.DrawLine(transform.position + new Vector3(0, -wallDetectorSize.y / 2), transform.position + new Vector3(-wallDetectorLineLength, -wallDetectorSize.y / 2));
-        #endif
-    }
+    }   
 
     public void FixPlayerGroundPos()
     {
@@ -219,30 +213,31 @@ public class PlayerController : MonoBehaviour
 
     public void FixPlayerWallPos()
     {
-        float rightWallDetectorTop = Physics2D.Raycast(transform.position + new Vector3(0, wallDetectorSize.y / 2), Vector2.right, wallDetectorLineLength, wallLayer).point.x;
-        float rightWallDetectorBottom = Physics2D.Raycast(transform.position + new Vector3(0, -wallDetectorSize.y / 2), Vector2.right, wallDetectorLineLength, wallLayer).point.x;
 
-        float leftWallDetectorBottom = Physics2D.Raycast(transform.position + new Vector3(0, wallDetectorSize.y / 2), Vector2.left, wallDetectorLineLength, wallLayer).point.x;
-        float leftWallDetectorTop = Physics2D.Raycast(transform.position + new Vector3(0, -wallDetectorSize.y / 2), Vector2.left, wallDetectorLineLength, wallLayer).point.x;
+        Collider2D rightWallDetector = Physics2D.OverlapBox(wallDetectorRight.position, wallDetectorSize, 0f, wallLayer);
+        Collider2D leftWallDetector = Physics2D.OverlapBox(wallDetectorLeft.position, wallDetectorSize, 0f, wallLayer);
 
-        wallPosRight = Mathf.Max(rightWallDetectorTop, rightWallDetectorBottom);
-        wallPosLeft = Mathf.Max(leftWallDetectorTop, leftWallDetectorBottom);
+        Debug.Log($"{rightWallDetector?.ClosestPoint(transform.position)} Right | Left {leftWallDetector?.ClosestPoint(transform.position)}");
 
-        if (isTouchingRightWall)
+        float closestRightWallXPos = 0;
+        float closestLeftWallXPos = 0;
+
+        if (rightWallDetector)
         {
-            transform.position = new Vector3(wallPosRight - capsuleCollider.size.x /2, transform.position.y);
+            closestRightWallXPos = rightWallDetector.ClosestPoint(transform.position).x;
+            transform.position = new Vector3(closestRightWallXPos - capsuleCollider.size.x / 2, transform.position.y);
         }
-        else
+
+        if (leftWallDetector)
         {
-            transform.position = new Vector3(wallPosLeft + capsuleCollider.size.x /2, transform.position.y);
-        }
-        
+            closestLeftWallXPos = leftWallDetector.ClosestPoint(transform.position).x;
+            transform.position = new Vector3(closestLeftWallXPos + capsuleCollider.size.x / 2, transform.position.y);
+        }          
     }
 
     public void CalculateGravity()
     {
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
-        wallJumpGravity = (2 * wallJumpHeight) / (wallJumpDuration * wallJumpDuration);
     }
     #region Debugs
     public void ModifySpeed(float val)
@@ -313,5 +308,19 @@ public class PlayerController : MonoBehaviour
         }
 
         Flip();
+    }
+
+    private void OnDrawGizmos()
+    {
+        #if UNITY_EDITOR
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(groundDetectorTransform.position, groundDetectorSize);
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(wallDetectorRight.position, wallDetectorSize);
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(wallDetectorLeft.position, wallDetectorSize);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);       
+        #endif
     }
 }

@@ -998,6 +998,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1391342876049122304, guid: 1d7c4e00b7d303b4b866dafacce15219,
+        type: 3}
+      propertyPath: wallJumpDuration
+      value: 0.501
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391342876049122304, guid: 1d7c4e00b7d303b4b866dafacce15219,
+        type: 3}
+      propertyPath: jumpOffWallForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391342876049122304, guid: 1d7c4e00b7d303b4b866dafacce15219,
+        type: 3}
+      propertyPath: wallJumpGravity
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 1695398701112456797, guid: 1d7c4e00b7d303b4b866dafacce15219,
         type: 3}
       propertyPath: m_AnchoredPosition.y
