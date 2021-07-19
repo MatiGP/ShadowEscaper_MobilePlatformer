@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SaveSystem : MonoBehaviour
+public class SaveSystem 
 {   
     public static SaveSystem instance;
     string colorData;
@@ -11,10 +11,15 @@ public class SaveSystem : MonoBehaviour
 
     SaveData currentSave;
 
-    private void Awake()
+    public void Initialize()
     {
         instance = this;
+        TryReadingJSONSave();
 
+    }
+
+    private void TryReadingJSONSave()
+    {
         try
         {
             json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
@@ -29,8 +34,7 @@ public class SaveSystem : MonoBehaviour
         {
             json = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
             currentSave = JsonUtility.FromJson<SaveData>(json);
-        }                            
-             
+        }
     }
 
     public void Save()
@@ -118,7 +122,6 @@ public class SaveData
 public class Points
 {
     public int[] points;
-
 
     public Points(int[] pObtained)
     {

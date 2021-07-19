@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage()
     {       
-        OnDamageTaken.Invoke();                        
+        OnDamageTaken.Invoke();
+        
     }
 }

@@ -37,7 +37,7 @@ public class WalljumpingState : BaseMovementState
         currentWallJumpDuration += Time.deltaTime;
 
         movementVector.x += walljumpDirection * playerController.JumpOffWallForce;
-        movementVector.y -= playerController.WallJumpGravity * Time.deltaTime;
+        movementVector.y -= playerController.Gravity * Time.deltaTime;
 
         playerTransform.position += movementVector * Time.deltaTime;
     }

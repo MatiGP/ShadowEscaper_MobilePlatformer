@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxFallSpeed;
     [SerializeField] float wallslideSpeed;
     [SerializeField] float wallJumpHeight;
-    [SerializeField] float wallJumpGravity;
+    
     [Range(0.1f, 2f)]
     [SerializeField] float wallJumpDuration;
 
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator playerAnimator;
 
     float gravity;
+    float wallJumpGravity;
     
     float jumpVelocity;
     float direction;
@@ -202,42 +203,52 @@ public class PlayerController : MonoBehaviour
 
     public void FixPlayerGroundPos()
     {
-        float floorPosLeft = Physics2D.Raycast(groundDeterctorLeftSidePos, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
-        floorPos = Physics2D.Raycast(transform.position, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
-        float floorPosRight = Physics2D.Raycast(groundDetectorRightSidePos, Vector2.down, groundDetectionLineLength, groundLayer).point.y;
+        Debug.Log("Fixing ground pos");
 
-        floorPos = Mathf.Max(floorPosLeft, floorPos, floorPosRight);
+        Collider2D floorDetector = Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
 
-        transform.position = new Vector3(transform.position.x, capsuleCollider.size.y / 2 + floorPos);
+        float closestFloorPos = 0f;
+
+        if (floorDetector)
+        {
+            Debug.Log($"Closest point to ground {floorDetector.ClosestPoint(transform.position)}");
+            closestFloorPos = floorDetector.ClosestPoint(transform.position).y;
+            transform.position = new Vector3(transform.position.x, capsuleCollider.size.y / 2 + closestFloorPos);
+            Debug.Log($"New pos : {transform.position}");
+        }
+
+        
     }
 
     public void FixPlayerWallPos()
     {
+        Debug.Log("Fixing wall pos");
 
         Collider2D rightWallDetector = Physics2D.OverlapBox(wallDetectorRight.position, wallDetectorSize, 0f, wallLayer);
         Collider2D leftWallDetector = Physics2D.OverlapBox(wallDetectorLeft.position, wallDetectorSize, 0f, wallLayer);
 
-        Debug.Log($"{rightWallDetector?.ClosestPoint(transform.position)} Right | Left {leftWallDetector?.ClosestPoint(transform.position)}");
-
-        float closestRightWallXPos = 0;
-        float closestLeftWallXPos = 0;
+        float closestRightWallXPos = 0f;
+        float closestLeftWallXPos = 0f;
 
         if (rightWallDetector)
         {
             closestRightWallXPos = rightWallDetector.ClosestPoint(transform.position).x;
             transform.position = new Vector3(closestRightWallXPos - capsuleCollider.size.x / 2, transform.position.y);
+            Debug.Log($"New pos : {transform.position}");
         }
 
         if (leftWallDetector)
         {
             closestLeftWallXPos = leftWallDetector.ClosestPoint(transform.position).x;
             transform.position = new Vector3(closestLeftWallXPos + capsuleCollider.size.x / 2, transform.position.y);
+            Debug.Log($"New pos : {transform.position}");
         }          
     }
 
     public void CalculateGravity()
     {
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
+        wallJumpGravity = (2 * wallJumpHeight) / (wallJumpDuration * wallJumpDuration);
     }
     #region Debugs
     public void ModifySpeed(float val)
