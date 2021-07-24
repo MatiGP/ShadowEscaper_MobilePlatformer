@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,9 +25,11 @@ namespace Code.UI.Panels
         }
 
         public abstract void ClosePanel();
-        public abstract void HidePanel();
-
-        public abstract void ShowPanel();
+       
+        public void ShowPanel()
+        {
+            gameObject.SetActive(true);
+        }
         public abstract void BindEvents();
         public abstract void UnBindEvents();
     }

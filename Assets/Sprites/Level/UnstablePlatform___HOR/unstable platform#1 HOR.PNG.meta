@@ -5,6 +5,18 @@ TextureImporter:
   - first:
       213: -5377608841045712732
     second: unstable platform#1 HOR_0
+  - first:
+      213: -8823700795872851867
+    second: unstable platform#1 HOR_1
+  - first:
+      213: 8336936054842624872
+    second: unstable platform#1 HOR_2
+  - first:
+      213: -922853603457982455
+    second: unstable platform#1 HOR_3
+  - first:
+      213: -4778424847504176419
+    second: unstable platform#1 HOR_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -104,8 +116,8 @@ TextureImporter:
       name: unstable platform#1 HOR_0
       rect:
         serializedVersion: 2
-        x: 3344
-        y: 1954
+        x: 436
+        y: 676
         width: 310
         height: 75
       alignment: 0
@@ -117,6 +129,90 @@ TextureImporter:
       bones: []
       spriteID: 4a068783045ee55b0800000000000000
       internalID: -5377608841045712732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unstable platform#1 HOR_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 433
+        width: 436
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568caa940eaeb8580800000000000000
+      internalID: -8823700795872851867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unstable platform#1 HOR_2
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 304
+        width: 436
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86b8a00cb2fb2b370800000000000000
+      internalID: 8336936054842624872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unstable platform#1 HOR_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 189
+        width: 374
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900a232898d5133f0800000000000000
+      internalID: -922853603457982455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unstable platform#1 HOR_4
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 0
+        width: 335
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda0d9a1bef9fadb0800000000000000
+      internalID: -4778424847504176419
       vertices: []
       indices: 
       edges: []

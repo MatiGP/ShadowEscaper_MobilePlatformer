@@ -26,6 +26,27 @@ TextureImporter:
   - first:
       213: -4100489003647653160
     second: SHOWCASE_7
+  - first:
+      213: -5331561232257682314
+    second: SHOWCASE_0
+  - first:
+      213: -7385893750154893791
+    second: SHOWCASE_1
+  - first:
+      213: 9113043715187984019
+    second: SHOWCASE_4
+  - first:
+      213: 9216451066479914555
+    second: SHOWCASE_5
+  - first:
+      213: -1322417637004463969
+    second: SHOWCASE_6
+  - first:
+      213: 2087106473329434117
+    second: SHOWCASE_2
+  - first:
+      213: -3540276291577573579
+    second: SHOWCASE_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -55,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -84,7 +105,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -96,7 +117,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -108,7 +129,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -125,61 +146,19 @@ TextureImporter:
       name: SHOWCASE_0
       rect:
         serializedVersion: 2
-        x: 730
-        y: 1034
-        width: 403
-        height: 706
+        x: 0
+        y: 1148
+        width: 1066
+        height: 982
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4957368b0c19a5110800000000000000
-      internalID: 1250472103462008212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOWCASE_1
-      rect:
-        serializedVersion: 2
-        x: 1183
-        y: 989
-        width: 403
-        height: 940
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 42d11f49e43531790800000000000000
-      internalID: -7560607752453546716
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SHOWCASE_2
-      rect:
-        serializedVersion: 2
-        x: 2583
-        y: 1120
-        width: 980
-        height: 974
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9720dcca9adec630800000000000000
-      internalID: 3949334281646516124
+      spriteID: 674790d9e4d7206b0800000000000000
+      internalID: -5331561232257682314
       vertices: []
       indices: 
       edges: []
@@ -188,19 +167,19 @@ TextureImporter:
       name: SHOWCASE_4
       rect:
         serializedVersion: 2
-        x: 28
-        y: 9
-        width: 1057
-        height: 1007
+        x: 0
+        y: 0
+        width: 1072
+        height: 1014
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed4813f0ca6298890800000000000000
-      internalID: -7455385187704011554
+      spriteID: 396c26ad9f8087e70800000000000000
+      internalID: 9113043715187984019
       vertices: []
       indices: 
       edges: []
@@ -209,19 +188,19 @@ TextureImporter:
       name: SHOWCASE_5
       rect:
         serializedVersion: 2
-        x: 789
-        y: 487
-        width: 1598
-        height: 405
+        x: 1093
+        y: 700
+        width: 1611
+        height: 416
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5466233823c5647c0800000000000000
-      internalID: -4087478239772907963
+      spriteID: b3e2e430a6967ef70800000000000000
+      internalID: 9216451066479914555
       vertices: []
       indices: 
       edges: []
@@ -230,40 +209,61 @@ TextureImporter:
       name: SHOWCASE_6
       rect:
         serializedVersion: 2
-        x: 1143
-        y: 42
-        width: 1550
-        height: 420
+        x: 1120
+        y: 0
+        width: 1603
+        height: 460
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a33e1413353815ed0800000000000000
-      internalID: -2427014330844060870
+      spriteID: f9033a56a24d5ade0800000000000000
+      internalID: -1322417637004463969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SHOWCASE_7
+      name: SHOWCASE_2
       rect:
         serializedVersion: 2
-        x: 2693
-        y: 108
-        width: 48
-        height: 303
+        x: 1838
+        y: 1398
+        width: 414
+        height: 719
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8daaf2cf9f22817c0800000000000000
-      internalID: -4100489003647653160
+      spriteID: 50e183f8744e6fc10800000000000000
+      internalID: 2087106473329434117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SHOWCASE_3
+      rect:
+        serializedVersion: 2
+        x: 2274
+        y: 1148
+        width: 449
+        height: 982
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f08c158796edec0800000000000000
+      internalID: -3540276291577573579
       vertices: []
       indices: 
       edges: []

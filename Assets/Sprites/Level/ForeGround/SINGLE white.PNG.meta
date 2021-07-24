@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: 5460756616488304297
     second: SINGLE white_2
+  - first:
+      213: 7232684374479957532
+    second: SINGLE white_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -49,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -78,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -90,7 +93,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -102,7 +105,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -119,27 +122,19 @@ TextureImporter:
       name: SINGLE white_0
       rect:
         serializedVersion: 2
-        x: 767
-        y: 1564
+        x: 0
+        y: 256
         width: 146
         height: 121
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -55, y: 60.5}
-        - {x: -73, y: 30.5}
-        - {x: -73, y: -20.5}
-        - {x: -51, y: -60.5}
-        - {x: 52, y: -60.5}
-        - {x: 73, y: -14.5}
-        - {x: 73, y: 23.5}
-        - {x: 52, y: 60.5}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d91fc71224e76d50800000000000000
-      internalID: 6730599003207965138
+      spriteID: 4324de961d3005060800000000000000
+      internalID: 6940051223738139188
       vertices: []
       indices: 
       edges: []
@@ -148,19 +143,19 @@ TextureImporter:
       name: SINGLE white_1
       rect:
         serializedVersion: 2
-        x: 984
-        y: 1532
+        x: 217
+        y: 224
         width: 258
         height: 174
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b785ed37d37b14d0800000000000000
-      internalID: -3162806945004025932
+      spriteID: ec4516b26083f9600800000000000000
+      internalID: 477161684673320142
       vertices: []
       indices: 
       edges: []
@@ -169,19 +164,40 @@ TextureImporter:
       name: SINGLE white_2
       rect:
         serializedVersion: 2
-        x: 796
-        y: 1308
+        x: 29
+        y: 0
         width: 368
         height: 175
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ae36aad53188cb40800000000000000
-      internalID: 5460756616488304297
+      spriteID: b28ebc599a9d059a0800000000000000
+      internalID: -6246253360777009109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SINGLE white_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 475
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e65614e18af5460800000000000000
+      internalID: 7232684374479957532
       vertices: []
       indices: 
       edges: []

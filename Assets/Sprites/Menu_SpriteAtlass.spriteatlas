@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Menu_SpriteAtlass
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c22d5e87e46b0934996529ffaf06d078, type: 3}
+    totalSpriteSurfaceArea: 1653403
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -5672954427495661522, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: -7686679069384070220, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: -7401240925172456747, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: 870061164803696168, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: 4490574860829640003, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: 4523134940505606315, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: 21300000, guid: 3561cd12241e02f4e8e17c20f7ec24b9, type: 3}
+  - {fileID: 21300000, guid: 555c84921fc7d564091fe2c825d7d741, type: 3}
+  - {fileID: -5640114122209916715, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
+  - {fileID: 2249006491874633060, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
+  - {fileID: 5354403012834134507, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
+  - {fileID: 5201756203606556480, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
+  - {fileID: 328433261672020312, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
+  - {fileID: 21300000, guid: 4e9f62e4d72830941b7a9a43ffe05ccd, type: 3}
+  - {fileID: 21300000, guid: b7699b577e424ea4e90a8e7350077701, type: 3}
+  - {fileID: 21300000, guid: e214fea789fed6a45b2063c4e29c6666, type: 3}
+  - {fileID: 21300000, guid: 59d39c38740d08e4ab04528b73f9fdc9, type: 3}
+  - {fileID: 21300000, guid: 419acad88a4e9bd4d86b60962dbfc1ca, type: 3}
+  - {fileID: 21300000, guid: 252abc39d616d1049a883f21ec3db101, type: 3}
+  - {fileID: 21300000, guid: 022c01d90ff126c40b8e68a2739c74c3, type: 3}
+  - {fileID: 21300000, guid: 3119ebd97af697b43ba8b80f2767a12f, type: 3}
+  - {fileID: 21300000, guid: 8f5b108a85e085f4a983af5c41071058, type: 3}
+  - {fileID: 21300000, guid: 1fecef6eb74ce3c4fa9da075f71d5900, type: 3}
+  - {fileID: -1919334469337536289, guid: 82d166ce4f5f6474fada42efc8fa9d75, type: 3}
+  - {fileID: -5464773812334039522, guid: 82d166ce4f5f6474fada42efc8fa9d75, type: 3}
+  - {fileID: 5747802397216549815, guid: 82d166ce4f5f6474fada42efc8fa9d75, type: 3}
+  - {fileID: 1615394029280577739, guid: 82d166ce4f5f6474fada42efc8fa9d75, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - single button kopia 2_2
+  - single button kopia 2_3
+  - single button kopia 2_0
+  - single button kopia 2_7
+  - single button kopia 2_5
+  - single button kopia 2_9
+  - PLAY_Small
+  - X mark for NEXT
+  - POTIONS_4
+  - POTIONS_0
+  - POTIONS_1
+  - POTIONS_2
+  - POTIONS_3
+  - corners Scalone
+  - "Prostok\u0105t zaokr\u0105glony 1 kopia"
+  - Warstwa 85
+  - pointEarned
+  - X mark
+  - right arrow mark
+  - LevelCompletion
+  - UI_NEW_BG
+  - SHADOW ESSENCE kopia 2
+  - CHALLENGE ICON
+  - LEVEL 1 Scalone_4
+  - LEVEL 1 Scalone_5
+  - LEVEL 1 Scalone_0
+  - LEVEL 1 Scalone_1
+  m_Tag: Menu_SpriteAtlass
+  m_IsVariant: 0

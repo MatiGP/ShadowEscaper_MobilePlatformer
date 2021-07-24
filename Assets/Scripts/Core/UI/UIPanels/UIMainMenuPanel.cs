@@ -31,13 +31,7 @@ namespace Code.UI.Panels
         {
             UnBindEvents();
             Destroy(gameObject);
-        }
-
-        public override void HidePanel()
-        {
-            UnBindEvents();
-            gameObject.SetActive(false);
-        }
+        }      
 
         public override void Initialize()
         {
@@ -71,10 +65,6 @@ namespace Code.UI.Panels
         {
             OnSettingsPressed?.Invoke(this, EventArgs.Empty);
         }
-
-        public override void ShowPanel()
-        {
-            gameObject.SetActive(true);
-        }
+      
     }
 }

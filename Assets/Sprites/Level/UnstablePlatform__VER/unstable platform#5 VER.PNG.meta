@@ -17,6 +17,18 @@ TextureImporter:
   - first:
       213: -6037332128210508346
     second: unstable platform#5 VER_4
+  - first:
+      213: 6350030839578408577
+    second: unstable platform#5 VER_5
+  - first:
+      213: -7300063497931406759
+    second: unstable platform#5 VER_6
+  - first:
+      213: -3734133159177400341
+    second: unstable platform#5 VER_7
+  - first:
+      213: 5636847584671614532
+    second: unstable platform#5 VER_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -75,7 +87,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -87,7 +99,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -99,7 +111,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -116,12 +128,12 @@ TextureImporter:
       name: unstable platform#5 VER_0
       rect:
         serializedVersion: 2
-        x: 2800
-        y: 938
-        width: 165
-        height: 369
+        x: 0
+        y: 461
+        width: 240
+        height: 436
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -137,12 +149,12 @@ TextureImporter:
       name: unstable platform#5 VER_1
       rect:
         serializedVersion: 2
-        x: 2824
-        y: 1272
-        width: 31
-        height: 17
+        x: 353
+        y: 225
+        width: 240
+        height: 436
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -158,12 +170,12 @@ TextureImporter:
       name: unstable platform#5 VER_2
       rect:
         serializedVersion: 2
-        x: 2905
-        y: 1267
-        width: 21
-        height: 31
+        x: 715
+        y: 599
+        width: 80
+        height: 310
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -179,12 +191,12 @@ TextureImporter:
       name: unstable platform#5 VER_3
       rect:
         serializedVersion: 2
-        x: 2826
-        y: 948
-        width: 77
-        height: 68
+        x: 60
+        y: 20
+        width: 165
+        height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,22 +209,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unstable platform#5 VER_4
+      name: unstable platform#5 VER_6
       rect:
         serializedVersion: 2
-        x: 2918
-        y: 975
-        width: 29
-        height: 81
+        x: 685
+        y: 0
+        width: 171
+        height: 373
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c5a5f2aa66173ca0800000000000000
-      internalID: -6037332128210508346
+      spriteID: 952c0001de6f0ba90800000000000000
+      internalID: -7300063497931406759
       vertices: []
       indices: 
       edges: []

@@ -213,7 +213,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -225,7 +225,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -237,7 +237,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -254,8 +254,8 @@ TextureImporter:
       name: LEVEL 1 Scalone_0
       rect:
         serializedVersion: 2
-        x: 966
-        y: 1314
+        x: 0
+        y: 253
         width: 246
         height: 198
       alignment: 0
@@ -272,11 +272,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LEVEL 1 Scalone_13
+      name: LEVEL 1 Scalone_1
       rect:
         serializedVersion: 2
-        x: 1117
-        y: 1022
+        x: 295
+        y: 243
         width: 246
         height: 198
       alignment: 0
@@ -286,39 +286,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46c3bbe7ab387e6b0800000000000000
-      internalID: -5267096402173150108
+      spriteID: bc84e879f480b6610800000000000000
+      internalID: 1615394029280577739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LEVEL 1 Scalone_25
+      name: LEVEL 1 Scalone_4
       rect:
         serializedVersion: 2
-        x: 2704
-        y: 868
-        width: 382
-        height: 292
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11d7fa2f9da74d290800000000000000
-      internalID: -7866527572611334895
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LEVEL 1 Scalone_42
-      rect:
-        serializedVersion: 2
-        x: 1713
-        y: 446
+        x: 22
+        y: 6
         width: 246
         height: 198
       alignment: 0
@@ -328,8 +307,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1384afc8019b0bd0800000000000000
-      internalID: -2662875287630085345
+      spriteID: fd829fd18772d55e0800000000000000
+      internalID: -1919334469337536289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LEVEL 1 Scalone_5
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 12
+        width: 246
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1ee8f9db293924b0800000000000000
+      internalID: -5464773812334039522
       vertices: []
       indices: 
       edges: []

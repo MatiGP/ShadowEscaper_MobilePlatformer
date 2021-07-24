@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SaveSystem 
+public class SaveSystem
 {   
     public static SaveSystem instance;
-    string colorData;
-    string json;
+    
+    private string json = null;
 
-    SaveData currentSave;
+    private SaveData currentSave = null;
 
     public void Initialize()
     {
@@ -73,7 +73,7 @@ public class SaveSystem
 
     public int GetTargetFramerate()
     {
-        return 60;//currentSave.frameRate;
+        return currentSave.frameRate;
     }
 
     public float GetSFXVolume()
@@ -112,7 +112,7 @@ public class SaveSystem
 [System.Serializable]
 public class SaveData
 {
-    public Points[] pointsGained = new Points[50];
+    public Points[] pointsGained = new Points[25];
     public string color = "#FFFFFF";
     public int frameRate = 30;
     public float soundFXVolume = 1;

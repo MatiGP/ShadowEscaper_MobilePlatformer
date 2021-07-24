@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -87,7 +87,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -99,7 +99,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -116,10 +116,10 @@ TextureImporter:
       name: POTIONS_0
       rect:
         serializedVersion: 2
-        x: 159
-        y: 66
-        width: 109
-        height: 198
+        x: 0
+        y: 0
+        width: 107
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +137,10 @@ TextureImporter:
       name: POTIONS_1
       rect:
         serializedVersion: 2
-        x: 441
-        y: 66
-        width: 108
-        height: 198
+        x: 281
+        y: 0
+        width: 107
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: POTIONS_2
       rect:
         serializedVersion: 2
-        x: 711
-        y: 66
-        width: 110
-        height: 198
+        x: 551
+        y: 0
+        width: 108
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: POTIONS_3
       rect:
         serializedVersion: 2
-        x: 988
-        y: 66
-        width: 109
-        height: 198
+        x: 829
+        y: 0
+        width: 107
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,10 +200,10 @@ TextureImporter:
       name: POTIONS_4
       rect:
         serializedVersion: 2
-        x: 1268
-        y: 66
-        width: 108
-        height: 198
+        x: 1107
+        y: 0
+        width: 107
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
