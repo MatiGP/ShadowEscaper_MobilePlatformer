@@ -20,7 +20,10 @@ public class EndLevelMenu : MonoBehaviour
 
     private void Start()
     {
-        pointsEarnedOnCurrentLevel = SaveSystem.instance.GetObtainedPointsFromLevel(SceneManager.GetActiveScene().buildIndex-1);
+        int levelIndex = SceneManager.GetActiveScene().buildIndex - 1;
+        int pointsObtained = ShadowRunApp.Instance.SaveSystem.GetObtainedPointsFromLevel(levelIndex);
+
+        pointsEarnedOnCurrentLevel = pointsObtained;
         requiredTime.text += $"{(GameManager.instance.GetRequiredTimeToCompleteLevel() / 60) % 60}:{GameManager.instance.GetRequiredTimeToCompleteLevel() % 60}";
         
         if(SceneManager.GetActiveScene().buildIndex - 1 == 0)

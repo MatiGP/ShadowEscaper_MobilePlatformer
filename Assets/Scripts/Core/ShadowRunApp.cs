@@ -8,18 +8,18 @@ public class ShadowRunApp : MonoBehaviour
 {
     public static ShadowRunApp Instance = null;
 
+    public LevelLoader LevelLoader { get => m_LevelLoader; }
+    public SoundManager SoundManager { get => m_SoundManager; }
+    public SaveSystem SaveSystem { get => m_SaveSystem; }
+
+
     [SerializeField] private EMenuState m_StartingState;
     [SerializeField] private UIManager m_UIManager = null;
     [SerializeField] private LevelLoader m_LevelLoader = null;
     [SerializeField] private SoundManager m_SoundManager = null;
-    public LevelLoader LevelLoader { get => m_LevelLoader; }
-    public SoundManager SoundManager { get => m_SoundManager; }
-
+    
     private MenuStateMachine m_StateMachnie = null;
-
     private SaveSystem m_SaveSystem = null;
-
-
     private void Awake()
     {
         if(Instance == null)

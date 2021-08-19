@@ -5,17 +5,13 @@ using System.IO;
 
 public class SaveSystem
 {   
-    public static SaveSystem instance;
-    
     private string json = null;
 
     private SaveData currentSave = null;
 
     public void Initialize()
     {
-        instance = this;
         TryReadingJSONSave();
-
     }
 
     private void TryReadingJSONSave()
@@ -43,18 +39,9 @@ public class SaveSystem
         File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
     }
 
-    public void CompleteLevel(int levelIndex, int[] pointsObtained)
+    public void CompleteLevel(int levelIndex, int pointsObtained)
     {
-        // if repeating the level.
-        if(currentSave.pointsGained[levelIndex] != null)
-        {
-            currentSave.pointsGained[levelIndex].points = pointsObtained;
-        }
-        else // if level attempted for the first time
-        {
-            currentSave.pointsGained[levelIndex] = new Points(pointsObtained);
-        }
-        
+        currentSave.pointsGained[levelIndex] = pointsObtained;
         Save();
     }
 

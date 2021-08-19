@@ -28,7 +28,7 @@ public class Rocket : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         launchRocket = false;
-        SoundManager.instance.PlaySoundEffect(SoundType.RocketLauncher_Destroy);
+        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(SoundType.RocketLauncher_Destroy);
         OnDestroyRocket.Invoke();    
     }
 }

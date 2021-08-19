@@ -29,26 +29,26 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        musicVolume.value = SaveSystem.instance.GetMusicVolume();
-        sfxVolume.value = SaveSystem.instance.GetSFXVolume();
-        toggle60FPS.isOn = SaveSystem.instance.GetTargetFramerate() == 60 ? true : false;
+        musicVolume.value = ShadowRunApp.Instance.SaveSystem.GetMusicVolume();
+        sfxVolume.value = ShadowRunApp.Instance.SaveSystem.GetSFXVolume();
+        toggle60FPS.isOn = ShadowRunApp.Instance.SaveSystem.GetTargetFramerate() == 60 ? true : false;
     }
 
     public void SaveSettings()
     {
-        SaveSystem.instance.SaveMusicVolume(musicVolume.value);
-        SaveSystem.instance.SaveSoundFXVolume(sfxVolume.value);
+        ShadowRunApp.Instance.SaveSystem.SaveMusicVolume(musicVolume.value);
+        ShadowRunApp.Instance.SaveSystem.SaveSoundFXVolume(sfxVolume.value);
 
         if (toggle60FPS.isOn)
         {
-            SaveSystem.instance.SaveTargetFramerate(60);
+            ShadowRunApp.Instance.SaveSystem.SaveTargetFramerate(60);
         }
         else
         {
-            SaveSystem.instance.SaveTargetFramerate(30);
+            ShadowRunApp.Instance.SaveSystem.SaveTargetFramerate(30);
         }
 
-        SaveSystem.instance.Save();
+        ShadowRunApp.Instance.SaveSystem.Save();
     }
 
     public void SetTargetFramerate()

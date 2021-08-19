@@ -9,7 +9,10 @@ public class EarnedPointsDisplayer : MonoBehaviour
 
     public void SetPointDisplayers(int numOfPoints)
     {
-
+        for(int i = 0; i < numOfPoints; i++)
+        {
+            pointDisplayers[i].gameObject.SetActive(true);
+        }
     }
     
 }

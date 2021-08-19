@@ -402,6 +402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22667d79bb6c0604bb0d3b83ab62ef79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_TryAgainButton: {fileID: 6891243918293946946}
+  m_CanvasGroup: {fileID: 7021404432892480988}
+  m_FadeInDuration: 0.8
 --- !u!225 &7021404432892480988
 CanvasGroup:
   m_ObjectHideFlags: 0

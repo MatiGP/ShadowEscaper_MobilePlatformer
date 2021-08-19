@@ -63,7 +63,9 @@ namespace Code.UI.Panels
 
             for (int i = 0; i < LEVEL_BUTTONS_ON_EACH_PAGE_COUNT; i++)
             {
-                m_LevelButtons[i].SetUpLevelButtonInfo(startingLevelNum + i + 1, 0);
+                int levelNum = startingLevelNum + i + 1;
+                int earnedPoints = ShadowRunApp.Instance.SaveSystem.GetObtainedPointsFromLevel(i);
+                m_LevelButtons[i].SetUpLevelButtonInfo(levelNum, 0);
                 m_LevelButtons[i].OnLevelPressed += HandleLevelPressed;
                 
             }

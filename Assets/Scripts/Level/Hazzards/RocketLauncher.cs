@@ -67,7 +67,7 @@ public class RocketLauncher : MonoBehaviour
         StartCoroutine(StopRotating());
         rocketLaunched = true;
         StartCoroutine(LaunchRocket());
-        SoundManager.instance.PlaySoundEffect(SoundType.RocketLauncher_Launch);
+        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(SoundType.RocketLauncher_Launch);
     }
 
     IEnumerator StopRotating()
