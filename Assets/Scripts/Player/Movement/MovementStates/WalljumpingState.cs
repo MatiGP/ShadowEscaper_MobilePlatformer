@@ -25,6 +25,7 @@ public class WalljumpingState : BaseMovementState
     {
         movementVector.y = 0;
         movementVector.x = 0;
+        
     }
 
     public override void HandleAnimator()
@@ -46,11 +47,13 @@ public class WalljumpingState : BaseMovementState
     {
         if (playerController.IsTouchingCeiling)
         {
+            playerController.ClearDirection();
             stateMachine.ChangeState(playerController.fallingState);
         }       
 
         if(movementVector.y < 0)
         {
+            playerController.ClearDirection();
             stateMachine.ChangeState(playerController.fallingState);
         }
 

@@ -10,7 +10,7 @@ public class LoadColor : MonoBehaviour
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        c = SaveSystem.instance.GetColorData();
+        //c = SaveSystem.instance.GetColorData();
         Debug.Log("Loading color...");
         sr.color = c;
     } 

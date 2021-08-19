@@ -25,7 +25,8 @@ namespace Code.StateMachine
 
         public override void LeaveState()
         {
-            
+            UnBindEvents();
+            UnLoadUI();
         }
 
         public override void UpdateState()
@@ -47,8 +48,10 @@ namespace Code.StateMachine
 
         private void BindEvents()
         {
-            m_MainMenuPanel.OnPlayPressed += HandlePlayPressed;
+            m_MainMenuPanel.OnPlayPressed += HandlePlayPressed;          
         }
+
+       
 
         private void HandlePlayPressed(object sender, System.EventArgs e)
         {
@@ -56,9 +59,16 @@ namespace Code.StateMachine
             m_LevelSelectPanel.Initialize();
         }
 
+        private void UnLoadUI()
+        {
+            m_BackgroundPanel.ClosePanel();
+            m_MainMenuPanel.ClosePanel();
+            m_LevelSelectPanel.ClosePanel();
+        }
+
         private void UnBindEvents()
         {
-
+            m_MainMenuPanel.OnPlayPressed -= HandlePlayPressed;
         }
     }
 }

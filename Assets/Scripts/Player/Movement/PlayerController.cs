@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Code.UI.Panels;
+using Code.UI;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -100,10 +103,23 @@ public class PlayerController : MonoBehaviour
     public WalljumpingState walljumpingState;
     public DeathState deathState;
 
+    private UIPlayerControls m_UIPlayerControls = null;
+
     private void Awake()
+    {      
+        SetUpStates();
+
+        fallMultiplier = normalJumpMultiplier;
+
+        m_UIPlayerControls = UIManager.Instance.GetPanel(EPanelID.PlayerUI) as UIPlayerControls;
+
+        BindEvents();
+    }
+
+    private void SetUpStates()
     {
         stateMachine = new StateMachine();
-        
+
         idleState = new IdleState(this, stateMachine, playerAnimator);
         runningState = new RunningState(this, stateMachine, playerAnimator);
         jumpingState = new JumpingState(this, stateMachine, playerAnimator);
@@ -112,10 +128,8 @@ public class PlayerController : MonoBehaviour
         wallslidingState = new WallslidingState(this, stateMachine, playerAnimator);
         walljumpingState = new WalljumpingState(this, stateMachine, playerAnimator);
         deathState = new DeathState(this, stateMachine, playerAnimator);
-        
-        stateMachine.Initialize(idleState);
 
-        fallMultiplier = normalJumpMultiplier;
+        stateMachine.Initialize(idleState);
     }
 
     void Start()
@@ -151,7 +165,14 @@ public class PlayerController : MonoBehaviour
         stateMachine.currentState.HandleLogic();
 
     }
-    public void Jump()
+
+    private void BindEvents()
+    {
+        m_UIPlayerControls.OnJoystickMoved += ReadMoveInput;
+        m_UIPlayerControls.OnJumpPressed += Jump;
+        //m_UIPlayerControls.OnSlidePressed 
+    }
+    private void Jump(object sender, EventArgs e)
     {
         if (!isJumping)
         {
@@ -164,7 +185,7 @@ public class PlayerController : MonoBehaviour
         isJumping = false;
     }
 
-    public void ReadMoveInput(float newDirection)
+    public void ReadMoveInput(object sender, float newDirection)
     {
         if(newDirection > 0)
         {
@@ -177,9 +198,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             direction = 0;
-        }
-        
-        
+        }             
+    }
+
+    public void ClearDirection()
+    {
+        direction = 0;
     }
 
     public void Flip()
@@ -321,9 +345,9 @@ public class PlayerController : MonoBehaviour
         Flip();
     }
 
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        #if UNITY_EDITOR
         Gizmos.color = Color.red;
         Gizmos.DrawCube(groundDetectorTransform.position, groundDetectorSize);
         Gizmos.color = Color.green;
@@ -332,6 +356,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(wallDetectorLeft.position, wallDetectorSize);
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);       
-        #endif
+        
     }
+    #endif
 }

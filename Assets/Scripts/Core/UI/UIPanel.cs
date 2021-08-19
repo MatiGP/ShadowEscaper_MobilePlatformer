@@ -7,6 +7,10 @@ namespace Code.UI.Panels
 {
     public abstract class UIPanel : MonoBehaviour
     {
+        public event EventHandler<EPanelID> OnPanelClose;
+
+        protected EPanelID m_PanelID;
+
         public abstract void Initialize();
 
         protected virtual void Awake()
@@ -24,7 +28,17 @@ namespace Code.UI.Panels
 
         }
 
-        public abstract void ClosePanel();
+        public void SetPanelID(EPanelID panelID)
+        {
+            m_PanelID = panelID;
+        }
+
+        public virtual void ClosePanel()
+        {
+            OnPanelClose.Invoke(this, m_PanelID);
+            OnPanelClose = null;
+            Destroy(gameObject);
+        }
        
         public void ShowPanel()
         {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] UnityEvent OnDamageTaken;

@@ -43,6 +43,10 @@ namespace Code.UI
             loadedPanel.transform.SetParent(m_MainCanvas.transform);
             loadedPanel.transform.localPosition = new Vector3(0, 0, 0);
 
+            loadedPanel.SetPanelID(panelID);
+            
+            loadedPanel.OnPanelClose += LoadedPanel_OnPanelClose;
+
             if (loadedPanel != null)
             {
                 m_UIPanels.Add(panelID, loadedPanel);
@@ -52,12 +56,16 @@ namespace Code.UI
             return null;
         }
 
+        private void LoadedPanel_OnPanelClose(object sender, EPanelID e)
+        {
+            m_UIPanels.Remove(e);
+        }
+
         public void ClosePanel(EPanelID panelID)
         {
             if (m_UIPanels.ContainsKey(panelID))
             {
                 m_UIPanels[panelID].ClosePanel();
-                m_UIPanels.Remove(panelID);
             }
         }
 

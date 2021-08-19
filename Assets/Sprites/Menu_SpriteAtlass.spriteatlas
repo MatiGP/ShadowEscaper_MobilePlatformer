@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 1024
+      m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 2
@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c22d5e87e46b0934996529ffaf06d078, type: 3}
-    totalSpriteSurfaceArea: 1653403
+    totalSpriteSurfaceArea: 3226274
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -60,7 +60,9 @@ SpriteAtlas:
   - {fileID: 5354403012834134507, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
   - {fileID: 5201756203606556480, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
   - {fileID: 328433261672020312, guid: c47bdee269c93434f8190b46884ecd44, type: 3}
+  - {fileID: 21300000, guid: 733bb194bc40cb54a8adc2453df0c37c, type: 3}
   - {fileID: 21300000, guid: 4e9f62e4d72830941b7a9a43ffe05ccd, type: 3}
+  - {fileID: 21300000, guid: fd5580a6321c4fd45bfc5ba985c493d4, type: 3}
   - {fileID: 21300000, guid: b7699b577e424ea4e90a8e7350077701, type: 3}
   - {fileID: 21300000, guid: e214fea789fed6a45b2063c4e29c6666, type: 3}
   - {fileID: 21300000, guid: 59d39c38740d08e4ab04528b73f9fdc9, type: 3}
@@ -70,6 +72,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3119ebd97af697b43ba8b80f2767a12f, type: 3}
   - {fileID: 21300000, guid: 8f5b108a85e085f4a983af5c41071058, type: 3}
   - {fileID: 21300000, guid: 1fecef6eb74ce3c4fa9da075f71d5900, type: 3}
+  - {fileID: 21300000, guid: de7b907e0bc38c246ad677ffea07eac9, type: 3}
   - {fileID: -1919334469337536289, guid: 82d166ce4f5f6474fada42efc8fa9d75, type: 3}
   - {fileID: -5464773812334039522, guid: 82d166ce4f5f6474fada42efc8fa9d75, type: 3}
   - {fileID: 5747802397216549815, guid: 82d166ce4f5f6474fada42efc8fa9d75, type: 3}
@@ -88,7 +91,9 @@ SpriteAtlas:
   - POTIONS_1
   - POTIONS_2
   - POTIONS_3
+  - pads
   - corners Scalone
+  - EMPTY stars - Black & white
   - "Prostok\u0105t zaokr\u0105glony 1 kopia"
   - Warstwa 85
   - pointEarned
@@ -98,6 +103,7 @@ SpriteAtlas:
   - UI_NEW_BG
   - SHADOW ESSENCE kopia 2
   - CHALLENGE ICON
+  - ICON kopia
   - LEVEL 1 Scalone_4
   - LEVEL 1 Scalone_5
   - LEVEL 1 Scalone_0

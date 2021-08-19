@@ -66,9 +66,9 @@ public class SaveSystem
         return c;
     }
 
-    public int[] GetObtainedPointsFromLevel(int levelIndex)
+    public int GetObtainedPointsFromLevel(int levelIndex)
     {       
-        return currentSave.pointsGained[levelIndex].points;          
+        return currentSave.pointsGained[levelIndex];          
     }
 
     public int GetTargetFramerate()
@@ -109,24 +109,15 @@ public class SaveSystem
         currentSave.frameRate = framerate;  
     }
 }
+
 [System.Serializable]
 public class SaveData
 {
-    public Points[] pointsGained = new Points[25];
+    public int[] pointsGained = new int[25];
     public string color = "#FFFFFF";
     public int frameRate = 30;
     public float soundFXVolume = 1;
     public float musicVolume = 1;   
-}
-[System.Serializable]
-public class Points
-{
-    public int[] points;
-
-    public Points(int[] pObtained)
-    {
-        points = pObtained;
-    }
 }
 
 

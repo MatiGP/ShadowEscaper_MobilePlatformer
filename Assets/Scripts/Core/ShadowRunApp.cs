@@ -10,11 +10,15 @@ public class ShadowRunApp : MonoBehaviour
 
     [SerializeField] private EMenuState m_StartingState;
     [SerializeField] private UIManager m_UIManager = null;
+    [SerializeField] private LevelLoader m_LevelLoader = null;
+    [SerializeField] private SoundManager m_SoundManager = null;
+    public LevelLoader LevelLoader { get => m_LevelLoader; }
+    public SoundManager SoundManager { get => m_SoundManager; }
 
     private MenuStateMachine m_StateMachnie = null;
 
     private SaveSystem m_SaveSystem = null;
-    
+
 
     private void Awake()
     {
@@ -26,6 +30,9 @@ public class ShadowRunApp : MonoBehaviour
         m_StateMachnie = new MenuStateMachine();
         m_StateMachnie.Initialize();
         m_StateMachnie.AddState(new MainMenuState());
+        m_StateMachnie.AddState(new GameState());
+
+        BindEvents();
 
         InitializeOtherSystems();
     }
@@ -47,5 +54,15 @@ public class ShadowRunApp : MonoBehaviour
 
         m_UIManager.Initialize();
         
+    }
+
+    private void BindEvents()
+    {
+        m_LevelLoader.OnLevelLoaded += HandleLevelLoaded;
+    }
+
+    private void HandleLevelLoaded(object sender, System.EventArgs e)
+    {
+        m_StateMachnie.ChangeState(EMenuState.Game);
     }
 }

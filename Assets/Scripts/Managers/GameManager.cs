@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] int numOfKeysInLevel = 0;
     [SerializeField] int numOfItemsToCollect = 1;
     [SerializeField] float timeToCompleteLevel;
-    [SerializeField] SaveSystem saveSystem;
-    [SerializeField] UnityEvent OnLevelCompleted;
-
     
     enum Rewards { COMPLETION, IN_TIME, COLLECTED_ITEM }
 
@@ -24,9 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        Application.targetFrameRate = saveSystem.GetTargetFramerate();
-        
+        instance = this;    
     }
 
     public void CollectItem()
@@ -43,7 +38,7 @@ public class GameManager : MonoBehaviour
 
         int completedLevelNum = SceneManager.GetActiveScene().buildIndex - 1;
 
-        saveSystem.CompleteLevel(completedLevelNum, pointsToGainOnLevelCompletion);
+      
         
 
     }
@@ -63,7 +58,7 @@ public class GameManager : MonoBehaviour
             pointsToGainOnLevelCompletion[(int)Rewards.IN_TIME] += 1;
         }
 
-        OnLevelCompleted.Invoke();
+        
     }
 
     public bool PlayerFinishedLevelInTime()

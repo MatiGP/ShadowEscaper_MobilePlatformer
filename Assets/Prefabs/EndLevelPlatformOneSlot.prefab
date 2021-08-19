@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 109404241914488439, guid: eea7aa30b6d94e2499b58aec586afed5,
         type: 3}
       propertyPath: m_Name
-      value: EndLevelPlatform
+      value: EndLevelPlatformOneSlot
       objectReference: {fileID: 0}
     - target: {fileID: 109404242061818749, guid: eea7aa30b6d94e2499b58aec586afed5,
         type: 3}
@@ -82,6 +82,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 109404243564416878, guid: eea7aa30b6d94e2499b58aec586afed5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 29accb03e2b934046944e8a85bcfa025,
+        type: 3}
     - target: {fileID: 7236237658463138693, guid: eea7aa30b6d94e2499b58aec586afed5,
         type: 3}
       propertyPath: m_IsActive

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Make sure to don't include "panelPrefab" in EPanelID;
 public enum EPanelID
 {
     Background,
@@ -14,6 +15,7 @@ public enum EPanelID
     DeathMenu,
     EndLevelMenu,
     MainMenu,
-    PlayerUI
+    PlayerUI,
+    LoadLevel
 
 }

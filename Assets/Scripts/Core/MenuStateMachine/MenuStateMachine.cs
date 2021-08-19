@@ -29,5 +29,11 @@ namespace Code.StateMachine {
             m_CurrentState = m_MenuStates[startingState];
             m_CurrentState.EnterState();
         }
+
+        public void ChangeState(EMenuState newState)
+        {
+            m_CurrentState.LeaveState();
+            StartStateMachine(newState);
+        }
     }
 }

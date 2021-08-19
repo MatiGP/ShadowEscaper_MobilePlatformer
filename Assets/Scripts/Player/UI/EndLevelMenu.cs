@@ -14,7 +14,8 @@ public class EndLevelMenu : MonoBehaviour
     [SerializeField] GameObject nextLevelButtonBlocker;
     [SerializeField] GameObject previousLevelButtonBlocker;
     [SerializeField] TextMeshProUGUI requiredTime;
-    int[] pointsEarnedOnCurrentLevel;
+    
+    int pointsEarnedOnCurrentLevel;
     bool isOpen;
 
     private void Start()
@@ -38,7 +39,7 @@ public class EndLevelMenu : MonoBehaviour
 
     private void DisplayPlayerProgessOnLevelEnd()
     {
-        if (pointsEarnedOnCurrentLevel == null) return;
+        if (pointsEarnedOnCurrentLevel == 0) return;
 
         if (!GameManager.instance.PlayerFinishedLevel())
         {           
@@ -95,7 +96,7 @@ public class EndLevelMenu : MonoBehaviour
 
             if (!GameManager.instance.PlayerFinishedLevel())
             {
-                for(int i = 0; i < pointsEarnedOnCurrentLevel.Length; i++)
+                for(int i = 0; i < pointsEarnedOnCurrentLevel; i++)
                 {
                     pointsImages[i].gameObject.SetActive(true);
                 }

@@ -1,18 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Code.UI.Panels;
+using Code.UI;
 
-public class GameState : MonoBehaviour
+public class GameState : BaseMenuState
 {
-    // Start is called before the first frame update
-    void Start()
+    private UIPlayerControls m_PlayerControlPanel = null;
+    
+
+    public GameState() : base(EMenuState.Game)
+    {
+
+    }
+
+    public override void EnterState()
+    {
+        LoadUI();
+    }
+
+    public override void LeaveState()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState()
     {
         
+    }
+
+    private void LoadUI()
+    {
+        m_PlayerControlPanel = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
+        m_PlayerControlPanel.Initialize();
     }
 }

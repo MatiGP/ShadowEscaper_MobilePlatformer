@@ -13,7 +13,7 @@ public class KeystoneManager : MonoBehaviour
         if (collision.CompareTag("Keystone"))
         {
             keystoneUI.SetKeystoneUI(currentKeystones);
-            SoundManager.instance.PlaySoundEffect(SoundType.Key_Collect);
+            //SoundManager.instance.PlaySoundEffect(SoundType.Key_Collect);
             currentKeystones++;
             collision.gameObject.SetActive(false);
         }

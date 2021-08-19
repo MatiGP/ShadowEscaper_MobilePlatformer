@@ -9,12 +9,7 @@ namespace Code.UI.Panels
         public override void BindEvents()
         {
             
-        }
-
-        public override void ClosePanel()
-        {
-            
-        }
+        }     
 
         public override void Initialize()
         {

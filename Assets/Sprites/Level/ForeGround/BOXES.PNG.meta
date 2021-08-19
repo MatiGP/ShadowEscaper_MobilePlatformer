@@ -110,9 +110,9 @@ TextureImporter:
       name: BOXES_0
       rect:
         serializedVersion: 2
-        x: 1670
-        y: 1762
-        width: 306
+        x: 0
+        y: 0
+        width: 308
         height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,9 +131,9 @@ TextureImporter:
       name: BOXES_1
       rect:
         serializedVersion: 2
-        x: 2023
-        y: 1762
-        width: 306
+        x: 351
+        y: 0
+        width: 311
         height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -152,9 +152,9 @@ TextureImporter:
       name: BOXES_2
       rect:
         serializedVersion: 2
-        x: 2366
-        y: 1762
-        width: 306
+        x: 694
+        y: 0
+        width: 308
         height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
