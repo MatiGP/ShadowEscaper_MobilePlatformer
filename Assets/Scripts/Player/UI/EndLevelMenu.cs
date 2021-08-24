@@ -24,7 +24,7 @@ public class EndLevelMenu : MonoBehaviour
         int pointsObtained = ShadowRunApp.Instance.SaveSystem.GetObtainedPointsFromLevel(levelIndex);
 
         pointsEarnedOnCurrentLevel = pointsObtained;
-        requiredTime.text += $"{(GameManager.instance.GetRequiredTimeToCompleteLevel() / 60) % 60}:{GameManager.instance.GetRequiredTimeToCompleteLevel() % 60}";
+        //requiredTime.text += $"{(GameManager.instance.GetRequiredTimeToCompleteLevel() / 60) % 60}:{GameManager.instance.GetRequiredTimeToCompleteLevel() % 60}";
         
         if(SceneManager.GetActiveScene().buildIndex - 1 == 0)
         {
@@ -42,27 +42,7 @@ public class EndLevelMenu : MonoBehaviour
 
     private void DisplayPlayerProgessOnLevelEnd()
     {
-        if (pointsEarnedOnCurrentLevel == 0) return;
-
-        if (!GameManager.instance.PlayerFinishedLevel())
-        {           
-            nextLevelButtonBlocker.SetActive(true);
-            return;
-        }
-        else
-        {         
-            pointsImages[0].gameObject.SetActive(true);
-        }
-
-        if (GameManager.instance.PlayerFinishedLevelInTime())
-        {
-            pointsImages[1].gameObject.SetActive(true);
-        }
-
-        if (GameManager.instance.PlayerCollectedAllItems())
-        {
-            pointsImages[2].gameObject.SetActive(true);
-        }
+       
     }
 
     public void ExitLevel()
@@ -97,6 +77,7 @@ public class EndLevelMenu : MonoBehaviour
             menu.SetActive(true);
             isOpen = true;         
 
+            /*
             if (!GameManager.instance.PlayerFinishedLevel())
             {
                 for(int i = 0; i < pointsEarnedOnCurrentLevel; i++)
@@ -106,6 +87,7 @@ public class EndLevelMenu : MonoBehaviour
 
                 nextLevelButtonBlocker.SetActive(false);
             }
+            */
         }
     }
 

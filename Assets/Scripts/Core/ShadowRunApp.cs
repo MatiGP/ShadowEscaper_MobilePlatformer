@@ -11,12 +11,14 @@ public class ShadowRunApp : MonoBehaviour
     public LevelLoader LevelLoader { get => m_LevelLoader; }
     public SoundManager SoundManager { get => m_SoundManager; }
     public SaveSystem SaveSystem { get => m_SaveSystem; }
+    public GameManager GameManager { get => m_GameManager; }
 
 
     [SerializeField] private EMenuState m_StartingState;
     [SerializeField] private UIManager m_UIManager = null;
     [SerializeField] private LevelLoader m_LevelLoader = null;
     [SerializeField] private SoundManager m_SoundManager = null;
+    [SerializeField] private GameManager m_GameManager = null;
     
     private MenuStateMachine m_StateMachnie = null;
     private SaveSystem m_SaveSystem = null;
@@ -64,5 +66,15 @@ public class ShadowRunApp : MonoBehaviour
     private void HandleLevelLoaded(object sender, System.EventArgs e)
     {
         m_StateMachnie.ChangeState(EMenuState.Game);
+    }
+
+    private void UnBindEvents()
+    {
+        m_LevelLoader.OnLevelLoaded -= HandleLevelLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        UnBindEvents();
     }
 }

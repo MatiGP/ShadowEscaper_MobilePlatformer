@@ -10,7 +10,7 @@ public class EndPlatform : MonoBehaviour
     {
         if (isPlatformTurnedOn)
         {
-            GameManager.instance.FinishLevel(Time.timeSinceLevelLoad);
+            
         }
     }
 

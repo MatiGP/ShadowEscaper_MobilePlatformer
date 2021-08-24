@@ -26,7 +26,7 @@ namespace Code.UI
                 Instance = this;
             }
 
-            m_UICamera.transform.position = m_MainCanvas.transform.position;
+            //m_UICamera.transform.position = m_MainCanvas.transform.position;
         }
 
         public UIPanel CreatePanel(EPanelID panelID)

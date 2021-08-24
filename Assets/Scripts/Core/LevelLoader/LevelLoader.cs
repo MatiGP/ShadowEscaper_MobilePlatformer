@@ -10,23 +10,29 @@ using UnityEngine.UI;
 public class LevelLoader : MonoBehaviour
 {
     public event EventHandler OnLevelLoaded;
+    public event EventHandler<LevelData> OnLevelDataLoaded;
 
     private UILoadingScreen m_UILoadingScreen = null;
     public void LoadLevel(int sceneIndex)
     {  
-        OnLevelLoaded.Invoke(this, EventArgs.Empty);
         m_UILoadingScreen = UIManager.Instance.CreatePanel(EPanelID.LoadLevel) as UILoadingScreen;
+        
         StartCoroutine(LoadAsynchronously(sceneIndex));
     }
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex + 1));
+        LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void LoadPreviousLevel()
     {
-        StartCoroutine(LoadAsynchronously(SceneManager.GetActiveScene().buildIndex - 1));
+        LoadLevel(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void ReloadLevel()
+    {
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator LoadAsynchronously(int sceneIndex)
@@ -40,7 +46,11 @@ public class LevelLoader : MonoBehaviour
             yield return null;
         }
 
+        OnLevelLoaded.Invoke(this, EventArgs.Empty);
         m_UILoadingScreen.ClosePanel();
         
-    }  
+    }
+
+
+
 }

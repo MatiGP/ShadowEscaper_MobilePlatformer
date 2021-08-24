@@ -12,7 +12,7 @@ public enum EPanelID
     Fashion,
     Challenge,
     DailyGift,
-    DeathMenu,
+    Death,
     EndLevelMenu,
     MainMenu,
     PlayerUI,

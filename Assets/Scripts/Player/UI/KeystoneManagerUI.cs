@@ -10,6 +10,7 @@ public class KeystoneManagerUI : MonoBehaviour
 
     private void Start()
     {
+        /*
         int numberOfKeys = GameManager.instance.GetNumOfKeysInLevel();
 
         for(int i = 0; i < keystones.Count; i++)
@@ -23,6 +24,7 @@ public class KeystoneManagerUI : MonoBehaviour
                 keystones[i].gameObject.SetActive(false);
             }
         }
+        */
     }
 
     public void SetKeystoneUI(int keystoneIndex)

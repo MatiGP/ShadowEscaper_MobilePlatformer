@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationary: 0
+  reverseSawDirection: 0
   speed: 6
   waypoints:
-  - {x: -0, y: 28.21}
-  - {x: 0, y: 1.2}
+  - {x: 0.09, y: 27.8}
+  - {x: 8.17, y: 28.3}
 --- !u!212 &9014028969810172824
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91,13 +92,12 @@ SpriteRenderer:
   m_SortingLayerID: -1248572169
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 6978740128829342218, guid: 8d7af8791a001e84baea172fc6cea3f3,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d7af8791a001e84baea172fc6cea3f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.406349, y: 4.3375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

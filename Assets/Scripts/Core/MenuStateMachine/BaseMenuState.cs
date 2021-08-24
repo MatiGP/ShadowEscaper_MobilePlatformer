@@ -5,11 +5,11 @@ using UnityEngine;
 
 public abstract class BaseMenuState
 {
-    public EMenuState State => stateType;
-    private EMenuState stateType;
+    public EMenuState State => m_StateType;
+    private EMenuState m_StateType;
     public BaseMenuState(EMenuState menuStateType)
     {
-        stateType = menuStateType;
+        m_StateType = menuStateType;
         
     }
     public abstract void EnterState();

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float WallSlideSpeed { get => wallslideSpeed; }
     public float JumpOffWallForce { get => jumpOffWallForce; }
     public float FallMultiplier { get => fallMultiplier; }
-    public float JumpForceRemaining { get => remainingJumpForce; }
+    public float RemainingJumpForce { get => remainingJumpForce; }
     public float WallJumpDuration { get => wallJumpDuration; }
 
     public bool IsTouchingGround { get => isGrounded; }
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public bool IsFacingRight { get => facingRight; }
     public bool IsTouchingCeiling { get => isTouchingCeiling; }
 
-    [SerializeField] CapsuleCollider2D capsuleCollider;
+    [SerializeField] CapsuleCollider2D m_CapsuleCollider;
     [Header("Ground Movement")]
     [SerializeField] float footSpeed;
     [SerializeField] LayerMask groundLayer;
@@ -64,31 +64,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer playerCharacterSR;
     [SerializeField] Animator playerAnimator;
 
+    [Header("Health")]
+    [SerializeField] private PlayerHealth m_PlayerHealth = null;
+
     float gravity;
     float wallJumpGravity;
-    
-    float jumpVelocity;
+
     float direction;
-    float floorPos;
-    float wallPosRight;
-    float wallPosLeft;
+
     float fallMultiplier;
-    float remainingJumpForce;
-
-    Vector3 movementVector;
-    Vector3 positionFix;
-    Vector2 groundDeterctorLeftSidePos;
-    Vector2 groundDetectorRightSidePos;
-
-    
+    float remainingJumpForce;  
 
     bool isGrounded;
-    bool wasGrounded;
     bool isJumping;
     bool isTouchingRightWall;
     bool isTouchingLeftWall;
-    bool isWallSliding;
-    bool wallJumped;
     bool facingRight;
     bool isTouchingCeiling;
 
@@ -111,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
         fallMultiplier = normalJumpMultiplier;
 
-        m_UIPlayerControls = UIManager.Instance.GetPanel(EPanelID.PlayerUI) as UIPlayerControls;
+        m_UIPlayerControls = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
 
         BindEvents();
     }
@@ -135,19 +125,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         CalculateGravity();
-        jumpVelocity = gravity * timeToJumpApex;
     }
 
     void Update()
     {
-        groundDeterctorLeftSidePos.x = transform.position.x + 0.8f;
-        groundDeterctorLeftSidePos.y = transform.position.y;
-
-        groundDetectorRightSidePos.x = transform.position.x - 0.8f;
-        groundDetectorRightSidePos.y = transform.position.y; 
-
         stateMachine.currentState.HandleAnimator();       
-
     }
 
     private void LateUpdate()
@@ -170,6 +152,8 @@ public class PlayerController : MonoBehaviour
     {
         m_UIPlayerControls.OnJoystickMoved += ReadMoveInput;
         m_UIPlayerControls.OnJumpPressed += Jump;
+
+        m_PlayerHealth.OnDamageTaken += Die;
         //m_UIPlayerControls.OnSlidePressed 
     }
     private void Jump(object sender, EventArgs e)
@@ -220,7 +204,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void Die(object sender, EventArgs e)
     {
         stateMachine.ChangeState(deathState);
     }   
@@ -237,7 +221,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"Closest point to ground {floorDetector.ClosestPoint(transform.position)}");
             closestFloorPos = floorDetector.ClosestPoint(transform.position).y;
-            transform.position = new Vector3(transform.position.x, capsuleCollider.size.y / 2 + closestFloorPos);
+            transform.position = new Vector3(transform.position.x, m_CapsuleCollider.size.y / 2 + closestFloorPos);
             Debug.Log($"New pos : {transform.position}");
         }
 
@@ -257,14 +241,14 @@ public class PlayerController : MonoBehaviour
         if (rightWallDetector)
         {
             closestRightWallXPos = rightWallDetector.ClosestPoint(transform.position).x;
-            transform.position = new Vector3(closestRightWallXPos - capsuleCollider.size.x / 2, transform.position.y);
+            transform.position = new Vector3(closestRightWallXPos - m_CapsuleCollider.size.x / 2, transform.position.y);
             Debug.Log($"New pos : {transform.position}");
         }
 
         if (leftWallDetector)
         {
             closestLeftWallXPos = leftWallDetector.ClosestPoint(transform.position).x;
-            transform.position = new Vector3(closestLeftWallXPos + capsuleCollider.size.x / 2, transform.position.y);
+            transform.position = new Vector3(closestLeftWallXPos + m_CapsuleCollider.size.x / 2, transform.position.y);
             Debug.Log($"New pos : {transform.position}");
         }          
     }

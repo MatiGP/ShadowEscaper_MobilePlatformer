@@ -18,6 +18,7 @@ namespace Code.UI.Panels
         {
             base.Start();
             StartFadeIn();
+            Initialize();
         }
 
         public override void Initialize()
@@ -32,7 +33,7 @@ namespace Code.UI.Panels
 
         public override void UnBindEvents()
         {
-            
+            m_TryAgainButton.onClick.RemoveListener(StartFadeOut);
         }
 
         private void StartFadeIn()
@@ -46,15 +47,15 @@ namespace Code.UI.Panels
 
         private void StartFadeOut()
         {
-            m_TryAgainButton.interactable = false;  
+            m_TryAgainButton.interactable = false;
 
             m_CanvasGroup.DOFade(0, m_FadeInDuration).OnComplete(
-                () => {
-                    
+                () =>
+                {
+                    ShadowRunApp.Instance.LevelLoader.ReloadLevel();
                 }
                 );
         }
-
 
         private void OnDestroy()
         {

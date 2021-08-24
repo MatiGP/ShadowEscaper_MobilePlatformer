@@ -35,6 +35,7 @@ namespace Code.UI.Panels
         private void HandleLevelSelected(object sender, int e)
         {
             ShadowRunApp.Instance.LevelLoader.LoadLevel(e);
+            //ShadowRunApp.Instance.GameManager.LoadLevelData(e);
         }
 
         public override void ClosePanel()
@@ -65,7 +66,7 @@ namespace Code.UI.Panels
             {
                 int levelNum = startingLevelNum + i + 1;
                 int earnedPoints = ShadowRunApp.Instance.SaveSystem.GetObtainedPointsFromLevel(i);
-                m_LevelButtons[i].SetUpLevelButtonInfo(levelNum, 0);
+                m_LevelButtons[i].SetUpLevelButtonInfo(levelNum, earnedPoints);
                 m_LevelButtons[i].OnLevelPressed += HandleLevelPressed;
                 
             }

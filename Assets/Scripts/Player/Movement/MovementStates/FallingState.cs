@@ -9,7 +9,7 @@ public class FallingState : BaseMovementState
     public override void Enter()
     {
         Debug.Log("Entering Falling State");
-        movementVector.y = playerController.JumpForceRemaining;
+        movementVector.y = playerController.RemainingJumpForce;
         playerController.InterruptJumping();
     }
 
