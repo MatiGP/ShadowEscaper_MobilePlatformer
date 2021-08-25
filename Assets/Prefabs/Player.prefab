@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abfdc442cfa01440b4e0e782b25451f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capsuleCollider: {fileID: 5715414609690220084}
+  m_CapsuleCollider: {fileID: 5715414609690220084}
   footSpeed: 24
   groundLayer:
     serializedVersion: 2

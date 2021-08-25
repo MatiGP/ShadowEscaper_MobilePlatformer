@@ -19,15 +19,21 @@ namespace Code.UI
         private const string PANEL_NAME_FORMAT = "{0}PanelPrefab";
         private const string PANEL_PREFAB_PATH_FORMAT = "Prefabs/UI/{0}";
 
+        private float m_ScreenAspectRatio = 1.777f;
+
         public void Initialize()
         {
             if (Instance == null)
             {
                 Instance = this;
             }
-
-            //m_UICamera.transform.position = m_MainCanvas.transform.position;
         }
+
+        private void Start()
+        {
+            m_ScreenAspectRatio = (float)Screen.height / (float)Screen.width;
+        }
+
 
         public UIPanel CreatePanel(EPanelID panelID)
         {
@@ -42,9 +48,11 @@ namespace Code.UI
             UIPanel loadedPanel = Instantiate(Resources.Load<UIPanel>(panelPath));
             loadedPanel.transform.SetParent(m_MainCanvas.transform);
             loadedPanel.transform.localPosition = new Vector3(0, 0, 0);
+            
+            RecalculatePanelSizeDelta(loadedPanel);
 
             loadedPanel.SetPanelID(panelID);
-            
+
             loadedPanel.OnPanelClose += LoadedPanel_OnPanelClose;
 
             if (loadedPanel != null)
@@ -54,6 +62,13 @@ namespace Code.UI
             }
 
             return null;
+        }
+
+        private void RecalculatePanelSizeDelta(UIPanel loadedPanel)
+        {
+            RectTransform rectTransform = loadedPanel.GetComponent<RectTransform>();
+            float newHeight = rectTransform.sizeDelta.x * m_ScreenAspectRatio;
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, newHeight);
         }
 
         private void LoadedPanel_OnPanelClose(object sender, EPanelID e)

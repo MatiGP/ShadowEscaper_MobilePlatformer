@@ -41,9 +41,16 @@ public class FallingState : BaseMovementState
         if (playerController.IsTouchingGround)
         {
             playerController.FixPlayerGroundPos();
-            
-            stateMachine.ChangeState(playerController.idleState);
-           
+
+            if (playerController.Direction == 0)
+            {
+                stateMachine.ChangeState(playerController.idleState);
+            }
+            else
+            {
+                stateMachine.ChangeState(playerController.runningState);
+            }
+
         }
 
         if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
