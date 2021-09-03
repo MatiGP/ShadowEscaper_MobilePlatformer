@@ -11,16 +11,11 @@ namespace Code.UI.Panels
         public event EventHandler<float> OnJoystickMoved;
         public event EventHandler OnJumpPressed;
         public event EventHandler OnSlidePressed;
-        public event EventHandler<int> OnKeyCollected;
                
         [SerializeField] private Joystick m_Joystick = null;
         [SerializeField] private Button m_JumpButton = null;
         [SerializeField] private Button m_SlideButton = null;
         [SerializeField] private Button m_SettingsButton = null;
-
-        [SerializeField] private Image[] m_CollectedKeysIcon = null;
-
-        private Color KEY_COLLECTED_COLOR = Color.white;
 
         public override void Initialize()
         {
@@ -34,15 +29,9 @@ namespace Code.UI.Panels
             m_SettingsButton.onClick.AddListener(CreateSettingsPanel);
 
             m_Joystick.OnHorizontalJoystickMove += OnHorizontalJoystickMove;
-
-            OnKeyCollected += UpdateCollectedKeysUI;
         }
 
-        private void UpdateCollectedKeysUI(object sender, int keyIndex)
-        {
-            m_CollectedKeysIcon[keyIndex].color = KEY_COLLECTED_COLOR;
-        }
-
+       
         private void OnHorizontalJoystickMove(object sender, float e)
         {
             OnJoystickMoved?.Invoke(sender, e);
@@ -69,9 +58,7 @@ namespace Code.UI.Panels
             m_SlideButton.onClick.RemoveListener(InvokeSliding);
             m_SettingsButton.onClick.RemoveListener(CreateSettingsPanel);
 
-            m_Joystick.OnHorizontalJoystickMove -= OnHorizontalJoystickMove;
-
-            OnKeyCollected -= UpdateCollectedKeysUI;
+            m_Joystick.OnHorizontalJoystickMove -= OnHorizontalJoystickMove;          
         }
 
         private void OnDestroy()

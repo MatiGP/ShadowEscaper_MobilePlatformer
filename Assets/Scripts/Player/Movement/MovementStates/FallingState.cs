@@ -8,7 +8,6 @@ public class FallingState : BaseMovementState
 
     public override void Enter()
     {
-        Debug.Log("Entering Falling State");
         movementVector.y = playerController.RemainingJumpForce;
         playerController.InterruptJumping();
     }
@@ -18,7 +17,6 @@ public class FallingState : BaseMovementState
         movementVector.y = 0;
         movementVector.x = 0;
         playerController.SetJumpRemainingForce(0);
-        Debug.Log("Ending Falling State");
     }
 
     public override void HandleAnimator()
@@ -40,7 +38,7 @@ public class FallingState : BaseMovementState
     {
         if (playerController.IsTouchingGround)
         {
-            playerController.FixPlayerGroundPos();
+            playerController.FixPlayerGroundPosition();
 
             if (playerController.Direction == 0)
             {
@@ -55,12 +53,9 @@ public class FallingState : BaseMovementState
 
         if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
         {
-            playerController.FixPlayerWallPos();
+            playerController.FixPlayerWallPosition();
             movementVector.x = 0;
             stateMachine.ChangeState(playerController.wallslidingState);
         }
-
-
-
     }
 }

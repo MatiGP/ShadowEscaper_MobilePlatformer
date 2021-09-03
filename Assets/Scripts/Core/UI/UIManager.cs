@@ -33,8 +33,6 @@ namespace Code.UI
         {
             m_ScreenAspectRatio = (float)Screen.height / (float)Screen.width;
         }
-
-
         public UIPanel CreatePanel(EPanelID panelID)
         {
             if (m_UIPanels.ContainsKey(panelID))

@@ -11,7 +11,6 @@ public class JumpingState : BaseMovementState
 
     public override void Enter()
     {
-        Debug.Log("Entering Jumping State");
         movementVector.x = 0;
         movementVector.y = playerController.JumpHeight;
     }
@@ -39,7 +38,7 @@ public class JumpingState : BaseMovementState
     {       
         if(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
         {
-            playerController.FixPlayerWallPos();
+            playerController.FixPlayerWallPosition();
             movementVector.x = 0;
         }
         

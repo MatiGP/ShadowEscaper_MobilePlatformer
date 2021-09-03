@@ -10,7 +10,7 @@ public class WallslidingState : BaseMovementState
 
     public override void Enter()
     {
-        playerController.FixPlayerWallPos();
+        playerController.FixPlayerWallPosition();
         Debug.Log("Entering Wallsliding state");
     }
 
@@ -46,7 +46,7 @@ public class WallslidingState : BaseMovementState
 
         if(playerController.IsTouchingGround)
         {
-            playerController.FixPlayerGroundPos();
+            playerController.FixPlayerGroundPosition();
             stateMachine.ChangeState(playerController.idleState);
         }
 

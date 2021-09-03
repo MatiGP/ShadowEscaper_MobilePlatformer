@@ -16,6 +16,7 @@ public enum EPanelID
     EndLevelMenu,
     MainMenu,
     PlayerUI,
-    LoadLevel
+    LoadLevel,
+    Objectives
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IdleState : BaseMovementState
 {
-    bool isRunning;
+    bool IsRunning;
 
     public IdleState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
@@ -27,7 +27,7 @@ public class IdleState : BaseMovementState
 
     public override void HandleInput()
     {
-        isRunning = playerController.Direction != 0;
+        IsRunning = playerController.Direction != 0;
     }
 
     public override void HandleLogic()
@@ -37,7 +37,10 @@ public class IdleState : BaseMovementState
             stateMachine.ChangeState(playerController.jumpingState);
         }
 
-        if (isRunning && ((playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall) || (playerController.Direction > 0.1 && !playerController.IsTouchingRightWall)))
+        bool IsNotTouchingAnyWall = (playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall)
+            || (playerController.Direction > 0.1 && !playerController.IsTouchingRightWall);
+        
+        if (IsRunning && IsNotTouchingAnyWall)
         {
             stateMachine.ChangeState(playerController.runningState);
         }

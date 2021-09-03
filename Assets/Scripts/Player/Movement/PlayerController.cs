@@ -129,22 +129,26 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        stateMachine.currentState.HandleAnimator();       
+        stateMachine.CurrentState.HandleAnimator();       
     }
 
     private void LateUpdate()
     {
-        stateMachine.currentState.HandleInput();
+        stateMachine.CurrentState.HandleInput();
     }
 
     private void FixedUpdate()
     {
-        isTouchingRightWall = Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
-        isTouchingLeftWall = Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
-        isGrounded = Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
-        isTouchingCeiling = Physics2D.OverlapBox(ceilingDetectorTransform.position, ceilingDetectorSize, 0f, ceilingLayer);
+        isTouchingRightWall = 
+            Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
+        isTouchingLeftWall = 
+            Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
+        isGrounded = 
+            Physics2D.BoxCast(groundDetectorTransform.position, groundDetectorSize, 0f, Vector2.down, groundLayer);
+        isTouchingCeiling =
+            Physics2D.BoxCast(ceilingDetectorTransform.position, ceilingDetectorSize, 0f, Vector2.up, ceilingLayer);
 
-        stateMachine.currentState.HandleLogic();
+        stateMachine.CurrentState.HandleLogic();
 
     }
 
@@ -152,8 +156,8 @@ public class PlayerController : MonoBehaviour
     {
         m_UIPlayerControls.OnJoystickMoved += ReadMoveInput;
         m_UIPlayerControls.OnJumpPressed += Jump;
-
         m_PlayerHealth.OnDamageTaken += Die;
+
         //m_UIPlayerControls.OnSlidePressed 
     }
     private void Jump(object sender, EventArgs e)
@@ -209,29 +213,24 @@ public class PlayerController : MonoBehaviour
         stateMachine.ChangeState(deathState);
     }   
 
-    public void FixPlayerGroundPos()
+    public void FixPlayerGroundPosition()
     {
-        Debug.Log("Fixing ground pos");
 
         Collider2D floorDetector = Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
-
+        
         float closestFloorPos = 0f;
 
         if (floorDetector)
         {
-            Debug.Log($"Closest point to ground {floorDetector.ClosestPoint(transform.position)}");
             closestFloorPos = floorDetector.ClosestPoint(transform.position).y;
             transform.position = new Vector3(transform.position.x, m_CapsuleCollider.size.y / 2 + closestFloorPos);
-            Debug.Log($"New pos : {transform.position}");
         }
 
         
     }
 
-    public void FixPlayerWallPos()
+    public void FixPlayerWallPosition()
     {
-        Debug.Log("Fixing wall pos");
-
         Collider2D rightWallDetector = Physics2D.OverlapBox(wallDetectorRight.position, wallDetectorSize, 0f, wallLayer);
         Collider2D leftWallDetector = Physics2D.OverlapBox(wallDetectorLeft.position, wallDetectorSize, 0f, wallLayer);
 
@@ -242,14 +241,12 @@ public class PlayerController : MonoBehaviour
         {
             closestRightWallXPos = rightWallDetector.ClosestPoint(transform.position).x;
             transform.position = new Vector3(closestRightWallXPos - m_CapsuleCollider.size.x / 2, transform.position.y);
-            Debug.Log($"New pos : {transform.position}");
         }
 
         if (leftWallDetector)
         {
             closestLeftWallXPos = leftWallDetector.ClosestPoint(transform.position).x;
             transform.position = new Vector3(closestLeftWallXPos + m_CapsuleCollider.size.x / 2, transform.position.y);
-            Debug.Log($"New pos : {transform.position}");
         }          
     }
 

@@ -353,7 +353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609074643548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 24.775, y: 5.1375003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414609690220085}
@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 5715414609690220084}
   - component: {fileID: 3128115245829179954}
   - component: {fileID: 1391342876049122304}
+  - component: {fileID: 5684360227022895623}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -567,6 +568,18 @@ MonoBehaviour:
   playerCharacterSR: {fileID: 5715414608779804647}
   playerAnimator: {fileID: 5715414608779804648}
   m_PlayerHealth: {fileID: 3128115245829179954}
+--- !u!114 &5684360227022895623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715414609690220081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e6784264f5b84ea54279b86722188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5715414609762825735
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +656,7 @@ GameObject:
   m_Layer: 0
   m_Name: CeilingDetector
   m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
