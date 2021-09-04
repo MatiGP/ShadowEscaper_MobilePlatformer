@@ -14,10 +14,11 @@ public class KeystoneSlotBox : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            KeystoneManager keystoneManager = collision.GetComponent<KeystoneManager>();
+            PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
 
-            if (keystoneManager.UseKey())
+            if (playerInventory.GetItemCount(ECollectableType.Key) > 0)
             {
+                playerInventory.RemoveItemFromInventory(ECollectableType.Key);
                 HasKey = true;
                 spriteRenderer.sprite = activeKeystoneSlot;
                 endLevelPlatform.CheckSlotBoxes();

@@ -11,9 +11,9 @@ public class EndLevelPlatform : MonoBehaviour
     
     public void CheckSlotBoxes()
     {
-        foreach(KeystoneSlotBox slotBox in keystoneSlotBoxes)
+        for(int i = 0; i < keystoneSlotBoxes.Count; i++)
         {
-            if (!slotBox.HasKey)
+            if (!keystoneSlotBoxes[i].HasKey)
             {
                 return;
             }

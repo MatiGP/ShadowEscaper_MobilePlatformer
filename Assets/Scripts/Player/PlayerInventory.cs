@@ -4,24 +4,20 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    private int m_CollectedKeys = 0;
-    public bool HasKey => m_CollectedKeys > 0;
-    public int m_CollectedItems { get; private set; } = 0;
-
-    public void CollectKey()
-    {
-        m_CollectedKeys++;
-    }
-
-    public void CollectItem()
-    {
-        m_CollectedItems++;
-    }
-
-    public void UseKey()
-    {
-        m_CollectedKeys--;
-    }
-
+    private Dictionary<ECollectableType, int> m_OwnedItems = new Dictionary<ECollectableType, int>();
     
+    public void AddItem(ECollectableType item)
+    {
+        m_OwnedItems[item]++;
+    }
+
+    public int GetItemCount(ECollectableType item)
+    {
+        return m_OwnedItems[item];
+    }
+
+    public void RemoveItemFromInventory(ECollectableType item)
+    {
+        m_OwnedItems[item]--;
+    }
 }

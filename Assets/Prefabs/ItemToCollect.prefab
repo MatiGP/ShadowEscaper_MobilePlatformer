@@ -10,14 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6314291023875239896}
   - component: {fileID: 6314291023875239899}
-  - component: {fileID: 6314291023875239897}
   - component: {fileID: 6314291023875239902}
+  - component: {fileID: 8612219648532947170}
   m_Layer: 0
   m_Name: ItemToCollect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6314291023875239896
 Transform:
@@ -83,32 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6314291023875239897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6314291023875239898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6114154b49de29b4a9524b7aec79f933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnItemCollected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: CollectItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!58 &6314291023875239902
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -125,3 +99,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.08
+--- !u!114 &8612219648532947170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314291023875239898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d667c9a78a21144ba7cc40bc3e7db5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollectableItemType: 0

@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 7883491629992712469}
   - component: {fileID: 7883491629992712466}
   - component: {fileID: 2504176399542820584}
+  - component: {fileID: 7454501577549764633}
   m_Layer: 2
   m_Name: KEYSTONE
   m_TagString: Keystone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7883491629992712469
 Transform:
@@ -98,3 +99,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.2
+--- !u!114 &7454501577549764633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883491629992712468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d667c9a78a21144ba7cc40bc3e7db5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollectableItemType: 1

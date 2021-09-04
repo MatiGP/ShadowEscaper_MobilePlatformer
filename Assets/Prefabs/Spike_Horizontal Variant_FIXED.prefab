@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 1269375377382939968, guid: 13585f0efe48494489978c6ba3ac51d3,
         type: 3}
       propertyPath: m_Name
-      value: Spike_Horizontal
+      value: Spike_Horizontal Variant_FIXED
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269375377382939968, guid: 13585f0efe48494489978c6ba3ac51d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1269375377382939998, guid: 13585f0efe48494489978c6ba3ac51d3,
         type: 3}
