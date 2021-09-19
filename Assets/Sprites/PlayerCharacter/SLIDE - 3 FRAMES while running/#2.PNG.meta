@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: a0087d6c7266afe4788e67b85ae5b2b7
+guid: 938a5839a32c6104c9d26bb48cb264fb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1217256636708628694
-    second: LVL 4 Scalone_0
+      213: -2952638408064635999
+    second: '#2_0'
   - first:
-      213: 8841094465258838944
-    second: LVL 4 Scalone_1
-  - first:
-      213: 9141562527361024206
-    second: LVL 4 Scalone_2
+      213: -5839267309170261074
+    second: '#2_1'
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -49,14 +46,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  alignment: 9
+  spritePivot: {x: 0.5, y: 1.3}
+  spritePixelsToUnits: 180
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -69,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -81,7 +78,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -93,7 +90,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -107,43 +104,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LVL 4 Scalone_0
+      name: '#2_0'
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1693
-        width: 1458
-        height: 1436
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2211
+        y: 264
+        width: 902
+        height: 551
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a27de78c98f6b1fe0800000000000000
-      internalID: -1217256636708628694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LVL 4 Scalone_1
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 249
-        width: 1155
-        height: 1209
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0abdc63f290e1ba70800000000000000
-      internalID: 8841094465258838944
+      spriteID: 1abe129f20f1607d0800000000000000
+      internalID: -2952638408064635999
       vertices: []
       indices: 
       edges: []

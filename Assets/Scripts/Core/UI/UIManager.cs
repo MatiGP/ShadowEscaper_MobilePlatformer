@@ -21,6 +21,7 @@ namespace Code.UI
 
         private float m_ScreenAspectRatio = 1.777f;
 
+        private GlobalUILayer m_GlobalUILayer = new GlobalUILayer();
         public void Initialize()
         {
             if (Instance == null)
@@ -52,12 +53,18 @@ namespace Code.UI
             loadedPanel.SetPanelID(panelID);
 
             loadedPanel.OnPanelClose += LoadedPanel_OnPanelClose;
+            
+            m_UIPanels.Add(panelID, loadedPanel);
+            
+            ReLayerPanels();
 
             if (loadedPanel != null)
             {
-                m_UIPanels.Add(panelID, loadedPanel);
+                
                 return loadedPanel;
             }
+            
+            
 
             return null;
         }
@@ -67,6 +74,31 @@ namespace Code.UI
             RectTransform rectTransform = loadedPanel.GetComponent<RectTransform>();
             float newHeight = rectTransform.sizeDelta.x * m_ScreenAspectRatio;
             rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, newHeight);
+        }
+
+        private void ReLayerPanels()
+        {
+            List<EPanelID> panelOrderList = m_GlobalUILayer.PanelOrder;
+            int panelsCount = panelOrderList.Count;
+
+            for(int i = 0; i < panelsCount; i++)
+            {
+                if (m_UIPanels.ContainsKey(panelOrderList[i]))
+                {
+                    
+                    Canvas panelCanvas = m_UIPanels[panelOrderList[i]].GetComponent<Canvas>();
+
+                    panelCanvas.overrideSorting = true;
+                    panelCanvas.sortingLayerName = "UI";
+                    panelCanvas.sortingOrder = i;
+
+                    RectTransform rect = m_UIPanels[panelOrderList[i]].GetComponent<RectTransform>();
+                    Vector3 localPos = rect.localPosition;
+                    localPos.z = panelsCount + i;
+                    rect.localPosition = localPos;
+                }
+            }
+
         }
 
         private void LoadedPanel_OnPanelClose(object sender, EPanelID e)

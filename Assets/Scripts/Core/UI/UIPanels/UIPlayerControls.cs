@@ -10,11 +10,13 @@ namespace Code.UI.Panels
     {
         public event EventHandler<float> OnJoystickMoved;
         public event EventHandler OnJumpPressed;
+        public event EventHandler OnJumpInterupted;
         public event EventHandler OnSlidePressed;
+        public event EventHandler OnSlideInterupted;
                
         [SerializeField] private Joystick m_Joystick = null;
-        [SerializeField] private Button m_JumpButton = null;
-        [SerializeField] private Button m_SlideButton = null;
+        [SerializeField] private UIButton m_JumpButton = null;
+        [SerializeField] private UIButton m_SlideButton = null;
         [SerializeField] private Button m_SettingsButton = null;
 
         public override void Initialize()
@@ -24,9 +26,15 @@ namespace Code.UI.Panels
 
         public override void BindEvents()
         {
-            m_JumpButton.onClick.AddListener(InvokeJumping);
-            m_SlideButton.onClick.AddListener(InvokeSliding);
+            
+            m_SlideButton.OnButtonUp.AddListener(CancelSlide);
+            m_SlideButton.OnButtonDown.AddListener(InvokeSliding);
+
             m_SettingsButton.onClick.AddListener(CreateSettingsPanel);
+
+            m_JumpButton.OnButtonUp.AddListener(CancelJump);
+            m_JumpButton.OnButtonDown.AddListener(InvokeJumping);
+
 
             m_Joystick.OnHorizontalJoystickMove += OnHorizontalJoystickMove;
         }
@@ -45,6 +53,20 @@ namespace Code.UI.Panels
         private void InvokeSliding()
         {
             OnSlidePressed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void CancelJump()
+        {
+            Debug.LogWarning("Canceling jump");
+
+            OnJumpInterupted?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void CancelSlide()
+        {
+            Debug.LogWarning("Canceling slide");
+
+            OnSlideInterupted?.Invoke(this, EventArgs.Empty);
         }
 
         private void CreateSettingsPanel()

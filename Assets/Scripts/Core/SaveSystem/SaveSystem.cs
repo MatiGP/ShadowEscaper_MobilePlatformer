@@ -9,6 +9,8 @@ public class SaveSystem
 
     private SaveData m_CurrentSave = null;
 
+    private const string SAVE_NAME = "saveData";
+
     public void Initialize()
     {
         TryReadingJSONSave();
@@ -18,17 +20,17 @@ public class SaveSystem
     {
         try
         {
-            m_JsonSave = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
+            m_JsonSave = File.ReadAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json");
         }
         catch
         {
             // Launching game for the very first time.
             string saveData = JsonUtility.ToJson(new SaveData());
-            File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
+            File.WriteAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json", saveData);
         }
         finally
         {
-            m_JsonSave = File.ReadAllText(Application.persistentDataPath + "/completedLevelsData.json");
+            m_JsonSave = File.ReadAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json");
             m_CurrentSave = JsonUtility.FromJson<SaveData>(m_JsonSave);
         }
     }
@@ -36,7 +38,7 @@ public class SaveSystem
     public void Save()
     {
         string saveData = JsonUtility.ToJson(m_CurrentSave);
-        File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
+        File.WriteAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json", saveData);
     }
 
     public void CompleteLevel(int levelIndex, int pointsObtained)
@@ -78,7 +80,7 @@ public class SaveSystem
         m_CurrentSave.m_Color = color;
 
         string saveData = JsonUtility.ToJson(m_CurrentSave);
-        File.WriteAllText(Application.persistentDataPath + "/completedLevelsData.json", saveData);
+        File.WriteAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json", saveData);
     } 
 
     public void SaveSoundFXVolume(float v)
@@ -103,8 +105,8 @@ public class SaveData
     public int[] m_PointsGained = new int[25];
     public string m_Color = "#FFFFFF";
     public int m_FrameRate = 30;
-    public float m_SoundFXVolume = 1;
-    public float m_MusicVolume = 1;   
+    public float m_SoundFXVolume = 1f;
+    public float m_MusicVolume = 1f;   
 }
 
 

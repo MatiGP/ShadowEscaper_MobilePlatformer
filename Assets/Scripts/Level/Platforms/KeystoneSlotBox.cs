@@ -19,8 +19,11 @@ public class KeystoneSlotBox : MonoBehaviour
             if (playerInventory.GetItemCount(ECollectableType.Key) > 0)
             {
                 playerInventory.RemoveItemFromInventory(ECollectableType.Key);
+                
                 HasKey = true;
+                
                 spriteRenderer.sprite = activeKeystoneSlot;
+                
                 endLevelPlatform.CheckSlotBoxes();
             }
         }

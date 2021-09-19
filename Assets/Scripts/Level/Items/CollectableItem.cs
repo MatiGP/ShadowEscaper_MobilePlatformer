@@ -13,6 +13,8 @@ public class CollectableItem : MonoBehaviour
             PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
             
             playerInventory.AddItem(m_CollectableItemType);
+
+            gameObject.SetActive(false);
         }
     }
 }

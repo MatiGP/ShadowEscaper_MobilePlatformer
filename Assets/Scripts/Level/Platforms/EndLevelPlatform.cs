@@ -5,8 +5,6 @@ using UnityEngine;
 public class EndLevelPlatform : MonoBehaviour
 {
     [SerializeField] List<KeystoneSlotBox> keystoneSlotBoxes;
-    [SerializeField] SpriteRenderer padSpriteRenderer;
-    [SerializeField] Sprite activePadSprite;
     [SerializeField] EndPlatform platform;
     
     public void CheckSlotBoxes()
@@ -19,9 +17,6 @@ public class EndLevelPlatform : MonoBehaviour
             }
         }
 
-        padSpriteRenderer.sprite = activePadSprite;
         platform.TurnOnEndLevelPlatform();
-
-
     }
 }

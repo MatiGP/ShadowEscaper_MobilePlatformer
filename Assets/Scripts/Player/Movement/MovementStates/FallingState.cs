@@ -42,11 +42,11 @@ public class FallingState : BaseMovementState
 
             if (playerController.Direction == 0)
             {
-                stateMachine.ChangeState(playerController.idleState);
+                stateMachine.ChangeState(playerController.IdleState);
             }
             else
             {
-                stateMachine.ChangeState(playerController.runningState);
+                stateMachine.ChangeState(playerController.RunningState);
             }
 
         }
@@ -55,7 +55,7 @@ public class FallingState : BaseMovementState
         {
             playerController.FixPlayerWallPosition();
             movementVector.x = 0;
-            stateMachine.ChangeState(playerController.wallslidingState);
+            stateMachine.ChangeState(playerController.WallSlidingState);
         }
     }
 }

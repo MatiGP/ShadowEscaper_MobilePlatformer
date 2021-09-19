@@ -7,7 +7,7 @@ using Code.UI;
 public class GameState : BaseMenuState
 {
     private UIPlayerControls m_PlayerControlPanel = null;
-    
+    private UIObjectives m_Objectives = null;
 
     public GameState() : base(EMenuState.Game)
     {

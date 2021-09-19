@@ -34,7 +34,7 @@ public class IdleState : BaseMovementState
     {
         if (playerController.IsJumping)
         {
-            stateMachine.ChangeState(playerController.jumpingState);
+            stateMachine.ChangeState(playerController.JumpingState);
         }
 
         bool IsNotTouchingAnyWall = (playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall)
@@ -42,7 +42,12 @@ public class IdleState : BaseMovementState
         
         if (IsRunning && IsNotTouchingAnyWall)
         {
-            stateMachine.ChangeState(playerController.runningState);
+            stateMachine.ChangeState(playerController.RunningState);
+        }
+
+        if (playerController.IsSliding)
+        {
+            stateMachine.ChangeState(playerController.GroundSlidingState);
         }
     }
 }

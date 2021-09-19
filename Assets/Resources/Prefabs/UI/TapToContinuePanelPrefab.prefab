@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 5830749977144949711}
   - component: {fileID: 6007603923318735867}
   - component: {fileID: 6068833340880105952}
+  - component: {fileID: 2171020537384509393}
   m_Layer: 5
   m_Name: TapToContinuePanelPrefab
   m_TagString: Untagged
@@ -245,6 +246,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TapToStart: {fileID: 6758943393999493555}
+--- !u!223 &2171020537384509393
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991900218994952353}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &8232344644561768099
 GameObject:
   m_ObjectHideFlags: 0

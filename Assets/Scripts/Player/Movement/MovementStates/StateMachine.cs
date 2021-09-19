@@ -14,9 +14,13 @@ public class StateMachine
 
     public void ChangeState(BaseMovementState state)
     {
+        Debug.Log("Exiting : " + CurrentState.ToString());
+
         CurrentState.Exit();
 
         CurrentState = state;
         CurrentState.Enter();
+
+        Debug.Log("Entering : " + CurrentState.ToString());
     }
 }

@@ -32,6 +32,8 @@ public class JumpingState : BaseMovementState
         movementVector.y -= playerController.Gravity * Time.deltaTime;
 
         playerTransform.position += movementVector * Time.deltaTime;
+
+        playerController.Flip();
     }
 
     public override void HandleLogic()
@@ -44,20 +46,20 @@ public class JumpingState : BaseMovementState
         
         if (playerController.IsTouchingCeiling)
         {
-            stateMachine.ChangeState(playerController.fallingState);
+            stateMachine.ChangeState(playerController.FallingState);
         }
       
         if(movementVector.y <= 0)
         {
             playerController.SetNormalFallMultiplier();
-            stateMachine.ChangeState(playerController.fallingState);
+            stateMachine.ChangeState(playerController.FallingState);
         }
 
         if((movementVector.y > 0) && !playerController.IsJumping)
         {
             playerController.SetQuickFallMultiplier();
             playerController.SetJumpRemainingForce(movementVector.y);            
-            stateMachine.ChangeState(playerController.fallingState);
+            stateMachine.ChangeState(playerController.FallingState);
         }
         
     }

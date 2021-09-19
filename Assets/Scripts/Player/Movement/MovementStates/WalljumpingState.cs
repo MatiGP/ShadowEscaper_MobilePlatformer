@@ -48,20 +48,20 @@ public class WalljumpingState : BaseMovementState
         if (playerController.IsTouchingCeiling)
         {
             playerController.ClearDirection();
-            stateMachine.ChangeState(playerController.fallingState);
+            stateMachine.ChangeState(playerController.FallingState);
         }       
 
         if(movementVector.y < 0)
         {
             playerController.ClearDirection();
-            stateMachine.ChangeState(playerController.fallingState);
+            stateMachine.ChangeState(playerController.FallingState);
         }
 
         if (currentWallJumpDuration <= playerController.WallJumpDuration) return;
 
         if(!playerController.IsTouchingGround && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
-            stateMachine.ChangeState(playerController.wallslidingState);
+            stateMachine.ChangeState(playerController.WallSlidingState);
         }
     } 
 }

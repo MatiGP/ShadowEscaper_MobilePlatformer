@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2213705121323045421}
   - component: {fileID: 4548644925030639887}
   - component: {fileID: 7942848926334949259}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 4322571786636145827}
   - component: {fileID: 1631753912137977645}
   - component: {fileID: 5327618284728525492}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7432065588091150405}
   - component: {fileID: 6485278390900603956}
-  m_Layer: 11
+  - component: {fileID: 1699991245168289080}
+  - component: {fileID: 2005348516474026104}
+  m_Layer: 5
   m_Name: PlayerUIPanelPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,14 +328,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Joystick: {fileID: 4175621187355098628}
-  m_JumpButton: {fileID: 8910116389014655970}
-  m_SlideButton: {fileID: 7314649047126807432}
+  m_JumpButton: {fileID: 972982561974484153}
+  m_SlideButton: {fileID: 8771961212075062218}
   m_SettingsButton: {fileID: 4322571786636145827}
-  m_CollectedKeysIcon:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!223 &1699991245168289080
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925447518362956674}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &2005348516474026104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925447518362956674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &7314649046618153973
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +380,7 @@ GameObject:
   - component: {fileID: 7314649046618153978}
   - component: {fileID: 7314649046618153976}
   - component: {fileID: 7314649046618153979}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,8 +536,8 @@ GameObject:
   - component: {fileID: 7314649047126807434}
   - component: {fileID: 7314649047126807438}
   - component: {fileID: 7314649047126807433}
-  - component: {fileID: 7314649047126807432}
-  m_Layer: 11
+  - component: {fileID: 8771961212075062218}
+  m_Layer: 5
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +600,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7314649047126807432
+--- !u!114 &8771961212075062218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,7 +609,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7314649047126807429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 717918ba20b9e9c4489c035b5fe66d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -608,6 +643,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  m_OnButtonUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7314649047274601679
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,8 +657,8 @@ GameObject:
   - component: {fileID: 7314649047274601676}
   - component: {fileID: 7314649047274601779}
   - component: {fileID: 7314649047274601778}
-  - component: {fileID: 8910116389014655970}
-  m_Layer: 11
+  - component: {fileID: 972982561974484153}
+  m_Layer: 5
   m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +722,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8910116389014655970
+--- !u!114 &972982561974484153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -693,7 +731,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7314649047274601679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 717918ba20b9e9c4489c035b5fe66d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -725,6 +763,9 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 7314649047274601778}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnButtonUpEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &5228959330850177029
@@ -792,7 +833,7 @@ PrefabInstance:
     - target: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043271, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
@@ -817,7 +858,7 @@ PrefabInstance:
     - target: {fileID: 8170153791961219457, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
@@ -872,7 +913,7 @@ PrefabInstance:
     - target: {fileID: 8170153792821263259, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}

@@ -42,20 +42,27 @@ public class RunningState : BaseMovementState
     {
         if (isRunning && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
-            stateMachine.ChangeState(playerController.idleState);
+            stateMachine.ChangeState(playerController.IdleState);
         }
         else if (!isRunning)
         {
-            stateMachine.ChangeState(playerController.idleState);
-        }     
+            stateMachine.ChangeState(playerController.IdleState);
+        }
+
+        if (playerController.IsSliding)
+        {
+            stateMachine.ChangeState(playerController.GroundSlidingState);
+        }
 
         if (playerController.IsJumping)
         {
-            stateMachine.ChangeState(playerController.jumpingState);
+            stateMachine.ChangeState(playerController.JumpingState);
         }
         else if (!playerController.IsTouchingGround)
         {
-            stateMachine.ChangeState(playerController.fallingState);
+            stateMachine.ChangeState(playerController.FallingState);
         }
+
+
     }
 }

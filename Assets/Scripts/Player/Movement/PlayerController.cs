@@ -19,79 +19,102 @@ public class PlayerController : MonoBehaviour
     public float RemainingJumpForce { get => remainingJumpForce; }
     public float WallJumpDuration { get => wallJumpDuration; }
 
+    public float SlideSpeed { get => m_SlideSpeed; }
+    public float SlideSpeedFallOff { get => m_SlideSpeedFallOff; }  
+    public float SlideCollisionOffset { get => m_SlideCollisionOffset; }
+
     public bool IsTouchingGround { get => isGrounded; }
     public bool IsJumping { get => isJumping; }
     public bool IsTouchingRightWall { get => isTouchingRightWall; }
     public bool IsTouchingLeftWall { get => isTouchingLeftWall; }
     public bool IsFacingRight { get => facingRight; }
     public bool IsTouchingCeiling { get => isTouchingCeiling; }
+    public bool IsSliding { get => m_IsSliding; }
+    public bool IsTouchingWallWhileSliding { get => m_IsTouchingWallWhileSliding; }
 
-    [SerializeField] CapsuleCollider2D m_CapsuleCollider;
+    public Vector2 SlideCollisionSize { get => m_SlideCollisionSize; }
+    public Vector2 NormalCollisionSize { get => m_NormalCollisionSize; }
+    public Vector2 SlideDetectorSize { get => m_SlideDetectorSize; }
+
+    [SerializeField] private CapsuleCollider2D m_CapsuleCollider;
+    [SerializeField] private Vector2 m_NormalCollisionSize = new Vector2(1.53f, 4f);
     [Header("Ground Movement")]
-    [SerializeField] float footSpeed;
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] Transform groundDetectorTransform;
-    [SerializeField] Vector2 groundDetectorSize;
-    [SerializeField] float groundDetectionLineLength;
-    [SerializeField] float jumpOffWallForce;
+    [SerializeField] private float footSpeed;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundDetectorTransform;
+    [SerializeField] private Vector2 groundDetectorSize;
+    [SerializeField] private float groundDetectionLineLength;
+    [Header("Sliding")]
+    [SerializeField] private float m_SlideSpeed = 36f;
+    [SerializeField] private float m_SlideSpeedFallOff = 1f;
+    [SerializeField] private float m_SlideCooldown = 2f;
+    [SerializeField] private Vector2 m_SlideCollisionSize = new Vector2(4f, 1.53f);
+    [SerializeField] private float m_SlideCollisionOffset = -1.6f;
+    [SerializeField] private Vector2 m_SlideDetectorSize;
+    [SerializeField] private Transform m_SlideDetectorPosition;
+
     [Space(1f)]
     [Header("Wall Detectors")]
-    [SerializeField] Transform wallDetectorRight;
-    [SerializeField] Transform wallDetectorLeft;
-    [SerializeField] float wallDetectorLineLength;
-    [SerializeField] Vector2 wallDetectorSize;
-    [SerializeField] LayerMask wallLayer;
+    [SerializeField] private Transform wallDetectorRight;
+    [SerializeField] private Transform wallDetectorLeft;
+    [SerializeField] private float wallDetectorLineLength;
+    [SerializeField] private Vector2 wallDetectorSize;
+    [SerializeField] private LayerMask wallLayer;
     [Space(1f)]
     [Header("Vertical Movement")]
-    [SerializeField] float jumpHeight;
-    [SerializeField] float timeToJumpApex;
-    [SerializeField] float normalJumpMultiplier;
-    [SerializeField] float lowJumpMultiplier;
-    [SerializeField] float maxFallSpeed;
-    [SerializeField] float wallslideSpeed;
-    [SerializeField] float wallJumpHeight;
+    [SerializeField] private float jumpHeight;
+    [SerializeField] private float timeToJumpApex;
+    [SerializeField] private float normalJumpMultiplier;
+    [SerializeField] private float lowJumpMultiplier;
+    [SerializeField] private float maxFallSpeed;
+    [SerializeField] private float wallslideSpeed;
+    [SerializeField] private float wallJumpHeight;
+    [SerializeField] private float jumpOffWallForce;
     
     [Range(0.1f, 2f)]
-    [SerializeField] float wallJumpDuration;
+    [SerializeField] private float wallJumpDuration;
 
     [Space(1f)]
     [Header("Ceiling Detection")]
-    [SerializeField] Vector2 ceilingDetectorSize;
-    [SerializeField] Transform ceilingDetectorTransform;
-    [SerializeField] LayerMask ceilingLayer;
+    [SerializeField] private Vector2 ceilingDetectorSize;
+    [SerializeField] private Transform ceilingDetectorTransform;
+    [SerializeField] private LayerMask ceilingLayer;
     [Space(1f)]
     [Header("Player Model")]
-    [SerializeField] SpriteRenderer playerCharacterSR;
-    [SerializeField] Animator playerAnimator;
+    [SerializeField] private SpriteRenderer playerCharacterSR;
+    [SerializeField] private Animator playerAnimator;
 
     [Header("Health")]
     [SerializeField] private PlayerHealth m_PlayerHealth = null;
 
-    float gravity;
-    float wallJumpGravity;
+    private float gravity;
+    private float wallJumpGravity;
 
-    float direction;
+    private float direction;
 
-    float fallMultiplier;
-    float remainingJumpForce;  
+    private float fallMultiplier;
+    private float remainingJumpForce;
+    private float slideCooldown;
 
-    bool isGrounded;
-    bool isJumping;
-    bool isTouchingRightWall;
-    bool isTouchingLeftWall;
-    bool facingRight;
-    bool isTouchingCeiling;
+    private bool isGrounded;
+    private bool isJumping;
+    private bool isTouchingRightWall;
+    private bool isTouchingLeftWall;
+    private bool facingRight;
+    private bool isTouchingCeiling;
+    private bool m_IsSliding;
+    private bool m_IsTouchingWallWhileSliding;
 
     private StateMachine stateMachine;
 
-    public IdleState idleState;
-    public RunningState runningState;
-    public JumpingState jumpingState;
-    public FallingState fallingState;
-    public GroundslidingState groundslidingState;
-    public WallslidingState wallslidingState;
-    public WalljumpingState walljumpingState;
-    public DeathState deathState;
+    public IdleState IdleState { get; private set; }
+    public RunningState RunningState { get; private set; }
+    public JumpingState JumpingState { get; private set; }
+    public FallingState FallingState { get; private set; }
+    public GroundslidingState GroundSlidingState { get; private set; }
+    public WallslidingState WallSlidingState { get; private set; }
+    public WalljumpingState WallJumpingState { get; private set; }
+    public DeathState DeathState { get; private set; }
 
     private UIPlayerControls m_UIPlayerControls = null;
 
@@ -110,16 +133,16 @@ public class PlayerController : MonoBehaviour
     {
         stateMachine = new StateMachine();
 
-        idleState = new IdleState(this, stateMachine, playerAnimator);
-        runningState = new RunningState(this, stateMachine, playerAnimator);
-        jumpingState = new JumpingState(this, stateMachine, playerAnimator);
-        fallingState = new FallingState(this, stateMachine, playerAnimator);
-        groundslidingState = new GroundslidingState(this, stateMachine, playerAnimator);
-        wallslidingState = new WallslidingState(this, stateMachine, playerAnimator);
-        walljumpingState = new WalljumpingState(this, stateMachine, playerAnimator);
-        deathState = new DeathState(this, stateMachine, playerAnimator);
+        IdleState = new IdleState(this, stateMachine, playerAnimator);
+        RunningState = new RunningState(this, stateMachine, playerAnimator);
+        JumpingState = new JumpingState(this, stateMachine, playerAnimator);
+        FallingState = new FallingState(this, stateMachine, playerAnimator);
+        GroundSlidingState = new GroundslidingState(this, stateMachine, playerAnimator);
+        WallSlidingState = new WallslidingState(this, stateMachine, playerAnimator);
+        WallJumpingState = new WalljumpingState(this, stateMachine, playerAnimator);
+        DeathState = new DeathState(this, stateMachine, playerAnimator);
 
-        stateMachine.Initialize(idleState);
+        stateMachine.Initialize(IdleState);
     }
 
     void Start()
@@ -129,7 +152,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        stateMachine.CurrentState.HandleAnimator();       
+        stateMachine.CurrentState.HandleAnimator();
+
+        TickSlideCooldown();
     }
 
     private void LateUpdate()
@@ -140,13 +165,22 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         isTouchingRightWall = 
-            Physics2D.BoxCast(wallDetectorRight.position, wallDetectorSize, 0f, Vector2.right, 0f, wallLayer);
+            Physics2D.OverlapBox(wallDetectorRight.position, wallDetectorSize, 0f, wallLayer);
+        
         isTouchingLeftWall = 
-            Physics2D.BoxCast(wallDetectorLeft.position, wallDetectorSize, 0f, Vector2.left, 0f, wallLayer);
+            Physics2D.OverlapBox(wallDetectorLeft.position, wallDetectorSize, 0f, wallLayer);
+        
         isGrounded = 
-            Physics2D.BoxCast(groundDetectorTransform.position, groundDetectorSize, 0f, Vector2.down, groundLayer);
+            Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
+        
         isTouchingCeiling =
-            Physics2D.BoxCast(ceilingDetectorTransform.position, ceilingDetectorSize, 0f, Vector2.up, ceilingLayer);
+            Physics2D.OverlapBox(ceilingDetectorTransform.position, ceilingDetectorSize, 0f, ceilingLayer);
+
+        if (m_IsSliding)
+        {
+            m_IsTouchingWallWhileSliding =
+                Physics2D.OverlapBox(m_SlideDetectorPosition.position, m_SlideDetectorSize, 0f, wallLayer);
+        }
 
         stateMachine.CurrentState.HandleLogic();
 
@@ -156,10 +190,33 @@ public class PlayerController : MonoBehaviour
     {
         m_UIPlayerControls.OnJoystickMoved += ReadMoveInput;
         m_UIPlayerControls.OnJumpPressed += Jump;
+        m_UIPlayerControls.OnJumpInterupted += HandleJumpInterupted;
         m_PlayerHealth.OnDamageTaken += Die;
-
-        //m_UIPlayerControls.OnSlidePressed 
+        m_UIPlayerControls.OnSlidePressed += GroundSlide;
+        m_UIPlayerControls.OnSlideInterupted += HandleSlideInterupted;
     }
+
+    private void HandleSlideInterupted(object sender, EventArgs e)
+    {
+        if (m_IsSliding)
+        {
+            m_IsSliding = false;
+        }       
+    }
+
+    private void HandleJumpInterupted(object sender, EventArgs e)
+    {
+        InterruptJumping();
+    }
+
+    private void GroundSlide(object sender, EventArgs e)
+    {
+        if(slideCooldown <= 0)
+        {
+            m_IsSliding = true;
+        }        
+    }
+
     private void Jump(object sender, EventArgs e)
     {
         if (!isJumping)
@@ -171,6 +228,11 @@ public class PlayerController : MonoBehaviour
     public void InterruptJumping()
     {       
         isJumping = false;
+    }
+
+    public void InterruptSliding()
+    {
+        m_IsSliding = false;
     }
 
     public void ReadMoveInput(object sender, float newDirection)
@@ -210,7 +272,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die(object sender, EventArgs e)
     {
-        stateMachine.ChangeState(deathState);
+        stateMachine.ChangeState(DeathState);
     }   
 
     public void FixPlayerGroundPosition()
@@ -255,48 +317,6 @@ public class PlayerController : MonoBehaviour
         gravity = (2 * jumpHeight) / (timeToJumpApex * timeToJumpApex);
         wallJumpGravity = (2 * wallJumpHeight) / (wallJumpDuration * wallJumpDuration);
     }
-    #region Debugs
-    public void ModifySpeed(float val)
-    {
-        footSpeed = val;
-    }
-
-    public void ModifyJumpHeight(float val)
-    {
-        jumpHeight = val;
-        CalculateGravity();
-    }
-
-    public void ModifyTimeToJumpApex(float val)
-    {
-        timeToJumpApex = val;
-        CalculateGravity();
-    }
-
-    public void ModifyNormalJumpMulti(float val)
-    {
-        normalJumpMultiplier = val;
-    }
-
-    public void ModifyLowJumpMulti(float val)
-    {
-        lowJumpMultiplier = val;
-    }
-
-    public void ModifyWallJumpOffForce(float val)
-    {
-        jumpOffWallForce = val;
-    }
-
-    public void ModifyWalljumpHeight(float val)
-    {
-        wallJumpHeight = val;
-    }
-
-    public void ModifyWallSlideSpeed(float val)
-    {
-        wallslideSpeed = val;
-    }
 
     public void SetNormalFallMultiplier()
     {
@@ -312,7 +332,6 @@ public class PlayerController : MonoBehaviour
     {
         remainingJumpForce = val;
     }
-#endregion
     public void FlipDirection()
     {
         if (isTouchingLeftWall)
@@ -325,6 +344,42 @@ public class PlayerController : MonoBehaviour
 
         Flip();
     }
+    
+    public void ModifySlidingDetectorPosition()
+    {
+        Vector3 slideDetectorPos = m_SlideDetectorPosition.localPosition;
+        slideDetectorPos.x *= facingRight ? 1 : -1;
+
+        m_SlideDetectorPosition.localPosition = slideDetectorPos;
+    }
+
+    public void SetSlidingCollisionSize()
+    {
+        m_CapsuleCollider.size = m_SlideCollisionSize;
+        m_CapsuleCollider.offset = new Vector2(m_CapsuleCollider.offset.x, m_SlideCollisionOffset);
+        m_CapsuleCollider.direction = CapsuleDirection2D.Horizontal;
+    }
+
+    public void SetNormalCollisionSize()
+    {
+        m_CapsuleCollider.size = m_NormalCollisionSize;
+        m_CapsuleCollider.offset = Vector2.zero;
+        m_CapsuleCollider.direction = CapsuleDirection2D.Vertical;
+    }
+
+    private void TickSlideCooldown()
+    {
+        if(slideCooldown > 0)
+        {
+            slideCooldown -= Time.deltaTime;
+        }     
+    }
+
+    public void SetSlideCooldown()
+    {
+        slideCooldown = m_SlideCooldown;
+    }
+
 
     #if UNITY_EDITOR
     private void OnDrawGizmos()
@@ -336,7 +391,9 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallDetectorLeft.position, wallDetectorSize);
         Gizmos.color = Color.blue;
-        Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);       
+        Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawCube(m_SlideDetectorPosition.position, m_SlideDetectorSize);
         
     }
     #endif

@@ -11,6 +11,7 @@ namespace Code.StateMachine
         private UIBackground m_BackgroundPanel = null;
         private UIMainMenuPanel m_MainMenuPanel = null;
         private UILevelSelectPanel m_LevelSelectPanel = null;
+        private UISettings m_SettingsPanel = null;
 
         public MainMenuState() : base(EMenuState.MainMenu)
         {
@@ -48,10 +49,15 @@ namespace Code.StateMachine
 
         private void BindEvents()
         {
-            m_MainMenuPanel.OnPlayPressed += HandlePlayPressed;          
+            m_MainMenuPanel.OnPlayPressed += HandlePlayPressed;
+            m_MainMenuPanel.OnSettingsPressed += HandleSettingsPressed;
         }
 
-       
+        private void HandleSettingsPressed(object sender, System.EventArgs e)
+        {
+            m_SettingsPanel = UIManager.Instance.CreatePanel(EPanelID.Settings) as UISettings;
+            m_SettingsPanel.Initialize();
+        }
 
         private void HandlePlayPressed(object sender, System.EventArgs e)
         {
