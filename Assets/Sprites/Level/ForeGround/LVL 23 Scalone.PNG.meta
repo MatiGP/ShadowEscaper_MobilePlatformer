@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 6669994561445247129
     second: LVL 23 Scalone_2
+  - first:
+      213: -8057790514910060359
+    second: LVL 23 Scalone_3
+  - first:
+      213: 5209923924203733079
+    second: LVL 23 Scalone_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -69,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -81,7 +87,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -93,7 +99,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -107,13 +113,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LVL 23 Scalone_0
+      name: LVL 23 Scalone_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 1986
-        width: 6
-        height: 6
+        y: 547
+        width: 3885
+        height: 839
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9983bb8e6b4909c50800000000000000
+      internalID: 6669994561445247129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 23 Scalone_0
+      rect:
+        serializedVersion: 2
+        x: 4002
+        y: 0
+        width: 1129
+        height: 1992
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,48 +150,6 @@ TextureImporter:
       bones: []
       spriteID: bdd525ad1a4ac6f40800000000000000
       internalID: 5723130241540578779
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LVL 23 Scalone_1
-      rect:
-        serializedVersion: 2
-        x: 5613
-        y: 0
-        width: 1141
-        height: 1992
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65ae4a700aa341090800000000000000
-      internalID: -8064756573716288938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LVL 23 Scalone_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 547
-        width: 3885
-        height: 839
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9983bb8e6b4909c50800000000000000
-      internalID: 6669994561445247129
       vertices: []
       indices: 
       edges: []

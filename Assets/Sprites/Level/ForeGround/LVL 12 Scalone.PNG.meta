@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: -4303852921423899472
     second: LVL 12 Scalone_5
+  - first:
+      213: -8844620483602818396
+    second: LVL 12 Scalone_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -78,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -90,7 +93,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -102,7 +105,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -120,9 +123,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2134
-        width: 797
-        height: 1772
+        y: 1458
+        width: 801
+        height: 1780
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +143,10 @@ TextureImporter:
       name: LVL 12 Scalone_1
       rect:
         serializedVersion: 2
-        x: 1133
-        y: 2134
-        width: 463
-        height: 1447
+        x: 1124
+        y: 1458
+        width: 480
+        height: 1461
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,34 +161,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LVL 12 Scalone_2
-      rect:
-        serializedVersion: 2
-        x: 1892
-        y: 2136
-        width: 452
-        height: 1059
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d7096916a7fe9b60800000000000000
-      internalID: 7754907901141518292
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: LVL 12 Scalone_3
       rect:
         serializedVersion: 2
-        x: 3321
-        y: 2136
-        width: 397
-        height: 663
+        x: 777
+        y: 0
+        width: 711
+        height: 1363
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +185,10 @@ TextureImporter:
       name: LVL 12 Scalone_4
       rect:
         serializedVersion: 2
-        x: 4753
-        y: 2655
-        width: 13
-        height: 9
+        x: 263
+        y: 693
+        width: 405
+        height: 676
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,10 +206,10 @@ TextureImporter:
       name: LVL 12 Scalone_5
       rect:
         serializedVersion: 2
-        x: 5078
-        y: 2136
-        width: 710
-        height: 1357
+        x: 453
+        y: 511
+        width: 24
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,6 +219,27 @@ TextureImporter:
       bones: []
       spriteID: 0b4500d1294a544c0800000000000000
       internalID: -4303852921423899472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LVL 12 Scalone_2
+      rect:
+        serializedVersion: 2
+        x: 1883
+        y: 1464
+        width: 459
+        height: 1066
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aad5bde788914580800000000000000
+      internalID: -8844620483602818396
       vertices: []
       indices: 
       edges: []
