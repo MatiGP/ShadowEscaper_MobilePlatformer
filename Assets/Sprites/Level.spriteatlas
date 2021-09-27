@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1416f8186ad66fc4da63681d99ea3297, type: 3}
-    totalSpriteSurfaceArea: 5612873
+    totalSpriteSurfaceArea: 6172761
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -69,7 +69,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 37fd95c398d86814fb4c91fe38024f10, type: 3}
   - {fileID: 268703328296815877, guid: e4140c759aea96641b7b92390f711897, type: 3}
   - {fileID: 6845610321815561593, guid: e4140c759aea96641b7b92390f711897, type: 3}
+  - {fileID: -8972378424505223396, guid: 5367d7c518cae6f41afaf9ffbb74c3a4, type: 3}
+  - {fileID: -4303852921423899472, guid: 5367d7c518cae6f41afaf9ffbb74c3a4, type: 3}
   - {fileID: 7754907901141518292, guid: 5367d7c518cae6f41afaf9ffbb74c3a4, type: 3}
+  - {fileID: -742251756745538093, guid: 5367d7c518cae6f41afaf9ffbb74c3a4, type: 3}
+  - {fileID: 8582536851397407251, guid: 5367d7c518cae6f41afaf9ffbb74c3a4, type: 3}
+  - {fileID: -1249933313291065759, guid: 5367d7c518cae6f41afaf9ffbb74c3a4, type: 3}
   - {fileID: 21300000, guid: 5a2b60e6a9fe1ec4d877a3dfa783dabe, type: 3}
   - {fileID: 21300000, guid: 261cb257401284a43b7f4bb7237a8793, type: 3}
   - {fileID: 21300000, guid: 3f902477ae6fbd244851c987348b9602, type: 3}
@@ -89,7 +94,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9c6572c95f2fcf545875c09866f02db8, type: 3}
   - {fileID: 6669994561445247129, guid: 6225001af918ee44ba1b3f497feefc5a, type: 3}
   - {fileID: 5723130241540578779, guid: 6225001af918ee44ba1b3f497feefc5a, type: 3}
-  - {fileID: -8064756573716288938, guid: 6225001af918ee44ba1b3f497feefc5a, type: 3}
   - {fileID: 5849053322546007353, guid: 655baa2a9235f4943adb8c2aff6bc502, type: 3}
   - {fileID: 7165972092929266841, guid: 655baa2a9235f4943adb8c2aff6bc502, type: 3}
   - {fileID: 1018213074381975146, guid: d76f338a29c68ff44876df95a263cb64, type: 3}
@@ -158,7 +162,12 @@ SpriteAtlas:
   - GLASS SQUARE COLOR
   - LVL19 LVL 20 to nasz testowy stary Scalone_0
   - LVL19 LVL 20 to nasz testowy stary Scalone_1
+  - LVL 12 Scalone_4
+  - LVL 12 Scalone_5
   - LVL 12 Scalone_2
+  - LVL 12 Scalone_3
+  - LVL 12 Scalone_0
+  - LVL 12 Scalone_1
   - Warstwa 2(wklejone)
   - SLOT BOX WITH KEYSTONE
   - white polygon-4 kopia 3
@@ -178,7 +187,6 @@ SpriteAtlas:
   - START PAD
   - LVL 23 Scalone_2
   - LVL 23 Scalone_0
-  - LVL 23 Scalone_1
   - LVL 6 Scalone_1
   - LVL 6 Scalone_0
   - LVL 14 Scalone_0

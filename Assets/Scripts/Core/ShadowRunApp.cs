@@ -18,8 +18,8 @@ public class ShadowRunApp : MonoBehaviour
     [SerializeField] private UIManager m_UIManager = null;
     [SerializeField] private LevelLoader m_LevelLoader = null;
     [SerializeField] private SoundManager m_SoundManager = null;
-    [SerializeField] private GameManager m_GameManager = null;
     
+    private GameManager m_GameManager = null;   
     private MenuStateMachine m_StateMachnie = null;
     private SaveSystem m_SaveSystem = null;
     private void Awake()
@@ -55,7 +55,11 @@ public class ShadowRunApp : MonoBehaviour
         m_SaveSystem.Initialize();
 
         m_UIManager.Initialize();
+
+        m_GameManager = new GameManager();
         
+
+
     }
 
     private void BindEvents()

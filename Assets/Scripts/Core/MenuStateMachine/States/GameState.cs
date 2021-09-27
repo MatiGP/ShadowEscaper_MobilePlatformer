@@ -33,5 +33,8 @@ public class GameState : BaseMenuState
     {
         m_PlayerControlPanel = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
         m_PlayerControlPanel.Initialize();
+
+        m_Objectives = UIManager.Instance.CreatePanel(EPanelID.Objectives) as UIObjectives;
+        m_Objectives.Initialize();
     }
 }

@@ -5,102 +5,107 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EndLevelMenu : MonoBehaviour
+namespace Code.UI.Panels
 {
-    [SerializeField] GameObject earnedPointsHolder;
-    [SerializeField] Image[] pointsImages;
-    [SerializeField] LevelLoader levelLoader;
-    [SerializeField] GameObject menu;
-    [SerializeField] GameObject nextLevelButtonBlocker;
-    [SerializeField] GameObject previousLevelButtonBlocker;
-    [SerializeField] TextMeshProUGUI requiredTime;
-    
-    int pointsEarnedOnCurrentLevel;
-    bool isOpen;
-
-    private void Start()
+    public class EndLevelMenu : UIPanel
     {
-        int levelIndex = SceneManager.GetActiveScene().buildIndex - 1;
-        int pointsObtained = ShadowRunApp.Instance.SaveSystem.GetObtainedPointsFromLevel(levelIndex);
+        [SerializeField] private Image[] m_PointsImages;
+        [SerializeField] private GameObject m_NextLevelButtonBlocker;
+        [SerializeField] private GameObject m_PreviousLevelButtonBlocker;
+        [SerializeField] private TextMeshProUGUI m_RequiredTimeToGetReward;
 
-        pointsEarnedOnCurrentLevel = pointsObtained;
-        //requiredTime.text += $"{(GameManager.instance.GetRequiredTimeToCompleteLevel() / 60) % 60}:{GameManager.instance.GetRequiredTimeToCompleteLevel() % 60}";
-        
-        if(SceneManager.GetActiveScene().buildIndex - 1 == 0)
+        [SerializeField] private Button m_PreviousLevelButton = null;
+        [SerializeField] private Button m_NextLevelButton = null;
+        [SerializeField] private Button m_MenuButton = null;
+        [SerializeField] private Button m_ShopButton = null;
+        [SerializeField] private Button m_SettingsButton = null;
+
+        private const string FINISH_BEFORE_FORMAT = "Finished Before {0}";
+        private const string TIME_FORMAT = "{0:00}:{1:00}:{2:00}";
+        private const string ITEMS_COLLECTED_FORMAT = "Items collected{0}:{1}";
+
+        int pointsEarnedOnCurrentLevel;
+        bool isOpen;
+
+        protected override void Start()
         {
-            previousLevelButtonBlocker.SetActive(true);
-        }
-    }
+            int levelIndex = SceneManager.GetActiveScene().buildIndex - 1;
+            int pointsObtained = ShadowRunApp.Instance.SaveSystem.GetObtainedPointsFromLevel(levelIndex);
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OpenMenu();
-        }
-    }
+            pointsEarnedOnCurrentLevel = pointsObtained;
+            //requiredTime.text += $"{(GameManager.instance.GetRequiredTimeToCompleteLevel() / 60) % 60}:{GameManager.instance.GetRequiredTimeToCompleteLevel() % 60}";
 
-    private void DisplayPlayerProgessOnLevelEnd()
-    {
-       
-    }
-
-    public void ExitLevel()
-    {
-        levelLoader.LoadLevel(0);
-    }
-    
-    public void RetryCurrentLevel()
-    {
-        levelLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void LoadNextLevel()
-    {
-        levelLoader.LoadNextLevel();
-    }
-
-    public void LoadPreviousLevel()
-    {
-        levelLoader.LoadPreviousLevel();
-    }
-
-    public void OpenMenu()
-    {
-        if (isOpen)
-        {
-            menu.SetActive(false);
-            isOpen = false;
-        }
-        else
-        {
-            menu.SetActive(true);
-            isOpen = true;         
-
-            /*
-            if (!GameManager.instance.PlayerFinishedLevel())
+            if (levelIndex - 1 == 0)
             {
-                for(int i = 0; i < pointsEarnedOnCurrentLevel; i++)
-                {
-                    pointsImages[i].gameObject.SetActive(true);
-                }
-
-                nextLevelButtonBlocker.SetActive(false);
+                m_PreviousLevelButtonBlocker.SetActive(true);
             }
-            */
         }
-    }
 
-    public void LevelFinishMenu(float delay)
-    {
-        StartCoroutine(LevelFinishMenuDelay(delay));
-    }
+        private void DisplayPlayerProgessOnLevelEnd()
+        {
 
-    IEnumerator LevelFinishMenuDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        menu.SetActive(true);
-        isOpen = true;
-        DisplayPlayerProgessOnLevelEnd();
+        }
+
+        public void OpenMenu()
+        {           
+                /*
+                if (!GameManager.instance.PlayerFinishedLevel())
+                {
+                    for(int i = 0; i < pointsEarnedOnCurrentLevel; i++)
+                    {
+                        pointsImages[i].gameObject.SetActive(true);
+                    }
+
+                    nextLevelButtonBlocker.SetActive(false);
+                }
+                */
+            
+        }
+     
+        IEnumerator LevelFinishMenuDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            isOpen = true;
+            DisplayPlayerProgessOnLevelEnd();
+        }
+
+        public override void Initialize()
+        {
+            BindEvents();
+        }
+
+        public override void BindEvents()
+        {
+            m_PreviousLevelButton.onClick.AddListener(HandlePreviousLevelPressed);
+            m_NextLevelButton.onClick.AddListener(HandleNextLevelPressed);
+            m_MenuButton.onClick.AddListener();
+            m_ShopButton.onClick.AddListener();
+            m_SettingsButton.onClick.AddListener();
+        }
+
+        public override void UnBindEvents()
+        {
+            m_PreviousLevelButton.onClick.RemoveListener(HandlePreviousLevelPressed);
+        }
+
+        private void HandlePreviousLevelPressed()
+        {
+            ShadowRunApp.Instance.LevelLoader.LoadPreviousLevel();
+        }
+
+        private void HandleNextLevelPressed()
+        {
+            ShadowRunApp.Instance.LevelLoader.LoadNextLevel();
+        }
+
+        private void HandleMenuPressed()
+        {
+
+        }
+
+        private void OnDestroy()
+        {
+            UnBindEvents();
+        }
     }
 }

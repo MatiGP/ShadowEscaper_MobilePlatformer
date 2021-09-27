@@ -14,6 +14,8 @@ public class EndPlatform : MonoBehaviour
     {
         if (isPlatformTurnedOn)
         {
+            // Show end level menu.
+
             ShadowRunApp.Instance.LevelLoader.LoadNextLevel();
         }
     }
