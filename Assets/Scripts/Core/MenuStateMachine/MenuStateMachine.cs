@@ -32,6 +32,11 @@ namespace Code.StateMachine {
 
         public void ChangeState(EMenuState newState)
         {
+            if(m_CurrentState.State == newState)
+            {
+                return;
+            }
+
             m_CurrentState.LeaveState();
             StartStateMachine(newState);
         }

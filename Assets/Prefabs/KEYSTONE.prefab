@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7883491629992712469}
   - component: {fileID: 7883491629992712466}
   - component: {fileID: 2504176399542820584}
-  - component: {fileID: 7454501577549764633}
+  - component: {fileID: 3485799337030530697}
   m_Layer: 2
   m_Name: KEYSTONE
   m_TagString: Keystone
@@ -99,7 +99,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.3
---- !u!114 &7454501577549764633
+--- !u!114 &3485799337030530697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

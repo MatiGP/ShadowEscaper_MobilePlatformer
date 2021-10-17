@@ -8,16 +8,29 @@ public class PlayerInventory : MonoBehaviour
     
     public void AddItem(ECollectableType item)
     {
-        m_OwnedItems[item]++;
+        if (!HasItem(item))
+        {
+            m_OwnedItems.Add(item, 0);
+        }
+       
+        m_OwnedItems[item]++;       
     }
 
     public int GetItemCount(ECollectableType item)
     {
-        return m_OwnedItems[item];
+        return HasItem(item) ? m_OwnedItems[item] : 0;
     }
 
     public void RemoveItemFromInventory(ECollectableType item)
     {
-        m_OwnedItems[item]--;
+        if (HasItem(item))
+        {
+            m_OwnedItems[item]--;
+        }      
+    }
+
+    private bool HasItem(ECollectableType item)
+    {
+        return m_OwnedItems.ContainsKey(item);
     }
 }

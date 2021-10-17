@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 5299148193653704976}
   - component: {fileID: 7819634258152163899}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: '[LevelCompleted]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,10 +582,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d7d4c967bff4f4ab3fb06e0533b430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PointsImages: []
-  m_NextLevelButtonBlocker: {fileID: 0}
-  m_PreviousLevelButtonBlocker: {fileID: 0}
-  m_RequiredTimeToGetReward: {fileID: 0}
+  m_StarImages:
+  - {fileID: 3710779702453780522}
+  - {fileID: 3710779703986219206}
+  - {fileID: 3710779704219872835}
+  m_NextLevelButtonBlocker: {fileID: 3710779703367806466}
+  m_PreviousLevelButtonBlocker: {fileID: 1901306347048147003}
+  m_RequiredTimeToGetReward: {fileID: 4868186914696122292}
+  m_ItemsCollected: {fileID: 8806626210008697029}
+  m_PreviousLevelButton: {fileID: 3710779703225308257}
+  m_NextLevelButton: {fileID: 951097017766755159}
+  m_MenuButton: {fileID: 4172493383164134330}
+  m_ShopButton: {fileID: 427740276925555206}
+  m_SettingsButton: {fileID: 8302807701329493021}
 --- !u!223 &8626001901116842079
 Canvas:
   m_ObjectHideFlags: 0
@@ -2255,7 +2264,7 @@ GameObject:
   - component: {fileID: 1360399625569457957}
   - component: {fileID: 8806626210008697029}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: '[CollectedItems]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2411,7 +2420,7 @@ GameObject:
   - component: {fileID: 7013230327513690315}
   - component: {fileID: 4868186914696122292}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: '[FinishedBefore]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

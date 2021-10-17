@@ -32,10 +32,9 @@ namespace Code.UI.Panels
             OnLevelSelected += HandleLevelSelected;
         }
 
-        private void HandleLevelSelected(object sender, int e)
+        private void HandleLevelSelected(object sender, int levelIndex)
         {
-            ShadowRunApp.Instance.LevelLoader.LoadLevel(e);
-            //ShadowRunApp.Instance.GameManager.LoadLevelData(e);
+            ShadowRunApp.Instance.LevelLoader.LoadLevel(levelIndex);                
         }
 
         public override void ClosePanel()

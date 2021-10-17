@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Code.UI;
 
 public class EndPlatform : MonoBehaviour
 {
@@ -9,20 +10,18 @@ public class EndPlatform : MonoBehaviour
 
     [SerializeField] private Sprite m_PadActiveSprite = null;
     
-    private bool isPlatformTurnedOn;
+    private bool m_IsPlatformTurnedOn;
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isPlatformTurnedOn)
+        if (m_IsPlatformTurnedOn)
         {
-            // Show end level menu.
-
-            ShadowRunApp.Instance.LevelLoader.LoadNextLevel();
+            UIManager.Instance.CreatePanel(EPanelID.EndLevelMenu);        
         }
     }
 
     public void TurnOnEndLevelPlatform()
     {
-        isPlatformTurnedOn = true;
+        m_IsPlatformTurnedOn = true;
 
         m_SpriteRenderer.sprite = m_PadActiveSprite;
     }

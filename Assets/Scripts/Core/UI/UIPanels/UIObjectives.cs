@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace Code.UI.Panels
 {
     public class UIObjectives : UIPanel
     {
+        public event EventHandler OnKeyCollected;
+        public event EventHandler OnStarCollected;
+
         [Header("Keys")]
         [SerializeField] private Image[] m_KeyImages = null;
         [SerializeField] private Color m_KeyCollectedColor;
@@ -16,26 +20,34 @@ namespace Code.UI.Panels
 
         public override void BindEvents()
         {
+            OnKeyCollected += HandleKeyCollected;
+            OnStarCollected += HandleStarCollected;
+        }
+
+        private void HandleStarCollected(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HandleKeyCollected(object sender, EventArgs e)
+        {
             
         }
 
         public override void Initialize()
         {
-            
+            int amountOfKeys = ShadowRunApp.Instance.GameManager.CurrentLevelData.KeysCount;
+
+            for(int i = 0; i < amountOfKeys; i++)
+            {
+                m_KeyImages[i].gameObject.SetActive(true);
+            }
         }
 
         public override void UnBindEvents()
         {
-            
-        }
-
-        public void SetUpKeysCount(int count)
-        {
-            for(int i = count; i < m_KeyImages.Length; i++)
-            {
-                m_KeyImages[i].gameObject.SetActive(false);
-            }
-        }
+           
+        }        
 
         public void CollectKey()
         {

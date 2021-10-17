@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,6 @@ public class LevelData : ScriptableObject
     [SerializeField] private int m_ItemsCount = -1;
     public int ItemsCount => m_ItemsCount;
 
-    [SerializeField] private float m_LevelDuration = -1f;
-    public float LevelDuration => m_LevelDuration;
+    [SerializeField] private float m_LevelDurationInSeconds = -1f;
+    public TimeSpan LevelDuration => TimeSpan.FromSeconds(m_LevelDurationInSeconds);
 }

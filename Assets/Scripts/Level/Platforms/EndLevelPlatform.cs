@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EndLevelPlatform : MonoBehaviour
 {
-    [SerializeField] List<KeystoneSlotBox> keystoneSlotBoxes;
-    [SerializeField] EndPlatform platform;
+    [SerializeField] private List<KeystoneSlotBox> keystoneSlotBoxes = null;
+    [SerializeField] private EndPlatform platform = null;
     
     public void CheckSlotBoxes()
     {
