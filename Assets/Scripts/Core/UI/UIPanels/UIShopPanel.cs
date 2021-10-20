@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+namespace Code.UI.Panels
 {
-    // Start is called before the first frame update
-    void Start()
+    public class UIShopPanel : UIPanel
     {
-        
-    }
+        public override void BindEvents()
+        {
+            
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Initialize()
+        {
+            
+        }
+
+        public override void UnBindEvents()
+        {
+
+        }
+
+        private void OnDestroy()
+        {
+            UnBindEvents();
+        }
     }
 }

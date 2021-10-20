@@ -28,17 +28,23 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        int levelIndex = ShadowRunApp.Instance.GameManager.CurrentLevelData.LevelIndex;
+
+        LoadLevel(levelIndex + 1);
     }
 
     public void LoadPreviousLevel()
     {
-        LoadLevel(SceneManager.GetActiveScene().buildIndex - 1);
+        int levelIndex = ShadowRunApp.Instance.GameManager.CurrentLevelData.LevelIndex;
+
+        LoadLevel(levelIndex - 1);
     }
 
     public void ReloadLevel()
     {
-        LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        int levelIndex = ShadowRunApp.Instance.GameManager.CurrentLevelData.LevelIndex;
+
+        LoadLevel(levelIndex);
     }
 
     IEnumerator LoadAsynchronously(int sceneIndex)
@@ -51,7 +57,8 @@ public class LevelLoader : MonoBehaviour
         string path = string.Format(LEVEL_DATA_PATH, levelName);
 
         LevelData levelData = Resources.Load<LevelData>(path);
-        
+        OnLevelDataLoaded.Invoke(this, levelData);
+
         while (!operation.isDone)
         {
             m_UILoadingScreen.SetFill(operation.progress / 0.90f);
@@ -60,7 +67,7 @@ public class LevelLoader : MonoBehaviour
         }
 
         OnLevelLoaded.Invoke(this, EventArgs.Empty);
-        OnLevelDataLoaded.Invoke(this, levelData);
+        
         
         m_UILoadingScreen.ClosePanel();
         

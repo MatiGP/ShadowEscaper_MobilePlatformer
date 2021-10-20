@@ -68,5 +68,10 @@ namespace Code.UI.Panels
             m_BackButton.onClick.RemoveListener(ClosePanel);
             m_Toggle60FPS.onValueChanged.RemoveListener(SetTargetFramerate);
         }
+
+        private void OnDestroy()
+        {
+            UnBindEvents();
+        }
     }
 }

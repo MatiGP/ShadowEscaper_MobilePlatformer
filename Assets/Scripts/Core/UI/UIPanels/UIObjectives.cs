@@ -26,7 +26,7 @@ namespace Code.UI.Panels
 
         private void HandleStarCollected(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void HandleKeyCollected(object sender, EventArgs e)
@@ -38,6 +38,8 @@ namespace Code.UI.Panels
         {
             int amountOfKeys = ShadowRunApp.Instance.GameManager.CurrentLevelData.KeysCount;
 
+            Debug.Log($"Amount of keys : {amountOfKeys}");
+
             for(int i = 0; i < amountOfKeys; i++)
             {
                 m_KeyImages[i].gameObject.SetActive(true);
@@ -46,7 +48,8 @@ namespace Code.UI.Panels
 
         public override void UnBindEvents()
         {
-           
+            OnKeyCollected -= HandleKeyCollected;
+            OnStarCollected -= HandleStarCollected;
         }        
 
         public void CollectKey()
@@ -55,6 +58,11 @@ namespace Code.UI.Panels
 
             m_CurrentKeys++;
 
+        }
+
+        private void OnDestroy()
+        {
+            UnBindEvents();
         }
     }
 }

@@ -27,12 +27,6 @@ namespace Code.UI.Panels
             m_Shop.onClick.AddListener(HandleShopPressed);
         }
 
-        public override void ClosePanel()
-        {
-            UnBindEvents();
-            Destroy(gameObject);
-        }      
-
         public override void Initialize()
         {
             BindEvents();
@@ -65,6 +59,11 @@ namespace Code.UI.Panels
         {
             OnSettingsPressed?.Invoke(this, EventArgs.Empty);
         }
-      
+
+        private void OnDestroy()
+        {
+            UnBindEvents();
+        }
+
     }
 }

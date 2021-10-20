@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1325456282266708904}
   - component: {fileID: 4758992265434593085}
   - component: {fileID: 290139106950573805}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: TapToTryAgainText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 6043015147281974535}
   - component: {fileID: 6094670237656791564}
   - component: {fileID: 1043321287517030798}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DeathText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,8 @@ GameObject:
   - component: {fileID: 7021404432892480988}
   - component: {fileID: 6891243918293946946}
   - component: {fileID: 4024114093069368017}
-  m_Layer: 0
+  - component: {fileID: 7120992285763286924}
+  m_Layer: 5
   m_Name: DeathPanelPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TryAgainButton: {fileID: 6891243918293946946}
   m_CanvasGroup: {fileID: 7021404432892480988}
-  m_FadeInDuration: 0.8
+  m_FadeInDuration: 0.4
 --- !u!225 &7021404432892480988
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -478,7 +479,24 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &7120992285763286924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026021077749913866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

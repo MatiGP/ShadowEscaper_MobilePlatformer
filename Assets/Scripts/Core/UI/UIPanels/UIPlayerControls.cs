@@ -57,15 +57,11 @@ namespace Code.UI.Panels
 
         private void CancelJump()
         {
-            Debug.LogWarning("Canceling jump");
-
             OnJumpInterupted?.Invoke(this, EventArgs.Empty);
         }
 
         private void CancelSlide()
-        {
-            Debug.LogWarning("Canceling slide");
-
+        { 
             OnSlideInterupted?.Invoke(this, EventArgs.Empty);
         }
 

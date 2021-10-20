@@ -54,6 +54,8 @@ public class GameManager
 
     public void SetLevelData(LevelData levelData)
     {
+        Debug.Log("LEvel Data set");
+
         CurrentLevelData = levelData;
     }
     

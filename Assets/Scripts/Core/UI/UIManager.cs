@@ -103,6 +103,7 @@ namespace Code.UI
 
         private void LoadedPanel_OnPanelClose(object sender, EPanelID e)
         {
+            Debug.Log($"REMOVING PANEL : {e}");
             m_UIPanels.Remove(e);
         }
 

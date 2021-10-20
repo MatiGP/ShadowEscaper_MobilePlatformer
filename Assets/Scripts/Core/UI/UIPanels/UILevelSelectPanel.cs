@@ -54,7 +54,7 @@ namespace Code.UI.Panels
         
         public override void UnBindEvents()
         {
-            
+            OnLevelSelected -= HandleLevelSelected;
         }
 
         private void PrepareLevelPage()

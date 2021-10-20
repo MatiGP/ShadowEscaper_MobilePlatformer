@@ -86,6 +86,10 @@ namespace Code.UI.Panels
         public override void UnBindEvents()
         {
             m_PreviousLevelButton.onClick.RemoveListener(HandlePreviousLevelPressed);
+            m_NextLevelButton.onClick.RemoveListener(HandleNextLevelPressed);
+            m_MenuButton.onClick.RemoveListener(HandleMenuPressed);
+            m_ShopButton.onClick.RemoveListener(HandleShopPressed);
+            m_SettingsButton.onClick.RemoveListener(HandleSettingsPressed);
         }
 
         private void HandlePreviousLevelPressed()
