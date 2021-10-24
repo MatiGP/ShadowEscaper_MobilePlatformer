@@ -41,12 +41,6 @@ public class SaveSystem
         File.WriteAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json", saveData);
     }
 
-    public void CompleteLevel(int levelIndex, int pointsObtained)
-    {
-        m_CurrentSave.m_PointsGained[levelIndex] = pointsObtained;
-        Save();
-    }
-
     public Color GetColorData()
     {       
         Color c;
