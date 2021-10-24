@@ -9,11 +9,11 @@ public class WalljumpingState : BaseMovementState
 
     public WalljumpingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
-
+        
     }
 
     public override void Enter()
-    {
+    {       
         movementVector.x = 0;
         movementVector.y = playerController.WallJumpHeight;
         playerController.FlipDirection();
@@ -37,8 +37,16 @@ public class WalljumpingState : BaseMovementState
     {
         currentWallJumpDuration += Time.deltaTime;
 
-        movementVector.x += walljumpDirection * playerController.JumpOffWallForce;
-        movementVector.y -= playerController.Gravity * Time.deltaTime;
+        if (currentWallJumpDuration <= playerController.WallJumpDuration)
+        {
+            movementVector.x = walljumpDirection * playerController.JumpOffWallForce;
+        }
+        else
+        {
+            movementVector.x = playerController.Direction * playerController.FootSpeed;
+        }
+       
+        movementVector.y -= playerController.WallJumpGravity * Time.deltaTime;
 
         playerTransform.position += movementVector * Time.deltaTime;
     }
@@ -57,9 +65,12 @@ public class WalljumpingState : BaseMovementState
             stateMachine.ChangeState(playerController.FallingState);
         }
 
-        if (currentWallJumpDuration <= playerController.WallJumpDuration) return;
+        if (currentWallJumpDuration <= playerController.WallJumpDuration)
+        {
+            return;
+        }
 
-        if(!playerController.IsTouchingGround && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
+        if (!playerController.IsTouchingGround && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
             stateMachine.ChangeState(playerController.WallSlidingState);
         }

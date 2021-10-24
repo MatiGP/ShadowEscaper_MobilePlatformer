@@ -35,7 +35,7 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 2
+      padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1416f8186ad66fc4da63681d99ea3297, type: 3}
-    totalSpriteSurfaceArea: 6157401
+    totalSpriteSurfaceArea: 6222937
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -127,6 +127,7 @@ SpriteAtlas:
   - {fileID: 4185567011195157917, guid: 10a4d94d40015ef449ce49cc428a8473, type: 3}
   - {fileID: -1227881503542159022, guid: 10a4d94d40015ef449ce49cc428a8473, type: 3}
   - {fileID: -3497631595199452185, guid: 82b4317dde7a33644a90a8dd39a1063d, type: 3}
+  - {fileID: 21300000, guid: 488b42ae981b10f498e0e93783feca59, type: 3}
   - {fileID: 21300000, guid: 84ca5adec49f072479364169f1224361, type: 3}
   - {fileID: 21300000, guid: a4ec40ee9f6f8b147b0834d2bd163895, type: 3}
   - {fileID: -1720525983468228091, guid: a5f99a4f240f3e84daa765b6775fc3ca, type: 3}
@@ -220,6 +221,7 @@ SpriteAtlas:
   - LVL 25 Scalone_0
   - LVL 25 Scalone_1
   - ExclamationMark_2
+  - KEYSTONE_Desaturated
   - LVL 17 + LVL 18 bez BB Scalone
   - STAR
   - LVL 24 Scalone_1

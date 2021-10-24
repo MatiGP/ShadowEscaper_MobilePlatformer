@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fa211d47cd1b24984121aecd457cc7, type: 3}
   m_Name: LeveL_15
   m_EditorClassIdentifier: 
-  m_LevelIndex: -1
-  m_KeysCount: -1
-  m_ItemsCount: -1
-  m_LevelDuration: -1
+  m_LevelIndex: 15
+  m_KeysCount: 1
+  m_ItemsCount: 1
+  m_LevelDurationInSeconds: 90

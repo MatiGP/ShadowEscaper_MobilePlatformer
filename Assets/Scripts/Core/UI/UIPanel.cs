@@ -11,8 +11,6 @@ namespace Code.UI.Panels
 
         protected EPanelID m_PanelID;
 
-        public abstract void Initialize();
-
         protected virtual void Awake()
         {
 

@@ -19,18 +19,19 @@ namespace Code.UI.Panels
         [SerializeField] private Button m_Shop = null;
         [SerializeField] private Button m_Settings = null;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            BindEvents();
+        }
+
         public override void BindEvents()
         {
             m_Play.onClick.AddListener(HandlePlayPressed);
             m_Fashion.onClick.AddListener(HandleFashionPressed);
             m_Settings.onClick.AddListener(HandleSettingsPressed);
             m_Shop.onClick.AddListener(HandleShopPressed);
-        }
-
-        public override void Initialize()
-        {
-            BindEvents();
-        }
+        }     
 
         public override void UnBindEvents()
         {

@@ -27,6 +27,20 @@ namespace Code.UI.Panels
         private Tween m_FadeTween = null;
         [SerializeField] private float m_FadeDuration = 0.5f;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            BindEvents();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            m_FadeTween = m_CanvasGroup.DOFade(1, m_FadeDuration);
+
+            PrepareLevelPage();        
+        }
+
         public override void BindEvents()
         {
             OnLevelSelected += HandleLevelSelected;
@@ -40,17 +54,7 @@ namespace Code.UI.Panels
         public override void ClosePanel()
         {
             m_FadeTween = m_CanvasGroup.DOFade(0, m_FadeDuration).OnComplete(() => base.ClosePanel());            
-        }
-
-    
-        public override void Initialize()
-        {
-            m_FadeTween = m_CanvasGroup.DOFade(1, m_FadeDuration);
-
-            PrepareLevelPage();
-
-            BindEvents();
-        }
+        } 
         
         public override void UnBindEvents()
         {

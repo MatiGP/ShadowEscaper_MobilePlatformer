@@ -19,7 +19,11 @@ public class GlobalUILayer
         EPanelID.PlayerUI,
         EPanelID.Objectives,
         EPanelID.Settings,
+        EPanelID.EndLevelMenu,
         EPanelID.Death,
+        
+        EPanelID.TapToContinue,
+
         EPanelID.LoadLevel
     };
 

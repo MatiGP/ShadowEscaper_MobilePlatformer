@@ -24,14 +24,15 @@ namespace Code.UI.Panels
         [SerializeField] private Button m_ShopButton = null;
         [SerializeField] private Button m_SettingsButton = null;
 
-        private const string FINISH_BEFORE_FORMAT = "Finished Before {0}";
+        private const string FINISH_BEFORE_FORMAT = "Finished Before \n {0}";
         private const string TIME_FORMAT = "{0:00}:{1:00}:{2:00}";
         private const string ITEMS_COLLECTED_FORMAT = "Items collected \n {0}/{1}";
 
         protected override void Awake()
         {
             base.Awake();
-            ShadowRunApp.Instance.GameManager.InvokeOnGameCompleted();
+
+            BindEvents();
         }
 
         protected override void Start()
@@ -43,6 +44,7 @@ namespace Code.UI.Panels
             SetCollectedItemsText();
             
             m_PreviousLevelButtonBlocker.SetActive(levelIndex - 1 == 0);
+            m_NextLevelButtonBlocker.SetActive(levelIndex +1 > LevelLoader.LEVEL_CAP);
 
             for(int i = 0; i < pointsObtained; i++)
             {
@@ -69,11 +71,6 @@ namespace Code.UI.Panels
             m_RequiredTimeToGetReward.text = string.Format(FINISH_BEFORE_FORMAT, timeString);
         }
 
-        public override void Initialize()
-        {
-            BindEvents();
-        }
-
         public override void BindEvents()
         {
             m_PreviousLevelButton.onClick.AddListener(HandlePreviousLevelPressed);
@@ -94,16 +91,19 @@ namespace Code.UI.Panels
 
         private void HandlePreviousLevelPressed()
         {
+            ClosePanel();
             ShadowRunApp.Instance.LevelLoader.LoadPreviousLevel();
         }
 
         private void HandleNextLevelPressed()
         {
+            ClosePanel();
             ShadowRunApp.Instance.LevelLoader.LoadNextLevel();
         }
 
         private void HandleMenuPressed()
         {
+            ClosePanel();
             ShadowRunApp.Instance.GameManager.InvokeOnGameExit();
         }
 

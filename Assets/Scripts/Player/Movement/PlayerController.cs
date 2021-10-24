@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float FallMultiplier { get => fallMultiplier; }
     public float RemainingJumpForce { get => remainingJumpForce; }
     public float WallJumpDuration { get => wallJumpDuration; }
+    public float FallingSpeedLimit { get => fallingSpeedLimit; }
 
     public float SlideSpeed { get => m_SlideSpeed; }
     public float SlideSpeedFallOff { get => m_SlideSpeedFallOff; }  
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
     [Header("Vertical Movement")]
     [SerializeField] private float jumpHeight;
     [SerializeField] private float timeToJumpApex;
+    [SerializeField] private float fallingSpeedLimit;
     [SerializeField] private float normalJumpMultiplier;
     [SerializeField] private float lowJumpMultiplier;
     [SerializeField] private float maxFallSpeed;
@@ -71,7 +73,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallJumpHeight;
     [SerializeField] private float jumpOffWallForce;
     
-    [Range(0.1f, 2f)]
+    
+    [Range(0.001f, 1f)]
     [SerializeField] private float wallJumpDuration;
 
     [Space(1f)]
@@ -193,7 +196,27 @@ public class PlayerController : MonoBehaviour
         m_UIPlayerControls.OnJumpInterupted += HandleJumpInterupted;
         m_PlayerHealth.OnDamageTaken += Die;
         m_UIPlayerControls.OnSlidePressed += GroundSlide;
-        m_UIPlayerControls.OnSlideInterupted += HandleSlideInterupted;
+        m_UIPlayerControls.OnSlideInterupted += HandleSlideInterupted;      
+    }
+
+    private void HandleJoystickStartMoving(object sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void UnBindEvents()
+    {
+        m_UIPlayerControls.OnJoystickMoved -= ReadMoveInput;
+        m_UIPlayerControls.OnJumpPressed -= Jump;
+        m_UIPlayerControls.OnJumpInterupted -= HandleJumpInterupted;
+        m_PlayerHealth.OnDamageTaken -= Die;
+        m_UIPlayerControls.OnSlidePressed -= GroundSlide;
+        m_UIPlayerControls.OnSlideInterupted -= HandleSlideInterupted;
+    }
+
+    private void OnDestroy()
+    {
+        UnBindEvents();
     }
 
     private void HandleSlideInterupted(object sender, EventArgs e)

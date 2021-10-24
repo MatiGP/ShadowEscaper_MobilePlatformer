@@ -11,11 +11,13 @@ public class EndPlatform : MonoBehaviour
     [SerializeField] private Sprite m_PadActiveSprite = null;
     
     private bool m_IsPlatformTurnedOn;
-    public void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (m_IsPlatformTurnedOn)
         {
-            UIManager.Instance.CreatePanel(EPanelID.EndLevelMenu);        
+            ShadowRunApp.Instance.GameManager.SummarizeLevel();
+            UIManager.Instance.CreatePanel(EPanelID.EndLevelMenu);       
         }
     }
 

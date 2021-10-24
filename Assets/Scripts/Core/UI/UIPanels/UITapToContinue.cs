@@ -9,19 +9,26 @@ namespace Code.UI.Panels
     {
         [SerializeField] private Button m_TapToStart = null;
 
-        public override void BindEvents()
+        protected override void Awake()
         {
-            m_TapToStart.onClick.AddListener(ClosePanel);
-        }
-
-        public override void Initialize()
-        {
+            base.Awake();
             BindEvents();
         }
 
+        public override void BindEvents()
+        {
+            m_TapToStart.onClick.AddListener(HandleStartButtonPressed);
+        }      
+
         public override void UnBindEvents()
         {
-            m_TapToStart.onClick.RemoveListener(ClosePanel);
+            m_TapToStart.onClick.RemoveListener(HandleStartButtonPressed);
+        }
+
+        private void HandleStartButtonPressed()
+        {
+            ShadowRunApp.Instance.GameManager.GameStart();
+            ClosePanel();
         }
 
         private void OnDestroy()

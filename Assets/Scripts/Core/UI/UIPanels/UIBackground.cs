@@ -10,12 +10,7 @@ namespace Code.UI.Panels
         {
             
         }     
-
-        public override void Initialize()
-        {
-            
-        }       
-
+      
         public override void UnBindEvents()
         {
             

@@ -97,6 +97,12 @@ public class SaveSystem
     {
         m_CurrentSave.m_FrameRate = framerate;  
     }
+
+    public void SaveLevelProgress(int earnedPoints, int levelIndex)
+    {
+        m_CurrentSave.m_PointsGained[levelIndex] = earnedPoints;
+        Save();
+    }
 }
 
 [System.Serializable]

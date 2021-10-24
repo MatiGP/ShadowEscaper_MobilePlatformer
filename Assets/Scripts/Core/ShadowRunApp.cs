@@ -65,6 +65,8 @@ public class ShadowRunApp : MonoBehaviour
         m_LevelLoader.OnLevelLoaded += HandleLevelLoaded;
         m_GameManager.OnGameExit += HandleGameExit;
 
+
+
         m_LevelLoader.OnLevelDataLoaded += HandleLevelDataLoaded;
     }
 

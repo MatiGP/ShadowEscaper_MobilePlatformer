@@ -339,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LoadingSymbol: {fileID: 6859740147515206409}
   m_CanvasGroup: {fileID: 4768579124565611128}
-  m_FadeDuration: 1.1
+  m_FadeDuration: 1.5
 --- !u!114 &6637571904215681881
 MonoBehaviour:
   m_ObjectHideFlags: 0

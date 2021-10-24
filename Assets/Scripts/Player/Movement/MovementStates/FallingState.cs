@@ -29,6 +29,8 @@ public class FallingState : BaseMovementState
         movementVector.x = playerController.Direction * playerController.FootSpeed;
         movementVector.y -= playerController.Gravity * playerController.FallMultiplier * Time.deltaTime;
 
+        movementVector.y = Mathf.Clamp(movementVector.y, -playerController.FallingSpeedLimit, 900);
+
         playerTransform.position += movementVector * Time.deltaTime;
 
         playerController.Flip();

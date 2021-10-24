@@ -14,18 +14,18 @@ namespace Code.UI.Panels
         [SerializeField] private CanvasGroup m_CanvasGroup = null;
         [SerializeField] private float m_FadeInDuration = 0.8f;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            BindEvents();
+        }
+
         protected override void Start()
         {
             base.Start();
-            StartFadeIn();
-            Initialize();
+            StartFadeIn();           
         }
-
-        public override void Initialize()
-        {
-            BindEvents();   
-        }
-
+        
         public override void BindEvents()
         {
             m_TryAgainButton.onClick.AddListener(StartFadeOut);
@@ -53,6 +53,7 @@ namespace Code.UI.Panels
                 () =>
                 {
                     ShadowRunApp.Instance.LevelLoader.ReloadLevel();
+                    ClosePanel();
                 }
                 );
         }

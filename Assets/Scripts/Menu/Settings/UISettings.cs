@@ -13,7 +13,14 @@ namespace Code.UI.Panels
         [SerializeField] private Slider m_MusicVolume;
         [SerializeField] private Slider m_SFXVolume;
         [SerializeField] private Toggle m_Toggle60FPS;
-        [SerializeField] private Toggle m_ToggleVibrations;   
+        [SerializeField] private Toggle m_ToggleVibrations;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            BindEvents();
+        }
 
         protected override void Start()
         {
@@ -50,12 +57,7 @@ namespace Code.UI.Panels
             {
                 Application.targetFrameRate = 30;
             }
-        }    
-
-        public override void Initialize()
-        {
-            BindEvents();
-        }
+        }         
 
         public override void BindEvents()
         {

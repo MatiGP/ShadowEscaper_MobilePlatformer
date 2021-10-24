@@ -42,7 +42,6 @@ namespace Code.StateMachine
             m_MainMenuPanel = UIManager.Instance.CreatePanel(EPanelID.MainMenu) as UIMainMenuPanel;
             if(m_MainMenuPanel != null)
             {
-                m_MainMenuPanel.Initialize();
                 m_MainMenuPanel.ShowPanel();
             }          
         }
@@ -55,14 +54,12 @@ namespace Code.StateMachine
 
         private void HandleSettingsPressed(object sender, System.EventArgs e)
         {
-            m_SettingsPanel = UIManager.Instance.CreatePanel(EPanelID.Settings) as UISettings;
-            m_SettingsPanel.Initialize();
+            UIManager.Instance.CreatePanel(EPanelID.Settings);
         }
 
         private void HandlePlayPressed(object sender, System.EventArgs e)
         {
             m_LevelSelectPanel = UIManager.Instance.CreatePanel(EPanelID.LevelSelection) as UILevelSelectPanel;
-            m_LevelSelectPanel.Initialize();
         }
 
         private void UnLoadUI()

@@ -16,6 +16,26 @@ public class LevelLoader : MonoBehaviour
 
     private const string LEVEL_DATA_FORMAT = "Level_{0:00}";
     private const string LEVEL_DATA_PATH = "LevelData/{0}";
+
+    public const int LEVEL_CAP = 25;
+
+    private int m_CurrentLevelIndex = -1;
+
+    private void Awake()
+    {
+        SceneManager.sceneUnloaded += HandleSceneUnloaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneUnloaded -= HandleSceneUnloaded;
+    }
+
+    private void HandleSceneUnloaded(Scene arg0)
+    {
+        Resources.UnloadUnusedAssets();
+    }
+
     public void LoadLevel(int sceneIndex)
     {         
         StartCoroutine(LoadAsynchronously(sceneIndex));
@@ -27,24 +47,26 @@ public class LevelLoader : MonoBehaviour
     }
 
     public void LoadNextLevel()
-    {
-        int levelIndex = ShadowRunApp.Instance.GameManager.CurrentLevelData.LevelIndex;
-
-        LoadLevel(levelIndex + 1);
+    {       
+        UnloadCurrentLevel();
+        LoadLevel(m_CurrentLevelIndex + 1);
     }
 
     public void LoadPreviousLevel()
     {
-        int levelIndex = ShadowRunApp.Instance.GameManager.CurrentLevelData.LevelIndex;
-
-        LoadLevel(levelIndex - 1);
+        UnloadCurrentLevel();
+        LoadLevel(m_CurrentLevelIndex - 1);
     }
 
     public void ReloadLevel()
     {
-        int levelIndex = ShadowRunApp.Instance.GameManager.CurrentLevelData.LevelIndex;
+        UnloadCurrentLevel();
+        LoadLevel(m_CurrentLevelIndex);
+    }
 
-        LoadLevel(levelIndex);
+    private void UnloadCurrentLevel()
+    {
+        SceneManager.UnloadSceneAsync(m_CurrentLevelIndex);      
     }
 
     IEnumerator LoadAsynchronously(int sceneIndex)
@@ -59,6 +81,8 @@ public class LevelLoader : MonoBehaviour
         LevelData levelData = Resources.Load<LevelData>(path);
         OnLevelDataLoaded.Invoke(this, levelData);
 
+        m_CurrentLevelIndex = levelData.LevelIndex;
+
         while (!operation.isDone)
         {
             m_UILoadingScreen.SetFill(operation.progress / 0.90f);
@@ -72,6 +96,8 @@ public class LevelLoader : MonoBehaviour
         m_UILoadingScreen.ClosePanel();
         
     }
+
+    
 
 
 

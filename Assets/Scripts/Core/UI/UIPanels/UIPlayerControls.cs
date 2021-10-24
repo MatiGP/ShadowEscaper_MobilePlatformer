@@ -13,20 +13,22 @@ namespace Code.UI.Panels
         public event EventHandler OnJumpInterupted;
         public event EventHandler OnSlidePressed;
         public event EventHandler OnSlideInterupted;
+
                
         [SerializeField] private Joystick m_Joystick = null;
         [SerializeField] private UIButton m_JumpButton = null;
         [SerializeField] private UIButton m_SlideButton = null;
         [SerializeField] private Button m_SettingsButton = null;
 
-        public override void Initialize()
+        protected override void Awake()
         {
+            base.Awake();
+
             BindEvents();
         }
 
         public override void BindEvents()
         {
-            
             m_SlideButton.OnButtonUp.AddListener(CancelSlide);
             m_SlideButton.OnButtonDown.AddListener(InvokeSliding);
 
@@ -35,11 +37,12 @@ namespace Code.UI.Panels
             m_JumpButton.OnButtonUp.AddListener(CancelJump);
             m_JumpButton.OnButtonDown.AddListener(InvokeJumping);
 
-
             m_Joystick.OnHorizontalJoystickMove += OnHorizontalJoystickMove;
+           
         }
 
        
+
         private void OnHorizontalJoystickMove(object sender, float e)
         {
             OnJoystickMoved?.Invoke(sender, e);
@@ -72,11 +75,15 @@ namespace Code.UI.Panels
 
         public override void UnBindEvents()
         {
-            m_JumpButton.onClick.RemoveListener(InvokeJumping);
-            m_SlideButton.onClick.RemoveListener(InvokeSliding);
+            m_SlideButton.OnButtonUp.RemoveListener(CancelSlide);
+            m_SlideButton.OnButtonDown.RemoveListener(InvokeSliding);
+
             m_SettingsButton.onClick.RemoveListener(CreateSettingsPanel);
 
-            m_Joystick.OnHorizontalJoystickMove -= OnHorizontalJoystickMove;          
+            m_JumpButton.OnButtonUp.RemoveListener(CancelJump);
+            m_JumpButton.OnButtonDown.RemoveListener(InvokeJumping);
+
+            m_Joystick.OnHorizontalJoystickMove -= OnHorizontalJoystickMove;
         }
 
         private void OnDestroy()

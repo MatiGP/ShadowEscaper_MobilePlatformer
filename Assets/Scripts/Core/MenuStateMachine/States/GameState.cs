@@ -8,7 +8,6 @@ public class GameState : BaseMenuState
 {
     private UIPlayerControls m_PlayerControlPanel = null;
     private UIObjectives m_Objectives = null;
-    
 
     public GameState() : base(EMenuState.Game)
     {
@@ -18,11 +17,14 @@ public class GameState : BaseMenuState
     public override void EnterState()
     {
         LoadUI();
+        BindEvents();
+
     }
 
     public override void LeaveState()
     {
         UnloadUI();
+        UnBindEvents();
     }
 
     public override void UpdateState()
@@ -30,13 +32,31 @@ public class GameState : BaseMenuState
         
     }
 
-    private void LoadUI()
+    private void BindEvents()
     {
-        m_PlayerControlPanel = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
-        m_PlayerControlPanel.Initialize();
+        ShadowRunApp.Instance.LevelLoader.OnLevelLoaded += SpawnTapToContinue;
+        ShadowRunApp.Instance.LevelLoader.OnLevelLoaded += ResetProgress;
+    }
 
+    private void ResetProgress(object sender, System.EventArgs e)
+    {
+        m_Objectives.ResetProgress();
+    }
+
+    private void UnBindEvents()
+    {
+        ShadowRunApp.Instance.LevelLoader.OnLevelLoaded -= SpawnTapToContinue;
+    }
+
+    private void SpawnTapToContinue(object sender, System.EventArgs e)
+    {
+        UIManager.Instance.CreatePanel(EPanelID.TapToContinue);
+    }
+
+    private void LoadUI()
+    {       
+        m_PlayerControlPanel = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
         m_Objectives = UIManager.Instance.CreatePanel(EPanelID.Objectives) as UIObjectives;
-        m_Objectives.Initialize();
     }
 
     private void UnloadUI()
