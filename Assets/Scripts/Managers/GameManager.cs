@@ -32,7 +32,7 @@ public class GameManager
         CurrentPoints += CollectedItemsCount == CurrentLevelData.ItemsCount ? 1 : 0;
         CurrentPoints += LevelTime <= CurrentLevelData.LevelDuration ? 1 : 0;
 
-        ShadowRunApp.Instance.SaveSystem.SaveLevelProgress(CurrentPoints, CurrentLevelData.LevelIndex);
+        ShadowRunApp.Instance.SaveSystem.SaveLevelProgress(CurrentPoints, CurrentLevelData.LevelIndex-1);
     }
    
     public void SetLevelData(LevelData levelData)
