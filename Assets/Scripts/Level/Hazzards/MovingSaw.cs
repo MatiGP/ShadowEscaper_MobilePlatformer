@@ -4,71 +4,68 @@ using UnityEngine;
 
 public class MovingSaw : MonoBehaviour
 {
-    [SerializeField] bool stationary;
-    [SerializeField] bool reverseSawDirection = false;
-    [SerializeField] float speed;
-    [SerializeField] List<Vector2> waypoints;
-    
+    [SerializeField] private bool m_ReverseSawDirection = false;
+    [SerializeField] private float m_Speed = 4f;
+    [SerializeField] private List<Vector2> m_SawWaypoints = new List<Vector2>();
 
-    int currentWaypointIndex;
+    private int m_CurrentWaypointIndex;
+    private int m_EndPathIndex = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
-        if (stationary) return;
-        if (reverseSawDirection)
+        m_EndPathIndex = m_ReverseSawDirection ? 0 : m_SawWaypoints.Count - 1;
+
+        if (m_ReverseSawDirection)
         {
-            transform.position = waypoints[1];
+            transform.position = m_SawWaypoints[m_SawWaypoints.Count - 1];
         }
         else
         {
-            transform.position = waypoints[0];
-        }
-        
+            transform.position = m_SawWaypoints[0];
+        }       
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (stationary) return;
-
-        if (ReachedEndOfPath()) currentWaypointIndex = 0; 
-
-        if (IsSawAtPoint(waypoints[currentWaypointIndex]))
+        if (ReachedEndOfPath())
         {
-            currentWaypointIndex++;
+            m_CurrentWaypointIndex = m_ReverseSawDirection ? m_SawWaypoints.Count - 1 : 0;
+        }
+
+        if (IsSawAtPoint(m_SawWaypoints[m_CurrentWaypointIndex]))
+        {
+            m_CurrentWaypointIndex = m_ReverseSawDirection ? m_CurrentWaypointIndex++ : m_CurrentWaypointIndex--;
         }
         else
         {
-            MoveToTheNextWaypoint(currentWaypointIndex);
+            MoveToTheNextWaypoint();
         }
     }
 
-    void MoveToTheNextWaypoint(int index)
+    private void MoveToTheNextWaypoint()
     {
-        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex], speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position
+            ,m_SawWaypoints[m_CurrentWaypointIndex]
+            ,m_Speed * Time.deltaTime);
     }
-
-    bool IsSawAtPoint(Vector2 position)
+    private bool IsSawAtPoint(Vector2 position)
     {
         return transform.position == (Vector3)position;
     }
-
-    bool ReachedEndOfPath()
-    {
-        return currentWaypointIndex == waypoints.Count;
+    private bool ReachedEndOfPath()
+    {      
+        return m_CurrentWaypointIndex == m_EndPathIndex;
     }
-
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        for(int i = 0; i < waypoints.Count-1; i++)
+        for(int i = 0; i < m_SawWaypoints.Count-1; i++)
         {
-            Gizmos.DrawLine(waypoints[i], waypoints[i + 1]);
-            if(i == waypoints.Count - 2)
+            Gizmos.DrawLine(m_SawWaypoints[i], m_SawWaypoints[i + 1]);
+            if(i == m_SawWaypoints.Count - 2)
             {
-                Gizmos.DrawLine(waypoints[0], waypoints[i+1]);
+                Gizmos.DrawLine(m_SawWaypoints[0], m_SawWaypoints[i+1]);
             }
         }
     }

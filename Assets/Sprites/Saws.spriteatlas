@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Saws
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c2647ee4c082fdb409bdded4d5079c1b, type: 3}
+    totalSpriteSurfaceArea: 64259
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2e8fe948a98c6f744ad9f7187c4bc14a, type: 3}
+  - {fileID: 21300000, guid: 8d7af8791a001e84baea172fc6cea3f3, type: 3}
+  - {fileID: 21300000, guid: 6d1fff8c7990fff48a41ce2899ffdb45, type: 3}
+  - {fileID: 21300000, guid: d1c5a57e710f10b4191c9eb8b38eaf3d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - SAW MIDDLE #2
+  - FOLLOWING SAW PROCESS
+  - SAW FRONT #3
+  - SAW BEHIND #1
+  m_Tag: Saws
+  m_IsVariant: 0

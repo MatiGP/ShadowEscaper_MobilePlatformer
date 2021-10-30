@@ -24,4 +24,9 @@ public class PlayerHealth : MonoBehaviour
         OnDamageTaken.Invoke(this, EventArgs.Empty);
     }
 
+    private void OnDestroy()
+    {
+        OnDamageTaken = null;
+    }
+
 }

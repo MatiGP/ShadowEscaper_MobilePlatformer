@@ -96,18 +96,7 @@ MonoBehaviour:
   rocketSpeed: 10
   OnDestroyRocket:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1738320476638481694}
-        m_MethodName: ResetRocket
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!50 &1796883454490909417
 Rigidbody2D:
   serializedVersion: 4
@@ -427,12 +416,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad452ce3652ab641ac73acb31fa4f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocket: {fileID: 1292862529}
-  rocketLoadTime: 2
-  rotateSpeed: 20
-  minRotation: -40
-  maxRotation: 20
-  rotationStopDuration: 1
+  m_Rocket: {fileID: 0}
+  m_RockedLoadTime: 0
+  m_MinRotation: {x: 0, y: 0, z: 0}
+  m_MaxRotation: {x: 0, y: 0, z: 0}
+  m_RotationStopDuration: 0
   mark: {fileID: 2926264016792097898}
 --- !u!1 &1738320476659808361
 GameObject:
