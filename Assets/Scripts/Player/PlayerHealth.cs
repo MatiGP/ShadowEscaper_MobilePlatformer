@@ -16,12 +16,17 @@ public class PlayerHealth : MonoBehaviour
 
     private void PlayerHealth_OnDamageTaken(object sender, EventArgs e)
     {
+        if(UIManager.Instance == null)
+        {
+            return;
+        }
+
         UIManager.Instance.CreatePanel(EPanelID.Death);
     }
 
     public void TakeDamage()
     {
-        OnDamageTaken.Invoke(this, EventArgs.Empty);
+        OnDamageTaken?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnDestroy()

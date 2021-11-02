@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496750423}
   m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
-  m_LocalPosition: {x: 1.479, y: -1.51, z: 0}
+  m_LocalPosition: {x: 1.479, y: -1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1738320476638481665}
@@ -75,11 +75,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.23, y: 0.34}
+  m_Size: {x: 1.26, y: 0.46}
   m_Direction: 1
 --- !u!114 &1292862529
 MonoBehaviour:
@@ -93,10 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0acf230bd3a5ac4cbeaea55f5c6b21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketSpeed: 10
-  OnDestroyRocket:
-    m_PersistentCalls:
-      m_Calls: []
+  m_RocketSpeedIncrease: 10
 --- !u!50 &1796883454490909417
 Rigidbody2D:
   serializedVersion: 4
@@ -352,22 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9d0165edf891048b8ba82802af0e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserLenght: 15
-  laserPoint: {fileID: 496750424}
-  OnPlayerDetected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1738320476638481694}
-        m_MethodName: Launch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_LaserLength: 10
+  m_LaserPointTransform: {fileID: 496750424}
 --- !u!1 &1738320476638481664
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +375,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738320476638481664}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.26614493, w: 0.9639331}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -403,7 +386,7 @@ Transform:
   - {fileID: 496750424}
   m_Father: {fileID: 1738320476659808358}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30.87}
 --- !u!114 &1738320476638481694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,12 +399,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad452ce3652ab641ac73acb31fa4f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Rocket: {fileID: 0}
-  m_RockedLoadTime: 0
-  m_MinRotation: {x: 0, y: 0, z: 0}
-  m_MaxRotation: {x: 0, y: 0, z: 0}
-  m_RotationStopDuration: 0
-  mark: {fileID: 2926264016792097898}
+  m_Rocket: {fileID: 1292862529}
+  m_RockedLoadTime: 1.5
+  m_RocketSpawnPosition: {x: 1.55, y: -0.9, z: 0}
+  m_RocketReadyPosition: {x: 2.26, y: -1.31, z: 0}
+  m_RocketLauncherLaser: {fileID: 1738320476570859922}
+  m_MinRotation: {x: 0, y: 0, z: -50}
+  m_MaxRotation: {x: 0, y: 0, z: 50}
+  m_RotationDuration: 3
+  m_ExclamationMark: {fileID: 0}
 --- !u!1 &1738320476659808361
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +603,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExclMark
       objectReference: {fileID: 0}
+    - target: {fileID: 600751143703911111, guid: cfb1a5e1707dc8d4ebb10b8f0cf533d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5772808656421698949, guid: cfb1a5e1707dc8d4ebb10b8f0cf533d1,
         type: 3}
       propertyPath: m_Color.r
@@ -710,15 +701,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6437637425600853991}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2926264016792097898 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8199709943546536845, guid: cfb1a5e1707dc8d4ebb10b8f0cf533d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 6437637425600853991}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62b7a29d735115a4a91d244ff3f27b31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

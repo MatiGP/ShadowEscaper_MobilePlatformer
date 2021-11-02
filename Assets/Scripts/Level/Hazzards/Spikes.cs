@@ -1,28 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Spikes : MonoBehaviour
 {
-    [SerializeField] float spikeActivationTime;
-    [SerializeField] float spikeStayTime;
-    [SerializeField] Animator spikeAnimator;
-    [SerializeField] BoxCollider2D spikeCollider;
+    [SerializeField] private float m_SpikeHeight = 1.4f;
+    [SerializeField] private float m_SpikeActivationTime;
+    [SerializeField] private float m_SpikeStayTime;
+    [SerializeField] private BoxCollider2D m_SpikeCollider;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        StartCoroutine(ActivateSpikes());
-    }
+    private Tween m_ShowSpikes = null;
+    private Tween m_HideSpikes = null;
 
-    IEnumerator ActivateSpikes()
+    private void Awake()
     {
-        yield return new WaitForSeconds(spikeActivationTime);
-        spikeAnimator.SetTrigger("setSpikes");
-        spikeAnimator.ResetTrigger("hideSpikes");
-        spikeCollider.enabled = true;
-        yield return new WaitForSeconds(spikeStayTime);
-        spikeAnimator.SetTrigger("hideSpikes");
-        spikeAnimator.ResetTrigger("setSpikes");
-        spikeCollider.enabled = false;
+        
     }
 }

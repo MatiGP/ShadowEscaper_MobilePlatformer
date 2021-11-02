@@ -2,33 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
+using DG.Tweening;
 
 public class Rocket : MonoBehaviour
 {
-    [SerializeField] float rocketSpeed = 5;
-    [SerializeField] UnityEvent OnDestroyRocket;
+    public event EventHandler OnRockedDestroyed;
+    [SerializeField] float m_RocketSpeedIncrease = 2f;
 
-    bool launchRocket;
+    bool m_LaunchRocket;
+    private float m_RocketBaseSpeed = 5;
+    private float m_RocketSpeed = 0;
 
-   
     // Update is called once per frame
     void Update()
     {
-        if (!launchRocket) return;
-
-        transform.Translate(Vector2.right * rocketSpeed * Time.deltaTime, Space.Self);
+        if (!m_LaunchRocket) return;
+        m_RocketSpeed += m_RocketSpeedIncrease * Time.deltaTime;
+        transform.Translate(Vector2.right * m_RocketSpeed * Time.deltaTime, Space.Self);
     }
 
     public void LaunchRocket()
     {
         transform.parent = null;
-        launchRocket = true;        
+        m_LaunchRocket = true;
+        m_RocketSpeed = m_RocketBaseSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        launchRocket = false;
-        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(SoundType.RocketLauncher_Destroy);
-        OnDestroyRocket.Invoke();    
+        m_LaunchRocket = false;       
+        OnRockedDestroyed.Invoke(this, EventArgs.Empty);
     }
 }
