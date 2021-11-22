@@ -174,7 +174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8547931151780618370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -646,6 +646,9 @@ MonoBehaviour:
   m_OnButtonUpEvent:
     m_PersistentCalls:
       m_Calls: []
+  m_OnButtonDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7314649047274601679
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +769,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_OnButtonUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnButtonDownEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &5228959330850177029

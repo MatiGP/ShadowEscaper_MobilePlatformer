@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: PlayerCharacter
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -35,7 +35,7 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 2
+      padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
@@ -182,5 +182,5 @@ SpriteAtlas:
   - '#12'
   - '#2'
   - '#10'
-  m_Tag: Player
+  m_Tag: PlayerCharacter
   m_IsVariant: 0

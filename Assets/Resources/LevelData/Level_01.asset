@@ -15,4 +15,4 @@ MonoBehaviour:
   m_LevelIndex: 1
   m_KeysCount: 1
   m_ItemsCount: 1
-  m_LevelDurationInSeconds: -1
+  m_LevelDurationInSeconds: 60

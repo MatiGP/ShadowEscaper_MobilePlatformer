@@ -8,25 +8,24 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioClip[] SFXSounds;
 
-    float sfxVolume;
+    float sfxVolume = 1f;
     float musicVolume;
 
-    public void PlaySoundEffect(SoundType soundType)
+    public void PlaySoundEffect(ESoundType soundType)
     {
         m_SoundEffectSource.PlayOneShot(SFXSounds[(int)soundType], sfxVolume);
     }
 }
 
-public enum SoundType { 
-    Coin_Collect,
-    Game_Win,
-    Key_Collect,
-    Player_Landing,
-    Player_Slide,
-    RocketLauncher_Destroy,
-    RocketLauncher_Launch,
-    RocketLauncher_PlayerDetected,
-    Spikes_Activate,
-    Button_Pressed
-
+public enum ESoundType { 
+    COIN_COLLECT,
+    GAME_WIN,
+    KEY_COLLECT,
+    PLAYER_LANDING,
+    PLAYER_SLIDE,
+    ROCKETLAUNCHER_DESTROY,
+    ROCKETLAUNCHER_LAUNCH,
+    ROCKETLAUNCHER_PLAYERDETECTED,
+    SPIKES_ACTIVATE,
+    BUTTON_PRESSED
 }

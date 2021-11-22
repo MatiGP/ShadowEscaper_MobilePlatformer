@@ -44,7 +44,7 @@ namespace Code.UI.Panels
             SetCollectedItemsText();
             
             m_PreviousLevelButtonBlocker.SetActive(levelIndex - 1 == 0);
-            m_NextLevelButtonBlocker.SetActive(levelIndex +1 > LevelLoader.LEVEL_CAP);
+            m_NextLevelButtonBlocker.SetActive(levelIndex + 1 > LevelLoader.LEVEL_CAP);
 
             for(int i = 0; i < pointsObtained; i++)
             {

@@ -36,7 +36,7 @@ namespace Code.UI.Panels
         protected override void Start()
         {
             base.Start();
-            m_FadeTween = m_CanvasGroup.DOFade(1, m_FadeDuration);
+            m_FadeTween = m_CanvasGroup.DOFade(1, m_FadeDuration).Play();
 
             PrepareLevelPage();        
         }
@@ -53,7 +53,7 @@ namespace Code.UI.Panels
 
         public override void ClosePanel()
         {
-            m_FadeTween = m_CanvasGroup.DOFade(0, m_FadeDuration).OnComplete(() => base.ClosePanel());            
+            m_FadeTween = m_CanvasGroup.DOFade(0, m_FadeDuration).OnComplete(() => base.ClosePanel()).Play();            
         } 
         
         public override void UnBindEvents()

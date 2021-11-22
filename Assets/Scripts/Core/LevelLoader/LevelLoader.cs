@@ -90,11 +90,8 @@ public class LevelLoader : MonoBehaviour
             yield return null;
         }
 
-        OnLevelLoaded.Invoke(this, EventArgs.Empty);
-        
-        
-        m_UILoadingScreen.ClosePanel();
-        
+        OnLevelLoaded.Invoke(this, EventArgs.Empty);              
+        m_UILoadingScreen.ClosePanel();      
     }
 
     

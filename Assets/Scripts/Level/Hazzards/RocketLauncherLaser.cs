@@ -46,8 +46,10 @@ public class RocketLauncherLaser : MonoBehaviour
         }
         else
         {
-            m_LaserPoint.x = m_LaserLength * Mathf.Cos((m_LaserPointTransform.eulerAngles.z) * Mathf.Deg2Rad) + transform.position.x;
-            m_LaserPoint.y = m_LaserLength * Mathf.Sin((m_LaserPointTransform.eulerAngles.z) * Mathf.Deg2Rad) + transform.position.y;
+            m_LaserPoint.x = m_LaserLength * Mathf.Cos((m_LaserPointTransform.eulerAngles.z)
+                * Mathf.Deg2Rad) + transform.position.x;
+            m_LaserPoint.y = m_LaserLength * Mathf.Sin((m_LaserPointTransform.eulerAngles.z)
+                * Mathf.Deg2Rad) + transform.position.y;
             m_LineRenderer.SetPosition(1, m_LaserPoint);
         }
     }

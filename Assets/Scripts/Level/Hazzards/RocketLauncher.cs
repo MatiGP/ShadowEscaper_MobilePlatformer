@@ -10,12 +10,15 @@ public class RocketLauncher : MonoBehaviour
     [SerializeField] private float m_RockedLoadTime = 1f;
     [SerializeField] private Vector3 m_RocketSpawnPosition = new Vector3(0, 0, 0);
     [SerializeField] private Vector3 m_RocketReadyPosition = new Vector3(0, 0, 0);
+    
     [Header("Rocket Launcher Laser")]
     [SerializeField] private RocketLauncherLaser m_RocketLauncherLaser = null;
+    
     [Header("Launcher Rotation")]
     [SerializeField] private Vector3 m_MinRotation = new Vector3(0, 0, 0);
     [SerializeField] private Vector3 m_MaxRotation = new Vector3(0, 0, 0);
     [SerializeField] private float m_RotationDuration = 1f;
+    
     [Header("Warning")]
     [SerializeField] ExclamationMark m_ExclamationMark;
     
@@ -50,6 +53,7 @@ public class RocketLauncher : MonoBehaviour
 
     private void HandlePlayerDetected(object sender, System.EventArgs e)
     {
+        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.ROCKETLAUNCHER_PLAYERDETECTED);
         PauseRotatingSequence();        
         m_Rocket.LaunchRocket();      
     }
@@ -62,8 +66,10 @@ public class RocketLauncher : MonoBehaviour
     private void SetUpRotatingSequence()
     {
         m_RotationSequence = DOTween.Sequence();
-        m_RotateDown = transform.DOLocalRotateQuaternion(Quaternion.Euler(m_MinRotation), m_RotationDuration).SetEase(Ease.Linear);
-        m_RotateUp = transform.DOLocalRotateQuaternion(Quaternion.Euler(m_MaxRotation), m_RotationDuration).SetEase(Ease.Linear);
+        m_RotateDown = transform.DOLocalRotateQuaternion(Quaternion.Euler(m_MinRotation), 
+            m_RotationDuration).SetEase(Ease.Linear);
+        m_RotateUp = transform.DOLocalRotateQuaternion(Quaternion.Euler(m_MaxRotation), 
+            m_RotationDuration).SetEase(Ease.Linear);
 
         m_RotationSequence.Append(m_RotateDown).Append(m_RotateUp).SetLoops(-1);
     }

@@ -38,6 +38,7 @@ public class HiddenSpikes : MonoBehaviour
         {
             PrepareSpikeSequence();
             m_SpikeSequence.Play();
+            
         }
     }
 

@@ -27,7 +27,7 @@ namespace Code.UI.Panels
 
         public override void ClosePanel()
         {
-            m_FadeTween = m_CanvasGroup.DOFade(0, m_FadeDuration).OnComplete(() => base.ClosePanel());
+            m_FadeTween = m_CanvasGroup.DOFade(0, m_FadeDuration).OnComplete(() => base.ClosePanel()).Play();
         }
 
         public void SetFill(float fill)
