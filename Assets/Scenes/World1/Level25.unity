@@ -1182,7 +1182,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410761916}
   - component: {fileID: 410761915}
-  m_Layer: 0
+  - component: {fileID: 410761917}
+  m_Layer: 9
   m_Name: LVL 12 Scalone_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1254,6 +1255,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &410761917
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410761914}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 16.027681, y: 35.600002}
+    newSize: {x: 15.94, y: 35.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.027681, y: 35.600002}
+  m_EdgeRadius: 0
 --- !u!1001 &437590141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2580,7 +2607,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1097055851}
   - component: {fileID: 1097055850}
-  m_Layer: 0
+  - component: {fileID: 1097055852}
+  m_Layer: 9
   m_Name: LVL 12 Scalone_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2652,6 +2680,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1097055852
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097055849}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 16.027681, y: 35.600002}
+    newSize: {x: 15.94, y: 35.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.027681, y: 35.600002}
+  m_EdgeRadius: 0
 --- !u!1 &1200899709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,7 +3745,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1750087316}
   - component: {fileID: 1750087315}
-  m_Layer: 0
+  - component: {fileID: 1750087317}
+  m_Layer: 9
   m_Name: LVL 12 Scalone_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3763,6 +3818,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1750087317
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750087314}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 16.027681, y: 35.600002}
+    newSize: {x: 15.94, y: 35.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.027681, y: 35.600002}
+  m_EdgeRadius: 0
 --- !u!1 &1876633830
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,7 +4074,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2040144041}
   - component: {fileID: 2040144040}
-  m_Layer: 0
+  - component: {fileID: 2040144042}
+  m_Layer: 9
   m_Name: LVL 12 Scalone_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4065,3 +4147,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2040144042
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040144039}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 16.027681, y: 35.600002}
+    newSize: {x: 15.94, y: 35.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.027681, y: 35.600002}
+  m_EdgeRadius: 0

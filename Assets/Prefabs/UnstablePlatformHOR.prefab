@@ -101,10 +101,10 @@ MonoBehaviour:
   disableDuration: 1
   platformSprites:
   - {fileID: -5377608841045712732, guid: 439fe77f5c554544d9de3d6571414e85, type: 3}
-  - {fileID: -9008204534886898995, guid: 09b56c9c2435d88489c009b4b4b027ab, type: 3}
-  - {fileID: 5025308754025287156, guid: fa4fa84c48f53dd4c99a46a136546aaa, type: 3}
-  - {fileID: 5405887427117723925, guid: 8eb8be26d25655643ad72c4fb7d5ac2f, type: 3}
-  - {fileID: -1761692259850049586, guid: 87ac9a48c1f449141a91cc3d367d9473, type: 3}
+  - {fileID: -8823700795872851867, guid: 439fe77f5c554544d9de3d6571414e85, type: 3}
+  - {fileID: 8336936054842624872, guid: 439fe77f5c554544d9de3d6571414e85, type: 3}
+  - {fileID: -922853603457982455, guid: 439fe77f5c554544d9de3d6571414e85, type: 3}
+  - {fileID: -4778424847504176419, guid: 439fe77f5c554544d9de3d6571414e85, type: 3}
 --- !u!61 &8193017275048121504
 BoxCollider2D:
   m_ObjectHideFlags: 0
