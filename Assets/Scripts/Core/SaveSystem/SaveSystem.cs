@@ -4,109 +4,93 @@ using UnityEngine;
 using System.IO;
 
 public class SaveSystem
-{   
-    private string m_JsonSave = null;
+{
+    private const string KEY_MUSIC_VOLUME = "key_music_volume";
+    private const string KEY_SOUND_EFFECT_VOLUME = "key_sound_effect_volume";
+    private const string KEY_TARGET_FRAMERATE = "key_target_framerate";
+    private const string KEY_PROGRESS_AT_LEVEL = "key_progress_at_level_{0}";
+    private const string KEY_SKIN_COLOR = "key_skin_color";
+    private const string KEY_STARS_COUNT = "key_stars_count";
+    private const string KEY_VIBRATIONS_ENABLED = "key_vibrations_enabled";
 
-    private SaveData m_CurrentSave = null;
-
-    private const string SAVE_NAME = "saveData";
-
-    public void Initialize()
-    {
-        TryReadingJSONSave();
-    }
-
-    private void TryReadingJSONSave()
-    {
-        try
-        {
-            m_JsonSave = File.ReadAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json");
-        }
-        catch
-        {
-            // Launching game for the very first time.
-            string saveData = JsonUtility.ToJson(new SaveData());
-            File.WriteAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json", saveData);
-        }
-        finally
-        {
-            m_JsonSave = File.ReadAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json");
-            m_CurrentSave = JsonUtility.FromJson<SaveData>(m_JsonSave);
-        }
-    }
-
-    public void Save()
-    {
-        string saveData = JsonUtility.ToJson(m_CurrentSave);
-        File.WriteAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json", saveData);
-    }
-
-    public Color GetColorData()
+    public static Color GetColorData()
     {       
         Color c;
-        ColorUtility.TryParseHtmlString(m_CurrentSave.m_Color, out c);
+        string htlmColorString = PlayerPrefs.GetString(KEY_SKIN_COLOR, "#FFFFFF");
+        ColorUtility.TryParseHtmlString(htlmColorString, out c);
 
         return c;
     }
 
-    public int GetObtainedPointsFromLevel(int levelIndex)
-    {       
-        return m_CurrentSave.m_PointsGained[levelIndex];          
+    public static int GetObtainedPointsFromLevel(int levelIndex)
+    {
+        string levelString = string.Format(KEY_PROGRESS_AT_LEVEL, levelIndex);
+        int pointsObtained = PlayerPrefs.GetInt(levelString, 0);
+        return pointsObtained;          
     }
 
-    public int GetTargetFramerate()
+    public static void SaveObtainedPointsFromLevel(int levelIndex, int points)
     {
-        return m_CurrentSave.m_FrameRate;
+        string levelString = string.Format(KEY_PROGRESS_AT_LEVEL, levelIndex);
+        PlayerPrefs.SetInt(levelString, points);
     }
 
-    public float GetSFXVolume()
+    public static int GetTargetFramerate()
     {
-        return m_CurrentSave.m_SoundFXVolume;
+        return PlayerPrefs.GetInt(KEY_TARGET_FRAMERATE, 30);
     }
 
-    public float GetMusicVolume()
+    public static void SaveTargetFramerate(int framerate)
     {
-        return m_CurrentSave.m_MusicVolume;
+        PlayerPrefs.SetInt(KEY_TARGET_FRAMERATE, framerate);
     }
 
-    public void SaveColorData(string color)
+    public static float GetSFXVolume()
     {
-        m_CurrentSave.m_Color = color;
+        return PlayerPrefs.GetFloat(KEY_SOUND_EFFECT_VOLUME, 0.5f);
+    }
 
-        string saveData = JsonUtility.ToJson(m_CurrentSave);
-        File.WriteAllText(Application.persistentDataPath + $"/{SAVE_NAME}.json", saveData);
+    public static void SaveSFXVolume(float value)
+    {
+        PlayerPrefs.SetFloat(KEY_SOUND_EFFECT_VOLUME, value);
+    }
+
+    public static float GetMusicVolume()
+    {
+        return PlayerPrefs.GetFloat(KEY_MUSIC_VOLUME, 0.5f);
+    }
+
+    public static void SaveMusicVolume(float value)
+    {
+        PlayerPrefs.SetFloat(KEY_MUSIC_VOLUME, value);
+    }
+
+    public static void SaveColorData(string color)
+    {
+        PlayerPrefs.SetString(KEY_SKIN_COLOR, color);
     } 
 
-    public void SaveSoundFXVolume(float v)
+    public static void AddToOwnedStars(int count)
     {
-        m_CurrentSave.m_SoundFXVolume = v;
+        int current = PlayerPrefs.GetInt(KEY_STARS_COUNT, 0);
+        PlayerPrefs.SetInt(KEY_STARS_COUNT, current + count);
     }
 
-    public void SaveMusicVolume(float v)
+    public static int GetOwnedStars()
     {
-        m_CurrentSave.m_MusicVolume = v;
+        return PlayerPrefs.GetInt(KEY_STARS_COUNT);
     }
 
-    public void SaveTargetFramerate(int framerate)
+    public static bool AreVibrationsEnabled()
     {
-        m_CurrentSave.m_FrameRate = framerate;  
+        return PlayerPrefs.GetInt(KEY_VIBRATIONS_ENABLED, 1) == 1;
     }
 
-    public void SaveLevelProgress(int earnedPoints, int levelIndex)
+    public static void SetVibrationsEnabled(bool value)
     {
-        m_CurrentSave.m_PointsGained[levelIndex] = earnedPoints;
-        Save();
+        PlayerPrefs.SetInt(KEY_VIBRATIONS_ENABLED, value ? 1 : 0);
     }
-}
 
-[System.Serializable]
-public class SaveData
-{
-    public int[] m_PointsGained = new int[25];
-    public string m_Color = "#FFFFFF";
-    public int m_FrameRate = 30;
-    public float m_SoundFXVolume = 1f;
-    public float m_MusicVolume = 1f;   
 }
 
 

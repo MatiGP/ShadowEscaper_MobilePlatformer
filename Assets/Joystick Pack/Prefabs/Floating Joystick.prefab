@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleRange: 1
-  deadZone: 0
+  deadZone: 0.5
   axisOptions: 0
   snapX: 0
   snapY: 0

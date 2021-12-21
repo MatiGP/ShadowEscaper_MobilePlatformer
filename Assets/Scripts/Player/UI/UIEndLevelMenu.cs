@@ -37,7 +37,7 @@ namespace Code.UI.Panels
 
         protected override void Start()
         {
-            int levelIndex = SceneManager.GetActiveScene().buildIndex - 1;
+            int levelIndex = SceneManager.GetActiveScene().buildIndex;
             int pointsObtained = ShadowRunApp.Instance.GameManager.CurrentPoints;
             
             SetFinishedBeforeText();

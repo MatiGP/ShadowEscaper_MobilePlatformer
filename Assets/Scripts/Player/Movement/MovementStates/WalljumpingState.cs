@@ -6,6 +6,7 @@ public class WalljumpingState : BaseMovementState
 {
     float walljumpDirection;
     float currentWallJumpDuration;
+    private const long VIBRATION_DURATION = 50;
 
     public WalljumpingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
@@ -19,6 +20,7 @@ public class WalljumpingState : BaseMovementState
         playerController.FlipDirection();
         currentWallJumpDuration = 0;
         walljumpDirection = playerController.IsTouchingLeftWall ? 1 : -1;
+        Vibration.Vibrate(VIBRATION_DURATION);
     }
 
     public override void Exit()

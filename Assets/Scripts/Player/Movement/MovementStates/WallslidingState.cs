@@ -12,6 +12,7 @@ public class WallslidingState : BaseMovementState
     {
         playerController.FixPlayerWallPosition();
         Debug.Log("Entering Wallsliding state");
+        playerController.AdjustPlayerDirection();
     }
 
     public override void Exit()

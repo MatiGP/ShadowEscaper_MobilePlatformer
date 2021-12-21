@@ -10,7 +10,6 @@ public class ShadowRunApp : MonoBehaviour
     
     public LevelLoader LevelLoader { get => m_LevelLoader; }
     public SoundManager SoundManager { get => m_SoundManager; }
-    public SaveSystem SaveSystem { get => m_SaveSystem; }
     public GameManager GameManager { get => m_GameManager; }
 
     [SerializeField] private EMenuState m_StartingState;
@@ -20,7 +19,6 @@ public class ShadowRunApp : MonoBehaviour
        
     private GameManager m_GameManager = null;   
     private MenuStateMachine m_StateMachnie = null;
-    private SaveSystem m_SaveSystem = null;
     
     private void Awake()
     {
@@ -35,6 +33,9 @@ public class ShadowRunApp : MonoBehaviour
         m_StateMachnie.AddState(new GameState());
         
         InitializeOtherSystems();
+        LoadSettings();
+
+        m_SoundManager.PauseGameplayMusic();
         
         BindEvents(); 
     }
@@ -51,13 +52,18 @@ public class ShadowRunApp : MonoBehaviour
 
     private void InitializeOtherSystems()
     {
-        m_SaveSystem = new SaveSystem();
-        m_SaveSystem.Initialize();
-
         m_UIManager.Initialize();
+        m_SoundManager.Initialize();
 
         m_GameManager = new GameManager();
 
+    }
+
+    private void LoadSettings()
+    {
+        m_SoundManager.ApplySoundFXVolume();
+        m_SoundManager.ApplyMusicVolume();
+        Application.targetFrameRate = SaveSystem.GetTargetFramerate();
     }
 
     private void BindEvents()
@@ -77,12 +83,14 @@ public class ShadowRunApp : MonoBehaviour
 
     private void HandleGameExit(object sender, System.EventArgs e)
     {
-        m_StateMachnie.ChangeState(EMenuState.MainMenu);
+        m_StateMachnie.ChangeState(EMenuState.MainMenu);       
+        m_SoundManager.PauseGameplayMusic();
     }
 
     private void HandleLevelLoaded(object sender, System.EventArgs e)
     {
-        m_StateMachnie.ChangeState(EMenuState.Game);
+        m_StateMachnie.ChangeState(EMenuState.Game);       
+        m_SoundManager.PauseMainMenuMusic();
     }
 
     private void UnBindEvents()

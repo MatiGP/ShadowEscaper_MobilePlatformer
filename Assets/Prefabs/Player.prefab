@@ -581,7 +581,7 @@ MonoBehaviour:
   fallingSpeedLimit: 80
   normalJumpMultiplier: 2
   lowJumpMultiplier: 2
-  maxFallSpeed: 30
+  maxFallSpeed: 20
   wallslideSpeed: 5
   wallJumpHeight: 70
   jumpOffWallForce: 15

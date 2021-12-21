@@ -22,6 +22,8 @@ public class GroundslidingState : BaseMovementState
         movementVector = Vector3.zero;
 
         currentSpeed = playerController.SlideSpeed;
+
+        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.PLAYER_SLIDE);
     }
 
     public override void Exit()
@@ -48,7 +50,7 @@ public class GroundslidingState : BaseMovementState
 
         playerTransform.position += movementVector;
 
-
+        Vibration.Vibrate();
     }
 
     public override void HandleLogic()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -19,10 +20,18 @@ namespace Code.UI.Panels
         [SerializeField] private Button m_Shop = null;
         [SerializeField] private Button m_Settings = null;
 
+        [SerializeField] private TextMeshProUGUI m_StarCount = null;
+
         protected override void Awake()
         {
             base.Awake();
             BindEvents();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            m_StarCount.text = SaveSystem.GetOwnedStars().ToString();
         }
 
         public override void BindEvents()

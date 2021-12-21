@@ -16,6 +16,10 @@ public class EndPlatform : MonoBehaviour
     {
         if (m_IsPlatformTurnedOn)
         {
+            PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
+            int starCount = playerInventory.GetItemCount(ECollectableType.Star);
+
+            ShadowRunApp.Instance.GameManager.SetCollectedItemsCount(starCount);
             ShadowRunApp.Instance.GameManager.SummarizeLevel();
             UIManager.Instance.CreatePanel(EPanelID.EndLevelMenu);       
         }

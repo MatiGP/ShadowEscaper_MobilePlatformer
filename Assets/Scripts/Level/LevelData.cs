@@ -16,5 +16,5 @@ public class LevelData : ScriptableObject
     public int ItemsCount => m_ItemsCount;
 
     [SerializeField] private float m_LevelDurationInSeconds = -1f;
-    public TimeSpan LevelDuration => TimeSpan.FromSeconds(m_LevelDurationInSeconds);
+    public float LevelDurationInSeconds => m_LevelDurationInSeconds;
 }

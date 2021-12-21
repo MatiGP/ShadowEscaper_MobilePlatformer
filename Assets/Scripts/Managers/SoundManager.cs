@@ -4,16 +4,54 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {   
-    [SerializeField] private AudioSource m_SoundEffectSource;
+    [SerializeField] private AudioSource m_SoundEffectSource = null;
+    [SerializeField] private AudioSource m_MainMenuMusic = null;
+    [SerializeField] private AudioSource m_GameplayMusic = null;
 
     [SerializeField] private AudioClip[] SFXSounds;
 
-    float sfxVolume = 1f;
-    float musicVolume;
+    private float m_SFXVolume = 1f;
+    private float m_MusicVolume = 1f;
+    public void Initialize()
+    {
+        m_SFXVolume = SaveSystem.GetSFXVolume();
+        m_SoundEffectSource.volume = m_SFXVolume;
+        
+        m_MusicVolume = SaveSystem.GetMusicVolume();
+        m_GameplayMusic.volume = m_MusicVolume;
+        m_MainMenuMusic.volume = m_MusicVolume;
+    }
 
     public void PlaySoundEffect(ESoundType soundType)
     {
-        m_SoundEffectSource.PlayOneShot(SFXSounds[(int)soundType], sfxVolume);
+        m_SoundEffectSource.PlayOneShot(SFXSounds[(int)soundType]);
+    }
+
+    public void PauseMainMenuMusic()
+    {
+        m_MainMenuMusic.Pause();
+        if (!m_GameplayMusic.isPlaying)
+        {
+            m_GameplayMusic.Play();
+        }
+        
+    }
+
+    public void PauseGameplayMusic()
+    {       
+        m_MainMenuMusic.Play();
+        m_GameplayMusic.Pause();
+    } 
+
+    public void ApplySoundFXVolume()
+    {
+        m_SoundEffectSource.volume = SaveSystem.GetSFXVolume();
+    }
+
+    public void ApplyMusicVolume()
+    {
+        m_MainMenuMusic.volume = SaveSystem.GetMusicVolume();
+        m_GameplayMusic.volume = SaveSystem.GetMusicVolume();
     }
 }
 

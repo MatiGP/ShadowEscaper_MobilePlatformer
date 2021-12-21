@@ -20,11 +20,11 @@ public class GlobalUILayer
         EPanelID.Objectives,
         EPanelID.Settings,
         EPanelID.EndLevelMenu,
-        EPanelID.Death,
-        
+              
         EPanelID.TapToContinue,
 
-        EPanelID.LoadLevel
+        EPanelID.LoadLevel,
+        EPanelID.Death
     };
 
     public List<EPanelID> PanelOrder => m_PanelOrder;

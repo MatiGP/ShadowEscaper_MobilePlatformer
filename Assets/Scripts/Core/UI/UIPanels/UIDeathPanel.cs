@@ -12,7 +12,7 @@ namespace Code.UI.Panels
         [SerializeField] private Button m_TryAgainButton = null;
         
         [SerializeField] private CanvasGroup m_CanvasGroup = null;
-        [SerializeField] private float m_FadeInDuration = 0.8f;
+        [SerializeField] private float m_FadeInDuration = 0.5f;
 
         protected override void Awake()
         {
@@ -39,10 +39,11 @@ namespace Code.UI.Panels
         private void StartFadeIn()
         {
             m_CanvasGroup.DOFade(1, m_FadeInDuration).OnComplete(
-                () => { 
-                    m_TryAgainButton.interactable = true; 
+                () =>
+                {
+                    m_TryAgainButton.interactable = true;
                 }
-                );
+                ).Play();
         }
 
         private void StartFadeOut()
@@ -55,7 +56,7 @@ namespace Code.UI.Panels
                     ShadowRunApp.Instance.LevelLoader.ReloadLevel();
                     ClosePanel();
                 }
-                );
+                ).Play();
         }
 
         private void OnDestroy()

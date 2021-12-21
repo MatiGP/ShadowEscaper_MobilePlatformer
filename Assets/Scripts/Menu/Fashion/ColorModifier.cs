@@ -17,6 +17,6 @@ public class ColorModifier : MonoBehaviour
             image.color = c;
         }
 
-        ShadowRunApp.Instance.SaveSystem.SaveColorData(hex);
+        SaveSystem.SaveColorData(hex);
     }
 }

@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 2da9e9b966cb0eb4ab7cd10b630d9538, type: 3}
-    totalSpriteSurfaceArea: 2460812
+    totalSpriteSurfaceArea: 3354510
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -90,6 +90,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: eb7b0fb98ade4ed409c21e370bbf6a8f, type: 3}
   - {fileID: 21300000, guid: 65749ad997b74494aa2b160b75eb8ca9, type: 3}
   - {fileID: 21300000, guid: ecdce9f9a29acf646b1618d723b7ac80, type: 3}
+  - {fileID: 21300000, guid: cd0427ca77842f544836d3b1ce9f0308, type: 3}
   - {fileID: 21300000, guid: aa94a0eac75d7594fa442d279f15458b, type: 3}
   - {fileID: 21300000, guid: 5a40d6ea1a105be48be1411e2ac9690c, type: 3}
   - {fileID: 21300000, guid: 50bae52b299d8a84593a28c6ca197353, type: 3}
@@ -158,6 +159,7 @@ SpriteAtlas:
   - '#2 kopia 2'
   - '#7'
   - '#3'
+  - '#14'
   - '#1 Reaching out (QUICK ONE)'
   - '#4 (3)'
   - '#2 CONTACT (SLIDING DOWN) kopia'

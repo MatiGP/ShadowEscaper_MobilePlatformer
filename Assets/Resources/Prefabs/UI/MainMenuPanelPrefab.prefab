@@ -3983,6 +3983,7 @@ MonoBehaviour:
   m_Fashion: {fileID: 9105728772954475684}
   m_Shop: {fileID: 9105728773159749774}
   m_Settings: {fileID: 9105728772966172927}
+  m_StarCount: {fileID: 9105728773435189022}
 --- !u!223 &5616806972160892329
 Canvas:
   m_ObjectHideFlags: 0
@@ -5199,7 +5200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: --
+  m_text: xx
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ccba39e5394f8ba4d925bf28670a14b6, type: 2}
   m_sharedMaterial: {fileID: -2675998233484309099, guid: ccba39e5394f8ba4d925bf28670a14b6,

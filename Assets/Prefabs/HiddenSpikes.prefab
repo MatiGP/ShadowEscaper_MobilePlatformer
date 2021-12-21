@@ -99,7 +99,7 @@ MonoBehaviour:
   m_SpikeMinHeight: -0.55
   m_SpikeShowUpDuration: 0.4
   m_SpikeHideDuration: 0.2
-  m_SpikeActivationTime: 0.2
+  m_SpikeActivationTime: 0.4
   m_SpikeStayTime: 0.3
   m_SpikeTransform: {fileID: 3845703861343142207}
 --- !u!1 &3845703861343142206

@@ -9,11 +9,11 @@ using Code.UI;
 
 public class GameManager
 {
-    public event EventHandler OnItemCollected;
     public event EventHandler OnGameExit;
+
     public int CollectedItemsCount { get; private set; }
     public int CurrentPoints { get; private set; }
-    public TimeSpan LevelTime { get; set; }
+    public TimeSpan LevelTime { get; private set; }
     public LevelData CurrentLevelData { get; private set; }
 
     private DateTime LevelStartingDate = DateTime.MinValue; 
@@ -22,6 +22,7 @@ public class GameManager
     {      
         LevelStartingDate = DateTime.UtcNow;
         CurrentPoints = 0;
+        CollectedItemsCount = 0;
     }
 
     public void SummarizeLevel()
@@ -29,10 +30,15 @@ public class GameManager
         LevelTime = DateTime.UtcNow - LevelStartingDate;
 
         CurrentPoints = 1; //For Finishing.
-        CurrentPoints += CollectedItemsCount == CurrentLevelData.ItemsCount ? 1 : 0;
-        CurrentPoints += LevelTime <= CurrentLevelData.LevelDuration ? 1 : 0;
+        CurrentPoints += (CollectedItemsCount == CurrentLevelData.ItemsCount) ? 1 : 0;
+        CurrentPoints += (LevelTime.TotalSeconds <= CurrentLevelData.LevelDurationInSeconds) ? 1 : 0;
 
-        ShadowRunApp.Instance.SaveSystem.SaveLevelProgress(CurrentPoints, CurrentLevelData.LevelIndex-1);
+        SaveSystem.SaveObtainedPointsFromLevel(CurrentLevelData.LevelIndex - 1, CurrentPoints);
+    }
+
+    public void SetCollectedItemsCount(int count)
+    {
+        CollectedItemsCount = count;
     }
    
     public void SetLevelData(LevelData levelData)
@@ -44,9 +50,6 @@ public class GameManager
     {
         OnGameExit.Invoke(this, EventArgs.Empty);
     }
-
-
-   
 }
 
 

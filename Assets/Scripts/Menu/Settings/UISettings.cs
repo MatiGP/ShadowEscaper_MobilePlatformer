@@ -24,30 +24,14 @@ namespace Code.UI.Panels
 
         protected override void Start()
         {
-            m_MusicVolume.value = ShadowRunApp.Instance.SaveSystem.GetMusicVolume();
-            m_SFXVolume.value = ShadowRunApp.Instance.SaveSystem.GetSFXVolume();
-            m_Toggle60FPS.isOn = ShadowRunApp.Instance.SaveSystem.GetTargetFramerate() == 60 ? true : false;
+            m_MusicVolume.value = SaveSystem.GetMusicVolume();
+            m_SFXVolume.value = SaveSystem.GetSFXVolume();
+            m_Toggle60FPS.isOn = SaveSystem.GetTargetFramerate() == 60 ? true : false;
+            m_ToggleVibrations.isOn = SaveSystem.AreVibrationsEnabled();
             
-        }
+        }     
 
-        public void SaveSettings()
-        {
-            ShadowRunApp.Instance.SaveSystem.SaveMusicVolume(m_MusicVolume.value);
-            ShadowRunApp.Instance.SaveSystem.SaveSoundFXVolume(m_SFXVolume.value);
-
-            if (m_Toggle60FPS.isOn)
-            {
-                ShadowRunApp.Instance.SaveSystem.SaveTargetFramerate(60);
-            }
-            else
-            {
-                ShadowRunApp.Instance.SaveSystem.SaveTargetFramerate(30);
-            }
-
-            ShadowRunApp.Instance.SaveSystem.Save();
-        }
-
-        public void SetTargetFramerate(bool isOn)
+        private void SetTargetFramerate(bool isOn)
         {
             if (isOn)
             {
@@ -57,18 +41,43 @@ namespace Code.UI.Panels
             {
                 Application.targetFrameRate = 30;
             }
-        }         
+
+            SaveSystem.SaveTargetFramerate(Application.targetFrameRate);
+        }
+
+        private void SetVibrations(bool isOn)
+        {
+            SaveSystem.SetVibrationsEnabled(isOn);
+        }
+
+        public void SetMusicVolume(float value)
+        {
+            SaveSystem.SaveMusicVolume(value);
+            ShadowRunApp.Instance.SoundManager.ApplyMusicVolume();
+        }
+
+        public void SetSFXVolume(float value)
+        {
+            SaveSystem.SaveSFXVolume(value);
+            ShadowRunApp.Instance.SoundManager.ApplySoundFXVolume();
+        }
 
         public override void BindEvents()
         {
             m_BackButton.onClick.AddListener(ClosePanel);
             m_Toggle60FPS.onValueChanged.AddListener(SetTargetFramerate);
+            m_ToggleVibrations.onValueChanged.AddListener(SetVibrations);
+            m_MusicVolume.onValueChanged.AddListener(SetMusicVolume);
+            m_SFXVolume.onValueChanged.AddListener(SetSFXVolume);
         }
 
         public override void UnBindEvents()
         {
             m_BackButton.onClick.RemoveListener(ClosePanel);
             m_Toggle60FPS.onValueChanged.RemoveListener(SetTargetFramerate);
+            m_ToggleVibrations.onValueChanged.RemoveListener(SetVibrations);
+            m_MusicVolume.onValueChanged.RemoveListener(SetMusicVolume);
+            m_SFXVolume.onValueChanged.RemoveListener(SetSFXVolume);
         }
 
         private void OnDestroy()

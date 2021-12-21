@@ -199,11 +199,6 @@ public class PlayerController : MonoBehaviour
         m_UIPlayerControls.OnSlideInterupted += HandleSlideInterupted;      
     }
 
-    private void HandleJoystickStartMoving(object sender, EventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
     private void UnBindEvents()
     {
         m_UIPlayerControls.OnJoystickMoved -= ReadMoveInput;
@@ -293,6 +288,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void AdjustPlayerDirection()
+    {
+        direction = IsTouchingLeftWall ? -1 : 1;
+        Flip();
+    }
+
     public void Die(object sender, EventArgs e)
     {
         stateMachine.ChangeState(DeathState);
@@ -355,6 +356,7 @@ public class PlayerController : MonoBehaviour
     {
         remainingJumpForce = val;
     }
+
     public void FlipDirection()
     {
         if (isTouchingLeftWall)
