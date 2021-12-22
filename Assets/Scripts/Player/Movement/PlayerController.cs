@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private CapsuleCollider2D m_CapsuleCollider;
     [SerializeField] private Vector2 m_NormalCollisionSize = new Vector2(1.53f, 4f);
+    [SerializeField] private float m_JoystickDeadZone = 0.5f;
     [Header("Ground Movement")]
     [SerializeField] private float footSpeed;
     [SerializeField] private LayerMask groundLayer;
@@ -255,11 +256,11 @@ public class PlayerController : MonoBehaviour
 
     public void ReadMoveInput(object sender, float newDirection)
     {
-        if(newDirection > 0)
+        if(newDirection > m_JoystickDeadZone)
         {
             direction = 1;
         }
-        else if(newDirection < 0)
+        else if(newDirection < -m_JoystickDeadZone)
         {
             direction = -1;
         }
