@@ -50,6 +50,7 @@ public class JumpingState : BaseMovementState
         
         if (playerController.IsTouchingCeiling)
         {
+            playerController.SetJumpRemainingForce(movementVector.y);
             stateMachine.ChangeState(playerController.FallingState);
         }
       

@@ -555,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CapsuleCollider: {fileID: 5715414609690220084}
   m_NormalCollisionSize: {x: 1.53, y: 4}
+  m_JoystickDeadZone: 0.5
   footSpeed: 24
   groundLayer:
     serializedVersion: 2
@@ -586,7 +587,7 @@ MonoBehaviour:
   wallJumpHeight: 70
   jumpOffWallForce: 15
   wallJumpDuration: 0.8
-  ceilingDetectorSize: {x: 1.76, y: 0.46}
+  ceilingDetectorSize: {x: 1.76, y: 0.66}
   ceilingDetectorTransform: {fileID: 2139641897605777462}
   ceilingLayer:
     serializedVersion: 2
