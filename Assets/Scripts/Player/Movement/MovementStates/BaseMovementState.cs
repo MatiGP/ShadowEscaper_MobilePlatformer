@@ -4,13 +4,13 @@ using UnityEngine;
 
 public abstract class BaseMovementState
 {
-    protected PlayerController playerController;
+    protected CharacterController playerController;
     protected StateMachine stateMachine;
     protected Animator animator;
     protected Transform playerTransform;
     protected Vector3 movementVector;
 
-    public BaseMovementState(PlayerController controller, StateMachine stateMachine, Animator animator)
+    public BaseMovementState(CharacterController controller, StateMachine stateMachine, Animator animator)
     {
         playerController = controller;
         this.stateMachine = stateMachine;

@@ -6,7 +6,7 @@ public class JumpingState : BaseMovementState
 {
     private const long VIBRATION_DURATION = 100;
 
-    public JumpingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public JumpingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
 
     }
@@ -51,20 +51,20 @@ public class JumpingState : BaseMovementState
         if (playerController.IsTouchingCeiling)
         {
             playerController.SetJumpRemainingForce(movementVector.y);
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
       
         if(movementVector.y <= 0)
         {
             playerController.SetNormalFallMultiplier();
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
 
         if((movementVector.y > 0) && !playerController.IsJumping)
         {
             playerController.SetQuickFallMultiplier();
             playerController.SetJumpRemainingForce(movementVector.y);            
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
         
     }

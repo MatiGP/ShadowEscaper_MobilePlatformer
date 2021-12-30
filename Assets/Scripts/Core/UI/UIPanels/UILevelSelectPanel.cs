@@ -63,7 +63,7 @@ namespace Code.UI.Panels
 
         private void PrepareLevelPage()
         {
-            int startingLevelNum = LEVEL_BUTTONS_ON_EACH_PAGE_COUNT * m_LevelPageNum;
+            int startingLevelNum = (LEVEL_BUTTONS_ON_EACH_PAGE_COUNT * m_LevelPageNum);
 
             for (int i = startingLevelNum; i < LEVEL_BUTTONS_ON_EACH_PAGE_COUNT; i++)
             {

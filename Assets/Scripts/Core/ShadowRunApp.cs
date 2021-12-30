@@ -69,11 +69,17 @@ public class ShadowRunApp : MonoBehaviour
     private void BindEvents()
     {
         m_LevelLoader.OnLevelLoaded += HandleLevelLoaded;
+        m_LevelLoader.OnLevelSelected += HandleLevelSelected;
         m_GameManager.OnGameExit += HandleGameExit;
 
 
 
         m_LevelLoader.OnLevelDataLoaded += HandleLevelDataLoaded;
+    }
+
+    private void HandleLevelSelected(object sender, System.EventArgs e)
+    {
+        m_StateMachnie.ChangeState(EMenuState.Game);
     }
 
     private void HandleLevelDataLoaded(object sender, LevelData levelData)
@@ -88,8 +94,7 @@ public class ShadowRunApp : MonoBehaviour
     }
 
     private void HandleLevelLoaded(object sender, System.EventArgs e)
-    {
-        m_StateMachnie.ChangeState(EMenuState.Game);       
+    {         
         m_SoundManager.PauseMainMenuMusic();
     }
 
@@ -97,6 +102,7 @@ public class ShadowRunApp : MonoBehaviour
     {
         m_LevelLoader.OnLevelLoaded -= HandleLevelLoaded;
         m_GameManager.OnGameExit -= HandleGameExit;
+        m_LevelLoader.OnLevelSelected -= HandleLevelSelected;
 
         m_LevelLoader.OnLevelDataLoaded -= HandleLevelDataLoaded;
     }

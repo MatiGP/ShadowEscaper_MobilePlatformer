@@ -311,6 +311,11 @@ PrefabInstance:
       propertyPath: endLevelPlatform
       value: 
       objectReference: {fileID: 7259740519627364192}
+    - target: {fileID: 1660394109751250713, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
+        type: 3}
+      propertyPath: m_EndLevelPlatform
+      value: 
+      objectReference: {fileID: 7259740519627364192}
     - target: {fileID: 4612746737190084036, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
         type: 3}
       propertyPath: m_Name
@@ -408,6 +413,11 @@ PrefabInstance:
       propertyPath: endLevelPlatform
       value: 
       objectReference: {fileID: 7259740519627364192}
+    - target: {fileID: 1660394109751250713, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
+        type: 3}
+      propertyPath: m_EndLevelPlatform
+      value: 
+      objectReference: {fileID: 7259740519627364192}
     - target: {fileID: 4612746737190084036, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
         type: 3}
       propertyPath: m_Name
@@ -503,6 +513,11 @@ PrefabInstance:
     - target: {fileID: 1660394109751250713, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
         type: 3}
       propertyPath: endLevelPlatform
+      value: 
+      objectReference: {fileID: 7259740519627364192}
+    - target: {fileID: 1660394109751250713, guid: 67ddfe936974eef46a9b4620b7e2c1b1,
+        type: 3}
+      propertyPath: m_EndLevelPlatform
       value: 
       objectReference: {fileID: 7259740519627364192}
     - target: {fileID: 4612746737190084036, guid: 67ddfe936974eef46a9b4620b7e2c1b1,

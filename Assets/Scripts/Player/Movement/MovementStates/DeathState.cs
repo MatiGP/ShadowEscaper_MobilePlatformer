@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathState : BaseMovementState
 {
-    public DeathState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public DeathState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
     }
 

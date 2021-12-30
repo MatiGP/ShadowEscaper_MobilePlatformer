@@ -7,7 +7,7 @@ public class GroundslidingState : BaseMovementState
     float m_Direction = 0;
     float currentSpeed = 0;
 
-    public GroundslidingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public GroundslidingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
     }
 
@@ -24,6 +24,7 @@ public class GroundslidingState : BaseMovementState
         currentSpeed = playerController.SlideSpeed;
 
         ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.PLAYER_SLIDE);
+        playerController.PersistantParticles.SetEnabledParticleForMovementState(EMovementStateType.Groundsliding, true);
     }
 
     public override void Exit()
@@ -35,6 +36,8 @@ public class GroundslidingState : BaseMovementState
         playerController.SetSlideCooldown();
 
         playerController.InterruptSliding();
+
+        playerController.PersistantParticles.SetEnabledParticleForMovementState(EMovementStateType.Groundsliding, false);
     }
 
     public override void HandleAnimator()
@@ -57,22 +60,22 @@ public class GroundslidingState : BaseMovementState
     {
         if (!playerController.IsSliding)
         {
-            stateMachine.ChangeState(playerController.IdleState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
         }
 
         if(playerController.IsTouchingWallWhileSliding)
         {
-            stateMachine.ChangeState(playerController.IdleState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
         }
 
         if(currentSpeed <= 0.5f)
         {
-            stateMachine.ChangeState(playerController.IdleState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
         }
 
         if (!playerController.IsTouchingGround)
         {
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
     }
 }

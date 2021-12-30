@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class LevelLoader : MonoBehaviour
 {
     public event EventHandler OnLevelLoaded;
+    public event EventHandler OnLevelSelected;
     public event EventHandler<LevelData> OnLevelDataLoaded;
     
     private UILoadingScreen m_UILoadingScreen = null;
@@ -71,12 +72,14 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
-        m_UILoadingScreen = UIManager.Instance.CreatePanel(EPanelID.LoadLevel) as UILoadingScreen;
+        OnLevelSelected.Invoke(this, EventArgs.Empty);
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+        m_UILoadingScreen = UIManager.Instance.CreatePanel(EPanelID.LoadLevel) as UILoadingScreen;
 
         string levelName = string.Format(LEVEL_DATA_FORMAT, sceneIndex);
         string path = string.Format(LEVEL_DATA_PATH, levelName);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);  
 
         LevelData levelData = Resources.Load<LevelData>(path);
         OnLevelDataLoaded.Invoke(this, levelData);
@@ -93,9 +96,4 @@ public class LevelLoader : MonoBehaviour
         OnLevelLoaded.Invoke(this, EventArgs.Empty);              
         m_UILoadingScreen.ClosePanel();      
     }
-
-    
-
-
-
 }

@@ -12,14 +12,37 @@ public class SaveSystem
     private const string KEY_SKIN_COLOR = "key_skin_color";
     private const string KEY_STARS_COUNT = "key_stars_count";
     private const string KEY_VIBRATIONS_ENABLED = "key_vibrations_enabled";
+    private const string KEY_PREMIUM_CURRENCY = "key_premium_currency";
+    private const string KEY_IS_TUTORIAL_COMPLETED = "key_is_tutorial_completed";
+
+    public static bool IsTutorialCompleted()
+    {
+        return PlayerPrefs.GetInt(KEY_IS_TUTORIAL_COMPLETED, 0) == 1;
+    }
+
+    public static void SetTutorialCompleted(bool completed)
+    {
+        PlayerPrefs.SetInt(KEY_IS_TUTORIAL_COMPLETED, completed ? 1 : 0);
+    }
 
     public static Color GetColorData()
     {       
-        Color c;
+        Color color;
         string htlmColorString = PlayerPrefs.GetString(KEY_SKIN_COLOR, "#FFFFFF");
-        ColorUtility.TryParseHtmlString(htlmColorString, out c);
+        ColorUtility.TryParseHtmlString(htlmColorString, out color);
 
-        return c;
+        return color;
+    }
+
+    public static int GetPremiumCurrencyCount()
+    {
+        return PlayerPrefs.GetInt(KEY_PREMIUM_CURRENCY, 0);
+    }
+
+    public static void SetPremiumCurrencyCount(int value)
+    {
+        int current = GetPremiumCurrencyCount();
+        PlayerPrefs.SetInt(KEY_PREMIUM_CURRENCY, current  + value);
     }
 
     public static int GetObtainedPointsFromLevel(int levelIndex)

@@ -6,7 +6,7 @@ public class IdleState : BaseMovementState
 {
     bool IsRunning;
 
-    public IdleState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public IdleState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
     }
 
@@ -34,7 +34,7 @@ public class IdleState : BaseMovementState
     {
         if (playerController.IsJumping)
         {
-            stateMachine.ChangeState(playerController.JumpingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
         }
 
         bool IsNotTouchingAnyWall = (playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall)
@@ -42,12 +42,12 @@ public class IdleState : BaseMovementState
         
         if (IsRunning && IsNotTouchingAnyWall)
         {
-            stateMachine.ChangeState(playerController.RunningState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
         }
 
         if (playerController.IsSliding)
         {
-            stateMachine.ChangeState(playerController.GroundSlidingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Groundsliding]);
         }
     }
 }

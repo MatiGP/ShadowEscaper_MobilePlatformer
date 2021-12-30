@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class WallslidingState : BaseMovementState
 {
-    public WallslidingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public WallslidingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
     }
 
     public override void Enter()
     {
         playerController.FixPlayerWallPosition();
-        Debug.Log("Entering Wallsliding state");
         playerController.AdjustPlayerDirection();
+        playerController.PersistantParticles.SetEnabledParticleForMovementState(EMovementStateType.Wallsliding, true);
     }
 
     public override void Exit()
     {
         movementVector.y = 0;
+        playerController.ClearDirection();
+        playerController.PersistantParticles.SetEnabledParticleForMovementState(EMovementStateType.Wallsliding, false);
     }
 
     public override void HandleAnimator()
@@ -36,19 +38,19 @@ public class WallslidingState : BaseMovementState
     {
         if (playerController.IsJumping)
         {
-            stateMachine.ChangeState(playerController.WallJumpingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Wallsliding]);
         }
 
         if(!playerController.IsTouchingGround && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
             
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
 
         if(playerController.IsTouchingGround)
         {
             playerController.FixPlayerGroundPosition();
-            stateMachine.ChangeState(playerController.IdleState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
         }
 
         

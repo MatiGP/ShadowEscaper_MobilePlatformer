@@ -51,6 +51,9 @@ TagManager:
   - name: Character
     uniqueID: 1639325193
     locked: 0
+  - name: Particles
+    uniqueID: 238578859
+    locked: 0
   - name: UI
     uniqueID: 434812733
     locked: 0

@@ -6,7 +6,7 @@ public class RunningState : BaseMovementState
 {
     bool isRunning;
 
-    public RunningState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public RunningState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
     }
 
@@ -42,25 +42,25 @@ public class RunningState : BaseMovementState
     {
         if (isRunning && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
-            stateMachine.ChangeState(playerController.IdleState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
         }
         else if (!isRunning)
         {
-            stateMachine.ChangeState(playerController.IdleState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
         }
 
         if (playerController.IsSliding)
         {
-            stateMachine.ChangeState(playerController.GroundSlidingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Groundsliding]);
         }
 
         if (playerController.IsJumping)
         {
-            stateMachine.ChangeState(playerController.JumpingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
         }
         else if (!playerController.IsTouchingGround)
         {
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
 
 

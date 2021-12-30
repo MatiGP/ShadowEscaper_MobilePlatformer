@@ -8,7 +8,7 @@ public class WalljumpingState : BaseMovementState
     float currentWallJumpDuration;
     private const long VIBRATION_DURATION = 50;
 
-    public WalljumpingState(PlayerController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public WalljumpingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
         
     }
@@ -58,13 +58,13 @@ public class WalljumpingState : BaseMovementState
         if (playerController.IsTouchingCeiling)
         {
             playerController.ClearDirection();
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }       
 
         if(movementVector.y < 0)
         {
             playerController.ClearDirection();
-            stateMachine.ChangeState(playerController.FallingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
 
         if (currentWallJumpDuration <= playerController.WallJumpDuration)
@@ -74,7 +74,7 @@ public class WalljumpingState : BaseMovementState
 
         if (!playerController.IsTouchingGround && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
-            stateMachine.ChangeState(playerController.WallSlidingState);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Wallsliding]);
         }
     } 
 }

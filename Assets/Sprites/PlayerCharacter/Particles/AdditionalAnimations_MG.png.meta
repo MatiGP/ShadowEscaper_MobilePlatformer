@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: f8928775782e05341932e23dfdf992e2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2112783339342993258
+    second: AdditionalAnimations_MG_0
+  - first:
+      213: -5814726099427202033
+    second: AdditionalAnimations_MG_1
+  - first:
+      213: 877484327398821074
+    second: AdditionalAnimations_MG_2
+  - first:
+      213: 2349249383008937097
+    second: AdditionalAnimations_MG_3
+  - first:
+      213: 3391142536542626534
+    second: AdditionalAnimations_MG_4
+  - first:
+      213: -7900703642892041335
+    second: AdditionalAnimations_MG_5
+  - first:
+      213: 5274179087646577386
+    second: AdditionalAnimations_MG_6
+  - first:
+      213: -5038425639228308729
+    second: AdditionalAnimations_MG_7
+  - first:
+      213: -1349751738927991681
+    second: AdditionalAnimations_MG_8
+  - first:
+      213: -3854337889509503669
+    second: AdditionalAnimations_MG_9
+  - first:
+      213: 7212813260952074335
+    second: AdditionalAnimations_MG_10
+  - first:
+      213: -1007806058851278423
+    second: AdditionalAnimations_MG_11
+  - first:
+      213: -7720465473906807068
+    second: AdditionalAnimations_MG_12
+  - first:
+      213: 7936295753497925963
+    second: AdditionalAnimations_MG_13
+  - first:
+      213: -7724519270140261412
+    second: AdditionalAnimations_MG_14
+  - first:
+      213: 6136818760112727854
+    second: AdditionalAnimations_MG_15
+  - first:
+      213: 1286760109065069639
+    second: AdditionalAnimations_MG_16
+  - first:
+      213: 1352440535594071209
+    second: AdditionalAnimations_MG_17
+  - first:
+      213: 1517280791886419536
+    second: AdditionalAnimations_MG_18
+  - first:
+      213: -8571610146987383528
+    second: AdditionalAnimations_MG_19
+  - first:
+      213: 3113725295314551911
+    second: AdditionalAnimations_MG_20
+  - first:
+      213: 9000612451696722587
+    second: AdditionalAnimations_MG_21
+  - first:
+      213: -4672274539256459160
+    second: AdditionalAnimations_MG_22
+  - first:
+      213: -8800988772986911429
+    second: AdditionalAnimations_MG_23
+  - first:
+      213: 3363425949583765799
+    second: AdditionalAnimations_MG_24
+  - first:
+      213: -5986248468694872754
+    second: AdditionalAnimations_MG_25
+  - first:
+      213: 5270095958512344612
+    second: AdditionalAnimations_MG_26
+  - first:
+      213: 30361375416226965
+    second: AdditionalAnimations_MG_27
+  - first:
+      213: -34868141920600131
+    second: AdditionalAnimations_MG_28
+  - first:
+      213: -4086548597410552655
+    second: AdditionalAnimations_MG_29
+  - first:
+      213: -8831119004016837238
+    second: AdditionalAnimations_MG_30
+  - first:
+      213: 4176659413690046569
+    second: AdditionalAnimations_MG_31
+  - first:
+      213: 580848886883169071
+    second: AdditionalAnimations_MG_32
+  - first:
+      213: -3944537229764524935
+    second: AdditionalAnimations_MG_33
+  - first:
+      213: -4961817984432151789
+    second: AdditionalAnimations_MG_34
+  - first:
+      213: 6125648761026847799
+    second: AdditionalAnimations_MG_35
+  - first:
+      213: -8812340212879852540
+    second: AdditionalAnimations_MG_36
+  - first:
+      213: -305193335034176377
+    second: AdditionalAnimations_MG_37
+  - first:
+      213: 1257477043401081093
+    second: AdditionalAnimations_MG_38
+  - first:
+      213: -8964831257642718690
+    second: AdditionalAnimations_MG_39
+  - first:
+      213: -8007251578407956578
+    second: AdditionalAnimations_MG_40
+  - first:
+      213: -7130331255921967413
+    second: AdditionalAnimations_MG_41
+  - first:
+      213: -8512920757785029139
+    second: AdditionalAnimations_MG_42
+  - first:
+      213: -485414045891221173
+    second: AdditionalAnimations_MG_43
+  - first:
+      213: -2510123932852764942
+    second: AdditionalAnimations_MG_44
+  - first:
+      213: 2565239896652683468
+    second: AdditionalAnimations_MG_45
+  - first:
+      213: 4018965550024405028
+    second: AdditionalAnimations_MG_46
+  - first:
+      213: -4307716267810933364
+    second: AdditionalAnimations_MG_47
+  - first:
+      213: 712413260914159844
+    second: AdditionalAnimations_MG_48
+  - first:
+      213: -6135085912628749579
+    second: AdditionalAnimations_MG_49
+  - first:
+      213: 113360283668169843
+    second: AdditionalAnimations_MG_50
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AdditionalAnimations_MG_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 440
+        width: 328
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698e8133fb2eda2e0800000000000000
+      internalID: -2112783339342993258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AdditionalAnimations_MG_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 313
+        width: 512
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0ce2799b61fd4fa0800000000000000
+      internalID: -5814726099427202033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AdditionalAnimations_MG_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 198
+        width: 512
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc449eb8537d2c00800000000000000
+      internalID: 877484327398821074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AdditionalAnimations_MG_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 512
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 984ad03fdd53a9020800000000000000
+      internalID: 2349249383008937097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
