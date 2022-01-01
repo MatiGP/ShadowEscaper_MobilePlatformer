@@ -20,6 +20,7 @@ public class GlobalUILayer
         EPanelID.Objectives,
         EPanelID.Settings,
         EPanelID.EndLevelMenu,
+        EPanelID.Tutorial,
               
         EPanelID.TapToContinue,
 

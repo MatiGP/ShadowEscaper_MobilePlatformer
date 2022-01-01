@@ -21,7 +21,6 @@ public class EndPlatform : MonoBehaviour
 
             ShadowRunApp.Instance.GameManager.SetCollectedItemsCount(starCount);
             ShadowRunApp.Instance.GameManager.SummarizeLevel();
-            UIManager.Instance.CreatePanel(EPanelID.EndLevelMenu);       
         }
     }
 

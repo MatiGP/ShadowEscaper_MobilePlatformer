@@ -20,5 +20,6 @@ public abstract class BaseMenuState
 public enum EMenuState
 {
     MainMenu,
-    Game
+    Game,
+    Tutorial
 }

@@ -6,8 +6,8 @@ using Code.UI;
 
 public class GameState : BaseMenuState
 {
-    private UIPlayerControls m_PlayerControlPanel = null;
-    private UIObjectives m_Objectives = null;
+    protected UIPlayerControls m_PlayerControlPanel = null;
+    protected UIObjectives m_Objectives = null;
 
     public GameState() : base(EMenuState.Game)
     {
@@ -36,6 +36,12 @@ public class GameState : BaseMenuState
     {
         ShadowRunApp.Instance.LevelLoader.OnLevelLoaded += SpawnTapToContinue;
         ShadowRunApp.Instance.LevelLoader.OnLevelLoaded += ResetProgress;
+        ShadowRunApp.Instance.GameManager.OnGameCompleted += HandleGameCompleted;
+    }
+
+    protected virtual void HandleGameCompleted(object sender, System.EventArgs e)
+    {
+        UIManager.Instance.CreatePanel(EPanelID.EndLevelMenu);
     }
 
     private void ResetProgress(object sender, System.EventArgs e)

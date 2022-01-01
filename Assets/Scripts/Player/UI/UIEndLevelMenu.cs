@@ -114,7 +114,7 @@ namespace Code.UI.Panels
 
         private void HandleSettingsPressed()
         {
-
+            
         }
 
         private void OnDestroy()

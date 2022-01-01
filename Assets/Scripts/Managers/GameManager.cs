@@ -10,6 +10,7 @@ using Code.UI;
 public class GameManager
 {
     public event EventHandler OnGameExit;
+    public event EventHandler OnGameCompleted;
 
     public int CollectedItemsCount { get; private set; }
     public int CurrentPoints { get; private set; }
@@ -31,9 +32,11 @@ public class GameManager
 
         CurrentPoints = 1; //For Finishing.
         CurrentPoints += (CollectedItemsCount == CurrentLevelData.ItemsCount) ? 1 : 0;
-        CurrentPoints += (LevelTime.TotalSeconds <= CurrentLevelData.LevelDurationInSeconds) ? 1 : 0;
+        CurrentPoints += ((LevelTime.TotalSeconds <= CurrentLevelData.LevelDurationInSeconds) || (LevelTime.TotalSeconds == -1)) ? 1 : 0;
 
         SaveSystem.SaveObtainedPointsFromLevel(CurrentLevelData.LevelIndex - 1, CurrentPoints);
+
+        OnGameCompleted.Invoke(this, EventArgs.Empty);
     }
 
     public void SetCollectedItemsCount(int count)

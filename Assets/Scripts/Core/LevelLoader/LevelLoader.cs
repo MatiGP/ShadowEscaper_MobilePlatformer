@@ -17,6 +17,7 @@ public class LevelLoader : MonoBehaviour
 
     private const string LEVEL_DATA_FORMAT = "Level_{0:00}";
     private const string LEVEL_DATA_PATH = "LevelData/{0}";
+    private const string LEVEL_TUTORIAL_NAME = "Level_Tutorial";
 
     public const int LEVEL_CAP = 25;
 
@@ -95,5 +96,31 @@ public class LevelLoader : MonoBehaviour
 
         OnLevelLoaded.Invoke(this, EventArgs.Empty);              
         m_UILoadingScreen.ClosePanel();      
+    }
+
+    IEnumerator LoadTutorialLevel()
+    {
+        OnLevelSelected.Invoke(this, EventArgs.Empty);
+
+        m_UILoadingScreen = UIManager.Instance.CreatePanel(EPanelID.LoadLevel) as UILoadingScreen;
+
+        string path = string.Format(LEVEL_DATA_PATH, LEVEL_TUTORIAL_NAME);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(LEVEL_TUTORIAL_NAME, LoadSceneMode.Additive);
+
+        LevelData levelData = Resources.Load<LevelData>(path);
+        OnLevelDataLoaded.Invoke(this, levelData);
+
+        m_CurrentLevelIndex = levelData.LevelIndex;
+
+        while (!operation.isDone)
+        {
+            m_UILoadingScreen.SetFill(operation.progress / 0.90f);
+
+            yield return null;
+        }
+
+        OnLevelLoaded.Invoke(this, EventArgs.Empty);
+        m_UILoadingScreen.ClosePanel();
     }
 }
