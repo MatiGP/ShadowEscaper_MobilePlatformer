@@ -24,6 +24,12 @@ public class ControlCameraCommand : Command
             case ECameraAction.FollowTutorialCharacter:
                 m_CameraController.ChangeViewToTutorialCharacter();
                 break;
+            case ECameraAction.ZoomIn:
+                m_CameraController.ZoomIn();
+                break;
+            case ECameraAction.ZoomOut:
+                m_CameraController.ZoomOut();
+                break;
         }
         Continue();
     }
@@ -32,7 +38,9 @@ public class ControlCameraCommand : Command
     {   
         None,
         FollowTutorialCharacter,
-        FollowPlayerCharacter
+        FollowPlayerCharacter,
+        ZoomIn,
+        ZoomOut
     }
 
 }

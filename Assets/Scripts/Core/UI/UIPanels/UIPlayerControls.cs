@@ -14,17 +14,27 @@ namespace Code.UI.Panels
         public event EventHandler OnSlidePressed;
         public event EventHandler OnSlideInterupted;
 
-               
+        public Transform JoystickTransform { get; private set; }
+        public Transform JumpButtonTransform { get; private set; }
+        public Transform SlideButtonTransform { get; private set; }
+        
         [SerializeField] private Joystick m_Joystick = null;
         [SerializeField] private UIButton m_JumpButton = null;
         [SerializeField] private UIButton m_SlideButton = null;
         [SerializeField] private Button m_SettingsButton = null;
-
+      
         protected override void Awake()
         {
             base.Awake();
-
             BindEvents();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            JoystickTransform = m_Joystick.transform;
+            JumpButtonTransform = m_JumpButton.transform;
+            SlideButtonTransform = m_SlideButton.transform;
         }
 
         public override void BindEvents()

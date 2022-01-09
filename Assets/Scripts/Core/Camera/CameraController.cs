@@ -46,7 +46,6 @@ public class CameraController : MonoBehaviour
         {
             timePassed += Time.deltaTime;
             m_PlayerCamera.m_Lens.OrthographicSize = m_DefaultZoom - (m_ZoomFactor * m_ZoomAnimCurve.Evaluate(timePassed));
-            Debug.Log("Otho size" + m_PlayerCamera.m_Lens.OrthographicSize);
             yield return null;
         }
     }
