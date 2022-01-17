@@ -39,7 +39,7 @@ public class GameState : BaseMenuState
         ShadowRunApp.Instance.GameManager.OnGameCompleted += HandleGameCompleted;
     }
 
-    protected virtual void HandleGameCompleted(object sender, System.EventArgs e)
+    private void HandleGameCompleted(object sender, System.EventArgs e)
     {
         UIManager.Instance.CreatePanel(EPanelID.EndLevelMenu);
     }
@@ -60,13 +60,13 @@ public class GameState : BaseMenuState
         UIManager.Instance.CreatePanel(EPanelID.TapToContinue);
     }
 
-    private void LoadUI()
+    protected virtual void LoadUI()
     {       
         m_PlayerControlPanel = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
         m_Objectives = UIManager.Instance.CreatePanel(EPanelID.Objectives) as UIObjectives;
     }
 
-    private void UnloadUI()
+    protected virtual void UnloadUI()
     {
         m_PlayerControlPanel.ClosePanel();
         m_Objectives.ClosePanel();

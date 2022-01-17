@@ -7,6 +7,7 @@ using System;
 
 public class PlayerController : CharacterController
 {
+    public const float JOYSTICK_DEADZONE = 0.15f;   
     [Header("Health")]
     [SerializeField] private PlayerHealth m_PlayerHealth = null;
    
@@ -16,9 +17,9 @@ public class PlayerController : CharacterController
     {
         base.Awake();
 
-        //m_UIPlayerControls = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
+        m_UIPlayerControls = UIManager.Instance.CreatePanel(EPanelID.PlayerUI) as UIPlayerControls;
 
-        //BindEvents();
+        BindEvents();
     }
 
     protected override void SetUpStates()
@@ -49,7 +50,7 @@ public class PlayerController : CharacterController
 
     private void OnDestroy()
     {
-        //UnBindEvents();
+        UnBindEvents();
     }
 
     private void HandleSlideInterupted(object sender, EventArgs e)
@@ -77,12 +78,12 @@ public class PlayerController : CharacterController
 
     private void ReadMoveInput(object sender, float newDirection)
     {
-        if(newDirection >= m_JoystickDeadZone)
+        if(newDirection >= JOYSTICK_DEADZONE)
         {
             direction = 1;
             m_PersistantParticles.transform.localScale = new Vector3(1, 1, 1);
         }
-        else if(newDirection <= -m_JoystickDeadZone)
+        else if(newDirection <= -JOYSTICK_DEADZONE)
         {
             direction = -1;
             m_PersistantParticles.transform.localScale = new Vector3(-1, 1, 1);

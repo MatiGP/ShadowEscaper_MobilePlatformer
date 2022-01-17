@@ -19,6 +19,7 @@ public enum EPanelID
     LoadLevel,
     Objectives,
     TapToContinue,
-    Tutorial
+    EndLevelTutorial,
+    TutorialOverlay
 
 }

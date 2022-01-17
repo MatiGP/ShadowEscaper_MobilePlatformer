@@ -30,7 +30,6 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] protected CapsuleCollider2D m_CapsuleCollider;
     [SerializeField] protected Vector2 m_NormalCollisionSize = new Vector2(1.53f, 4f);
-    [SerializeField] protected float m_JoystickDeadZone = 0.5f;
     [Header("Ground Movement")]
     [SerializeField] protected float footSpeed;
     [SerializeField] protected LayerMask groundLayer;

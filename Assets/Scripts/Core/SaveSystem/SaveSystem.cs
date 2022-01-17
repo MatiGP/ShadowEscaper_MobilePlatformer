@@ -15,9 +15,10 @@ public class SaveSystem
     private const string KEY_PREMIUM_CURRENCY = "key_premium_currency";
     private const string KEY_IS_TUTORIAL_COMPLETED = "key_is_tutorial_completed";
 
-    public static bool IsTutorialCompleted()
+    public static bool IsTutorialCompleted
     {
-        return PlayerPrefs.GetInt(KEY_IS_TUTORIAL_COMPLETED, 0) == 1;
+        get { return PlayerPrefs.GetInt(KEY_IS_TUTORIAL_COMPLETED, 0) == 1; }
+        set { IsTutorialCompleted = value; }
     }
 
     public static void SetTutorialCompleted(bool completed)
@@ -112,8 +113,7 @@ public class SaveSystem
     public static void SetVibrationsEnabled(bool value)
     {
         PlayerPrefs.SetInt(KEY_VIBRATIONS_ENABLED, value ? 1 : 0);
-    }
-
+    }   
 }
 
 

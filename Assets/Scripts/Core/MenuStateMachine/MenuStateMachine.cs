@@ -26,7 +26,7 @@ namespace Code.StateMachine {
 
         public void StartStateMachine(EMenuState startingState)
         {
-            m_CurrentState = m_MenuStates[startingState];
+            m_CurrentState = m_MenuStates[startingState];           
             m_CurrentState.EnterState();
         }
 

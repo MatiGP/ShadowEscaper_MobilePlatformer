@@ -12,14 +12,16 @@ public class ShadowRunApp : MonoBehaviour
     public SoundManager SoundManager { get => m_SoundManager; }
     public GameManager GameManager { get => m_GameManager; }
 
-    [SerializeField] private EMenuState m_StartingState;
+    
     [SerializeField] private UIManager m_UIManager = null;
     [SerializeField] private LevelLoader m_LevelLoader = null;
     [SerializeField] private SoundManager m_SoundManager = null;
        
     private GameManager m_GameManager = null;   
-    private MenuStateMachine m_StateMachnie = null;
-    
+    private MenuStateMachine m_StateMachine = null;
+
+    private EMenuState m_StartingState = EMenuState.MainMenu;
+
     private void Awake()
     {
         if(Instance == null)
@@ -27,10 +29,11 @@ public class ShadowRunApp : MonoBehaviour
             Instance = this;
         }
 
-        m_StateMachnie = new MenuStateMachine();
-        m_StateMachnie.Initialize();
-        m_StateMachnie.AddState(new MainMenuState());
-        m_StateMachnie.AddState(new GameState());
+        m_StateMachine = new MenuStateMachine();
+        m_StateMachine.Initialize();
+        m_StateMachine.AddState(new MainMenuState());
+        m_StateMachine.AddState(new GameState());
+        m_StateMachine.AddState(new TutorialGameState());
         
         InitializeOtherSystems();
         LoadSettings();
@@ -41,13 +44,13 @@ public class ShadowRunApp : MonoBehaviour
     }
 
     private void Start()
-    {
-        m_StateMachnie.StartStateMachine(m_StartingState);
+    {        
+        m_StateMachine.StartStateMachine(EMenuState.MainMenu);           
     }
 
     private void Update()
     {
-        m_StateMachnie.UpdateState();
+        m_StateMachine.UpdateState();
     }
 
     private void InitializeOtherSystems()
@@ -79,7 +82,7 @@ public class ShadowRunApp : MonoBehaviour
 
     private void HandleLevelSelected(object sender, System.EventArgs e)
     {
-        m_StateMachnie.ChangeState(EMenuState.Game);
+        m_StateMachine.ChangeState(EMenuState.Game);
     }
 
     private void HandleLevelDataLoaded(object sender, LevelData levelData)
@@ -89,7 +92,7 @@ public class ShadowRunApp : MonoBehaviour
 
     private void HandleGameExit(object sender, System.EventArgs e)
     {
-        m_StateMachnie.ChangeState(EMenuState.MainMenu);       
+        m_StateMachine.ChangeState(EMenuState.MainMenu);       
         m_SoundManager.PauseGameplayMusic();
     }
 

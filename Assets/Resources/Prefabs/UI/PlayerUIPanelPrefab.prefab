@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 6485278390900603956}
   - component: {fileID: 1699991245168289080}
   - component: {fileID: 2005348516474026104}
+  - component: {fileID: 8823974994510774515}
   m_Layer: 5
   m_Name: PlayerUIPanelPrefab
   m_TagString: Untagged
@@ -327,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee0a4a93581c2a428e5683c136dc503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CanvasGroup: {fileID: 8823974994510774515}
   m_Joystick: {fileID: 4947955795699834704}
   m_JumpButton: {fileID: 972982561974484153}
   m_SlideButton: {fileID: 8771961212075062218}
@@ -369,6 +371,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &8823974994510774515
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925447518362956674}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7314649046618153973
 GameObject:
   m_ObjectHideFlags: 0

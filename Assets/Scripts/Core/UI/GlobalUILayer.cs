@@ -17,10 +17,11 @@ public class GlobalUILayer
         
         //GAME
         EPanelID.PlayerUI,
+        EPanelID.TutorialOverlay,
         EPanelID.Objectives,
         EPanelID.Settings,
         EPanelID.EndLevelMenu,
-        EPanelID.Tutorial,
+        EPanelID.EndLevelTutorial,       
               
         EPanelID.TapToContinue,
 

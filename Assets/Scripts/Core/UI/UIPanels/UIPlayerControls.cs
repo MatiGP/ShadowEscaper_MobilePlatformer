@@ -17,16 +17,19 @@ namespace Code.UI.Panels
         public Transform JoystickTransform { get; private set; }
         public Transform JumpButtonTransform { get; private set; }
         public Transform SlideButtonTransform { get; private set; }
-        
+
+        [SerializeField] private CanvasGroup m_CanvasGroup = null;
         [SerializeField] private Joystick m_Joystick = null;
         [SerializeField] private UIButton m_JumpButton = null;
         [SerializeField] private UIButton m_SlideButton = null;
         [SerializeField] private Button m_SettingsButton = null;
+        
       
         protected override void Awake()
         {
             base.Awake();
             BindEvents();
+            
         }
 
         protected override void Start()
@@ -35,6 +38,12 @@ namespace Code.UI.Panels
             JoystickTransform = m_Joystick.transform;
             JumpButtonTransform = m_JumpButton.transform;
             SlideButtonTransform = m_SlideButton.transform;
+        }
+
+        public void SetReceiveInput(bool value)
+        {
+            m_CanvasGroup.interactable = value;
+            OnJoystickMoved.Invoke(this, 0f);
         }
 
         public override void BindEvents()
@@ -50,8 +59,18 @@ namespace Code.UI.Panels
             m_Joystick.OnHorizontalJoystickMove += OnHorizontalJoystickMove;
            
         }
+        public override void UnBindEvents()
+        {
+            m_SlideButton.OnButtonUp.RemoveListener(CancelSlide);
+            m_SlideButton.OnButtonDown.RemoveListener(InvokeSliding);
 
-       
+            m_SettingsButton.onClick.RemoveListener(CreateSettingsPanel);
+
+            m_JumpButton.OnButtonUp.RemoveListener(CancelJump);
+            m_JumpButton.OnButtonDown.RemoveListener(InvokeJumping);
+
+            m_Joystick.OnHorizontalJoystickMove -= OnHorizontalJoystickMove;
+        }
 
         private void OnHorizontalJoystickMove(object sender, float e)
         {
@@ -82,19 +101,6 @@ namespace Code.UI.Panels
         {
             UIManager.Instance.CreatePanel(EPanelID.Settings);
         }    
-
-        public override void UnBindEvents()
-        {
-            m_SlideButton.OnButtonUp.RemoveListener(CancelSlide);
-            m_SlideButton.OnButtonDown.RemoveListener(InvokeSliding);
-
-            m_SettingsButton.onClick.RemoveListener(CreateSettingsPanel);
-
-            m_JumpButton.OnButtonUp.RemoveListener(CancelJump);
-            m_JumpButton.OnButtonDown.RemoveListener(InvokeJumping);
-
-            m_Joystick.OnHorizontalJoystickMove -= OnHorizontalJoystickMove;
-        }
 
         private void OnDestroy()
         {
