@@ -33,8 +33,8 @@ namespace Code.UI.Panels {
             m_UIPlayerControls = UIManager.Instance.GetPanel(EPanelID.PlayerUI) as UIPlayerControls;
             DisablePlayerUIInputs();
 
-            m_LeftSwayThreshold = m_UIPlayerControls.JoystickTransform.position.x - m_HandSwayDistance;
-            m_RightSwayThreshold = m_UIPlayerControls.JoystickTransform.position.x + m_HandSwayDistance;
+            m_LeftSwayThreshold = m_UIPlayerControls.JoystickTransform.position.x + m_HandSwayOffset.x - m_HandSwayDistance;
+            m_RightSwayThreshold = m_UIPlayerControls.JoystickTransform.position.x + m_HandSwayOffset.x + m_HandSwayDistance;
 
             BindEvents();
         }
@@ -47,11 +47,13 @@ namespace Code.UI.Panels {
 
             m_HandClickSequence.Append(m_HandTransform.DOScale(m_HandScaleMaxSize, m_HandClickDuration))
                 .Append(m_HandTransform.DOScale(m_HandScaleMinSize, m_HandClickDuration))
-                .SetLoops(-1, LoopType.Yoyo);
+                .SetLoops(-1, LoopType.Yoyo)
+                .Pause();
 
-            m_HandSwaySequence.Append(m_HandTransform.DOMoveX(m_LeftSwayThreshold, m_HandSwayDuration))
-                .Append(m_HandTransform.DOMoveX(m_RightSwayThreshold, m_HandSwayDuration))
-                .SetLoops(-1, LoopType.Yoyo);
+            m_HandSwaySequence.Append(m_HandTransform.DOMoveX(m_LeftSwayThreshold, m_HandSwayDuration))               
+                .Append(m_HandTransform.DOMoveX(m_RightSwayThreshold, m_HandSwayDuration))                
+                .SetLoops(-1, LoopType.Yoyo)
+                .Pause(); 
         }
 
         private void OnDestroy()
@@ -109,6 +111,7 @@ namespace Code.UI.Panels {
 
         private void DisablePlayerUIInputs()
         {
+
             m_UIPlayerControls.JoystickTransform.gameObject.SetActive(false);
             m_UIPlayerControls.JumpButtonTransform.gameObject.SetActive(false);
             m_UIPlayerControls.SlideButtonTransform.gameObject.SetActive(false);

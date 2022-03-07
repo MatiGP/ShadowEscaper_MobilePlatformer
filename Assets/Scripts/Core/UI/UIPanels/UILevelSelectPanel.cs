@@ -40,16 +40,11 @@ namespace Code.UI.Panels
 
             PrepareLevelPage();        
         }
-
-        public override void BindEvents()
+        private void OnDestroy()
         {
-            OnLevelSelected += HandleLevelSelected;
+
         }
 
-        private void HandleLevelSelected(object sender, int levelIndex)
-        {
-            ShadowRunApp.Instance.LevelLoader.LoadLevel(levelIndex);                
-        }
 
         public override void ClosePanel()
         {
@@ -58,7 +53,7 @@ namespace Code.UI.Panels
         
         public override void UnBindEvents()
         {
-            OnLevelSelected -= HandleLevelSelected;
+            
         }
 
         private void PrepareLevelPage()
@@ -76,12 +71,13 @@ namespace Code.UI.Panels
 
         private void HandleLevelPressed(object sender, int levelIndex)
         {
-            OnLevelSelected.Invoke(this, levelIndex);
+            ShadowRunApp.Instance.LevelLoader.LoadLevel(levelIndex);
         }
 
-        private void OnDestroy()
+   
+        public override void BindEvents()
         {
-            UnBindEvents();
+            
         }
     }
 }

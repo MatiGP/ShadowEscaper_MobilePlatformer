@@ -20,7 +20,7 @@ public class FallingState : BaseMovementState
         movementVector.x = 0;
         playerController.SetJumpRemainingForce(0);
         Vibration.Vibrate(VIBRATION_DURATION);
-        //ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.PLAYER_LANDING);
+        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.PLAYER_LANDING);
     }
 
     public override void HandleAnimator()
@@ -44,6 +44,8 @@ public class FallingState : BaseMovementState
     {
         if (playerController.IsTouchingGround)
         {
+            Debug.Log("SHOULD FIX!");
+
             playerController.FixPlayerGroundPosition();
 
             if (playerController.Direction == 0)
@@ -55,6 +57,10 @@ public class FallingState : BaseMovementState
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
             }
 
+        }
+        else
+        {
+            Debug.Log("Player is not touching ground");
         }
 
         if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)

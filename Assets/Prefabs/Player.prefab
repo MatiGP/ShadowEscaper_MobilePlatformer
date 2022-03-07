@@ -338,7 +338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609058957330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.72, z: 0}
+  m_LocalPosition: {x: 0, y: -2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414610004021984}
@@ -370,7 +370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609074643548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.650002, y: 5, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414609690220085}
@@ -556,13 +556,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CapsuleCollider: {fileID: 5715414609690220084}
   m_NormalCollisionSize: {x: 1.53, y: 4}
-  m_JoystickDeadZone: 0.15
   footSpeed: 24
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundDetectorTransform: {fileID: 5715414609058957331}
-  groundDetectorSize: {x: 1.84, y: 0.53}
+  groundDetectorSize: {x: 1.84, y: 0.6}
   groundDetectionLineLength: 6
   m_SlideSpeed: 36
   m_SlideSpeedFallOff: 50
@@ -580,7 +579,7 @@ MonoBehaviour:
     m_Bits: 512
   jumpHeight: 40
   timeToJumpApex: 0.9
-  fallingSpeedLimit: 80
+  fallingSpeedLimit: 60
   normalJumpMultiplier: 2
   lowJumpMultiplier: 2
   maxFallSpeed: 20

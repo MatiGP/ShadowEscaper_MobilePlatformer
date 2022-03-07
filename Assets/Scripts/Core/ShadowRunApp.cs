@@ -76,12 +76,17 @@ public class ShadowRunApp : MonoBehaviour
         m_GameManager.OnGameExit += HandleGameExit;
 
 
-
         m_LevelLoader.OnLevelDataLoaded += HandleLevelDataLoaded;
     }
 
-    private void HandleLevelSelected(object sender, System.EventArgs e)
+    private void HandleLevelSelected(object sender, string loadedLevelName)
     {
+        if (loadedLevelName == LevelLoader.LEVEL_TUTORIAL_NAME) 
+        {
+            m_StateMachine.ChangeState(EMenuState.Tutorial);
+            return;
+        }
+
         m_StateMachine.ChangeState(EMenuState.Game);
     }
 

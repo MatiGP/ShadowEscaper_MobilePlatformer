@@ -14,9 +14,9 @@ namespace Code.UI.Panels
         public event EventHandler OnSlidePressed;
         public event EventHandler OnSlideInterupted;
 
-        public Transform JoystickTransform { get; private set; }
-        public Transform JumpButtonTransform { get; private set; }
-        public Transform SlideButtonTransform { get; private set; }
+        public Transform JoystickTransform { get => m_Joystick.transform; }
+        public Transform JumpButtonTransform { get => m_JumpButton.transform; }
+        public Transform SlideButtonTransform { get => m_SlideButton.transform; }
 
         [SerializeField] private CanvasGroup m_CanvasGroup = null;
         [SerializeField] private Joystick m_Joystick = null;
@@ -32,14 +32,7 @@ namespace Code.UI.Panels
             
         }
 
-        protected override void Start()
-        {
-            base.Start();
-            JoystickTransform = m_Joystick.transform;
-            JumpButtonTransform = m_JumpButton.transform;
-            SlideButtonTransform = m_SlideButton.transform;
-        }
-
+       
         public void SetReceiveInput(bool value)
         {
             m_CanvasGroup.interactable = value;

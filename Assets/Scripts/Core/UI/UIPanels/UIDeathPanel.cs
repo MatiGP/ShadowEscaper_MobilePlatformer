@@ -29,11 +29,13 @@ namespace Code.UI.Panels
         public override void BindEvents()
         {
             m_TryAgainButton.onClick.AddListener(StartFadeOut);
+            ShadowRunApp.Instance.LevelLoader.OnLevelSelected += HandleLevelSelectedOnDeath;
         }
 
         public override void UnBindEvents()
         {
             m_TryAgainButton.onClick.RemoveListener(StartFadeOut);
+            ShadowRunApp.Instance.LevelLoader.OnLevelSelected -= HandleLevelSelectedOnDeath;
         }
 
         private void StartFadeIn()
@@ -49,14 +51,12 @@ namespace Code.UI.Panels
         private void StartFadeOut()
         {
             m_TryAgainButton.interactable = false;
-
-            m_CanvasGroup.DOFade(0, m_FadeInDuration).OnComplete(
-                () =>
-                {
-                    ShadowRunApp.Instance.LevelLoader.ReloadLevel();
-                    ClosePanel();
-                }
-                ).Play();
+            ShadowRunApp.Instance.LevelLoader.ReloadLevel();
+            
+        }
+        private void HandleLevelSelectedOnDeath(object sender, string e)
+        {
+            ClosePanel();
         }
 
         private void OnDestroy()

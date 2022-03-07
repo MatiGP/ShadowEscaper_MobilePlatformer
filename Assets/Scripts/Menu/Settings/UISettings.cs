@@ -43,11 +43,18 @@ namespace Code.UI.Panels
             }
 
             SaveSystem.SaveTargetFramerate(Application.targetFrameRate);
+            ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.BUTTON_PRESSED);
         }
 
         private void SetVibrations(bool isOn)
         {
+            if (isOn)
+            {
+                Vibration.Vibrate();
+            }
+
             SaveSystem.SetVibrationsEnabled(isOn);
+            ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.BUTTON_PRESSED);
         }
 
         public void SetMusicVolume(float value)

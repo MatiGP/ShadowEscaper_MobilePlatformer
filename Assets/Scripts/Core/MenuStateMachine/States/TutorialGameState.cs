@@ -16,6 +16,7 @@ public class TutorialGameState : GameState
 
     public override void EnterState()
     {
+        Debug.Log("Entering tutorial game state");
         base.EnterState();
         BindEvents();
     }
@@ -38,6 +39,7 @@ public class TutorialGameState : GameState
     protected override void LoadUI()
     {
         base.LoadUI();
+        Debug.Log("Loading in tutorial Game state");
         m_UITutorialPanel = UIManager.Instance.CreatePanel(EPanelID.TutorialOverlay) as UITutorialPanel;
     }
 

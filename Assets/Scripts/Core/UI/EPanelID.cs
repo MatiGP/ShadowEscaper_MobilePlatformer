@@ -20,6 +20,7 @@ public enum EPanelID
     Objectives,
     TapToContinue,
     EndLevelTutorial,
-    TutorialOverlay
+    TutorialOverlay,
+    TutorialNotification
 
 }

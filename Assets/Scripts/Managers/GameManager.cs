@@ -11,6 +11,7 @@ public class GameManager
 {
     public event EventHandler OnGameExit;
     public event EventHandler OnGameCompleted;
+    public event EventHandler OnGameStart;
 
     public int CollectedItemsCount { get; private set; }
     public int CurrentPoints { get; private set; }
@@ -24,6 +25,7 @@ public class GameManager
         LevelStartingDate = DateTime.UtcNow;
         CurrentPoints = 0;
         CollectedItemsCount = 0;
+        OnGameStart?.Invoke(this, EventArgs.Empty);
     }
 
     public void SummarizeLevel()
@@ -33,9 +35,12 @@ public class GameManager
         CurrentPoints = 1; //For Finishing.
         CurrentPoints += (CollectedItemsCount == CurrentLevelData.ItemsCount) ? 1 : 0;
         CurrentPoints += ((LevelTime.TotalSeconds <= CurrentLevelData.LevelDurationInSeconds) || (LevelTime.TotalSeconds == -1)) ? 1 : 0;
-
-        SaveSystem.SaveObtainedPointsFromLevel(CurrentLevelData.LevelIndex - 1, CurrentPoints);
-
+        
+        if(CurrentLevelData.LevelIndex > 0)
+        {
+            SaveSystem.SaveObtainedPointsFromLevel(CurrentLevelData.LevelIndex - 1, CurrentPoints);
+        }
+        
         OnGameCompleted.Invoke(this, EventArgs.Empty);
     }
 

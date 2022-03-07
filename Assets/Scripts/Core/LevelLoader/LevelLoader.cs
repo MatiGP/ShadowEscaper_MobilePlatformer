@@ -10,17 +10,16 @@ using UnityEngine.UI;
 public class LevelLoader : MonoBehaviour
 {
     public event EventHandler OnLevelLoaded;
-    public event EventHandler OnLevelSelected;
+    public event EventHandler<string> OnLevelSelected;
     public event EventHandler<LevelData> OnLevelDataLoaded;
     
     private UILoadingScreen m_UILoadingScreen = null;
 
-    private const string LEVEL_DATA_FORMAT = "Level_{0:00}";
+    private const string LEVEL_DATA_FORMAT = "Level_{0}";
     private const string LEVEL_DATA_PATH = "LevelData/{0}";
-    private const string LEVEL_TUTORIAL_NAME = "Level_Tutorial";
+    public const string LEVEL_TUTORIAL_NAME = "Tutorial";
 
     public const int LEVEL_CAP = 25;
-
     private int m_CurrentLevelIndex = -1;
 
     private void Awake()
@@ -39,13 +38,19 @@ public class LevelLoader : MonoBehaviour
     }
 
     public void LoadLevel(int sceneIndex)
-    {         
+    {
+        string levelNumber = sceneIndex < 10 ? $"0{sceneIndex}" : sceneIndex.ToString();
+        StartCoroutine(LoadAsynchronously(levelNumber));
+    }
+
+    public void LoadLevel(string sceneIndex)
+    {
         StartCoroutine(LoadAsynchronously(sceneIndex));
     }
 
     public void LoadMainMenuScene()
     {
-        StartCoroutine(LoadAsynchronously(0));
+        StartCoroutine(LoadAsynchronously("0"));
     }
 
     public void LoadNextLevel()
@@ -71,9 +76,9 @@ public class LevelLoader : MonoBehaviour
         SceneManager.UnloadSceneAsync(m_CurrentLevelIndex);      
     }
 
-    IEnumerator LoadAsynchronously(int sceneIndex)
+    IEnumerator LoadAsynchronously(string sceneIndex)
     {
-        OnLevelSelected.Invoke(this, EventArgs.Empty);
+        OnLevelSelected.Invoke(this, sceneIndex);
 
         m_UILoadingScreen = UIManager.Instance.CreatePanel(EPanelID.LoadLevel) as UILoadingScreen;
 
@@ -87,6 +92,8 @@ public class LevelLoader : MonoBehaviour
 
         m_CurrentLevelIndex = levelData.LevelIndex;
 
+        Debug.Log($"Current level index: {m_CurrentLevelIndex}");
+
         while (!operation.isDone)
         {
             m_UILoadingScreen.SetFill(operation.progress / 0.90f);
@@ -96,31 +103,5 @@ public class LevelLoader : MonoBehaviour
 
         OnLevelLoaded.Invoke(this, EventArgs.Empty);              
         m_UILoadingScreen.ClosePanel();      
-    }
-
-    IEnumerator LoadTutorialLevel()
-    {
-        OnLevelSelected.Invoke(this, EventArgs.Empty);
-
-        m_UILoadingScreen = UIManager.Instance.CreatePanel(EPanelID.LoadLevel) as UILoadingScreen;
-
-        string path = string.Format(LEVEL_DATA_PATH, LEVEL_TUTORIAL_NAME);
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync(LEVEL_TUTORIAL_NAME, LoadSceneMode.Additive);
-
-        LevelData levelData = Resources.Load<LevelData>(path);
-        OnLevelDataLoaded.Invoke(this, levelData);
-
-        m_CurrentLevelIndex = levelData.LevelIndex;
-
-        while (!operation.isDone)
-        {
-            m_UILoadingScreen.SetFill(operation.progress / 0.90f);
-
-            yield return null;
-        }
-
-        OnLevelLoaded.Invoke(this, EventArgs.Empty);
-        m_UILoadingScreen.ClosePanel();
     }
 }

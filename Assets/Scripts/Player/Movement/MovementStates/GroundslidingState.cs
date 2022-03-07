@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GroundslidingState : BaseMovementState
 {
-    float m_Direction = 0;
-    float currentSpeed = 0;
+    private float m_Direction = 0;
+    private float currentSpeed = 0;
+    private const float MIN_SLIDE_SPEED = 2f;
+    private const float MAX_SLIDE_SPEED = 90f;
 
     public GroundslidingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
@@ -47,7 +49,7 @@ public class GroundslidingState : BaseMovementState
 
     public override void HandleInput()
     {
-        currentSpeed -= playerController.SlideSpeedFallOff * Time.deltaTime;
+        currentSpeed -= Mathf.Clamp(playerController.SlideSpeedFallOff * Time.deltaTime, MIN_SLIDE_SPEED, MAX_SLIDE_SPEED);
 
         movementVector.x = currentSpeed * m_Direction * Time.deltaTime;
 
@@ -58,6 +60,11 @@ public class GroundslidingState : BaseMovementState
 
     public override void HandleLogic()
     {
+        if (playerController.IsTouchingCeiling)
+        {
+            return;
+        }
+
         if (!playerController.IsSliding)
         {
             stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
@@ -66,12 +73,7 @@ public class GroundslidingState : BaseMovementState
         if(playerController.IsTouchingWallWhileSliding)
         {
             stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
-        }
-
-        if(currentSpeed <= 0.5f)
-        {
-            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
-        }
+        }      
 
         if (!playerController.IsTouchingGround)
         {

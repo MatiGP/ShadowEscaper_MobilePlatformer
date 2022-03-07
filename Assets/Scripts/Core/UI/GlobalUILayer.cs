@@ -9,6 +9,7 @@ public class GlobalUILayer
         //MENU
         EPanelID.Background,
         EPanelID.MainMenu,
+        EPanelID.TutorialNotification,
         EPanelID.LevelSelection,
         EPanelID.Fashion,
         EPanelID.DailyGift,

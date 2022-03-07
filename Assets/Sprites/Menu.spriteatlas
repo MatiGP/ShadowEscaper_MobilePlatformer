@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c22d5e87e46b0934996529ffaf06d078, type: 3}
-    totalSpriteSurfaceArea: 2057503
+    totalSpriteSurfaceArea: 2221343
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -66,6 +66,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fd5580a6321c4fd45bfc5ba985c493d4, type: 3}
   - {fileID: 21300000, guid: b7699b577e424ea4e90a8e7350077701, type: 3}
   - {fileID: 21300000, guid: e214fea789fed6a45b2063c4e29c6666, type: 3}
+  - {fileID: 21300000, guid: cdcf7218b24f4ef42bc3cc75f01f039d, type: 3}
   - {fileID: 21300000, guid: 59d39c38740d08e4ab04528b73f9fdc9, type: 3}
   - {fileID: 21300000, guid: 419acad88a4e9bd4d86b60962dbfc1ca, type: 3}
   - {fileID: 21300000, guid: 252abc39d616d1049a883f21ec3db101, type: 3}
@@ -99,6 +100,7 @@ SpriteAtlas:
   - EMPTY stars - Black & white
   - "Prostok\u0105t zaokr\u0105glony 1 kopia"
   - Warstwa 85
+  - UI_SR
   - pointEarned
   - X mark
   - right arrow mark

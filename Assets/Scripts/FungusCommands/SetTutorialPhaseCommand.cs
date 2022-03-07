@@ -14,7 +14,7 @@ public class SetTutorialPhaseCommand : Command
     public override void OnEnter()
     {
         base.OnEnter();
-        UITutorialPanel uITutorialPanel = UIManager.Instance.CreatePanel(EPanelID.EndLevelTutorial) as UITutorialPanel;
+        UITutorialPanel uITutorialPanel = UIManager.Instance.CreatePanel(EPanelID.TutorialOverlay) as UITutorialPanel;
         uITutorialPanel.SetUpHand(m_TutorialPhase);
         uITutorialPanel.SetControlsEnabled(m_TutorialPhase, m_IsEnabled);
         Continue();

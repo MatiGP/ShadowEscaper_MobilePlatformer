@@ -38,7 +38,7 @@ public class WallslidingState : BaseMovementState
     {
         if (playerController.IsJumping)
         {
-            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Wallsliding]);
+            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Walljumping]);
         }
 
         if(!playerController.IsTouchingGround && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))

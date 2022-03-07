@@ -12,6 +12,9 @@ namespace Code.StateMachine
         private UIMainMenuPanel m_MainMenuPanel = null;
         private UILevelSelectPanel m_LevelSelectPanel = null;
         private UISettings m_SettingsPanel = null;
+        private UITutorialNotification m_TutorialNotification = null;
+
+        private const string TUTORIAL_LEVEL_NAME = "Tutorial";
 
         public MainMenuState() : base(EMenuState.MainMenu)
         {
@@ -40,16 +43,43 @@ namespace Code.StateMachine
             m_BackgroundPanel = UIManager.Instance.CreatePanel(EPanelID.Background) as UIBackground;
             
             m_MainMenuPanel = UIManager.Instance.CreatePanel(EPanelID.MainMenu) as UIMainMenuPanel;
-            if(m_MainMenuPanel != null)
+
+            Debug.Log("Is Tutorial Completed: " + SaveSystem.IsTutorialCompleted);
+
+            if (!SaveSystem.IsTutorialCompleted)
+            {
+                m_TutorialNotification = UIManager.Instance.CreatePanel(EPanelID.TutorialNotification) as UITutorialNotification;                
+            }
+            
+            if (m_MainMenuPanel != null)
             {
                 m_MainMenuPanel.ShowPanel();
-            }          
+            }
+            
+
+        }
+
+        private void HandleTutorialDecision(object sender, bool decision)
+        {
+            if (decision)
+            {
+                ShadowRunApp.Instance.LevelLoader.LoadLevel(TUTORIAL_LEVEL_NAME);
+            }
+            else
+            {
+                m_TutorialNotification.ClosePanel();
+            }
         }
 
         private void BindEvents()
         {
             m_MainMenuPanel.OnPlayPressed += HandlePlayPressed;
             m_MainMenuPanel.OnSettingsPressed += HandleSettingsPressed;
+
+            if (!SaveSystem.IsTutorialCompleted)
+            {
+                m_TutorialNotification.OnTutorialDecision += HandleTutorialDecision;
+            }
         }
 
         private void HandleSettingsPressed(object sender, System.EventArgs e)
@@ -64,14 +94,25 @@ namespace Code.StateMachine
 
         private void UnLoadUI()
         {
-            m_BackgroundPanel.ClosePanel();
-            m_MainMenuPanel.ClosePanel();
-            m_LevelSelectPanel.ClosePanel();
+            m_BackgroundPanel?.ClosePanel();
+            m_MainMenuPanel?.ClosePanel();
+            m_LevelSelectPanel?.ClosePanel();
+            
+            if (m_TutorialNotification)
+            {
+                m_TutorialNotification.ClosePanel();
+            }
         }
 
         private void UnBindEvents()
         {
             m_MainMenuPanel.OnPlayPressed -= HandlePlayPressed;
+            m_MainMenuPanel.OnSettingsPressed -= HandleSettingsPressed;
+
+            if (!SaveSystem.IsTutorialCompleted)
+            {
+                m_TutorialNotification.OnTutorialDecision -= HandleTutorialDecision;
+            }
         }
     }
 }
