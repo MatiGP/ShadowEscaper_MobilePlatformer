@@ -35,6 +35,18 @@ TextureImporter:
   - first:
       213: 1066757032449400455
     second: single button kopia 2_10
+  - first:
+      213: -6770744377690437253
+    second: single button kopia 2_0
+  - first:
+      213: 2072746791952764694
+    second: single button kopia 2_2
+  - first:
+      213: 5366774525509093493
+    second: single button kopia 2_3
+  - first:
+      213: 4432034618039930456
+    second: single button kopia 2_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -93,36 +105,48 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -134,10 +158,10 @@ TextureImporter:
       name: single button kopia 2_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 798
-        width: 187
-        height: 150
+        x: 22
+        y: 774
+        width: 185
+        height: 141
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +169,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d2230e8792894990800000000000000
-      internalID: -7401240925172456747
+      spriteID: b79c9c68cdb7902a0800000000000000
+      internalID: -6770744377690437253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: single button kopia 2_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 622
+        width: 178
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c9cda3f1c1d8fd0800000000000000
+      internalID: -2338181711078318973
       vertices: []
       indices: 
       edges: []
@@ -155,10 +200,10 @@ TextureImporter:
       name: single button kopia 2_2
       rect:
         serializedVersion: 2
-        x: 16
-        y: 636
-        width: 187
-        height: 150
+        x: 11
+        y: 478
+        width: 181
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +211,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e20442a310e9541b0800000000000000
-      internalID: -5672954427495661522
+      spriteID: 61fcca3b930e3cc10800000000000000
+      internalID: 2072746791952764694
       vertices: []
       indices: 
       edges: []
@@ -177,8 +222,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11
-        y: 483
-        width: 187
+        y: 322
+        width: 178
         height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,8 +232,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bbaee6bc1e635590800000000000000
-      internalID: -7686679069384070220
+      spriteID: 578c59e1ffc9a7a40800000000000000
+      internalID: 5366774525509093493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: single button kopia 2_4
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 178
+        width: 178
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea3a90cc4f4b52400800000000000000
+      internalID: 298843913778209710
       vertices: []
       indices: 
       edges: []
@@ -197,10 +263,10 @@ TextureImporter:
       name: single button kopia 2_5
       rect:
         serializedVersion: 2
-        x: 8
-        y: 318
-        width: 187
-        height: 150
+        x: 4
+        y: 30
+        width: 177
+        height: 137
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,50 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 345cc093b0ab15e30800000000000000
-      internalID: 4490574860829640003
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: single button kopia 2_7
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 162
-        width: 187
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 826acf40504131c00800000000000000
-      internalID: 870061164803696168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: single button kopia 2_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 5
-        width: 187
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba88ef7834765ce30800000000000000
-      internalID: 4523134940505606315
+      spriteID: 85e0180d000c18d30800000000000000
+      internalID: 4432034618039930456
       vertices: []
       indices: 
       edges: []

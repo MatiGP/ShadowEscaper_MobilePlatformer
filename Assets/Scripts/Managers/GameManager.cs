@@ -35,10 +35,12 @@ public class GameManager
         CurrentPoints = 1; //For Finishing.
         CurrentPoints += (CollectedItemsCount == CurrentLevelData.ItemsCount) ? 1 : 0;
         CurrentPoints += ((LevelTime.TotalSeconds <= CurrentLevelData.LevelDurationInSeconds) || (LevelTime.TotalSeconds == -1)) ? 1 : 0;
-        
-        if(CurrentLevelData.LevelIndex > 0)
+
+        int levelIndex = ShadowRunApp.Instance.LevelLoader.GetLevelIndex(CurrentLevelData.LevelName);
+
+        if(levelIndex >= 0)
         {
-            SaveSystem.SaveObtainedPointsFromLevel(CurrentLevelData.LevelIndex - 1, CurrentPoints);
+            SaveSystem.SaveObtainedPointsFromLevel(levelIndex, CurrentPoints);
         }
         
         OnGameCompleted.Invoke(this, EventArgs.Empty);

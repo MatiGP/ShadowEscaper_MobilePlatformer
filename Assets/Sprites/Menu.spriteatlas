@@ -38,21 +38,21 @@ SpriteAtlas:
       padding: 8
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 0
+      enableRotation: 1
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c22d5e87e46b0934996529ffaf06d078, type: 3}
-    totalSpriteSurfaceArea: 2221343
+    totalSpriteSurfaceArea: 2060632
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: -5672954427495661522, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
   - {fileID: -7686679069384070220, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
   - {fileID: -7401240925172456747, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
-  - {fileID: 870061164803696168, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: -2338181711078318973, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
+  - {fileID: 298843913778209710, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
   - {fileID: 4490574860829640003, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
-  - {fileID: 4523134940505606315, guid: ccfdfaa07fee63244976e7b90dc4543d, type: 3}
   - {fileID: 21300000, guid: b1556f01ab4f8234399eb7472c43fdab, type: 3}
   - {fileID: 21300000, guid: 3561cd12241e02f4e8e17c20f7ec24b9, type: 3}
   - {fileID: 21300000, guid: 555c84921fc7d564091fe2c825d7d741, type: 3}
@@ -84,9 +84,9 @@ SpriteAtlas:
   - single button kopia 2_2
   - single button kopia 2_3
   - single button kopia 2_0
-  - single button kopia 2_7
+  - single button kopia 2_1
+  - single button kopia 2_4
   - single button kopia 2_5
-  - single button kopia 2_9
   - ShadowRun_LOGO
   - PLAY_Small
   - X mark for NEXT

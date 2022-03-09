@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GlobalScene.unity
     guid: 06a678a866c95f3439f49db42a727bd2
   - enabled: 1
+    path: Assets/Scenes/World1/Level_Tutorial.unity
+    guid: de38d44bcb0babb4dbd55fd3466b3012
+  - enabled: 1
     path: Assets/Scenes/World1/Level_01.unity
     guid: ca3a8d19bb526d04b860567bc8194e5e
   - enabled: 1
@@ -83,7 +86,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World1/Level_25.unity
     guid: 7707a006a1350e743ad9accfdbc7581d
-  - enabled: 1
-    path: Assets/Scenes/World1/Level_Tutorial.unity
-    guid: de38d44bcb0babb4dbd55fd3466b3012
   m_configObjects: {}
