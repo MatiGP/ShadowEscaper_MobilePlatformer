@@ -37,14 +37,15 @@ namespace Code.UI.Panels
 
         protected override void Start()
         {
-            int levelIndex = SceneManager.GetActiveScene().buildIndex;
+            bool canPlayNextLevel = ShadowRunApp.Instance.LevelLoader.CanPlayNextLevel;
+            bool canPlayPrevLevel = ShadowRunApp.Instance.LevelLoader.CanPlayPreviousLevel;
             int pointsObtained = ShadowRunApp.Instance.GameManager.CurrentPoints;
-            
+
             SetFinishedBeforeText();
             SetCollectedItemsText();
             
-            m_PreviousLevelButtonBlocker.SetActive(levelIndex - 1 == 0);
-            m_NextLevelButtonBlocker.SetActive(levelIndex + 1 > LevelLoader.LEVEL_CAP);
+            m_PreviousLevelButtonBlocker.SetActive(canPlayPrevLevel);
+            m_NextLevelButtonBlocker.SetActive(canPlayNextLevel);
 
             for(int i = 0; i < pointsObtained; i++)
             {

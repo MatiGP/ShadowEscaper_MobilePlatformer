@@ -31,6 +31,7 @@ public class ShadowRunApp : MonoBehaviour
 
         m_StateMachine = new MenuStateMachine();
         m_StateMachine.Initialize();
+
         m_StateMachine.AddState(new MainMenuState());
         m_StateMachine.AddState(new GameState());
         m_StateMachine.AddState(new TutorialGameState());

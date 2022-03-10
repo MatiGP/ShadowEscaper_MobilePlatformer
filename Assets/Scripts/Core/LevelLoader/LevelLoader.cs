@@ -12,15 +12,18 @@ public class LevelLoader : MonoBehaviour
     public event EventHandler OnLevelLoaded;
     public event EventHandler<string> OnLevelSelected;
     public event EventHandler<LevelData> OnLevelDataLoaded;
-    
+    public const int LEVEL_CAP = 25;
+
+    public bool CanPlayNextLevel => m_CurrentLevelIndex < m_SceneIndexes.Count;
+    public bool CanPlayPreviousLevel => m_CurrentLevelIndex > 2;
+
     private UILoadingScreen m_UILoadingScreen = null;
 
     private const string LEVEL_NAME_FORMAT = "Level_{0}";
     private const string LEVEL_DATA_PATH = "LevelData/{0}";
     public const string LEVEL_TUTORIAL_NAME = "Level_Tutorial";
-
-    public const int LEVEL_CAP = 25;
-    private int m_CurrentLevelIndex = -1;
+  
+    private int m_CurrentLevelIndex = -1;  
 
     private Dictionary<string, int> m_SceneIndexes = new Dictionary<string, int>();
     
@@ -28,7 +31,6 @@ public class LevelLoader : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneUnloaded += HandleSceneUnloaded;
-
         PrepareSceneIndexes();
     }
 
@@ -42,20 +44,15 @@ public class LevelLoader : MonoBehaviour
         Resources.UnloadUnusedAssets();
     }
 
-    public void LoadLevel(int sceneIndex)
-    {
-        string levelNumber = sceneIndex < 10 ? $"0{sceneIndex}" : sceneIndex.ToString();
-        StartCoroutine(LoadAsynchronously(levelNumber));
+    public void LoadLevel(int levelNumber)
+    {      
+        string levelName = GetLevelName(levelNumber);
+        StartCoroutine(LoadAsynchronously(levelName));
     }
 
     public void LoadLevel(string sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
-    }
-
-    public void LoadMainMenuScene()
-    {
-        StartCoroutine(LoadAsynchronously("0"));
     }
 
     public void LoadNextLevel()
@@ -78,19 +75,19 @@ public class LevelLoader : MonoBehaviour
 
     private void UnloadCurrentLevel()
     {
-        SceneManager.UnloadSceneAsync(m_CurrentLevelIndex);      
+        string levelName = GetLevelName(m_CurrentLevelIndex);
+        SceneManager.UnloadSceneAsync(levelName);      
     }
 
-    IEnumerator LoadAsynchronously(string sceneIndex)
+    IEnumerator LoadAsynchronously(string sceneName)
     {
-        OnLevelSelected.Invoke(this, sceneIndex);
+        OnLevelSelected.Invoke(this, sceneName);
 
         m_UILoadingScreen = UIManager.Instance.CreatePanel(EPanelID.LoadLevel) as UILoadingScreen;
 
-        string levelName = string.Format(LEVEL_NAME_FORMAT, sceneIndex);
-        string path = string.Format(LEVEL_DATA_PATH, levelName);
+        string path = string.Format(LEVEL_DATA_PATH, sceneName);
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);  
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);  
 
         LevelData levelData = Resources.Load<LevelData>(path);
         OnLevelDataLoaded.Invoke(this, levelData);
@@ -114,16 +111,24 @@ public class LevelLoader : MonoBehaviour
     {
         m_SceneIndexes.Add(LEVEL_TUTORIAL_NAME, 1);
 
-        for (int i = 2; i <= LEVEL_CAP+2; i++)
+        for (int i = 1; i < LEVEL_CAP+1; i++)
         {
-            string levelName = string.Format(LEVEL_NAME_FORMAT, i.ToString("D2"));
+            string levelName = GetLevelName(i);
+
+            Debug.Log($"Adding {levelName}");
+
             m_SceneIndexes.Add(levelName, i);
-        }    
+        }       
     }
 
     public int GetLevelIndex(string levelName)
     {
         return m_SceneIndexes.ContainsKey(levelName) ? m_SceneIndexes[levelName]-1 : -1;
+    }
+
+    private string GetLevelName(int levelIndex)
+    {
+        return string.Format(LEVEL_NAME_FORMAT, levelIndex.ToString("D2"));
     }
 
 }

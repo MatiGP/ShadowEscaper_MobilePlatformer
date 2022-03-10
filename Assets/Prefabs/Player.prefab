@@ -512,7 +512,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: bb088ce085eb4084ea2b1d98b5023287, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &5715414609690220084
 CapsuleCollider2D:
@@ -579,14 +579,14 @@ MonoBehaviour:
     m_Bits: 512
   jumpHeight: 40
   timeToJumpApex: 0.9
-  fallingSpeedLimit: 60
+  fallingSpeedLimit: 50
   normalJumpMultiplier: 2
   lowJumpMultiplier: 2
   maxFallSpeed: 20
   wallslideSpeed: 5
   wallJumpHeight: 70
   jumpOffWallForce: 15
-  wallJumpDuration: 0.8
+  wallJumpDuration: 0.675
   ceilingDetectorSize: {x: 1.76, y: 0.66}
   ceilingDetectorTransform: {fileID: 2139641897605777462}
   ceilingLayer:
