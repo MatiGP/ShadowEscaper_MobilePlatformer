@@ -131,22 +131,21 @@ public class CharacterController : MonoBehaviour
         CalculateGravity();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
+        stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.HandleAnimator();
+        
+        CheckPhysicsConditions();
+        stateMachine.CurrentState.HandleLogic();
 
         TickSlideCooldown();
     }
 
-    protected private void LateUpdate()
-    {
-        stateMachine.CurrentState.HandleInput();
-    }
-
-    protected void FixedUpdate()
+    private void CheckPhysicsConditions()
     {
         isTouchingRightWall =
-            Physics2D.OverlapBox(wallDetectorRight.position, wallDetectorSize, 0f, wallLayer);
+                    Physics2D.OverlapBox(wallDetectorRight.position, wallDetectorSize, 0f, wallLayer);
 
         isTouchingLeftWall =
             Physics2D.OverlapBox(wallDetectorLeft.position, wallDetectorSize, 0f, wallLayer);
@@ -162,9 +161,6 @@ public class CharacterController : MonoBehaviour
             m_IsTouchingWallWhileSliding =
                 Physics2D.OverlapBox(m_SlideDetectorPosition.position, m_SlideDetectorSize, 0f, wallLayer);
         }
-
-        stateMachine.CurrentState.HandleLogic();
-
     }
 
     public void Jump()

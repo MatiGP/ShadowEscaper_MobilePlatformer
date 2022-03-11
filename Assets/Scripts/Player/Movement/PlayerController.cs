@@ -114,5 +114,48 @@ public class PlayerController : CharacterController
         Gizmos.DrawCube(m_SlideDetectorPosition.position, m_SlideDetectorSize);
         
     }
-    #endif
+
+    protected override void Update()
+    {
+        base.Update();
+
+        float keyboardDirection = Input.GetAxisRaw("Horizontal");
+
+        if (keyboardDirection > 0)
+        {
+            direction = 1;
+            m_PersistantParticles.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (keyboardDirection < 0)
+        {
+            direction = -1;
+            m_PersistantParticles.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            direction = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+
+        if (IsJumping && Input.GetKeyUp(KeyCode.Space))
+        {
+            InterruptJumping();
+        }
+      
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GroundSlide();
+        }
+
+        if(IsSliding && Input.GetKeyUp(KeyCode.K))
+        {
+            InterruptSliding();
+        }
+    }
+
+#endif
 }

@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour
     public event EventHandler<LevelData> OnLevelDataLoaded;
     public const int LEVEL_CAP = 25;
 
-    public bool CanPlayNextLevel => m_CurrentLevelIndex < m_SceneIndexes.Count;
+    public bool CanPlayNextLevel => m_CurrentLevelIndex == m_SceneIndexes.Count;
     public bool CanPlayPreviousLevel => m_CurrentLevelIndex > 2;
 
     private UILoadingScreen m_UILoadingScreen = null;
@@ -94,8 +94,6 @@ public class LevelLoader : MonoBehaviour
 
         m_CurrentLevelIndex = m_SceneIndexes[levelData.LevelName];
 
-        Debug.Log($"Current level index: {m_CurrentLevelIndex}");
-
         while (!operation.isDone)
         {
             m_UILoadingScreen.SetFill(operation.progress / 0.90f);
@@ -114,8 +112,6 @@ public class LevelLoader : MonoBehaviour
         for (int i = 1; i < LEVEL_CAP+1; i++)
         {
             string levelName = GetLevelName(i);
-
-            Debug.Log($"Adding {levelName}");
 
             m_SceneIndexes.Add(levelName, i);
         }       

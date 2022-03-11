@@ -18,7 +18,7 @@ public class SaveSystem
     public static bool IsTutorialCompleted
     {
         get { return PlayerPrefs.GetInt(KEY_IS_TUTORIAL_COMPLETED, 0) == 1; }
-        set { PlayerPrefs.SetInt(KEY_IS_TUTORIAL_COMPLETED, value ? 1:0 ); }
+        set { PlayerPrefs.SetInt(KEY_IS_TUTORIAL_COMPLETED, value ? 1 : 0 ); }
     }
 
     public static void SetTutorialCompleted(bool completed)

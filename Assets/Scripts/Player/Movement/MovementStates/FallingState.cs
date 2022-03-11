@@ -2,7 +2,7 @@
 
 public class FallingState : BaseMovementState
 {
-    private const long VIBRATION_DURATION = 100; 
+    private const long VIBRATION_DURATION = 50; 
 
     public FallingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {

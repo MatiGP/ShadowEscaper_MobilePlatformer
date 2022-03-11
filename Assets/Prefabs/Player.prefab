@@ -586,7 +586,7 @@ MonoBehaviour:
   wallslideSpeed: 5
   wallJumpHeight: 70
   jumpOffWallForce: 15
-  wallJumpDuration: 0.675
+  wallJumpDuration: 0.8
   ceilingDetectorSize: {x: 1.76, y: 0.66}
   ceilingDetectorTransform: {fileID: 2139641897605777462}
   ceilingLayer:

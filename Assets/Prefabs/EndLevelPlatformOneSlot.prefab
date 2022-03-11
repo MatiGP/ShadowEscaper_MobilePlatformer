@@ -108,6 +108,11 @@ PrefabInstance:
       propertyPath: keystoneSlotBoxes.Array.data[0]
       value: 
       objectReference: {fileID: 9092608832746575645}
+    - target: {fileID: 9053338441474162499, guid: eea7aa30b6d94e2499b58aec586afed5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 9053338441474162525, guid: eea7aa30b6d94e2499b58aec586afed5,
         type: 3}
       propertyPath: m_IsActive
