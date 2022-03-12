@@ -19,9 +19,9 @@ public class LevelLoader : MonoBehaviour
 
     private UILoadingScreen m_UILoadingScreen = null;
 
-    private const string LEVEL_NAME_FORMAT = "Level_{0}";
-    private const string LEVEL_DATA_PATH = "LevelData/{0}";
     public const string LEVEL_TUTORIAL_NAME = "Level_Tutorial";
+    public const string LEVEL_NAME_FORMAT = "Level_{0}";
+    private const string LEVEL_DATA_PATH = "LevelData/{0}"; 
   
     private int m_CurrentLevelIndex = -1;  
 
@@ -125,6 +125,11 @@ public class LevelLoader : MonoBehaviour
     private string GetLevelName(int levelIndex)
     {
         return string.Format(LEVEL_NAME_FORMAT, levelIndex.ToString("D2"));
+    }
+
+    public int GetCurrentLevelIndex()
+    {
+        return m_CurrentLevelIndex;
     }
 
 }

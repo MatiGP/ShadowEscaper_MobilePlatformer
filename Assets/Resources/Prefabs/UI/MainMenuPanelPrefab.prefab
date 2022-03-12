@@ -4023,6 +4023,7 @@ MonoBehaviour:
   m_Shop: {fileID: 9105728773159749774}
   m_Settings: {fileID: 9105728772966172927}
   m_StarCount: {fileID: 9105728773435189022}
+  m_PremiumCurrencyCount: {fileID: 9105728774423589759}
 --- !u!223 &5616806972160892329
 Canvas:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class GameManager
     public event EventHandler OnGameCompleted;
     public event EventHandler OnGameStart;
 
+    public const int POINTS_MULTIPLIER = 10;
     public int CollectedItemsCount { get; private set; }
     public int CurrentPoints { get; private set; }
     public TimeSpan LevelTime { get; private set; }
@@ -40,7 +41,7 @@ public class GameManager
 
         if(levelIndex >= 0)
         {
-            SaveSystem.SaveObtainedPointsFromLevel(levelIndex, CurrentPoints);
+            SaveSystem.SaveObtainedStarsFromLevel(levelIndex, CurrentPoints);
         }
         
         OnGameCompleted.Invoke(this, EventArgs.Empty);

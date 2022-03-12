@@ -56,7 +56,6 @@ public class GameState : BaseMenuState
 
     private void SpawnTapToContinue(object sender, System.EventArgs e)
     {
-        Debug.Log("Should spawn tap to continue");
         UIManager.Instance.CreatePanel(EPanelID.TapToContinue);
     }
 

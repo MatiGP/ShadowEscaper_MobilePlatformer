@@ -68,6 +68,7 @@ public class ShadowRunApp : MonoBehaviour
         m_SoundManager.ApplySoundFXVolume();
         m_SoundManager.ApplyMusicVolume();
         Application.targetFrameRate = SaveSystem.GetTargetFramerate();
+        SaveSystem.LoadPlayerProgress();
     }
 
     private void BindEvents()

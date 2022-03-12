@@ -21,6 +21,7 @@ namespace Code.UI.Panels
         [SerializeField] private Button m_Settings = null;
 
         [SerializeField] private TextMeshProUGUI m_StarCount = null;
+        [SerializeField] private TextMeshProUGUI m_PremiumCurrencyCount;
 
         protected override void Awake()
         {
@@ -31,7 +32,8 @@ namespace Code.UI.Panels
         protected override void Start()
         {
             base.Start();
-            m_StarCount.text = SaveSystem.GetOwnedStars().ToString();
+            m_StarCount.text = SaveSystem.GetSumOfStars().ToString();
+            m_PremiumCurrencyCount.text = SaveSystem.GetPremiumCurrencyCount().ToString();
         }
 
         public override void BindEvents()

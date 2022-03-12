@@ -656,11 +656,12 @@ MonoBehaviour:
   m_PreviousLevelButtonBlocker: {fileID: 1901306347048147003}
   m_RequiredTimeToGetReward: {fileID: 4868186914696122292}
   m_ItemsCollected: {fileID: 8806626210008697029}
+  m_EarnedPoints: {fileID: 0}
   m_PreviousLevelButton: {fileID: 3710779703225308257}
   m_NextLevelButton: {fileID: 951097017766755159}
   m_MenuButton: {fileID: 4172493383164134330}
-  m_ShopButton: {fileID: 427740276925555206}
-  m_SettingsButton: {fileID: 8302807701329493021}
+  m_PointCountLerpDuration: 1
+  m_Delay: 1
 --- !u!223 &8626001901116842079
 Canvas:
   m_ObjectHideFlags: 0

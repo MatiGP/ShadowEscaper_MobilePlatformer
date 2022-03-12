@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Newtonsoft.Json;
 
 public class SaveSystem
 {
     private const string KEY_MUSIC_VOLUME = "key_music_volume";
     private const string KEY_SOUND_EFFECT_VOLUME = "key_sound_effect_volume";
     private const string KEY_TARGET_FRAMERATE = "key_target_framerate";
-    private const string KEY_PROGRESS_AT_LEVEL = "key_progress_at_level_{0}";
     private const string KEY_SKIN_COLOR = "key_skin_color";
     private const string KEY_STARS_COUNT = "key_stars_count";
     private const string KEY_VIBRATIONS_ENABLED = "key_vibrations_enabled";
     private const string KEY_PREMIUM_CURRENCY = "key_premium_currency";
     private const string KEY_IS_TUTORIAL_COMPLETED = "key_is_tutorial_completed";
+    private const string KEY_OWNED_STARS_DATA = "owned_stars_data";
+
+    private static Dictionary<string, int> m_EarnedStars = new Dictionary<string, int>();
 
     public static bool IsTutorialCompleted
     {
@@ -40,23 +43,59 @@ public class SaveSystem
         return PlayerPrefs.GetInt(KEY_PREMIUM_CURRENCY, 0);
     }
 
-    public static void SetPremiumCurrencyCount(int value)
+    public static void AddPremiumCurrencyCount(int value)
     {
         int current = GetPremiumCurrencyCount();
         PlayerPrefs.SetInt(KEY_PREMIUM_CURRENCY, current  + value);
     }
 
-    public static int GetObtainedPointsFromLevel(int levelIndex)
+    public static void LoadPlayerProgress()
     {
-        string levelString = string.Format(KEY_PROGRESS_AT_LEVEL, levelIndex);
-        int pointsObtained = PlayerPrefs.GetInt(levelString, 0);
-        return pointsObtained;          
+        string loadedDictionary = PlayerPrefs.GetString(KEY_OWNED_STARS_DATA);
+
+        if(loadedDictionary == "")
+        {
+            m_EarnedStars = new Dictionary<string, int>();
+            return;
+        }
+
+        m_EarnedStars = JsonConvert.DeserializeObject<Dictionary<string, int>>(loadedDictionary);
     }
 
-    public static void SaveObtainedPointsFromLevel(int levelIndex, int points)
+    public static int GetObtainedPointsFromLevel(int levelIndex)
     {
-        string levelString = string.Format(KEY_PROGRESS_AT_LEVEL, levelIndex);
-        PlayerPrefs.SetInt(levelString, points);
+        string levelName = string.Format(LevelLoader.LEVEL_NAME_FORMAT, levelIndex.ToString("D2"));
+
+        return m_EarnedStars.ContainsKey(levelName) ? m_EarnedStars[levelName] : 0;
+    }
+
+    public static void SaveObtainedStarsFromLevel(int levelIndex, int starsCount)
+    {
+        string levelName = string.Format(LevelLoader.LEVEL_NAME_FORMAT, levelIndex.ToString("D2"));
+
+        if (m_EarnedStars.ContainsKey(levelName))
+        {
+            m_EarnedStars[levelName] = starsCount;
+        }
+        else
+        {
+            m_EarnedStars.Add(levelName, starsCount);
+        }
+
+        string jsonString = JsonConvert.SerializeObject(m_EarnedStars);
+        PlayerPrefs.SetString(KEY_OWNED_STARS_DATA, jsonString);
+    }
+
+    public static int GetSumOfStars()
+    {
+        int sum = 0;
+
+        foreach(string key in m_EarnedStars.Keys)
+        {
+            sum += m_EarnedStars[key];
+        }
+
+        return sum;
     }
 
     public static int GetTargetFramerate()
@@ -92,18 +131,7 @@ public class SaveSystem
     public static void SaveColorData(string color)
     {
         PlayerPrefs.SetString(KEY_SKIN_COLOR, color);
-    } 
-
-    public static void AddToOwnedStars(int count)
-    {
-        int current = PlayerPrefs.GetInt(KEY_STARS_COUNT, 0);
-        PlayerPrefs.SetInt(KEY_STARS_COUNT, current + count);
-    }
-
-    public static int GetOwnedStars()
-    {
-        return PlayerPrefs.GetInt(KEY_STARS_COUNT);
-    }
+    }    
 
     public static bool AreVibrationsEnabled()
     {
