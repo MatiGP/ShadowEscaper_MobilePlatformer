@@ -1,73 +1,76 @@
 ﻿using UnityEngine;
 
-public class FallingState : BaseMovementState
+namespace Code.StateMachine
 {
-    private const long VIBRATION_DURATION = 50; 
-
-    public FallingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public class FallingState : BaseMovementState
     {
-    }
+        private const long VIBRATION_DURATION = 50;
 
-    public override void Enter()
-    {
-        movementVector.y = playerController.RemainingJumpForce;
-        playerController.InterruptJumping();
-    }
-
-    public override void Exit()
-    {
-        movementVector.y = 0;
-        movementVector.x = 0;
-        playerController.SetJumpRemainingForce(0);
-        Vibration.Vibrate(VIBRATION_DURATION);
-        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.PLAYER_LANDING);
-    }
-
-    public override void HandleAnimator()
-    {
-        animator.Play("Falling");
-    }
-
-    public override void HandleInput()
-    {
-        movementVector.x = playerController.Direction * playerController.FootSpeed;
-        movementVector.y -= playerController.Gravity * playerController.FallMultiplier * Time.deltaTime;
-
-        movementVector.y = Mathf.Clamp(movementVector.y, -playerController.FallingSpeedLimit, playerController.JumpHeight);
-
-        playerTransform.position += movementVector * Time.deltaTime;
-
-        playerController.Flip();
-    }
-
-    public override void HandleLogic()
-    {
-        if (playerController.IsTouchingGround)
+        public FallingState(CharacterController controller, MovementStateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
         {
-            Debug.Log("SHOULD FIX!");
+        }
 
-            playerController.FixPlayerGroundPosition();
+        public override void Enter()
+        {
+            movementVector.y = playerController.RemainingJumpForce;
+            playerController.InterruptJumping();
+        }
 
-            if (playerController.Direction == 0)
+        public override void Exit()
+        {
+            movementVector.y = 0;
+            movementVector.x = 0;
+            playerController.SetJumpRemainingForce(0);
+            Vibration.Vibrate(VIBRATION_DURATION);
+            ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.PLAYER_LANDING);
+        }
+
+        public override void HandleAnimator()
+        {
+            animator.Play("Falling");
+        }
+
+        public override void HandleInput()
+        {
+            movementVector.x = playerController.Direction * playerController.FootSpeed;
+            movementVector.y -= playerController.Gravity * playerController.FallMultiplier * Time.deltaTime;
+
+            movementVector.y = Mathf.Clamp(movementVector.y, -playerController.FallingSpeedLimit, playerController.JumpHeight);
+
+            playerTransform.position += movementVector * Time.deltaTime;
+
+            playerController.Flip();
+        }
+
+        public override void HandleLogic()
+        {
+            if (playerController.IsTouchingGround)
             {
-                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
+                Debug.Log("SHOULD FIX!");
+
+                playerController.FixPlayerGroundPosition();
+
+                if (playerController.Direction == 0)
+                {
+                    stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
+                }
+                else
+                {
+                    stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
+                }
+
             }
             else
             {
-                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
+                Debug.Log("Player is not touching ground");
             }
 
-        }
-        else
-        {
-            Debug.Log("Player is not touching ground");
-        }
-
-        if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
-        {
-            playerController.FixPlayerWallPosition();
-            movementVector.x = 0;
-            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Wallsliding]);
+            if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
+            {
+                playerController.FixPlayerWallPosition();
+                movementVector.x = 0;
+                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Wallsliding]);
+            }
         }
     }
 }

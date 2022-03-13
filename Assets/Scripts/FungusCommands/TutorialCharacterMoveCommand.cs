@@ -3,37 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
 
-[CommandInfo("ShadowRunCommands", "Move Tutorial Character", "Moves tutorial character")]
-public class TutorialCharacterMoveCommand : Command
+namespace Code
 {
-    [SerializeField] private float m_Direction = 0;
-    [SerializeField] private ETutorialCharacterAction m_AdditionalAction = ETutorialCharacterAction.None;
-
-    public override void OnEnter()
+    [CommandInfo("ShadowRunCommands", "Move Tutorial Character", "Moves tutorial character")]
+    public class TutorialCharacterMoveCommand : Command
     {
-        base.OnEnter();
+        [SerializeField] private float m_Direction = 0;
+        [SerializeField] private ETutorialCharacterAction m_AdditionalAction = ETutorialCharacterAction.None;
 
-        TutorialController tutorialController = GetFlowchart().GetGameObjectVariable("TutorialCharacter").GetComponent<TutorialController>();
-        tutorialController.SetDirection(m_Direction);
-        
-        switch (m_AdditionalAction)
+        public override void OnEnter()
         {
-            case ETutorialCharacterAction.Jump:
-                tutorialController.Jump();
-                break;
-            case ETutorialCharacterAction.Slide:
-                tutorialController.GroundSlide();
-                break;
+            base.OnEnter();
+
+            TutorialController tutorialController = GetFlowchart().GetGameObjectVariable("TutorialCharacter").GetComponent<TutorialController>();
+            tutorialController.SetDirection(m_Direction);
+
+            switch (m_AdditionalAction)
+            {
+                case ETutorialCharacterAction.Jump:
+                    tutorialController.Jump();
+                    break;
+                case ETutorialCharacterAction.Slide:
+                    tutorialController.GroundSlide();
+                    break;
+            }
+
+            Continue();
         }
 
-        Continue();
-    }
-
-    private enum ETutorialCharacterAction
-    {
-        None,
-        Jump,
-        Slide,
+        private enum ETutorialCharacterAction
+        {
+            None,
+            Jump,
+            Slide,
+        }
     }
 }
 

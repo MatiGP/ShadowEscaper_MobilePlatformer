@@ -981,14 +981,14 @@ MonoBehaviour:
   - {fileID: 3710779704219872835}
   m_NextLevelButtonBlocker: {fileID: 3710779703367806466}
   m_PreviousLevelButtonBlocker: {fileID: 1901306347048147003}
+  m_PremiumRoot: {fileID: 4782873828990250238}
   m_RequiredTimeToGetReward: {fileID: 4868186914696122292}
   m_ItemsCollected: {fileID: 8806626210008697029}
   m_EarnedPoints: {fileID: 5559794728668415645}
   m_PreviousLevelButton: {fileID: 3710779703225308257}
   m_NextLevelButton: {fileID: 951097017766755159}
   m_MenuButton: {fileID: 4172493383164134330}
-  m_PointCountLerpDuration: 1
-  m_Delay: 0.6
+  m_PointCountLerpDuration: 1.4
 --- !u!223 &8626001901116842079
 Canvas:
   m_ObjectHideFlags: 0

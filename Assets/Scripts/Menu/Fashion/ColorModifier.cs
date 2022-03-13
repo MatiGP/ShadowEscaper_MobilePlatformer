@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorModifier : MonoBehaviour
+namespace Code
 {
-    [SerializeField] Image[] images;
-   
-    public void SetColorByHex(string hex)
+    public class ColorModifier : MonoBehaviour
     {
-        Color c;
-        ColorUtility.TryParseHtmlString(hex, out c);
-        
-        foreach(Image image in images)
-        {
-            image.color = c;
-        }
+        [SerializeField] Image[] images;
 
-        SaveSystem.SaveColorData(hex);
+        public void SetColorByHex(string hex)
+        {
+            Color c;
+            ColorUtility.TryParseHtmlString(hex, out c);
+
+            foreach (Image image in images)
+            {
+                image.color = c;
+            }
+
+            SaveSystem.SaveColorData(hex);
+        }
     }
 }

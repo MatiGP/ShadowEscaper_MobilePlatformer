@@ -2,32 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Code.UI;
 
-public class EndPlatform : MonoBehaviour
+
+namespace Code
 {
-    [SerializeField] private SpriteRenderer m_SpriteRenderer = null;
-
-    [SerializeField] private Sprite m_PadActiveSprite = null;
-    
-    private bool m_IsPlatformTurnedOn;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class EndPlatform : MonoBehaviour
     {
-        if (m_IsPlatformTurnedOn)
+        [SerializeField] private SpriteRenderer m_SpriteRenderer = null;
+
+        [SerializeField] private Sprite m_PadActiveSprite = null;
+
+        private bool m_IsPlatformTurnedOn;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
-            int starCount = playerInventory.GetItemCount(ECollectableType.Star);
+            if (m_IsPlatformTurnedOn)
+            {
+                PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
+                int starCount = playerInventory.GetItemCount(ECollectableType.Star);
 
-            ShadowRunApp.Instance.GameManager.SetCollectedItemsCount(starCount);
-            ShadowRunApp.Instance.GameManager.SummarizeLevel();
+                ShadowRunApp.Instance.GameManager.SetCollectedItemsCount(starCount);
+                ShadowRunApp.Instance.GameManager.SummarizeLevel();
+            }
         }
-    }
 
-    public void TurnOnEndLevelPlatform()
-    {
-        m_IsPlatformTurnedOn = true;
+        public void TurnOnEndLevelPlatform()
+        {
+            m_IsPlatformTurnedOn = true;
 
-        m_SpriteRenderer.sprite = m_PadActiveSprite;
+            m_SpriteRenderer.sprite = m_PadActiveSprite;
+        }
     }
 }

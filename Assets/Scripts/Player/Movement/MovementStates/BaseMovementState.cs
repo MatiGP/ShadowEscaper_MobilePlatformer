@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseMovementState
+namespace Code.StateMachine
 {
-    protected CharacterController playerController;
-    protected StateMachine stateMachine;
-    protected Animator animator;
-    protected Transform playerTransform;
-    protected Vector3 movementVector;
-
-    public BaseMovementState(CharacterController controller, StateMachine stateMachine, Animator animator)
+    public abstract class BaseMovementState
     {
-        playerController = controller;
-        this.stateMachine = stateMachine;
-        this.animator = animator;
-        playerTransform = playerController.transform;
-    }
+        protected CharacterController playerController;
+        protected MovementStateMachine stateMachine;
+        protected Animator animator;
+        protected Transform playerTransform;
+        protected Vector3 movementVector;
 
-    public abstract void Enter();
-    public abstract void HandleInput();
-    public abstract void HandleAnimator();
-    public abstract void HandleLogic();
-    public abstract void Exit();
+        public BaseMovementState(CharacterController controller, MovementStateMachine stateMachine, Animator animator)
+        {
+            playerController = controller;
+            this.stateMachine = stateMachine;
+            this.animator = animator;
+            playerTransform = playerController.transform;
+        }
+
+        public abstract void Enter();
+        public abstract void HandleInput();
+        public abstract void HandleAnimator();
+        public abstract void HandleLogic();
+        public abstract void Exit();
+    }
 }

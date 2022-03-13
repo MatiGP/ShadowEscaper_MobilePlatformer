@@ -14,6 +14,7 @@ namespace Code.UI.Panels
         
         [SerializeField] private GameObject m_NextLevelButtonBlocker = null;
         [SerializeField] private GameObject m_PreviousLevelButtonBlocker = null;
+        [SerializeField] private GameObject m_PremiumRoot = null;
         
         [SerializeField] private TextMeshProUGUI m_RequiredTimeToGetReward = null;
         [SerializeField] private TextMeshProUGUI m_ItemsCollected = null;
@@ -24,7 +25,7 @@ namespace Code.UI.Panels
         [SerializeField] private Button m_MenuButton = null;
 
         [SerializeField] private float m_PointCountLerpDuration = 0.5f;
-        [SerializeField] private float m_Delay = 1f;
+        
 
         private const string FINISH_BEFORE_FORMAT = "Finished Before \n {0}";
         private const string TIME_FORMAT = "{0:00}:{1:00}:{2:00}";
@@ -34,8 +35,9 @@ namespace Code.UI.Panels
         private int m_ObtainedPoints = 0;
 
         private Coroutine m_DelayedCountUp = null;
+        private WaitForSeconds m_CoroutineDelay = new WaitForSeconds(COUNT_UP_DELAY);
 
-        private bool m_ShouldLerp = false;
+        private const float COUNT_UP_DELAY = 0.7f;
 
         protected override void Awake()
         {
@@ -69,22 +71,12 @@ namespace Code.UI.Panels
             if (previousPoints == 0)
             {
                 SaveSystem.AddPremiumCurrencyCount(m_ObtainedPoints);
+                m_PremiumRoot.SetActive(true);
+                m_DelayedCountUp = StartCoroutine(CountUp());
             }
             
-            SaveSystem.SaveObtainedStarsFromLevel(levelIndex, pointsObtained);
-            m_DelayedCountUp = StartCoroutine(CountUp());
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-            if (m_ShouldLerp)
-            {
-                m_CurrentPoints = (int)Mathf.Lerp(m_CurrentPoints, m_ObtainedPoints, m_PointCountLerpDuration * Time.deltaTime);
-                m_EarnedPoints.text = m_CurrentPoints.ToString();
-            }
-        }
+            SaveSystem.SaveObtainedStarsFromLevel(levelIndex, pointsObtained);           
+        }    
 
         private void SetCollectedItemsText()
         {
@@ -138,8 +130,23 @@ namespace Code.UI.Panels
 
         private IEnumerator CountUp()
         {
-            yield return m_Delay;
-            m_ShouldLerp = true;
+            yield return m_CoroutineDelay;
+
+            float timeElapsed = 0f;
+
+            while(timeElapsed < m_PointCountLerpDuration)
+            {
+                m_CurrentPoints = (int)Mathf.Lerp(m_CurrentPoints, m_ObtainedPoints, timeElapsed / m_PointCountLerpDuration);
+                m_EarnedPoints.text = m_CurrentPoints.ToString();
+
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            m_CurrentPoints = m_ObtainedPoints;
+            m_EarnedPoints.text = m_CurrentPoints.ToString();
+
+            m_DelayedCountUp = null;
         }
 
         private void OnDestroy()

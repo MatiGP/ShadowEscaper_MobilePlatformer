@@ -5,53 +5,56 @@ using Code.UI.Panels;
 using Code.UI;
 using System;
 
-public class TutorialGameState : GameState
+namespace Code.StateMachine
 {
-    UITutorialPanel m_UITutorialPanel = null;
-
-    public TutorialGameState() : base()
+    public class TutorialGameState : GameState
     {
-        m_StateType = EMenuState.Tutorial;
-    }
+        UITutorialPanel m_UITutorialPanel = null;
 
-    public override void EnterState()
-    {
-        Debug.Log("Entering tutorial game state");
-        base.EnterState();
-        BindEvents();
-    }
+        public TutorialGameState() : base()
+        {
+            m_StateType = EMenuState.Tutorial;
+        }
 
-    private void BindEvents()
-    {
-        ShadowRunApp.Instance.GameManager.OnGameCompleted += HandleGameCompleted;
-    }
+        public override void EnterState()
+        {
+            Debug.Log("Entering tutorial game state");
+            base.EnterState();
+            BindEvents();
+        }
 
-    private void UnBindEvents()
-    {
-        ShadowRunApp.Instance.GameManager.OnGameCompleted -= HandleGameCompleted;
-    }
+        private void BindEvents()
+        {
+            ShadowRunApp.Instance.GameManager.OnGameCompleted += HandleGameCompleted;
+        }
 
-    private void HandleGameCompleted(object sender, EventArgs e)
-    {
-        SaveSystem.IsTutorialCompleted = true;
-    }
+        private void UnBindEvents()
+        {
+            ShadowRunApp.Instance.GameManager.OnGameCompleted -= HandleGameCompleted;
+        }
 
-    protected override void LoadUI()
-    {
-        base.LoadUI();
-        Debug.Log("Loading in tutorial Game state");
-        m_UITutorialPanel = UIManager.Instance.CreatePanel(EPanelID.TutorialOverlay) as UITutorialPanel;
-    }
+        private void HandleGameCompleted(object sender, EventArgs e)
+        {
+            SaveSystem.IsTutorialCompleted = true;
+        }
 
-    protected override void UnloadUI()
-    {
-        base.UnloadUI();
-        m_UITutorialPanel.ClosePanel();
-    }
+        protected override void LoadUI()
+        {
+            base.LoadUI();
+            Debug.Log("Loading in tutorial Game state");
+            m_UITutorialPanel = UIManager.Instance.CreatePanel(EPanelID.TutorialOverlay) as UITutorialPanel;
+        }
 
-    public override void LeaveState()
-    {
-        UnBindEvents();
-        base.LeaveState();
+        protected override void UnloadUI()
+        {
+            base.UnloadUI();
+            m_UITutorialPanel.ClosePanel();
+        }
+
+        public override void LeaveState()
+        {
+            UnBindEvents();
+            base.LeaveState();
+        }
     }
 }

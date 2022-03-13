@@ -4,34 +4,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundOnClickHandler : MonoBehaviour
+namespace Code
 {
-    private Button m_Button = null;
-
-    private void Awake()
+    public class SoundOnClickHandler : MonoBehaviour
     {
-        m_Button = GetComponent<Button>();
+        private Button m_Button = null;
 
-        BindEvents();
-    }
+        private void Awake()
+        {
+            m_Button = GetComponent<Button>();
 
-    private void OnDestroy()
-    {
-        UnBindEvents();
-    }
+            BindEvents();
+        }
 
-    private void UnBindEvents()
-    {
-        m_Button.onClick.RemoveListener(HandleButtonPressed);
-    }
+        private void OnDestroy()
+        {
+            UnBindEvents();
+        }
 
-    private void BindEvents()
-    {
-        m_Button.onClick.AddListener(HandleButtonPressed);
-    }
+        private void UnBindEvents()
+        {
+            m_Button.onClick.RemoveListener(HandleButtonPressed);
+        }
 
-    private void HandleButtonPressed()
-    {
-        ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.BUTTON_PRESSED);
+        private void BindEvents()
+        {
+            m_Button.onClick.AddListener(HandleButtonPressed);
+        }
+
+        private void HandleButtonPressed()
+        {
+            ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.BUTTON_PRESSED);
+        }
     }
 }

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Code.StateMachine { 
 public class WallslidingState : BaseMovementState
 {
-    public WallslidingState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public WallslidingState(CharacterController controller, MovementStateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
     }
 
@@ -30,7 +31,7 @@ public class WallslidingState : BaseMovementState
     public override void HandleInput()
     {
         movementVector.y = -playerController.WallSlideSpeed;
-        
+
         playerTransform.position += movementVector * Time.deltaTime;
     }
 
@@ -41,20 +42,21 @@ public class WallslidingState : BaseMovementState
             stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Walljumping]);
         }
 
-        if(!playerController.IsTouchingGround && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
+        if (!playerController.IsTouchingGround && !(playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
         {
-            
+
             stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
         }
 
-        if(playerController.IsTouchingGround)
+        if (playerController.IsTouchingGround)
         {
             playerController.FixPlayerGroundPosition();
             stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
         }
 
-        
+
     }
 
-    
+}
+
 }

@@ -2,52 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : BaseMovementState
+namespace Code.StateMachine
 {
-    bool IsRunning;
-
-    public IdleState(CharacterController controller, StateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
+    public class IdleState : BaseMovementState
     {
-    }
+        bool IsRunning;
 
-    public override void Enter()
-    {
-
-    }
-
-    public override void Exit()
-    {
-
-    }
-
-    public override void HandleAnimator()
-    {
-        animator.Play("PlayerIdle");
-    }
-
-    public override void HandleInput()
-    {
-        IsRunning = playerController.Direction != 0;
-    }
-
-    public override void HandleLogic()
-    {
-        if (playerController.IsJumping)
+        public IdleState(CharacterController controller, MovementStateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
         {
-            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
         }
 
-        bool IsNotTouchingAnyWall = (playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall)
-            || (playerController.Direction > 0.1 && !playerController.IsTouchingRightWall);
-        
-        if (IsRunning && IsNotTouchingAnyWall)
+        public override void Enter()
         {
-            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
+
         }
 
-        if (playerController.IsSliding)
+        public override void Exit()
         {
-            stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Groundsliding]);
+
+        }
+
+        public override void HandleAnimator()
+        {
+            animator.Play("PlayerIdle");
+        }
+
+        public override void HandleInput()
+        {
+            IsRunning = playerController.Direction != 0;
+        }
+
+        public override void HandleLogic()
+        {
+            if (playerController.IsJumping)
+            {
+                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
+            }
+
+            bool IsNotTouchingAnyWall = (playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall)
+                || (playerController.Direction > 0.1 && !playerController.IsTouchingRightWall);
+
+            if (IsRunning && IsNotTouchingAnyWall)
+            {
+                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
+            }
+
+            if (playerController.IsSliding)
+            {
+                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Groundsliding]);
+            }
         }
     }
 }

@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialController : CharacterController
+namespace Code
 {
-    public void SetDirection(float dir)
+    public class TutorialController : CharacterController
     {
-        direction = dir;
-    }
+        public void SetDirection(float dir)
+        {
+            direction = dir;
+        }
 
-    protected override void Awake()
-    {
-        base.Awake();
-        playerAnimator.Play("Spawn");
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+            playerAnimator.Play("Spawn");
+        }
 
-    protected override void SetUpStates()
-    {
-        base.SetUpStates();
-        stateMachine.Initialize(MovementStates[EMovementStateType.Idle]);
-    }
+        protected override void SetUpStates()
+        {
+            base.SetUpStates();
+            stateMachine.Initialize(MovementStates[EMovementStateType.Idle]);
+        }
 
-    public void EnableAnimations()
-    {
-        stateMachine.Initialize(MovementStates[EMovementStateType.Idle]);
+        public void EnableAnimations()
+        {
+            stateMachine.Initialize(MovementStates[EMovementStateType.Idle]);
+        }
     }
 }

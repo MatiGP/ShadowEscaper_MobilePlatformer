@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndLevelPlatform : MonoBehaviour
+namespace Code
 {
-    [SerializeField] private List<KeystoneSlotBox> keystoneSlotBoxes = null;
-    [SerializeField] private EndPlatform platform = null;
-    
-    public void CheckSlotBoxes()
+    public class EndLevelPlatform : MonoBehaviour
     {
-        for(int i = 0; i < keystoneSlotBoxes.Count; i++)
-        {
-            if (!keystoneSlotBoxes[i].HasKey)
-            {
-                return;
-            }
-        }
+        [SerializeField] private List<KeystoneSlotBox> keystoneSlotBoxes = null;
+        [SerializeField] private EndPlatform platform = null;
 
-        platform.TurnOnEndLevelPlatform();
+        public void CheckSlotBoxes()
+        {
+            for (int i = 0; i < keystoneSlotBoxes.Count; i++)
+            {
+                if (!keystoneSlotBoxes[i].HasKey)
+                {
+                    return;
+                }
+            }
+
+            platform.TurnOnEndLevelPlatform();
+        }
     }
 }
