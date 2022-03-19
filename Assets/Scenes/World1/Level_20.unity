@@ -5481,13 +5481,12 @@ SpriteRenderer:
   m_SortingLayerID: -1248572169
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: 8582536851397407251, guid: 5367d7c518cae6f41afaf9ffbb74c3a4,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: f71d84a51613d414ab26c5546ae466b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 15.94, y: 35.44}
+  m_Size: {x: 16.86, y: 36.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5524,8 +5523,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 16.027681, y: 35.600002}
-    newSize: {x: 15.94, y: 35.44}
+    oldSize: {x: 16.86, y: 36.38}
+    newSize: {x: 16.86, y: 36.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -8140,13 +8139,12 @@ SpriteRenderer:
   m_SortingLayerID: -1248572169
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: 8582536851397407251, guid: 5367d7c518cae6f41afaf9ffbb74c3a4,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: f71d84a51613d414ab26c5546ae466b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 15.94, y: 35.44}
+  m_Size: {x: 16.86, y: 36.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -8183,8 +8181,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 16.027681, y: 35.600002}
-    newSize: {x: 15.94, y: 35.44}
+    oldSize: {x: 16.86, y: 36.38}
+    newSize: {x: 16.86, y: 36.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -9050,20 +9048,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 741489173}
     m_Modifications:
-    - target: {fileID: 4264092394644867340, guid: 2b058554199947d44a621d135559e5aa,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 37.88
-      objectReference: {fileID: 0}
     - target: {fileID: 5488926629889421265, guid: 2b058554199947d44a621d135559e5aa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 189.91
+      value: 193.64
       objectReference: {fileID: 0}
     - target: {fileID: 5488926629889421265, guid: 2b058554199947d44a621d135559e5aa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.58
+      value: 3.24
       objectReference: {fileID: 0}
     - target: {fileID: 5488926629889421265, guid: 2b058554199947d44a621d135559e5aa,
         type: 3}
@@ -9114,11 +9107,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SolidBlock05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7875380211404652733, guid: 2b058554199947d44a621d135559e5aa,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -19.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b058554199947d44a621d135559e5aa, type: 3}
