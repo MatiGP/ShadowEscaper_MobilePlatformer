@@ -1539,13 +1539,12 @@ SpriteRenderer:
   m_SortingLayerID: -1248572169
   m_SortingLayer: 2
   m_SortingOrder: -1
-  m_Sprite: {fileID: -1249933313291065759, guid: 5367d7c518cae6f41afaf9ffbb74c3a4,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 073ebcbe051a8a142b2c5a24ea354050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.26, y: 28.94}
+  m_Size: {x: 15.32, y: 28.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1582,8 +1581,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.604603, y: 29.22}
-    newSize: {x: 9.26, y: 28.94}
+    oldSize: {x: 10.24, y: 30.66}
+    newSize: {x: 15.32, y: 28.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1776,13 +1775,12 @@ SpriteRenderer:
   m_SortingLayerID: -1248572169
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1249933313291065759, guid: 5367d7c518cae6f41afaf9ffbb74c3a4,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 073ebcbe051a8a142b2c5a24ea354050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.26, y: 28.94}
+  m_Size: {x: 15.32, y: 28.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2027,13 +2025,12 @@ SpriteRenderer:
   m_SortingLayerID: -1248572169
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1249933313291065759, guid: 5367d7c518cae6f41afaf9ffbb74c3a4,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 073ebcbe051a8a142b2c5a24ea354050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.26, y: 28.94}
+  m_Size: {x: 15.32, y: 28.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2070,8 +2067,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.604603, y: 29.22}
-    newSize: {x: 9.26, y: 28.94}
+    oldSize: {x: 10.24, y: 30.66}
+    newSize: {x: 15.32, y: 28.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
