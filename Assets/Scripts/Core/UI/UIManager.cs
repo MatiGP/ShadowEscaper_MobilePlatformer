@@ -91,11 +91,6 @@ namespace Code.UI
                     panelCanvas.overrideSorting = true;
                     panelCanvas.sortingLayerName = "UI";
                     panelCanvas.sortingOrder = i;
-
-                    RectTransform rect = m_UIPanels[panelOrderList[i]].GetComponent<RectTransform>();
-                    Vector3 localPos = rect.localPosition;
-                    localPos.z = panelsCount + i;
-                    rect.localPosition = localPos;
                 }
             }
 

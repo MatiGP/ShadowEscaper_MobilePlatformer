@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1416f8186ad66fc4da63681d99ea3297, type: 3}
-    totalSpriteSurfaceArea: 10265342
+    totalSpriteSurfaceArea: 10310646
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -98,6 +98,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2289c259e90cc204eb65901cb4aa6815, type: 3}
   - {fileID: 21300000, guid: 9c6572c95f2fcf545875c09866f02db8, type: 3}
   - {fileID: 21300000, guid: 995095c999e9dc2409c0de614496cad1, type: 3}
+  - {fileID: 21300000, guid: 32f05d0aa78f0ef42ad88c35819fd4e3, type: 3}
   - {fileID: 21300000, guid: ee2f644a6a3e29243aaa65c199fdd88e, type: 3}
   - {fileID: 21300000, guid: 25f391dadbd536b4db190180588260ad, type: 3}
   - {fileID: 21300000, guid: 6a7dca0b9ce500146bd5931da7c9b181, type: 3}
@@ -189,6 +190,7 @@ SpriteAtlas:
   - LVL 14 Scalone_B
   - START PAD
   - LVL 24 Scalone_Side_Right
+  - MAIN CABLES
   - LVL 13 Scalone_LShape
   - LVL 25 Scalone_Stairs_High
   - KEYSTONE
