@@ -24,13 +24,13 @@ namespace Code.UI.Panels
             UnBindEvents();
         }
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             m_NoButton.onClick.AddListener(HandleNoButtonClicked);
             m_YesButton.onClick.AddListener(HandleYesButtonClicked);
         }
 
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             m_NoButton.onClick.RemoveListener(HandleNoButtonClicked);
             m_YesButton.onClick.RemoveListener(HandleYesButtonClicked);

@@ -25,14 +25,14 @@ namespace Code.UI.Panels
             base.Start();
             StartFadeIn();           
         }
-        
-        public override void BindEvents()
+
+        private void BindEvents()
         {
             m_TryAgainButton.onClick.AddListener(StartFadeOut);
             ShadowRunApp.Instance.LevelLoader.OnLevelSelected += HandleLevelSelectedOnDeath;
         }
 
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             m_TryAgainButton.onClick.RemoveListener(StartFadeOut);
             ShadowRunApp.Instance.LevelLoader.OnLevelSelected -= HandleLevelSelectedOnDeath;

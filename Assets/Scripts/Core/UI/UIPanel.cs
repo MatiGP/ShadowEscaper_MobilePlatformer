@@ -42,7 +42,5 @@ namespace Code.UI.Panels
         {
             gameObject.SetActive(true);
         }
-        public abstract void BindEvents();
-        public abstract void UnBindEvents();
     }
 }

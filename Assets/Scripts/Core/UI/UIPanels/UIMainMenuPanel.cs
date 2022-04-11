@@ -36,15 +36,15 @@ namespace Code.UI.Panels
             m_PremiumCurrencyCount.text = SaveSystem.GetPremiumCurrencyCount().ToString();
         }
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             m_Play.onClick.AddListener(HandlePlayPressed);
             m_Fashion.onClick.AddListener(HandleFashionPressed);
             m_Settings.onClick.AddListener(HandleSettingsPressed);
             m_Shop.onClick.AddListener(HandleShopPressed);
-        }     
+        }
 
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             m_Play.onClick.RemoveListener(HandlePlayPressed);
             m_Fashion.onClick.RemoveListener(HandleFashionPressed);

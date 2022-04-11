@@ -15,12 +15,12 @@ namespace Code.UI.Panels
 
         [SerializeField] private float m_FadeDuration = 1.1f;
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             
         }
-    
-        public override void UnBindEvents()
+
+        private void UnBindEvents()
         {
             
         }

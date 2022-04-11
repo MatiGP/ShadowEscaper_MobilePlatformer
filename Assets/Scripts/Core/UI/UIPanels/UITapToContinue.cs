@@ -24,12 +24,12 @@ namespace Code.UI.Panels
             m_CanvasGroup.DOFade(1, m_FadeDuration).OnComplete(() => m_CanvasGroup.interactable = true).Play();
         }
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             m_TapToStart.onClick.AddListener(HandleStartButtonPressed);
-        }      
+        }
 
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             m_TapToStart.onClick.RemoveListener(HandleStartButtonPressed);
         }

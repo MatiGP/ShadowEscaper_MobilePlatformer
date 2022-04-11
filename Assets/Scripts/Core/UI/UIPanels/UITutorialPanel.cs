@@ -117,7 +117,7 @@ namespace Code.UI.Panels {
             m_UIPlayerControls.SlideButtonTransform.gameObject.SetActive(false);
         }
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             m_UIPlayerControls.OnJoystickMoved += HandleJoystickMoved;
             m_UIPlayerControls.OnJumpPressed += HandleJumpPressed;
@@ -147,9 +147,9 @@ namespace Code.UI.Panels {
             m_HandTransform.gameObject.SetActive(false);
             m_UIPlayerControls.OnJumpPressed -= HandleJumpPressed;
             m_HandClickSequence.Pause();
-        }    
+        }
 
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             
         }

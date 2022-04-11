@@ -19,13 +19,14 @@ namespace Code
         public int CollectedItemsCount { get; private set; }
         public int CurrentPoints { get; private set; }
         public TimeSpan LevelTime { get; private set; }
+        public TimeSpan CurrentLevelTime { get { return DateTime.UtcNow - m_LevelStartingTime; } }
         public LevelData CurrentLevelData { get; private set; }
 
-        private DateTime LevelStartingDate = DateTime.MinValue;
+        private DateTime m_LevelStartingTime = DateTime.MinValue;
 
         public void GameStart()
         {
-            LevelStartingDate = DateTime.UtcNow;
+            m_LevelStartingTime = DateTime.UtcNow;
             CurrentPoints = 0;
             CollectedItemsCount = 0;
             OnGameStart?.Invoke(this, EventArgs.Empty);
@@ -33,7 +34,7 @@ namespace Code
 
         public void SummarizeLevel()
         {
-            LevelTime = DateTime.UtcNow - LevelStartingDate;
+            LevelTime = DateTime.UtcNow - m_LevelStartingTime;
 
             CurrentPoints = 1; //For Finishing.
             CurrentPoints += (CollectedItemsCount == CurrentLevelData.ItemsCount) ? 1 : 0;

@@ -69,7 +69,7 @@ namespace Code.UI.Panels
             ShadowRunApp.Instance.SoundManager.ApplySoundFXVolume();
         }
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             m_BackButton.onClick.AddListener(ClosePanel);
             m_Toggle60FPS.onValueChanged.AddListener(SetTargetFramerate);
@@ -78,7 +78,7 @@ namespace Code.UI.Panels
             m_SFXVolume.onValueChanged.AddListener(SetSFXVolume);
         }
 
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             m_BackButton.onClick.RemoveListener(ClosePanel);
             m_Toggle60FPS.onValueChanged.RemoveListener(SetTargetFramerate);

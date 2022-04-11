@@ -96,14 +96,14 @@ namespace Code.UI.Panels
             m_RequiredTimeToGetReward.text = string.Format(FINISH_BEFORE_FORMAT, timeString);
         }
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             m_PreviousLevelButton.onClick.AddListener(HandlePreviousLevelPressed);
             m_NextLevelButton.onClick.AddListener(HandleNextLevelPressed);
             m_MenuButton.onClick.AddListener(HandleMenuPressed);
         }
 
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             m_PreviousLevelButton.onClick.RemoveListener(HandlePreviousLevelPressed);
             m_NextLevelButton.onClick.RemoveListener(HandleNextLevelPressed);

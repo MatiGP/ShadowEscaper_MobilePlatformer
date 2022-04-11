@@ -49,9 +49,9 @@ namespace Code.UI.Panels
         public override void ClosePanel()
         {
             m_FadeTween = m_CanvasGroup.DOFade(0, m_FadeDuration).OnComplete(() => base.ClosePanel()).Play();            
-        } 
-        
-        public override void UnBindEvents()
+        }
+
+        private void UnBindEvents()
         {
             
         }
@@ -77,8 +77,8 @@ namespace Code.UI.Panels
             ShadowRunApp.Instance.LevelLoader.LoadLevel(levelIndex);
         }
 
-   
-        public override void BindEvents()
+
+        private void BindEvents()
         {
             
         }

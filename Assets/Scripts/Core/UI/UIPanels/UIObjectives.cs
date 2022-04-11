@@ -9,6 +9,10 @@ namespace Code.UI.Panels
 {
     public class UIObjectives : UIPanel
     {
+        [Header("Current Time")]
+        [SerializeField] private TextMeshProUGUI m_CurrentMinutesText = null;
+        [SerializeField] private TextMeshProUGUI m_CurrentSecondsText = null;
+        [SerializeField] private TextMeshProUGUI m_CurrentMillisecondsText = null;
         [Header("Keys")]
         [SerializeField] private Image[] m_KeyImages = null;
         [SerializeField] private Sprite m_KeyCollectedSprite;
@@ -21,6 +25,15 @@ namespace Code.UI.Panels
 
         private int m_CurrentKeys = 0;
         private int m_CurrentStars = 0;
+        private Coroutine m_TimeTickCoroutine = null;
+        private const string TIME_FORMAT = "{0:00}:{1:00}:{2}";
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            BindEvents();
+        }
 
         protected override void Start()
         {
@@ -28,6 +41,11 @@ namespace Code.UI.Panels
 
             SetKeyImages();
             SetStarImages();
+        }
+
+        private void OnDestroy()
+        {
+            UnBindEvents();
         }
 
         private void SetStarImages()
@@ -82,14 +100,40 @@ namespace Code.UI.Panels
             }
         }
 
-        public override void BindEvents()
+        private void HandleGameStart(object sender, EventArgs e)
         {
-            
+            m_TimeTickCoroutine = StartCoroutine(TickLevelTime());
         }
 
-        public override void UnBindEvents()
+        private IEnumerator TickLevelTime()
         {
-            
+            while (true)
+            {
+                TimeSpan timeSpan = ShadowRunApp.Instance.GameManager.CurrentLevelTime;
+                m_CurrentMinutesText.text = timeSpan.Minutes.ToString("00");
+                m_CurrentSecondsText.text = timeSpan.Seconds.ToString("00");
+                m_CurrentMillisecondsText.text = timeSpan.Milliseconds.ToString("00");
+
+                yield return null;
+            }
+        }
+
+        private void HandleGameCompleted(object sender, EventArgs e)
+        {
+            StopCoroutine(TickLevelTime());
+            m_TimeTickCoroutine = null;
+        }
+
+        private void BindEvents()
+        {
+            ShadowRunApp.Instance.GameManager.OnGameStart += HandleGameStart;
+            ShadowRunApp.Instance.GameManager.OnGameCompleted += HandleGameCompleted;
+        }
+
+        private void UnBindEvents()
+        {
+            ShadowRunApp.Instance.GameManager.OnGameStart -= HandleGameStart;
+            ShadowRunApp.Instance.GameManager.OnGameCompleted -= HandleGameCompleted;
         }
     }
 }

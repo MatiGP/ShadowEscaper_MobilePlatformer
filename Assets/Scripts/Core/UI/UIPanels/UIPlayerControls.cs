@@ -39,7 +39,7 @@ namespace Code.UI.Panels
             OnJoystickMoved.Invoke(this, 0f);
         }
 
-        public override void BindEvents()
+        private void BindEvents()
         {
             m_SlideButton.OnButtonUp.AddListener(CancelSlide);
             m_SlideButton.OnButtonDown.AddListener(InvokeSliding);
@@ -52,7 +52,7 @@ namespace Code.UI.Panels
             m_Joystick.OnHorizontalJoystickMove += OnHorizontalJoystickMove;
            
         }
-        public override void UnBindEvents()
+        private void UnBindEvents()
         {
             m_SlideButton.OnButtonUp.RemoveListener(CancelSlide);
             m_SlideButton.OnButtonDown.RemoveListener(InvokeSliding);

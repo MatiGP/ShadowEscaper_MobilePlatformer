@@ -6,12 +6,12 @@ namespace Code.UI.Panels
 {
     public class UIBackground : UIPanel
     {
-        public override void BindEvents()
+        private void BindEvents()
         {
             
-        }     
-      
-        public override void UnBindEvents()
+        }
+
+        private void UnBindEvents()
         {
             
         }
