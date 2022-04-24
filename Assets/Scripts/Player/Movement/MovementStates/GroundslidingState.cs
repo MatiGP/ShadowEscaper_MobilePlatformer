@@ -67,7 +67,7 @@ namespace Code.StateMachine
                 return;
             }
 
-            if (!playerController.IsSliding)
+            if (!playerController.IsSliding || currentSpeed <= MIN_SLIDE_SPEED)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
             }
