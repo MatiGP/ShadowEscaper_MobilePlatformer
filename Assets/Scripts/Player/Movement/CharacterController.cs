@@ -29,6 +29,7 @@ namespace Code
         public bool IsTouchingCeiling { get => isTouchingCeiling; }
         public bool IsSliding { get => m_IsSliding; }
         public bool IsTouchingWallWhileSliding { get => m_IsTouchingWallWhileSliding; }
+        public float WallJumpFixedMovementDuration { get => wallJumpFixedMovementDuration; }
         public PersistantParticles PersistantParticles { get => m_PersistantParticles; }
 
         [SerializeField] protected CapsuleCollider2D m_CapsuleCollider;
@@ -66,9 +67,10 @@ namespace Code
         [SerializeField] protected float wallslideSpeed;
         [SerializeField] protected float wallJumpHeight;
         [SerializeField] protected float jumpOffWallForce;
+        [SerializeField] protected float wallJumpFixedMovementDuration;
 
 
-        [Range(0.001f, 1f)]
+        [Range(0.1f, 2f)]
         [SerializeField] protected float wallJumpDuration;
 
         [Space(1f)]
@@ -147,18 +149,18 @@ namespace Code
 
         private void CheckPhysicsConditions()
         {
+            isGrounded =
+                Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
+            
+            isTouchingCeiling =
+               Physics2D.OverlapBox(ceilingDetectorTransform.position, ceilingDetectorSize, 0f, ceilingLayer);
+
             isTouchingRightWall =
                         Physics2D.OverlapBox(wallDetectorRight.position, wallDetectorSize, 0f, wallLayer);
 
             isTouchingLeftWall =
-                Physics2D.OverlapBox(wallDetectorLeft.position, wallDetectorSize, 0f, wallLayer);
-
-            isGrounded =
-                Physics2D.OverlapBox(groundDetectorTransform.position, groundDetectorSize, 0f, groundLayer);
-
-            isTouchingCeiling =
-                Physics2D.OverlapBox(ceilingDetectorTransform.position, ceilingDetectorSize, 0f, ceilingLayer);
-
+                Physics2D.OverlapBox(wallDetectorLeft.position, wallDetectorSize, 0f, wallLayer);            
+           
             if (m_IsSliding)
             {
                 m_IsTouchingWallWhileSliding =
@@ -227,8 +229,6 @@ namespace Code
                 closestFloorPos = floorDetector.ClosestPoint(transform.position).y;
                 transform.position = new Vector3(transform.position.x, m_CapsuleCollider.size.y / 2 + closestFloorPos);
             }
-
-
         }
 
         public void FixPlayerWallPosition()

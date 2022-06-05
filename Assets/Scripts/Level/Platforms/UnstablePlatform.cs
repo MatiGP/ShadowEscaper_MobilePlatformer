@@ -3,52 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnstablePlatform : MonoBehaviour
+namespace Code
 {
-    [SerializeField] float slowBreakTime;
-    [SerializeField] float fastBreakTime;
-    [SerializeField] float disableDuration;
-    [SerializeField] List<Sprite> platformSprites;
-
-    bool isBreakingDown;
-    SpriteRenderer spriteRenderer;
-    BoxCollider2D boxCollider;
-
-    private void Awake()
+    public class UnstablePlatform : MonoBehaviour, IPlatform
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
+        [SerializeField] float slowBreakTime;
+        [SerializeField] float fastBreakTime;
+        [SerializeField] float disableDuration;
+        [SerializeField] List<Sprite> platformSprites;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player") && !isBreakingDown)
+        bool isBreakingDown;
+        SpriteRenderer spriteRenderer;
+        BoxCollider2D boxCollider;
+
+        private void Awake()
         {
-            StartCoroutine(BreakDown());
-        }
-    }
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            boxCollider = GetComponent<BoxCollider2D>();
+        }     
 
-    IEnumerator BreakDown()
-    {
-        isBreakingDown = true;
-        for (int i = 0; i < 2; i++)
+        IEnumerator BreakDown()
         {
-            spriteRenderer.sprite = platformSprites[i];
-            yield return new WaitForSeconds(slowBreakTime);
+            isBreakingDown = true;
+            for (int i = 0; i < 2; i++)
+            {
+                spriteRenderer.sprite = platformSprites[i];
+                yield return new WaitForSeconds(slowBreakTime);
+            }
+
+            for (int i = 2; i < 5; i++)
+            {
+                spriteRenderer.sprite = platformSprites[i];
+                yield return new WaitForSeconds(fastBreakTime);
+            }
+
+            spriteRenderer.sprite = null;
+            boxCollider.enabled = false;
+            yield return new WaitForSeconds(disableDuration);
+            spriteRenderer.sprite = platformSprites[0];
+            boxCollider.enabled = true;
+            isBreakingDown = false;
+
         }
 
-        for(int i = 2; i < 5; i++)
+        public void ActivatePlatform()
         {
-            spriteRenderer.sprite = platformSprites[i];
-            yield return new WaitForSeconds(fastBreakTime);
+            if (!isBreakingDown)
+            {
+                StartCoroutine(BreakDown());
+            }
         }
-
-        spriteRenderer.sprite = null;
-        boxCollider.enabled = false;
-        yield return new WaitForSeconds(disableDuration);
-        spriteRenderer.sprite = platformSprites[0];
-        boxCollider.enabled = true;
-        isBreakingDown = false;
-
     }
 }

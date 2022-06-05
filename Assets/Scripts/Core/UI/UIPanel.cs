@@ -33,7 +33,7 @@ namespace Code.UI.Panels
 
         public virtual void ClosePanel()
         {
-            OnPanelClose.Invoke(this, m_PanelID);
+            OnPanelClose?.Invoke(this, m_PanelID);
             OnPanelClose = null;
             Destroy(gameObject);
         }

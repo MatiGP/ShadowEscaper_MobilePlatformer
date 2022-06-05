@@ -46,8 +46,6 @@ namespace Code.StateMachine
         {
             if (playerController.IsTouchingGround)
             {
-                Debug.Log("SHOULD FIX!");
-
                 playerController.FixPlayerGroundPosition();
 
                 if (playerController.Direction == 0)
@@ -60,11 +58,7 @@ namespace Code.StateMachine
                 }
 
             }
-            else
-            {
-                Debug.Log("Player is not touching ground");
-            }
-
+           
             if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
             {
                 playerController.FixPlayerWallPosition();

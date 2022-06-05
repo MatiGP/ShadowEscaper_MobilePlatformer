@@ -8,12 +8,12 @@ namespace Code.UI.Panels
 {
     public class UISettings : UIPanel
     {
-        [SerializeField] private Button m_BackButton = null;
+        [SerializeField] protected Button m_BackButton = null;
 
-        [SerializeField] private Slider m_MusicVolume;
-        [SerializeField] private Slider m_SFXVolume;
-        [SerializeField] private Toggle m_Toggle60FPS;
-        [SerializeField] private Toggle m_ToggleVibrations;
+        [SerializeField] protected Slider m_MusicVolume;
+        [SerializeField] protected Slider m_SFXVolume;
+        [SerializeField] protected Toggle m_Toggle60FPS;
+        [SerializeField] protected Toggle m_ToggleVibrations;
 
         protected override void Awake()
         {
@@ -31,7 +31,7 @@ namespace Code.UI.Panels
             
         }     
 
-        private void SetTargetFramerate(bool isOn)
+        protected void SetTargetFramerate(bool isOn)
         {
             if (isOn)
             {
@@ -46,30 +46,30 @@ namespace Code.UI.Panels
             ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.BUTTON_PRESSED);
         }
 
-        private void SetVibrations(bool isOn)
+        protected void SetVibrations(bool isOn)
         {
             if (isOn)
             {
-                Vibration.Vibrate();
+                //Vibration.Vibrate();
             }
 
             SaveSystem.SetVibrationsEnabled(isOn);
             ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.BUTTON_PRESSED);
         }
 
-        public void SetMusicVolume(float value)
+        protected void SetMusicVolume(float value)
         {
             SaveSystem.SaveMusicVolume(value);
             ShadowRunApp.Instance.SoundManager.ApplyMusicVolume();
         }
 
-        public void SetSFXVolume(float value)
+        protected void SetSFXVolume(float value)
         {
             SaveSystem.SaveSFXVolume(value);
             ShadowRunApp.Instance.SoundManager.ApplySoundFXVolume();
         }
 
-        private void BindEvents()
+        protected virtual void BindEvents()
         {
             m_BackButton.onClick.AddListener(ClosePanel);
             m_Toggle60FPS.onValueChanged.AddListener(SetTargetFramerate);
@@ -78,7 +78,7 @@ namespace Code.UI.Panels
             m_SFXVolume.onValueChanged.AddListener(SetSFXVolume);
         }
 
-        private void UnBindEvents()
+        protected virtual void UnBindEvents()
         {
             m_BackButton.onClick.RemoveListener(ClosePanel);
             m_Toggle60FPS.onValueChanged.RemoveListener(SetTargetFramerate);

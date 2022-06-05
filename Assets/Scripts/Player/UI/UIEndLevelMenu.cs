@@ -10,6 +10,8 @@ namespace Code.UI.Panels
 {
     public class UIEndLevelMenu : UIPanel
     {
+        [SerializeField] private UICounter m_EarnedPointsCounter = null;
+
         [SerializeField] private Image[] m_StarImages = null;
         
         [SerializeField] private GameObject m_NextLevelButtonBlocker = null;
@@ -18,20 +20,17 @@ namespace Code.UI.Panels
         
         [SerializeField] private TextMeshProUGUI m_RequiredTimeToGetReward = null;
         [SerializeField] private TextMeshProUGUI m_ItemsCollected = null;
-        [SerializeField] private TextMeshProUGUI m_EarnedPoints = null;
 
         [SerializeField] private Button m_PreviousLevelButton = null;
         [SerializeField] private Button m_NextLevelButton = null;
         [SerializeField] private Button m_MenuButton = null;
 
-        [SerializeField] private float m_PointCountLerpDuration = 0.5f;
-        
+        [SerializeField] private Sprite m_GoldStarIcon = null;
 
-        private const string FINISH_BEFORE_FORMAT = "Finished Before \n {0}";
+        private const string FINISH_BEFORE_FORMAT = "Finished Before\n{0}";
         private const string TIME_FORMAT = "{0:00}:{1:00}:{2:00}";
-        private const string ITEMS_COLLECTED_FORMAT = "Items collected \n {0}/{1}";
+        private const string ITEMS_COLLECTED_FORMAT = "Items collected\n{0}/{1}";
 
-        private int m_CurrentPoints = 0;
         private int m_ObtainedPoints = 0;
 
         private Coroutine m_DelayedCountUp = null;
@@ -57,12 +56,12 @@ namespace Code.UI.Panels
             SetFinishedBeforeText();
             SetCollectedItemsText();
             
-            m_PreviousLevelButtonBlocker.SetActive(canPlayPrevLevel);
-            m_NextLevelButtonBlocker.SetActive(canPlayNextLevel);
+            m_PreviousLevelButtonBlocker.SetActive(!canPlayPrevLevel);
+            m_NextLevelButtonBlocker.SetActive(!canPlayNextLevel);
 
             for(int i = 0; i < pointsObtained; i++)
             {
-                m_StarImages[i].gameObject.SetActive(true);
+                m_StarImages[i].sprite = m_GoldStarIcon;
             }
 
             int levelIndex = ShadowRunApp.Instance.LevelLoader.GetCurrentLevelIndex();
@@ -132,21 +131,8 @@ namespace Code.UI.Panels
         {
             yield return m_CoroutineDelay;
 
-            float timeElapsed = 0f;
-
-            while(timeElapsed < m_PointCountLerpDuration)
-            {
-                m_CurrentPoints = (int)Mathf.Lerp(m_CurrentPoints, m_ObtainedPoints, timeElapsed / m_PointCountLerpDuration);
-                m_EarnedPoints.text = m_CurrentPoints.ToString();
-
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            m_CurrentPoints = m_ObtainedPoints;
-            m_EarnedPoints.text = m_CurrentPoints.ToString();
-
-            m_DelayedCountUp = null;
+            m_EarnedPointsCounter.SetValues(0, m_ObtainedPoints);
+            m_EarnedPointsCounter.StartCountUp();        
         }
 
         private void OnDestroy()

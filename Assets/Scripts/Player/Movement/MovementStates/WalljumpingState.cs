@@ -41,7 +41,7 @@ namespace Code.StateMachine
         {
             currentWallJumpDuration += Time.deltaTime;
 
-            if (currentWallJumpDuration <= playerController.WallJumpDuration)
+            if (currentWallJumpDuration <= playerController.WallJumpFixedMovementDuration)
             {
                 movementVector.x = walljumpDirection * playerController.JumpOffWallForce;
             }

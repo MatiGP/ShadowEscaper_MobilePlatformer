@@ -51,6 +51,11 @@ namespace Code.StateMachine
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Groundsliding]);
             }
+
+            if (!playerController.IsTouchingGround)
+            {
+                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
+            }
         }
     }
 }

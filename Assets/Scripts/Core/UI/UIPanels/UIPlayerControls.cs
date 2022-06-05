@@ -92,7 +92,7 @@ namespace Code.UI.Panels
 
         private void CreateSettingsPanel()
         {
-            UIManager.Instance.CreatePanel(EPanelID.Settings);
+            UIManager.Instance.CreatePanel(EPanelID.InGameSettings);
         }    
 
         private void OnDestroy()

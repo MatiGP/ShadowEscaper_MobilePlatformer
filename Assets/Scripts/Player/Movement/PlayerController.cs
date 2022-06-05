@@ -9,7 +9,8 @@ namespace Code
 {
     public class PlayerController : CharacterController
     {
-        public const float JOYSTICK_DEADZONE = 0.15f;
+        public const float JOYSTICK_DEADZONE = 0.25f;
+
         [Header("Health")]
         [SerializeField] private PlayerHealth m_PlayerHealth = null;
 
@@ -101,6 +102,11 @@ namespace Code
             stateMachine.ChangeState(MovementStates[EMovementStateType.Death]);
         }
 
+        public void TryActivatingPlatform(Vector3 direction)
+        {
+           
+        }
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
@@ -113,8 +119,7 @@ namespace Code
             Gizmos.color = Color.blue;
             Gizmos.DrawCube(ceilingDetectorTransform.position, ceilingDetectorSize);
             Gizmos.color = Color.magenta;
-            Gizmos.DrawCube(m_SlideDetectorPosition.position, m_SlideDetectorSize);
-
+            Gizmos.DrawCube(m_SlideDetectorPosition.position, m_SlideDetectorSize);           
         }
 #endif
     }

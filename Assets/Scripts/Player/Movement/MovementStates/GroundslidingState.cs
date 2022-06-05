@@ -51,13 +51,12 @@ namespace Code.StateMachine
 
         public override void HandleInput()
         {
-            currentSpeed -= Mathf.Clamp(playerController.SlideSpeedFallOff * Time.deltaTime, MIN_SLIDE_SPEED, MAX_SLIDE_SPEED);
+            currentSpeed = Mathf.Clamp(currentSpeed - playerController.SlideSpeedFallOff * Time.deltaTime, MIN_SLIDE_SPEED, MAX_SLIDE_SPEED);
 
             movementVector.x = currentSpeed * m_Direction * Time.deltaTime;
 
             playerTransform.position += movementVector;
-
-            Vibration.Vibrate();
+        
         }
 
         public override void HandleLogic()

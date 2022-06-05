@@ -15,12 +15,13 @@ public class GlobalUILayer
         EPanelID.DailyGift,
         EPanelID.Challenge,
         EPanelID.Shop,
+        EPanelID.Settings,
         
         //GAME
         EPanelID.PlayerUI,
         EPanelID.TutorialOverlay,
         EPanelID.Objectives,
-        EPanelID.Settings,
+        EPanelID.InGameSettings,
         EPanelID.EndLevelMenu,
         EPanelID.EndLevelTutorial,       
               

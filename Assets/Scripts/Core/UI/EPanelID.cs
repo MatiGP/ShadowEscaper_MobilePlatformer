@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Make sure to don't include "panelPrefab" in EPanelID;
 public enum EPanelID
 {
     Background,
@@ -21,6 +20,7 @@ public enum EPanelID
     TapToContinue,
     EndLevelTutorial,
     TutorialOverlay,
-    TutorialNotification
+    TutorialNotification,
+    InGameSettings
 
 }
