@@ -57,6 +57,7 @@ namespace Code.StateMachine
                     stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
                 }
 
+                return;
             }
            
             if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)

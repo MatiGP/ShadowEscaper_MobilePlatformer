@@ -45,24 +45,29 @@ public class RunningState : BaseMovementState
             if (isRunning && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
+                return;
             }
             else if (!isRunning)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
+                return;
             }
 
             if (playerController.IsSliding)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Groundsliding]);
+                return;
             }
 
             if (playerController.IsJumping)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
+                return;
             }
             else if (!playerController.IsTouchingGround)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
+                return;
             }
 
         }

@@ -69,11 +69,13 @@ namespace Code.StateMachine
             if (!playerController.IsSliding || currentSpeed <= MIN_SLIDE_SPEED)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
+                return;
             }
 
             if (playerController.IsTouchingWallWhileSliding)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
+                return;
             }
 
             if (!playerController.IsTouchingGround)

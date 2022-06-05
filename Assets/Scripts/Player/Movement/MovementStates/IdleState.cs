@@ -37,6 +37,7 @@ namespace Code.StateMachine
             if (playerController.IsJumping)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
+                return;
             }
 
             bool IsNotTouchingAnyWall = (playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall)
@@ -45,16 +46,19 @@ namespace Code.StateMachine
             if (IsRunning && IsNotTouchingAnyWall)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
+                return;
             }
 
             if (playerController.IsSliding)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Groundsliding]);
+                return;
             }
 
             if (!playerController.IsTouchingGround)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
+                return;
             }
         }
     }

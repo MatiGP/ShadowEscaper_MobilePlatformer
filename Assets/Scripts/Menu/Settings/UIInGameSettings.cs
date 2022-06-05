@@ -9,22 +9,37 @@ namespace Code.UI.Panels
     {
         [SerializeField] private Button m_QuitGameButton = null;
 
+        private float m_DefaultTimeScale = 0.0f;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            m_DefaultTimeScale = Time.timeScale;
+        }
+
         protected override void BindEvents()
         {
             base.BindEvents();
             m_QuitGameButton.onClick.AddListener(HandleQuit);
+            m_BackButton.onClick.AddListener(HandleInGamePause);
         }
 
         protected override void UnBindEvents()
         {
             base.UnBindEvents();
             m_QuitGameButton.onClick.RemoveListener(HandleQuit);
+            m_BackButton.onClick.RemoveListener( HandleInGamePause);
         }
 
         private void HandleQuit()
         {
             ClosePanel();
             ShadowRunApp.Instance.GameManager.InvokeOnGameExit();
+        }
+
+        private void HandleInGamePause()
+        {
+            Time.timeScale = m_DefaultTimeScale;
         }
     }
 }

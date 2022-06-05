@@ -53,12 +53,14 @@ namespace Code.StateMachine {
             {
                 playerController.SetJumpRemainingForce(movementVector.y);
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
+                return;
             }
 
             if (movementVector.y <= 0)
             {
                 playerController.SetNormalFallMultiplier();
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
+                return;
             }
 
             if ((movementVector.y > 0) && !playerController.IsJumping)

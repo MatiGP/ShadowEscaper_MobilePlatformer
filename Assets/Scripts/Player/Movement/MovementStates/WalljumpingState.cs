@@ -61,12 +61,14 @@ namespace Code.StateMachine
             {
                 playerController.ClearDirection();
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
+                return;
             }
 
             if (movementVector.y < 0)
             {
                 playerController.ClearDirection();
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
+                return;
             }
 
             if (currentWallJumpDuration <= playerController.WallJumpDuration)
