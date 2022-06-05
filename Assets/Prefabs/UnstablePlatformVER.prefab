@@ -100,8 +100,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8, y: 3.1009483}
+    pivot: {x: 0.58142394, y: 0.6492262}
+    oldSize: {x: 2.4000003, y: 4.4813704}
     newSize: {x: 0.8, y: 3.1009483}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -126,8 +126,8 @@ MonoBehaviour:
   fastBreakTime: 0.1
   disableDuration: 3
   platformSprites:
-  - {fileID: -383515006577600878, guid: f54ca437f58d1d040b7d26c6d3d1e324, type: 3}
-  - {fileID: 5240317045950464759, guid: 7d559757695da6341abb77df3638bf66, type: 3}
-  - {fileID: -3247056379685076432, guid: 80d3d192a574af146aa8d857229175a6, type: 3}
-  - {fileID: -5709737882574870457, guid: f9daae62626ae084c800cff643410959, type: 3}
+  - {fileID: -7300063497931406759, guid: 9048a5a03b416384fb72313cbb6141c4, type: 3}
   - {fileID: -6667995354604869047, guid: 9048a5a03b416384fb72313cbb6141c4, type: 3}
+  - {fileID: -3551318753285118731, guid: 9048a5a03b416384fb72313cbb6141c4, type: 3}
+  - {fileID: -7300063497931406759, guid: 9048a5a03b416384fb72313cbb6141c4, type: 3}
+  - {fileID: -407049110984140898, guid: 9048a5a03b416384fb72313cbb6141c4, type: 3}

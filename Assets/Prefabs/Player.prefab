@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225289803453239521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.06, y: 0, z: 0}
+  m_LocalPosition: {x: -0.95, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414610004021984}
@@ -338,7 +338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609058957330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.38, z: 0}
+  m_LocalPosition: {x: 0, y: -2.412, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414610004021984}
@@ -527,8 +527,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.21}
-  m_Size: {x: 1.53, y: 4.3}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.71, y: 3.94}
   m_Direction: 0
 --- !u!114 &3128115245829179954
 MonoBehaviour:
@@ -555,29 +555,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CapsuleCollider: {fileID: 5715414609690220084}
-  m_NormalCollisionSize: {x: 1.53, y: 4}
-  footSpeed: 24
+  m_NormalCollisionSize: {x: 1.71, y: 3.94}
+  footSpeed: 23
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundDetectorTransform: {fileID: 5715414609058957331}
-  groundDetectorSize: {x: 1.84, y: 0.51}
+  groundDetectorSize: {x: 1.88, y: 0.37}
   groundDetectionLineLength: 6
   m_SlideSpeed: 36
-  m_SlideSpeedFallOff: 50
-  m_SlideCooldown: 0.7
-  m_SlideCollisionSize: {x: 4, y: 1.53}
+  m_SlideSpeedFallOff: 45
+  m_SlideCooldown: 0.4
+  m_SlideCollisionSize: {x: 3.94, y: 1.71}
   m_SlideCollisionOffset: -1.6
-  m_SlideDetectorSize: {x: 0.56, y: 0.66}
+  m_SlideDetectorSize: {x: 0.55, y: 0.66}
   m_SlideDetectorPosition: {fileID: 3356490323786843758}
   wallDetectorRight: {fileID: 5715414609762825736}
   wallDetectorLeft: {fileID: 7515224831357430712}
   wallDetectorLineLength: 2
-  wallDetectorSize: {x: 0.45, y: 2}
+  wallDetectorSize: {x: 0.26, y: 2.63}
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
-  jumpHeight: 40
+  jumpHeight: 43
   timeToJumpApex: 0.9
   fallingSpeedLimit: 50
   normalJumpMultiplier: 2
@@ -585,7 +585,8 @@ MonoBehaviour:
   maxFallSpeed: 20
   wallslideSpeed: 5
   wallJumpHeight: 70
-  jumpOffWallForce: 15
+  jumpOffWallForce: 18
+  wallJumpFixedMovementDuration: 0.25
   wallJumpDuration: 0.8
   ceilingDetectorSize: {x: 1.76, y: 0.66}
   ceilingDetectorTransform: {fileID: 2139641897605777462}
@@ -632,7 +633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5715414609762825735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.06, y: 0, z: 0}
+  m_LocalPosition: {x: 0.95, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5715414610004021984}

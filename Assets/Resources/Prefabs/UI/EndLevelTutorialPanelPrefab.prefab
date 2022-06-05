@@ -661,6 +661,7 @@ MonoBehaviour:
   m_PreviousLevelButton: {fileID: 3710779703225308257}
   m_NextLevelButton: {fileID: 951097017766755159}
   m_MenuButton: {fileID: 4172493383164134330}
+  m_GoldStarIcon: {fileID: 21300000, guid: a4ec40ee9f6f8b147b0834d2bd163895, type: 3}
   m_PointCountLerpDuration: 1
 --- !u!223 &8626001901116842079
 Canvas:
