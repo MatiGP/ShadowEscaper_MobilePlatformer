@@ -66,6 +66,10 @@ public class RocketLauncherLaser : MonoBehaviour
         m_LineRenderer.enabled = false;
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + m_LaserPointTransform.right * m_LaserLength);
+    }
 
 }
