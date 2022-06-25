@@ -33,13 +33,15 @@ namespace Code.UI.Panels
 
         private void HandleQuit()
         {
-            ClosePanel();
             ShadowRunApp.Instance.GameManager.InvokeOnGameExit();
+            ClosePanel();           
         }
 
         private void HandleInGamePause()
         {
+            
             Time.timeScale = m_DefaultTimeScale;
+            ClosePanel();
         }
     }
 }

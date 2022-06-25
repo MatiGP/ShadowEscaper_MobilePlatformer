@@ -54,6 +54,8 @@ namespace Code.StateMachine
         private void UnBindEvents()
         {
             ShadowRunApp.Instance.LevelLoader.OnLevelLoaded -= SpawnTapToContinue;
+            ShadowRunApp.Instance.LevelLoader.OnLevelLoaded -= ResetProgress;
+            ShadowRunApp.Instance.GameManager.OnGameCompleted -= HandleGameCompleted;
         }
 
         private void SpawnTapToContinue(object sender, System.EventArgs e)

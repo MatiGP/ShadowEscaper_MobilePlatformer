@@ -43,23 +43,24 @@ namespace Code.StateMachine {
 
         public override void HandleLogic()
         {
+            if(playerController.IsTouchingCeiling)
+            {
+                playerController.SetJumpRemainingForce( movementVector.y );
+                stateMachine.ChangeState( playerController.MovementStates[EMovementStateType.Falling] );
+                return;
+            }
+
+            if(movementVector.y <= 0)
+            {
+                playerController.SetNormalFallMultiplier();
+                stateMachine.ChangeState( playerController.MovementStates[EMovementStateType.Falling] );
+                return;
+            }
+
             if (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall)
             {
                 movementVector.x = 0;
                 playerController.FixPlayerWallPosition();
-            }
-
-            if (playerController.IsTouchingCeiling)
-            {
-                playerController.SetJumpRemainingForce(movementVector.y);
-                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
-                return;
-            }
-
-            if (movementVector.y <= 0)
-            {
-                playerController.SetNormalFallMultiplier();
-                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
                 return;
             }
 

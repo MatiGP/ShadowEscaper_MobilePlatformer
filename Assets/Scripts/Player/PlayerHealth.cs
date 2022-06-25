@@ -9,24 +9,16 @@ public class PlayerHealth : MonoBehaviour
 {  
     public event EventHandler OnDamageTaken;
 
-    private void Awake()
-    {
-        OnDamageTaken += PlayerHealth_OnDamageTaken;
-    }
-
-    private void PlayerHealth_OnDamageTaken(object sender, EventArgs e)
-    {
-        if(UIManager.Instance == null)
-        {
-            return;
-        }
-
-        UIManager.Instance.CreatePanel(EPanelID.Death);
-    }
+    private bool m_IsDead = false;
 
     public void TakeDamage()
     {
-        OnDamageTaken?.Invoke(this, EventArgs.Empty);
+        if(!m_IsDead)
+        {
+            m_IsDead = true;
+            OnDamageTaken?.Invoke( this, EventArgs.Empty );
+            UIManager.Instance.CreatePanel( EPanelID.Death );
+        }
     }
 
     private void OnDestroy()
