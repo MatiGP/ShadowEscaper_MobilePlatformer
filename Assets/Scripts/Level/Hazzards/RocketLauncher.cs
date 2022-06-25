@@ -20,9 +20,6 @@ namespace Code {
         [SerializeField] private Vector3 m_MaxRotation = new Vector3(0, 0, 0);
         [SerializeField] private float m_RotationDuration = 1f;
 
-        [Header("Warning")]
-        [SerializeField] ExclamationMark m_ExclamationMark;
-
         private Tween m_RotateDown;
         private Tween m_RotateUp;
         private Tween m_RocketLoad;
@@ -93,6 +90,18 @@ namespace Code {
         private void OnDestroy()
         {
             m_RocketLauncherLaser.OnPlayerDetected -= HandlePlayerDetected;
+            
+            if(m_RocketLoad != null)
+            {
+                m_RocketLoad.Kill();
+                m_RocketLoad = null;
+            }
+
+            if(m_RotationSequence != null)
+            {
+                m_RotationSequence.Kill();
+                m_RotationSequence = null;
+            }
         }
     }
 }

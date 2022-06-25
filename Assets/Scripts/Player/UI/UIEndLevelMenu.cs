@@ -14,8 +14,6 @@ namespace Code.UI.Panels
 
         [SerializeField] private Image[] m_StarImages = null;
         
-        [SerializeField] private GameObject m_NextLevelButtonBlocker = null;
-        [SerializeField] private GameObject m_PreviousLevelButtonBlocker = null;
         [SerializeField] private GameObject m_PremiumRoot = null;
         
         [SerializeField] private TextMeshProUGUI m_RequiredTimeToGetReward = null;
@@ -55,9 +53,9 @@ namespace Code.UI.Panels
 
             SetFinishedBeforeText();
             SetCollectedItemsText();
-            
-            m_PreviousLevelButtonBlocker.SetActive(!canPlayPrevLevel);
-            m_NextLevelButtonBlocker.SetActive(!canPlayNextLevel);
+
+            m_PreviousLevelButton.interactable = !canPlayPrevLevel;
+            m_NextLevelButton.interactable = !canPlayNextLevel;
 
             for(int i = 0; i < pointsObtained; i++)
             {
