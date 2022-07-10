@@ -74,7 +74,12 @@ public class LevelLoader : MonoBehaviour
         LoadLevel(m_CurrentLevelIndex-1);
     }
 
-    private void UnloadCurrentLevel()
+    public void LoadTutorialLevel()
+    {
+        LoadLevel( LEVEL_TUTORIAL_NAME );
+    }
+
+    public void UnloadCurrentLevel()
     {
         string levelName = GetLevelName(m_CurrentLevelIndex-1);
         SceneManager.UnloadSceneAsync(levelName);      

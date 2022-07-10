@@ -45,6 +45,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private Vector2 input = Vector2.zero;
 
+    protected bool m_IsEnabled = true;
+
     protected virtual void Start()
     {
         HandleRange = handleRange;
@@ -63,6 +65,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         cam = canvas.worldCamera;
     }
 
+    public void SetJoystickEnabled( bool isEnabled )
+    {
+        m_IsEnabled = isEnabled;
+    }
+
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         OnJoystickStartMove?.Invoke(this, EventArgs.Empty);
@@ -71,7 +78,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     }
 
     public void OnDrag(PointerEventData eventData)
-    {             
+    {
+        if(!m_IsEnabled)
+        {
+            return;
+        }
+
         Vector2 position = RectTransformUtility.WorldToScreenPoint(cam, background.position);
         Vector2 radius = background.sizeDelta / 2;
         input = (eventData.position - position) / (radius * canvas.scaleFactor);

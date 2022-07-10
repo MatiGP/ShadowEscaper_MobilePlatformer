@@ -36,6 +36,7 @@ namespace Code.UI.Panels
         public void SetReceiveInput(bool value)
         {
             m_CanvasGroup.interactable = value;
+            m_Joystick.SetJoystickEnabled( value );
             OnJoystickMoved.Invoke(this, 0f);
         }
 

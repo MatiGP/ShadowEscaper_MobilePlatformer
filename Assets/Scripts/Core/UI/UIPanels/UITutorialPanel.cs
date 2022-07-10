@@ -12,6 +12,8 @@ namespace Code.UI.Panels {
         [SerializeField] private float m_HandSwayDuration = 2f;
         [SerializeField] private float m_HandSwayDistance = 15f;
         [SerializeField] private Vector2 m_HandSwayOffset = Vector2.one;
+        [SerializeField] private AnimationCurve m_HandSwaySequenceCurve = null;
+        [SerializeField] private AnimationCurve m_HandSwayCurve = null;
         [Header("Button Tweens")]
         [SerializeField] private float m_HandClickDuration = 1f;
         [SerializeField] private Vector2 m_HandClickOffset = Vector2.one;
@@ -50,9 +52,11 @@ namespace Code.UI.Panels {
                 .SetLoops(-1, LoopType.Yoyo)
                 .Pause();
 
-            m_HandSwaySequence.Append(m_HandTransform.DOMoveX(m_LeftSwayThreshold, m_HandSwayDuration))               
-                .Append(m_HandTransform.DOMoveX(m_RightSwayThreshold, m_HandSwayDuration))                
-                .SetLoops(-1, LoopType.Yoyo)
+            m_HandSwaySequence.Append( m_HandTransform.DOMoveX( m_LeftSwayThreshold, m_HandSwayDuration ).SetEase( m_HandSwayCurve ) )
+                .Append( m_HandTransform.DOMoveX( m_RightSwayThreshold, m_HandSwayDuration ).SetEase( m_HandSwayCurve) )
+                .Append( m_HandTransform.DOMoveX( m_LeftSwayThreshold, m_HandSwayDuration ).SetEase( m_HandSwayCurve ) )
+                .SetLoops( -1, LoopType.Yoyo )
+                .SetEase( m_HandSwaySequenceCurve )
                 .Pause(); 
         }
 
@@ -77,15 +81,15 @@ namespace Code.UI.Panels {
             switch (tutorialPhase)
             {
                 case ETutorialPhase.JoystickMovement:
-                    m_HandTransform.localPosition = (Vector2)m_UIPlayerControls.JoystickTransform.position + m_HandSwayOffset;
+                    m_HandTransform.localPosition = (Vector2)m_UIPlayerControls.JoystickTransform.localPosition + m_HandSwayOffset;
                     m_HandSwaySequence.Play();                  
                     break;
                 case ETutorialPhase.Jumping:
-                    m_HandTransform.localPosition = (Vector2)m_UIPlayerControls.JumpButtonTransform.position + m_HandClickOffset;
+                    m_HandTransform.localPosition = (Vector2)m_UIPlayerControls.JumpButtonTransform.localPosition + m_HandClickOffset;
                     m_HandClickSequence.Play();
                     break;
                 case ETutorialPhase.Sliding:
-                    m_HandTransform.localPosition = (Vector2)m_UIPlayerControls.SlideButtonTransform.position + m_HandClickOffset;
+                    m_HandTransform.localPosition = (Vector2)m_UIPlayerControls.SlideButtonTransform.localPosition + m_HandClickOffset;
                     m_HandClickSequence.Play();
                     break;
             }
@@ -151,7 +155,9 @@ namespace Code.UI.Panels {
 
         private void UnBindEvents()
         {
-            
+            m_UIPlayerControls.OnJoystickMoved -= HandleJoystickMoved;
+            m_UIPlayerControls.OnJumpPressed -= HandleJumpPressed;
+            m_UIPlayerControls.OnSlidePressed -= HandleSlidePressed;
         }
     }
 

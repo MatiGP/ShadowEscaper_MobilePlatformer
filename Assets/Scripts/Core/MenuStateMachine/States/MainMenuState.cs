@@ -14,8 +14,6 @@ namespace Code.StateMachine
         private UISettings m_SettingsPanel = null;
         private UITutorialNotification m_TutorialNotification = null;
 
-        private const string TUTORIAL_LEVEL_NAME = "Tutorial";
-
         public MainMenuState() : base(EMenuState.MainMenu)
         {
 
@@ -63,7 +61,7 @@ namespace Code.StateMachine
         {
             if (decision)
             {
-                ShadowRunApp.Instance.LevelLoader.LoadLevel(TUTORIAL_LEVEL_NAME);
+                ShadowRunApp.Instance.LevelLoader.LoadTutorialLevel();
             }
             else
             {

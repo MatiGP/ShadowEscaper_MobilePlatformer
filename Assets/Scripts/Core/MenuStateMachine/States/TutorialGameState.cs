@@ -18,7 +18,6 @@ namespace Code.StateMachine
 
         public override void EnterState()
         {
-            Debug.Log("Entering tutorial game state");
             base.EnterState();
             BindEvents();
         }
@@ -41,7 +40,6 @@ namespace Code.StateMachine
         protected override void LoadUI()
         {
             base.LoadUI();
-            Debug.Log("Loading in tutorial Game state");
             m_UITutorialPanel = UIManager.Instance.CreatePanel(EPanelID.TutorialOverlay) as UITutorialPanel;
         }
 

@@ -25,6 +25,7 @@ namespace Code.StateMachine
 
         public override void LeaveState()
         {
+            ShadowRunApp.Instance.LevelLoader.UnloadCurrentLevel();
             UnloadUI();
             UnBindEvents();
         }
