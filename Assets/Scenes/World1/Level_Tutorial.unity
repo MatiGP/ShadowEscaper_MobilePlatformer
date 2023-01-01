@@ -1231,7 +1231,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 32.5}
+  m_Size: {x: 1, y: 33.8}
   m_EdgeRadius: 0
 --- !u!1 &532642852
 GameObject:
@@ -3373,7 +3373,7 @@ MonoBehaviour:
   indentLevel: 0
   _duration:
     floatRef: {fileID: 0}
-    floatVal: 0.15
+    floatVal: 0.5
   durationOLD: 0
 --- !u!114 &1056972159
 MonoBehaviour:
@@ -3508,10 +3508,8 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
-  selectedBlocks:
-  - {fileID: 1056972163}
-  selectedCommands:
-  - {fileID: 1056972147}
+  selectedBlocks: []
+  selectedCommands: []
   variables:
   - {fileID: 1056972145}
   - {fileID: 1056972144}
@@ -4760,7 +4758,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482198038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 102.23, y: 32.49, z: 0}
+  m_LocalPosition: {x: 102.23, y: 31.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1658643282}
@@ -5194,7 +5192,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 32.5}
+  m_Size: {x: 1, y: 33.8}
   m_EdgeRadius: 0
 --- !u!1 &1670955132
 GameObject:
@@ -5504,7 +5502,7 @@ MonoBehaviour:
   indentLevel: 0
   _duration:
     floatRef: {fileID: 0}
-    floatVal: 0.75
+    floatVal: 1
   durationOLD: 0
 --- !u!114 &1722112389
 MonoBehaviour:
@@ -5758,7 +5756,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 232.5567
     y: 202.5
-    width: 205.73761
+    width: 208
     height: 40
   tint: {r: 1, g: 0.98899066, b: 0.39999998, a: 1}
   useCustomTint: 1
@@ -5802,11 +5800,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 513.448, y: 130.24901}
+  scrollPos: {x: 187.38295, y: -5.607554}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 739
-  zoom: 0.6100004
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: 0
@@ -5816,7 +5814,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1722112403}
   selectedCommands:
-  - {fileID: 1722112387}
+  - {fileID: 1722112388}
   variables:
   - {fileID: 1722112381}
   - {fileID: 1722112380}

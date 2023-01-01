@@ -13,7 +13,6 @@ namespace Code.StateMachine
         public override void Enter()
         {
             movementVector.y = playerController.RemainingJumpForce;
-            playerController.InterruptJumping();
         }
 
         public override void Exit()
@@ -21,6 +20,7 @@ namespace Code.StateMachine
             movementVector.y = 0;
             movementVector.x = 0;
             playerController.SetJumpRemainingForce(0);
+            playerController.ResetCoyoteTime();
             Vibration.Vibrate(VIBRATION_DURATION);
             ShadowRunApp.Instance.SoundManager.PlaySoundEffect(ESoundType.PLAYER_LANDING);
         }
@@ -33,7 +33,7 @@ namespace Code.StateMachine
         public override void HandleInput()
         {
             movementVector.x = playerController.Direction * playerController.FootSpeed;
-            movementVector.y -= playerController.Gravity * playerController.FallMultiplier * Time.deltaTime;
+            movementVector.y -= playerController.Gravity * playerController.FallMultiplier;
 
             movementVector.y = Mathf.Clamp(movementVector.y, -playerController.FallingSpeedLimit, playerController.JumpHeight);
 
@@ -44,6 +44,12 @@ namespace Code.StateMachine
 
         public override void HandleLogic()
         {
+            if (playerController.CanCoyoteJump && movementVector.y < 0f)
+            {
+                stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
+                return;
+            }
+            
             if (playerController.IsTouchingGround)
             {
                 playerController.FixPlayerGroundPosition();

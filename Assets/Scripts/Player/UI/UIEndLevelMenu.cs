@@ -54,8 +54,8 @@ namespace Code.UI.Panels
             SetFinishedBeforeText();
             SetCollectedItemsText();
 
-            m_PreviousLevelButton.interactable = !canPlayPrevLevel;
-            m_NextLevelButton.interactable = !canPlayNextLevel;
+            m_PreviousLevelButton.interactable = canPlayPrevLevel;
+            m_NextLevelButton.interactable = canPlayNextLevel;
 
             for(int i = 0; i < pointsObtained; i++)
             {
@@ -71,8 +71,6 @@ namespace Code.UI.Panels
                 m_PremiumRoot.SetActive(true);
                 m_DelayedCountUp = StartCoroutine(CountUp());
             }
-            
-            SaveSystem.SaveObtainedStarsFromLevel(levelIndex, pointsObtained);           
         }    
 
         private void SetCollectedItemsText()

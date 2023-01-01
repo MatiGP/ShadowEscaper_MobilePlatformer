@@ -28,6 +28,9 @@ namespace Code
         public bool IsFacingRight { get => facingRight; }
         public bool IsTouchingCeiling { get => isTouchingCeiling; }
         public bool IsSliding { get => m_IsSliding; }
+        public bool IsRunning { get => Direction != 0; }
+        public bool CanMakeMove { get => Direction != 0 && !(IsTouchingLeftWall || IsTouchingRightWall); }
+        public bool CanCoyoteJump { get => timeLeftGrounded <= coyoteTime; }
         public bool IsTouchingWallWhileSliding { get => m_IsTouchingWallWhileSliding; }
         public float WallJumpFixedMovementDuration { get => wallJumpFixedMovementDuration; }
         public PersistantParticles PersistantParticles { get => m_PersistantParticles; }
@@ -63,11 +66,11 @@ namespace Code
         [SerializeField] protected float fallingSpeedLimit;
         [SerializeField] protected float normalJumpMultiplier;
         [SerializeField] protected float lowJumpMultiplier;
-        [SerializeField] protected float maxFallSpeed;
         [SerializeField] protected float wallslideSpeed;
         [SerializeField] protected float wallJumpHeight;
         [SerializeField] protected float jumpOffWallForce;
         [SerializeField] protected float wallJumpFixedMovementDuration;
+        [SerializeField] protected float coyoteTime = 0.2f;
 
 
         [Range(0.1f, 2f)]
@@ -91,6 +94,7 @@ namespace Code
         protected float fallMultiplier;
         protected float remainingJumpForce;
         protected float slideCooldown;
+        protected float timeLeftGrounded;
 
         protected bool isGrounded;
         protected bool isJumping;
@@ -122,6 +126,7 @@ namespace Code
             { EMovementStateType.Falling, new FallingState(this, stateMachine, playerAnimator) },
             { EMovementStateType.Groundsliding, new GroundslidingState(this, stateMachine, playerAnimator) }
         };
+            
         }
         protected virtual void Awake()
         {
@@ -138,13 +143,14 @@ namespace Code
 
         protected virtual void Update()
         {
+            CheckPhysicsConditions();
+            stateMachine.CurrentState.HandleLogic();
+            
             stateMachine.CurrentState.HandleInput();
             stateMachine.CurrentState.HandleAnimator();
 
-            CheckPhysicsConditions();
-            stateMachine.CurrentState.HandleLogic();
-
             TickSlideCooldown();
+            TickCoyoteTime();
         }
 
         private void CheckPhysicsConditions()
@@ -311,10 +317,23 @@ namespace Code
 
         protected void TickSlideCooldown()
         {
-            if (slideCooldown > 0)
+            if (slideCooldown > 0f)
             {
                 slideCooldown -= Time.deltaTime;
             }
+        }
+
+        protected void TickCoyoteTime()
+        {
+            if (!isGrounded && !(isTouchingLeftWall || isTouchingRightWall))
+            {
+                timeLeftGrounded += Time.deltaTime;
+            }
+        }
+
+        public void ResetCoyoteTime()
+        {
+            timeLeftGrounded = 0f;
         }
 
         public void SetSlideCooldown()

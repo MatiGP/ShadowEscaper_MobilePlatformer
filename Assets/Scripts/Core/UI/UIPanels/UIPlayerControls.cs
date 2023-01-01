@@ -29,10 +29,33 @@ namespace Code.UI.Panels
         {
             base.Awake();
             BindEvents();
-            
         }
 
-       
+        #if UNITY_EDITOR
+        protected override void Update()
+        {
+            OnHorizontalJoystickMove(this, Input.GetAxisRaw("Horizontal"));
+            
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                InvokeJumping();
+            }
+            else if(Input.GetKeyUp(KeyCode.JoystickButton0))
+            {
+                CancelJump();
+            }
+
+            if (Input.GetKey(KeyCode.JoystickButton1))
+            {
+                InvokeSliding();
+            }
+            else if(Input.GetKeyUp(KeyCode.JoystickButton1))
+            {
+                CancelSlide();
+            }
+        }
+        #endif
+
         public void SetReceiveInput(bool value)
         {
             m_CanvasGroup.interactable = value;

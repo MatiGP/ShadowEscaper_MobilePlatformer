@@ -15,6 +15,9 @@ public class LevelData : ScriptableObject
     [SerializeField] private int m_ItemsCount = -1;
     public int ItemsCount => m_ItemsCount;
 
+    [SerializeField] private bool m_IsTimed = true;
+    public bool IsTimed => m_IsTimed;
+
     [SerializeField] private float m_LevelDurationInSeconds = -1f;
     public float LevelDurationInSeconds => m_LevelDurationInSeconds;
 }

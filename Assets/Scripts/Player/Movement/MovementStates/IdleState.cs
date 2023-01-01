@@ -6,20 +6,16 @@ namespace Code.StateMachine
 {
     public class IdleState : BaseMovementState
     {
-        bool IsRunning;
-
         public IdleState(CharacterController controller, MovementStateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
         {
         }
 
         public override void Enter()
         {
-
         }
 
         public override void Exit()
         {
-
         }
 
         public override void HandleAnimator()
@@ -29,7 +25,6 @@ namespace Code.StateMachine
 
         public override void HandleInput()
         {
-            IsRunning = playerController.Direction != 0;
         }
 
         public override void HandleLogic()
@@ -39,11 +34,8 @@ namespace Code.StateMachine
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
                 return;
             }
-
-            bool IsNotTouchingAnyWall = (playerController.Direction < -0.1 && !playerController.IsTouchingLeftWall)
-                || (playerController.Direction > 0.1 && !playerController.IsTouchingRightWall);
-
-            if (IsRunning && IsNotTouchingAnyWall)
+            
+            if (playerController.IsRunning && playerController.CanMakeMove)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Running]);
                 return;
@@ -58,7 +50,6 @@ namespace Code.StateMachine
             if (!playerController.IsTouchingGround)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
-                return;
             }
         }
     }

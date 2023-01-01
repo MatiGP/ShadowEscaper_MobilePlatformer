@@ -40,11 +40,6 @@ namespace Code.UI.Panels
 
             PrepareLevelPage();        
         }
-        private void OnDestroy()
-        {
-
-        }
-
 
         public override void ClosePanel()
         {
@@ -66,7 +61,7 @@ namespace Code.UI.Panels
 
                 Debug.Log($"Setting leven number : {levelNum}");
 
-                int earnedPoints = SaveSystem.GetObtainedPointsFromLevel(i);
+                int earnedPoints = SaveSystem.GetObtainedPointsFromLevel(levelNum);
                 m_LevelButtons[i].SetUpLevelButtonInfo(levelNum, earnedPoints);
                 m_LevelButtons[i].OnLevelPressed += HandleLevelPressed;                
             }

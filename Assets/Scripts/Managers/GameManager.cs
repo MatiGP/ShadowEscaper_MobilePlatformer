@@ -39,14 +39,9 @@ namespace Code
             CurrentPoints = 1; //For Finishing.
             CurrentPoints += (CollectedItemsCount == CurrentLevelData.ItemsCount) ? 1 : 0;
             CurrentPoints += ((LevelTime.TotalSeconds <= CurrentLevelData.LevelDurationInSeconds) || (LevelTime.TotalSeconds == -1)) ? 1 : 0;
-
-            int levelIndex = ShadowRunApp.Instance.LevelLoader.GetLevelIndex(CurrentLevelData.LevelName);
-
-            if (levelIndex >= 0)
-            {
-                SaveSystem.SaveObtainedStarsFromLevel(levelIndex, CurrentPoints);
-            }
-
+   
+            SaveSystem.SaveObtainedStarsFromLevel(CurrentLevelData.LevelName, CurrentPoints);
+            
             OnGameCompleted.Invoke(this, EventArgs.Empty);
         }
 

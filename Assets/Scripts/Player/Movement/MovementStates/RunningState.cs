@@ -6,8 +6,6 @@ namespace Code.StateMachine
 { 
 public class RunningState : BaseMovementState
 {
-    bool isRunning;
-
     public RunningState(CharacterController controller, MovementStateMachine stateMachine, Animator animator) : base(controller, stateMachine, animator)
     {
     }
@@ -35,19 +33,18 @@ public class RunningState : BaseMovementState
 
         playerTransform.position += movementVector * Time.deltaTime;
 
-        isRunning = playerController.Direction != 0;
-
         playerController.Flip();
     }
 
         public override void HandleLogic()
         {
-            if (isRunning && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
+            if (playerController.IsRunning && (playerController.IsTouchingLeftWall || playerController.IsTouchingRightWall))
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
                 return;
             }
-            else if (!isRunning)
+            
+            if (!playerController.IsRunning)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Idle]);
                 return;
@@ -64,10 +61,10 @@ public class RunningState : BaseMovementState
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
                 return;
             }
-            else if (!playerController.IsTouchingGround)
+            
+            if (!playerController.IsTouchingGround)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Falling]);
-                return;
             }
 
         }

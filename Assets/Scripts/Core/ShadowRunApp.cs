@@ -13,16 +13,13 @@ namespace Code
         public LevelLoader LevelLoader { get => m_LevelLoader; }
         public SoundManager SoundManager { get => m_SoundManager; }
         public GameManager GameManager { get => m_GameManager; }
-
-
+        
         [SerializeField] private UIManager m_UIManager = null;
         [SerializeField] private LevelLoader m_LevelLoader = null;
         [SerializeField] private SoundManager m_SoundManager = null;
 
         private GameManager m_GameManager = null;
         private MenuStateMachine m_StateMachine = null;
-
-        private EMenuState m_StartingState = EMenuState.MainMenu;
 
         private void Awake()
         {

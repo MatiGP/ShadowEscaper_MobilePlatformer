@@ -71,10 +71,8 @@ namespace Code
             return m_EarnedStars.ContainsKey(levelName) ? m_EarnedStars[levelName] : 0;
         }
 
-        public static void SaveObtainedStarsFromLevel(int levelIndex, int starsCount)
+        public static void SaveObtainedStarsFromLevel(string levelName, int starsCount)
         {
-            string levelName = string.Format(LevelLoader.LEVEL_NAME_FORMAT, levelIndex.ToString("D2"));
-
             if (m_EarnedStars.ContainsKey(levelName))
             {
                 m_EarnedStars[levelName] = starsCount;

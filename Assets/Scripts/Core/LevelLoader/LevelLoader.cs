@@ -12,7 +12,9 @@ public class LevelLoader : MonoBehaviour
     public event EventHandler OnLevelLoaded;
     public event EventHandler<string> OnLevelSelected;
     public event EventHandler<LevelData> OnLevelDataLoaded;
+   
     public const int LEVEL_CAP = 25;
+    public const int LEVEL_SCENE_STARTING_INDEX = 2;
 
     public bool CanPlayNextLevel => m_CurrentLevelIndex - LEVEL_SCENE_STARTING_INDEX < m_SceneIndexes.Count-1;
     public bool CanPlayPreviousLevel => m_CurrentLevelIndex > LEVEL_SCENE_STARTING_INDEX;
@@ -22,8 +24,7 @@ public class LevelLoader : MonoBehaviour
     public const string LEVEL_TUTORIAL_NAME = "Level_Tutorial";
     public const string LEVEL_NAME_FORMAT = "Level_{0}";
     private const string LEVEL_DATA_PATH = "LevelData/{0}";
-    private const int LEVEL_SCENE_STARTING_INDEX = 2;
-  
+
     private int m_CurrentLevelIndex = -1;  
 
     private Dictionary<string, int> m_SceneIndexes = new Dictionary<string, int>();
@@ -125,7 +126,7 @@ public class LevelLoader : MonoBehaviour
 
     public int GetLevelIndex(string levelName)
     {
-        return m_SceneIndexes.ContainsKey(levelName) ? m_SceneIndexes[levelName] : -1;
+        return m_SceneIndexes.ContainsKey(levelName) ? m_SceneIndexes[levelName] - LEVEL_SCENE_STARTING_INDEX : -1;
     }
 
     private string GetLevelName(int levelIndex)
