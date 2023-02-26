@@ -542,7 +542,6 @@ MonoBehaviour:
     m_Bits: 256
   groundDetectorTransform: {fileID: 5715414609058957331}
   groundDetectorSize: {x: 1.88, y: 0.37}
-  groundDetectionLineLength: 6
   m_SlideSpeed: 36
   m_SlideSpeedFallOff: 45
   m_SlideCooldown: 0.4
@@ -552,20 +551,19 @@ MonoBehaviour:
   m_SlideDetectorPosition: {fileID: 3356490323786843758}
   wallDetectorRight: {fileID: 5715414609762825736}
   wallDetectorLeft: {fileID: 7515224831357430712}
-  wallDetectorLineLength: 2
   wallDetectorSize: {x: 0.26, y: 1.9}
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
   jumpHeight: 43
   timeToJumpApex: 0.9
-  fallingSpeedLimit: 35
-  normalJumpMultiplier: 2
+  fallingSpeedLimit: 38
+  normalJumpMultiplier: 1.5
   lowJumpMultiplier: 2
   wallslideSpeed: 5
   wallJumpHeight: 70
   jumpOffWallForce: 18
-  wallJumpFixedMovementDuration: 0.25
+  wallJumpFixedMovementDuration: 0.15
   coyoteTime: 0.15
   wallJumpDuration: 0.8
   ceilingDetectorSize: {x: 1.76, y: 0.66}

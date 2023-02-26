@@ -32,6 +32,7 @@ namespace Code.UI.Panels
         }
 
         #if UNITY_EDITOR
+        
         protected override void Update()
         {
             OnHorizontalJoystickMove(this, Input.GetAxisRaw("Horizontal"));
@@ -54,6 +55,7 @@ namespace Code.UI.Panels
                 CancelSlide();
             }
         }
+        
         #endif
 
         public void SetReceiveInput(bool value)

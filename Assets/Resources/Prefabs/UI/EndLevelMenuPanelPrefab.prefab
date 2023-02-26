@@ -981,7 +981,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 150
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -1043,10 +1043,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3710779703095264611
 CanvasRenderer:
@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_MinHeight: 0
   m_PreferredWidth: 230
   m_PreferredHeight: 230
-  m_FlexibleWidth: 0.33
+  m_FlexibleWidth: -1
   m_FlexibleHeight: 0.33
   m_LayoutPriority: 1
 --- !u!114 &1154417732909089691
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_MinHeight: 0
   m_PreferredWidth: 230
   m_PreferredHeight: 230
-  m_FlexibleWidth: 0.33
+  m_FlexibleWidth: -1
   m_FlexibleHeight: 0.33
   m_LayoutPriority: 1
 --- !u!114 &5623822689778286385
@@ -1920,7 +1920,7 @@ MonoBehaviour:
   m_MinHeight: 0
   m_PreferredWidth: 230
   m_PreferredHeight: 230
-  m_FlexibleWidth: 0.33
+  m_FlexibleWidth: -1
   m_FlexibleHeight: 0.33
   m_LayoutPriority: 1
 --- !u!114 &22117855163216273
@@ -2582,7 +2582,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2759,7 +2759,7 @@ MonoBehaviour:
     spaceCount: 2
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

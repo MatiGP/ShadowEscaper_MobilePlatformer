@@ -42,7 +42,6 @@ namespace Code
         [SerializeField] protected LayerMask groundLayer;
         [SerializeField] protected Transform groundDetectorTransform;
         [SerializeField] protected Vector2 groundDetectorSize;
-        [SerializeField] protected float groundDetectionLineLength;
         [Header("Sliding")]
         [SerializeField] protected float m_SlideSpeed = 36f;
         [SerializeField] protected float m_SlideSpeedFallOff = 1f;
@@ -56,7 +55,6 @@ namespace Code
         [Header("Wall Detectors")]
         [SerializeField] protected Transform wallDetectorRight;
         [SerializeField] protected Transform wallDetectorLeft;
-        [SerializeField] protected float wallDetectorLineLength;
         [SerializeField] protected Vector2 wallDetectorSize;
         [SerializeField] protected LayerMask wallLayer;
         [Space(1f)]

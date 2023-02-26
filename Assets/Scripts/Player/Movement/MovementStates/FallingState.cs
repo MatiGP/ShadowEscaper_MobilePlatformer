@@ -33,9 +33,10 @@ namespace Code.StateMachine
         public override void HandleInput()
         {
             movementVector.x = playerController.Direction * playerController.FootSpeed;
-            movementVector.y -= playerController.Gravity * playerController.FallMultiplier;
+            movementVector.y -= playerController.Gravity * playerController.FallMultiplier * Time.deltaTime;
 
-            movementVector.y = Mathf.Clamp(movementVector.y, -playerController.FallingSpeedLimit, playerController.JumpHeight);
+            movementVector.y = Mathf.Clamp(movementVector.y,
+                -playerController.FallingSpeedLimit, playerController.JumpHeight);
 
             playerTransform.position += movementVector * Time.deltaTime;
 
@@ -44,7 +45,7 @@ namespace Code.StateMachine
 
         public override void HandleLogic()
         {
-            if (playerController.CanCoyoteJump && movementVector.y < 0f)
+            if (playerController.CanCoyoteJump && movementVector.y < 0f && playerController.IsJumping)
             {
                 stateMachine.ChangeState(playerController.MovementStates[EMovementStateType.Jumping]);
                 return;

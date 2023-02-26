@@ -28,6 +28,7 @@ namespace Code.UI.Panels
         private const string FINISH_BEFORE_FORMAT = "Finished Before\n{0}";
         private const string TIME_FORMAT = "{0:00}:{1:00}:{2:00}";
         private const string ITEMS_COLLECTED_FORMAT = "Items collected\n{0}/{1}";
+        private const int DEFAULT_ITEMS_COLLECTED = 0;
 
         private int m_ObtainedPoints = 0;
 
@@ -49,6 +50,7 @@ namespace Code.UI.Panels
             bool canPlayPrevLevel = ShadowRunApp.Instance.LevelLoader.CanPlayPreviousLevel;
             int pointsObtained = ShadowRunApp.Instance.GameManager.CurrentPoints;
 
+            m_EarnedPointsCounter.SetValues(0, m_ObtainedPoints);
             m_ObtainedPoints = pointsObtained * GameManager.POINTS_MULTIPLIER;
 
             SetFinishedBeforeText();
@@ -126,8 +128,6 @@ namespace Code.UI.Panels
         private IEnumerator CountUp()
         {
             yield return m_CoroutineDelay;
-
-            m_EarnedPointsCounter.SetValues(0, m_ObtainedPoints);
             m_EarnedPointsCounter.StartCountUp();        
         }
 

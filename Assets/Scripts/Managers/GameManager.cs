@@ -42,7 +42,7 @@ namespace Code
    
             SaveSystem.SaveObtainedStarsFromLevel(CurrentLevelData.LevelName, CurrentPoints);
             
-            OnGameCompleted.Invoke(this, EventArgs.Empty);
+            OnGameCompleted?.Invoke(this, EventArgs.Empty);
         }
 
         public void SetCollectedItemsCount(int count)

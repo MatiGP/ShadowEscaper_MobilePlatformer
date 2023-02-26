@@ -623,10 +623,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3710779703095264611
 CanvasRenderer:
@@ -648,21 +648,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d7d4c967bff4f4ab3fb06e0533b430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EarnedPointsCounter: {fileID: 0}
   m_StarImages:
   - {fileID: 3710779702453780522}
   - {fileID: 3710779703986219206}
   - {fileID: 3710779704219872835}
-  m_NextLevelButtonBlocker: {fileID: 3710779703367806466}
-  m_PreviousLevelButtonBlocker: {fileID: 1901306347048147003}
   m_PremiumRoot: {fileID: 0}
   m_RequiredTimeToGetReward: {fileID: 4868186914696122292}
   m_ItemsCollected: {fileID: 8806626210008697029}
-  m_EarnedPoints: {fileID: 0}
   m_PreviousLevelButton: {fileID: 3710779703225308257}
   m_NextLevelButton: {fileID: 951097017766755159}
   m_MenuButton: {fileID: 4172493383164134330}
   m_GoldStarIcon: {fileID: 21300000, guid: a4ec40ee9f6f8b147b0834d2bd163895, type: 3}
-  m_PointCountLerpDuration: 1
 --- !u!223 &8626001901116842079
 Canvas:
   m_ObjectHideFlags: 0

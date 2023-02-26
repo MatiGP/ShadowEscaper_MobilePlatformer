@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c22d5e87e46b0934996529ffaf06d078, type: 3}
-    totalSpriteSurfaceArea: 1995563
+    totalSpriteSurfaceArea: 1947435
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -71,7 +71,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 419acad88a4e9bd4d86b60962dbfc1ca, type: 3}
   - {fileID: 21300000, guid: 252abc39d616d1049a883f21ec3db101, type: 3}
   - {fileID: 21300000, guid: 022c01d90ff126c40b8e68a2739c74c3, type: 3}
-  - {fileID: 21300000, guid: 3119ebd97af697b43ba8b80f2767a12f, type: 3}
+  - {fileID: 2811982592381345255, guid: 3119ebd97af697b43ba8b80f2767a12f, type: 3}
   - {fileID: 21300000, guid: 8f5b108a85e085f4a983af5c41071058, type: 3}
   - {fileID: 21300000, guid: 3ad050bbbc17b5542ab49933377a92ea, type: 3}
   - {fileID: 21300000, guid: 1fecef6eb74ce3c4fa9da075f71d5900, type: 3}
@@ -105,7 +105,7 @@ SpriteAtlas:
   - X mark
   - right arrow mark
   - LevelCompletion
-  - UI_NEW_BG
+  - UI_NEW_BG_0
   - SHADOW ESSENCE kopia 2
   - tutorial_hand
   - CHALLENGE ICON

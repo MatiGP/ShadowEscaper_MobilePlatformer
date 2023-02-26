@@ -8,8 +8,7 @@ namespace Code.UI
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private Canvas m_MainCanvas;
-        [SerializeField] private Camera m_UICamera;
+        [SerializeField] private RectTransform m_PanelParent;
 
         public static UIManager Instance { get; private set; }
 
@@ -19,8 +18,6 @@ namespace Code.UI
         private const string PANEL_NAME_FORMAT = "{0}PanelPrefab";
         private const string PANEL_PREFAB_PATH_FORMAT = "Prefabs/UI/{0}";
 
-        private float m_ScreenAspectRatio = 1.777f;
-
         private GlobalUILayer m_GlobalUILayer = new GlobalUILayer();
         public void Initialize()
         {
@@ -29,11 +26,7 @@ namespace Code.UI
                 Instance = this;
             }
         }
-
-        private void Start()
-        {
-            m_ScreenAspectRatio = (float)Screen.height / (float)Screen.width;
-        }
+        
         public UIPanel CreatePanel(EPanelID panelID)
         {
             if (m_UIPanels.ContainsKey(panelID))
@@ -44,11 +37,8 @@ namespace Code.UI
             string panelName = string.Format(PANEL_NAME_FORMAT, panelID);
             string panelPath = string.Format(PANEL_PREFAB_PATH_FORMAT, panelName);
 
-            UIPanel loadedPanel = Instantiate(Resources.Load<UIPanel>(panelPath));
-            loadedPanel.transform.SetParent(m_MainCanvas.transform);
-            loadedPanel.transform.localPosition = new Vector3(0, 0, 0);
-            
-            RecalculatePanelSizeDelta(loadedPanel);
+            UIPanel loadedPanel = Instantiate(Resources.Load<UIPanel>(panelPath), m_PanelParent, false);
+            loadedPanel.transform.localPosition = Vector3.zero;
 
             loadedPanel.SetPanelID(panelID);
 
@@ -56,44 +46,12 @@ namespace Code.UI
             
             m_UIPanels.Add(panelID, loadedPanel);
             
-            ReLayerPanels();
-
             if (loadedPanel != null)
             {
-                
                 return loadedPanel;
             }
             
-            
-
             return null;
-        }
-
-        private void RecalculatePanelSizeDelta(UIPanel loadedPanel)
-        {
-            RectTransform rectTransform = loadedPanel.GetComponent<RectTransform>();
-            float newHeight = rectTransform.sizeDelta.x * m_ScreenAspectRatio;
-            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, newHeight);
-        }
-
-        private void ReLayerPanels()
-        {
-            List<EPanelID> panelOrderList = m_GlobalUILayer.PanelOrder;
-            int panelsCount = panelOrderList.Count;
-
-            for(int i = 0; i < panelsCount; i++)
-            {
-                if (m_UIPanels.ContainsKey(panelOrderList[i]))
-                {
-                    
-                    Canvas panelCanvas = m_UIPanels[panelOrderList[i]].GetComponent<Canvas>();
-
-                    panelCanvas.overrideSorting = true;
-                    panelCanvas.sortingLayerName = "UI";
-                    panelCanvas.sortingOrder = i;
-                }
-            }
-
         }
 
         private void LoadedPanel_OnPanelClose(object sender, EPanelID e)

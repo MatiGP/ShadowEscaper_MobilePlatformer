@@ -17,16 +17,16 @@ namespace Code.UI.Panels
         [SerializeField] private Image[] m_KeyImages = null;
         [SerializeField] private Sprite m_KeyCollectedSprite;
         [SerializeField] private Sprite m_KeyNotCollectedSprite;
-        
         [Header("Stars")]
         [SerializeField] private Image[] m_StarImages = null;
         [SerializeField] private Sprite m_StarCollectedSprite;
         [SerializeField] private Sprite m_StarNotCollectedSprite;
+        [Header("Roots")] 
+        [SerializeField] private GameObject m_TimeRoot = null;
 
         private int m_CurrentKeys = 0;
         private int m_CurrentStars = 0;
         private Coroutine m_TimeTickCoroutine = null;
-        private const string TIME_FORMAT = "{0:00}:{1:00}:{2}";
 
         protected override void Awake()
         {
@@ -102,6 +102,7 @@ namespace Code.UI.Panels
 
         private void HandleGameStart(object sender, EventArgs e)
         {
+            m_TimeRoot.SetActive(true);
             m_TimeTickCoroutine = StartCoroutine(TickLevelTime());
         }
 
@@ -120,8 +121,9 @@ namespace Code.UI.Panels
 
         private void HandleGameCompleted(object sender, EventArgs e)
         {
-            StopCoroutine(TickLevelTime());
+            StopCoroutine(m_TimeTickCoroutine);
             m_TimeTickCoroutine = null;
+            m_TimeRoot.SetActive(false);
         }
 
         private void BindEvents()
